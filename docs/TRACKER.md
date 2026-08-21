@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **58** | 24.1% |
+| 📄 Lesson docs written | **63** | 26.1% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **183** | 75.9% |
+| ⬜ Still to write | **178** | 73.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  58/241
+written  ██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  63/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -37,7 +37,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 6/6 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 10/10 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 6/6 | 0/6 |
-| 8 | M8 | Statistics foundations (Module 8) | 58–68 | 0/11 | 0/11 |
+| 8 | M8 | Statistics foundations (Module 8) | 58–68 | 5/11 | 0/11 |
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 0/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 0/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 0/7 | 0/7 |
@@ -164,11 +164,11 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 58 | Descriptive vs inferential; levels of measurement | ST-01, ST-02 | lab | ⬜ pending | — |
-| 59 | Central tendency — mean, median, mode | ST-03 | lab | ⬜ pending | — |
-| 60 | Dispersion — range, variance, std, IQR, and `ddof` | ST-04 | lab | ⬜ pending | — |
-| 61 | Skewness and kurtosis | ST-05 | lab | ⬜ pending | — |
-| 62 | Covariance and correlation — Anscombe's quartet | ST-06 | lab | ⬜ pending | — |
+| 58 | Descriptive vs inferential; levels of measurement | ST-01, ST-02 | lab | 📄 written | 62 |
+| 59 | Central tendency — mean, median, mode | ST-03 | lab | 📄 written | 66 |
+| 60 | Dispersion — range, variance, std, IQR, and `ddof` | ST-04 | lab | 📄 written | 62 |
+| 61 | Skewness and kurtosis | ST-05 | lab | 📄 written | 66 |
+| 62 | Covariance and correlation — Anscombe's quartet | ST-06 | lab | 📄 written | 63 |
 | 63 | Sets, random variables, probability, conditional probability | ST-07, ST-08 | lab | ⬜ pending | — |
 | 64 | PMF, PDF, CDF | ST-09 | lab | ⬜ pending | — |
 | 65 | Bernoulli, binomial, Poisson, uniform | ST-10, ST-11 | lab | ⬜ pending | — |
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 58** — Descriptive vs inferential; levels of measurement `(ST-01, ST-02)`
-- **Day 59** — Central tendency — mean, median, mode `(ST-03)`
-- **Day 60** — Dispersion — range, variance, std, IQR, and `ddof` `(ST-04)`
-- **Day 61** — Skewness and kurtosis `(ST-05)`
-- **Day 62** — Covariance and correlation — Anscombe's quartet `(ST-06)`
 - **Day 63** — Sets, random variables, probability, conditional probability `(ST-07, ST-08)`
 - **Day 64** — PMF, PDF, CDF `(ST-09)`
 - **Day 65** — Bernoulli, binomial, Poisson, uniform `(ST-10, ST-11)`
 - **Day 66** — The normal distribution, z-scores, standardisation `(ST-12, ST-13)`
 - **Day 67** — The Central Limit Theorem — simulated, not asserted `(ST-14)`
+- **Day 68** — Estimation, standard error, and a bootstrap CI from scratch `(ST-15)`
+- **Day 69** — Hypothesis testing — the mechanism, step by step `(ST-16)`
+- **Day 70** — p-values, significance, Type I/II error, power `(ST-17)`
+- **Day 71** — t-tests and ANOVA `(ST-18)`
+- **Day 72** — Bayes' theorem and Bayesian updating `(ST-19)`
 
