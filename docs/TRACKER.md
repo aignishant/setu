@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **42** | 17.4% |
+| 📄 Lesson docs written | **52** | 21.6% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **199** | 82.6% |
+| ⬜ Still to write | **189** | 78.4% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  42/241
+written  █████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  52/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -35,7 +35,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 3 | M3 | NumPy (Module 3) | 20–25 | 6/6 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 10/10 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 6/6 | 0/6 |
-| 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 0/10 | 0/10 |
+| 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 10/10 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 0/6 | 0/6 |
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 0/11 | 0/11 |
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 0/7 | 0/7 |
@@ -138,16 +138,16 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 42 | Relational thinking; Supabase Postgres from Python | DB-01, DB-02 | lab | ⬜ pending | — |
-| 43 | `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, `HAVING` | DB-03 | lab | ⬜ pending | — |
-| 44 | Primary keys, foreign keys, constraints | DB-04 | lab | ⬜ pending | — |
-| 45 | Joins and unions — the same question in SQL and pandas | DB-05 | lab | ⬜ pending | — |
-| 46 | Subqueries, CTEs, and window functions | DB-06 | lab | ⬜ pending | — |
-| 47 | Parameterised queries and SQLAlchemy Core | DB-07 | lab | ⬜ pending | — |
-| 48 | MongoDB Atlas — documents, collections, and when they beat rows | DB-08 | lab | ⬜ pending | — |
-| 49 | CRUD: insert, find, query operators, sort, projection | DB-09 | lab | ⬜ pending | — |
-| 50 | Updates, deletes, indexes, and the aggregation pipeline | DB-10, DB-11 | lab | ⬜ pending | — |
-| 51 | SQL vs NoSQL — ADR-004 | DB-12 | gate | ⬜ pending | — |
+| 42 | Relational thinking; Supabase Postgres from Python | DB-01, DB-02 | lab | 📄 written | 62 |
+| 43 | `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, `HAVING` | DB-03 | lab | 📄 written | 57 |
+| 44 | Primary keys, foreign keys, constraints | DB-04 | lab | 📄 written | 59 |
+| 45 | Joins and unions — the same question in SQL and pandas | DB-05 | lab | 📄 written | 54 |
+| 46 | Subqueries, CTEs, and window functions | DB-06 | lab | 📄 written | 52 |
+| 47 | Parameterised queries and SQLAlchemy Core | DB-07 | lab | 📄 written | 57 |
+| 48 | MongoDB Atlas — documents, collections, and when they beat rows | DB-08 | lab | 📄 written | 61 |
+| 49 | CRUD: insert, find, query operators, sort, projection | DB-09 | lab | 📄 written | 64 |
+| 50 | Updates, deletes, indexes, and the aggregation pipeline | DB-10, DB-11 | lab | 📄 written | 71 |
+| 51 | SQL vs NoSQL — ADR-004 | DB-12 | gate | 📄 written | 68 |
 
 ### Phase 7 · Streamlit (Module 7) · Days 52–57
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 42** — Relational thinking; Supabase Postgres from Python `(DB-01, DB-02)`
-- **Day 43** — `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, `HAVING` `(DB-03)`
-- **Day 44** — Primary keys, foreign keys, constraints `(DB-04)`
-- **Day 45** — Joins and unions — the same question in SQL and pandas `(DB-05)`
-- **Day 46** — Subqueries, CTEs, and window functions `(DB-06)`
-- **Day 47** — Parameterised queries and SQLAlchemy Core `(DB-07)`
-- **Day 48** — MongoDB Atlas — documents, collections, and when they beat rows `(DB-08)`
-- **Day 49** — CRUD: insert, find, query operators, sort, projection `(DB-09)`
-- **Day 50** — Updates, deletes, indexes, and the aggregation pipeline `(DB-10, DB-11)`
-- **Day 51** — SQL vs NoSQL — ADR-004 `(DB-12)`
+- **Day 52** — Streamlit's execution model — why your counter resets `(APP-01)`
+- **Day 53** — Widgets, forms, and layout `(APP-02, APP-03)`
+- **Day 54** — `st.session_state` and multi-step flows `(APP-04)`
+- **Day 55** — Caching, charts, and dataframes `(APP-05, APP-06)`
+- **Day 56** — Async, generators, and `st.write_stream` `(APP-07)`
+- **Day 57** — Deploy to Streamlit Community Cloud; secrets handling `(APP-08)`
+- **Day 58** — Descriptive vs inferential; levels of measurement `(ST-01, ST-02)`
+- **Day 59** — Central tendency — mean, median, mode `(ST-03)`
+- **Day 60** — Dispersion — range, variance, std, IQR, and `ddof` `(ST-04)`
+- **Day 61** — Skewness and kurtosis `(ST-05)`
 
