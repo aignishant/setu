@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **27** | 11.2% |
+| 📄 Lesson docs written | **36** | 14.9% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **214** | 88.8% |
+| ⬜ Still to write | **205** | 85.1% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  27/241
+written  ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  36/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -33,7 +33,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 6/6 | 0/6 |
-| 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 1/10 | 0/10 |
+| 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 10/10 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 0/10 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 0/6 | 0/6 |
@@ -113,15 +113,15 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
 | 26 | pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap | PD-01 | lab | 📄 written | 44 |
-| 27 | Reading and writing: CSV, JSON, Parquet, SQL — typed at read time | PD-02 | lab | ⬜ pending | — |
-| 28 | `loc`, `iloc`, boolean masks, reindexing and alignment | PD-03, PD-04 | lab | ⬜ pending | — |
-| 29 | Iteration vs vectorisation; sorting and ranking | PD-05, PD-06 | lab | ⬜ pending | — |
-| 30 | Missing data — and why the imputer lives in the pipeline | PD-07 | lab | ⬜ pending | — |
-| 31 | `groupby`: split–apply–combine, `agg` and `transform` | PD-08 | lab | ⬜ pending | — |
-| 32 | Merge, join, concat, pivot, melt | PD-09, PD-10 | lab | ⬜ pending | — |
-| 33 | The `.str` and `.dt` accessors; resampling | PD-11, PD-12 | lab | ⬜ pending | — |
-| 34 | Categorical dtype and `describe()` as a data-quality report | PD-13, PD-14 | lab | ⬜ pending | — |
-| 35 | Where pandas stops — Polars and DuckDB, benchmarked | PD-15 | gate | ⬜ pending | — |
+| 27 | Reading and writing: CSV, JSON, Parquet, SQL — typed at read time | PD-02 | lab | 📄 written | 47 |
+| 28 | `loc`, `iloc`, boolean masks, reindexing and alignment | PD-03, PD-04 | lab | 📄 written | 52 |
+| 29 | Iteration vs vectorisation; sorting and ranking | PD-05, PD-06 | lab | 📄 written | 53 |
+| 30 | Missing data — and why the imputer lives in the pipeline | PD-07 | lab | 📄 written | 52 |
+| 31 | `groupby`: split–apply–combine, `agg` and `transform` | PD-08 | lab | 📄 written | 53 |
+| 32 | Merge, join, concat, pivot, melt | PD-09, PD-10 | lab | 📄 written | 55 |
+| 33 | The `.str` and `.dt` accessors; resampling | PD-11, PD-12 | lab | 📄 written | 60 |
+| 34 | Categorical dtype and `describe()` as a data-quality report | PD-13, PD-14 | lab | 📄 written | 54 |
+| 35 | Where pandas stops — Polars and DuckDB, benchmarked | PD-15 | gate | 📄 written | 55 |
 
 ### Phase 5 · Visualisation (Module 5) · Days 36–41
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 27** — Reading and writing: CSV, JSON, Parquet, SQL — typed at read time `(PD-02)`
-- **Day 28** — `loc`, `iloc`, boolean masks, reindexing and alignment `(PD-03, PD-04)`
-- **Day 29** — Iteration vs vectorisation; sorting and ranking `(PD-05, PD-06)`
-- **Day 30** — Missing data — and why the imputer lives in the pipeline `(PD-07)`
-- **Day 31** — `groupby`: split–apply–combine, `agg` and `transform` `(PD-08)`
-- **Day 32** — Merge, join, concat, pivot, melt `(PD-09, PD-10)`
-- **Day 33** — The `.str` and `.dt` accessors; resampling `(PD-11, PD-12)`
-- **Day 34** — Categorical dtype and `describe()` as a data-quality report `(PD-13, PD-14)`
-- **Day 35** — Where pandas stops — Polars and DuckDB, benchmarked `(PD-15)`
 - **Day 36** — Matplotlib — figure, axes, and the object API `(VIZ-01)`
+- **Day 37** — Customising charts; choosing the right chart type `(VIZ-02, VIZ-03)`
+- **Day 38** — Seaborn — statistical plots and faceting `(VIZ-04)`
+- **Day 39** — Distributions and relationships; the correlation heatmap `(VIZ-05, VIZ-06)`
+- **Day 40** — Styling, palettes, and colour-blind-safe defaults `(VIZ-07)`
+- **Day 41** — Plotly — when interactivity earns its weight `(VIZ-08)`
+- **Day 42** — Relational thinking; Supabase Postgres from Python `(DB-01, DB-02)`
+- **Day 43** — `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, `HAVING` `(DB-03)`
+- **Day 44** — Primary keys, foreign keys, constraints `(DB-04)`
+- **Day 45** — Joins and unions — the same question in SQL and pandas `(DB-05)`
 
