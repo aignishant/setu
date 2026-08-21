@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **52** | 21.6% |
+| 📄 Lesson docs written | **58** | 24.1% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **189** | 78.4% |
+| ⬜ Still to write | **183** | 75.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  █████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  52/241
+written  ██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  58/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -36,7 +36,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 10/10 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 6/6 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 10/10 | 0/10 |
-| 7 | M7 | Streamlit (Module 7) | 52–57 | 0/6 | 0/6 |
+| 7 | M7 | Streamlit (Module 7) | 52–57 | 6/6 | 0/6 |
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 0/11 | 0/11 |
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 0/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 0/8 | 0/8 |
@@ -153,12 +153,12 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 52 | Streamlit's execution model — why your counter resets | APP-01 | lab | ⬜ pending | — |
-| 53 | Widgets, forms, and layout | APP-02, APP-03 | lab | ⬜ pending | — |
-| 54 | `st.session_state` and multi-step flows | APP-04 | lab | ⬜ pending | — |
-| 55 | Caching, charts, and dataframes | APP-05, APP-06 | lab | ⬜ pending | — |
-| 56 | Async, generators, and `st.write_stream` | APP-07 | lab | ⬜ pending | — |
-| 57 | Deploy to Streamlit Community Cloud; secrets handling | APP-08 | gate | ⬜ pending | — |
+| 52 | Streamlit's execution model — why your counter resets | APP-01 | lab | 📄 written | 54 |
+| 53 | Widgets, forms, and layout | APP-02, APP-03 | lab | 📄 written | 65 |
+| 54 | `st.session_state` and multi-step flows | APP-04 | lab | 📄 written | 57 |
+| 55 | Caching, charts, and dataframes | APP-05, APP-06 | lab | 📄 written | 62 |
+| 56 | Async, generators, and `st.write_stream` | APP-07 | lab | 📄 written | 65 |
+| 57 | Deploy to Streamlit Community Cloud; secrets handling | APP-08 | gate | 📄 written | 79 |
 
 ### Phase 8 · Statistics foundations (Module 8) · Days 58–68
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 52** — Streamlit's execution model — why your counter resets `(APP-01)`
-- **Day 53** — Widgets, forms, and layout `(APP-02, APP-03)`
-- **Day 54** — `st.session_state` and multi-step flows `(APP-04)`
-- **Day 55** — Caching, charts, and dataframes `(APP-05, APP-06)`
-- **Day 56** — Async, generators, and `st.write_stream` `(APP-07)`
-- **Day 57** — Deploy to Streamlit Community Cloud; secrets handling `(APP-08)`
 - **Day 58** — Descriptive vs inferential; levels of measurement `(ST-01, ST-02)`
 - **Day 59** — Central tendency — mean, median, mode `(ST-03)`
 - **Day 60** — Dispersion — range, variance, std, IQR, and `ddof` `(ST-04)`
 - **Day 61** — Skewness and kurtosis `(ST-05)`
+- **Day 62** — Covariance and correlation — Anscombe's quartet `(ST-06)`
+- **Day 63** — Sets, random variables, probability, conditional probability `(ST-07, ST-08)`
+- **Day 64** — PMF, PDF, CDF `(ST-09)`
+- **Day 65** — Bernoulli, binomial, Poisson, uniform `(ST-10, ST-11)`
+- **Day 66** — The normal distribution, z-scores, standardisation `(ST-12, ST-13)`
+- **Day 67** — The Central Limit Theorem — simulated, not asserted `(ST-14)`
 
