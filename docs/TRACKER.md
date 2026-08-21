@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **13** | 5.4% |
+| 📄 Lesson docs written | **21** | 8.7% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **228** | 94.6% |
+| ⬜ Still to write | **220** | 91.3% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  13/241
+written  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  21/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -31,7 +31,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 |---|---|---|---|---|---|
 | 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 0/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 0/8 |
-| 2 | M2 | Advanced Python (Module 2) | 12–19 | 0/8 | 0/8 |
+| 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 1/10 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0/6 |
@@ -88,14 +88,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 12 | Classes — building the `Paper` object | PY-13 | lab | ⬜ pending | — |
-| 13 | Inheritance, polymorphism, encapsulation, abstraction | PY-14, PY-15 | lab | ⬜ pending | — |
-| 14 | Decorators — `@timed` and `@retry` | PY-16 | lab | ⬜ pending | — |
-| 15 | `classmethod`, `staticmethod`, `property`, and dunder methods | PY-17, PY-18 | lab | ⬜ pending | — |
-| 16 | Files, `pathlib`, buffering, and context managers | PY-19, PY-20 | lab | ⬜ pending | — |
-| 17 | Modules, packages, imports, `__init__.py` | PY-21 | lab | ⬜ pending | — |
-| 18 | Exceptions and custom error types | PY-22 | lab | ⬜ pending | — |
-| 19 | Typing, dataclasses, Pydantic v2, and concurrency | PY-23, PY-24 | gate | ⬜ pending | — |
+| 12 | Classes — building the `Paper` object | PY-13 | lab | 📄 written | 45 |
+| 13 | Inheritance, polymorphism, encapsulation, abstraction | PY-14, PY-15 | lab | 📄 written | 48 |
+| 14 | Decorators — `@timed` and `@retry` | PY-16 | lab | 📄 written | 43 |
+| 15 | `classmethod`, `staticmethod`, `property`, and dunder methods | PY-17, PY-18 | lab | 📄 written | 50 |
+| 16 | Files, `pathlib`, buffering, and context managers | PY-19, PY-20 | lab | 📄 written | 50 |
+| 17 | Modules, packages, imports, `__init__.py` | PY-21 | lab | 📄 written | 43 |
+| 18 | Exceptions and custom error types | PY-22 | lab | 📄 written | 44 |
+| 19 | Typing, dataclasses, Pydantic v2, and concurrency | PY-23, PY-24 | gate | 📄 written | 61 |
 
 ### Phase 3 · NumPy (Module 3) · Days 20–25
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 12** — Classes — building the `Paper` object `(PY-13)`
-- **Day 13** — Inheritance, polymorphism, encapsulation, abstraction `(PY-14, PY-15)`
-- **Day 14** — Decorators — `@timed` and `@retry` `(PY-16)`
-- **Day 15** — `classmethod`, `staticmethod`, `property`, and dunder methods `(PY-17, PY-18)`
-- **Day 16** — Files, `pathlib`, buffering, and context managers `(PY-19, PY-20)`
-- **Day 17** — Modules, packages, imports, `__init__.py` `(PY-21)`
-- **Day 18** — Exceptions and custom error types `(PY-22)`
-- **Day 19** — Typing, dataclasses, Pydantic v2, and concurrency `(PY-23, PY-24)`
 - **Day 20** — `ndarray`, dtypes, and array creation (NumPy 2.x names) `(NP-01, NP-02)`
 - **Day 21** — Indexing, slicing, boolean masks — and the view trap `(NP-03)`
+- **Day 22** — Broadcasting and array manipulation `(NP-04, NP-05)`
+- **Day 23** — Universal functions, statistics, and `argsort` top-k `(NP-06, NP-07)`
+- **Day 24** — Binary/string functions and linear algebra `(NP-08, NP-09)`
+- **Day 25** — Copy vs view — and a vectorised stats module `(NP-10)`
+- **Day 27** — Reading and writing: CSV, JSON, Parquet, SQL — typed at read time `(PD-02)`
+- **Day 28** — `loc`, `iloc`, boolean masks, reindexing and alignment `(PD-03, PD-04)`
+- **Day 29** — Iteration vs vectorisation; sorting and ranking `(PD-05, PD-06)`
+- **Day 30** — Missing data — and why the imputer lives in the pipeline `(PD-07)`
 
