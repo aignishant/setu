@@ -1,0 +1,184 @@
+---
+name: pins-ds
+plan: setu
+verified: "2026-08-21"
+source: "pypi.org/pypi/<pkg>/json — read live, not from memory"
+---
+
+# 📌 PINS — Project Setu
+
+Every number below was read from the PyPI JSON API on **2026-08-21**. Nothing here is remembered.
+
+**Your job on Day 1 is not to trust this file.** It is to re-run the check below, diff it against
+this table, and then freeze whatever *today* says into `pyproject.toml` + `uv.lock` (Principle 4).
+
+## Re-verify (run this first, every Day 1 and every Friday)
+
+```bash
+for p in numpy pandas scipy scikit-learn statsmodels matplotlib seaborn plotly \
+         xgboost lightgbm shap optuna imbalanced-learn mlflow \
+         nltk spacy gensim torch tensorflow keras transformers datasets \
+         sentence-transformers chromadb faiss-cpu qdrant-client lancedb \
+         sqlalchemy psycopg supabase pymongo streamlit fastapi uvicorn pydantic \
+         langchain langchain-core langgraph langsmith langchain-text-splitters \
+         langchain-google-genai langchain-groq langchain-openai \
+         google-genai groq openai mcp ragas rank-bm25 tiktoken \
+         duckdb polars ruff pytest python-dotenv httpx beautifulsoup4 playwright; do
+  printf "%-30s " "$p"
+  curl -s "https://pypi.org/pypi/$p/json" \
+    | python3 -c "import sys,json;print(json.load(sys.stdin)['info']['version'])"
+done
+```
+
+**Line by line:**
+
+- `for p in … ; do` — loop over every package the 240 days will ever install.
+- `printf "%-30s "` — left-align the name in a 30-char column so the output is a readable table.
+- `curl -s "https://pypi.org/pypi/$p/json"` — PyPI's public metadata endpoint. `-s` silences the
+  progress meter so only JSON reaches the pipe.
+- `python3 -c "…['info']['version']"` — `info.version` is the **latest non-yanked release**. This is
+  the authoritative answer; a blog post is not.
+
+Any **patch** drift → pin it and log in `CHANGELOG_PLAN_DS.md`.
+Any **minor or major** drift → write an addendum **before** you pin (Principle 14).
+
+## The table (2026-08-21)
+
+| Package | Version | Phase first used |
+|---|---|---|
+| **Language & tooling** | | |
+| Python | 3.12 | 0 |
+| ruff | 0.16.4 | 0 |
+| pytest | 9.1.1 | 0 |
+| python-dotenv | 1.2.3 | 0 |
+| jupyterlab · ipykernel | 4.6.3 · 7.3.0 | 0 |
+| **Numerics & data** | | |
+| numpy | 2.5.2 | 3 |
+| pandas | 3.0.5 ⚠️ major | 4 |
+| scipy | 1.18.0 | 8 |
+| statsmodels | 0.14.6 | 9 |
+| polars | 1.43.2 | 4 |
+| duckdb | 1.5.5 | 4 |
+| **Visualisation** | | |
+| matplotlib | 3.11.1 | 5 |
+| seaborn | 0.13.2 | 5 |
+| plotly | 6.9.0 | 5 |
+| **Databases** | | |
+| sqlalchemy | 2.0.52 | 6 |
+| psycopg | 3.3.4 | 6 |
+| supabase | 2.31.0 | 6 |
+| pymongo | 4.17.0 | 6 |
+| **Apps & API** | | |
+| streamlit | 1.62.0 | 7 |
+| fastapi · uvicorn | 0.141.1 · 0.52.4 | 27 |
+| pydantic | 2.13.4 | 2 |
+| **Machine learning** | | |
+| scikit-learn | 1.9.0 | 10 |
+| imbalanced-learn | 0.14.2 | 10 |
+| xgboost | 3.4.1 | 13 |
+| lightgbm | 4.7.0 | 13 |
+| catboost | 1.2.10 | 13 |
+| shap | 0.52.0 | 13 |
+| optuna | 4.9.0 | 12 |
+| mlflow | 3.15.1 | 13 |
+| joblib | 1.5.3 | 12 |
+| **NLP** | | |
+| nltk | 3.10.3 | 14 |
+| spacy | 3.8.15 | 14 |
+| gensim | 4.4.0 ⚠️ fragile vs NumPy 2.x | 14 |
+| **Deep learning** | | |
+| torch | 2.13.0 | 15 |
+| tensorflow | 2.21.0 | 15 |
+| keras | 3.15.1 | 15 |
+| transformers | 5.15.1 ⚠️ major | 16 |
+| tokenizers | 0.23.1 | 16 |
+| datasets | 5.0.1 | 16 |
+| tiktoken | 0.14.0 | 16 |
+| **Embeddings & vector stores** | | |
+| sentence-transformers | 6.0.0 | 18 |
+| chromadb | 1.5.9 | 18 |
+| faiss-cpu | 1.15.0 | 18 |
+| qdrant-client | 1.19.0 | 18 |
+| lancedb | 0.37.1 | 18 |
+| pinecone | 9.1.0 (🅿️ literacy) | 18 |
+| **RAG & orchestration** | | |
+| langchain | 1.3.16 | 20 |
+| langchain-core | 1.6.0 | 20 |
+| langchain-community | 0.4.2 | 20 |
+| langchain-text-splitters | 1.1.2 | 19 |
+| langchain-google-genai | 4.3.5 | 20 |
+| langchain-groq | 1.1.3 | 20 |
+| langchain-openai | 1.6.0 (pointed at OpenRouter) | 20 |
+| langgraph | 1.2.11 | 22 |
+| langgraph-checkpoint-sqlite | 3.1.1 | 23 |
+| langsmith | 0.11.1 | 20 |
+| ragas | 0.4.3 | 19 |
+| rank-bm25 | 0.2.2 | 19 |
+| **Protocol & agent tooling** | | |
+| mcp | 2.0.0 ⚠️ major | 26 |
+| httpx | 0.28.1 | 27 |
+| beautifulsoup4 | 4.15.0 | 27 |
+| playwright | 1.62.0 | 27 |
+| **Raw provider clients** | | |
+| openai | 3.3.1 (used against Groq/OpenRouter base URLs) | 17 |
+| google-genai | 2.19.0 | 17 |
+| groq | 1.6.0 | 17 |
+
+## Python version reasoning
+
+| Package | Supported Pythons (2026-08-21) |
+|---|---|
+| numpy 2.5.2 | ≥ 3.12 — **this is the floor** |
+| pandas 3.0.5 | ≥ 3.11 |
+| scikit-learn 1.9.0 | ≥ 3.11 |
+| tensorflow 2.21.0 | 3.10 – 3.13 — **this is the ceiling** |
+| langgraph 1.2.11 | 3.10 – 3.13 |
+| torch 2.13.0 | 3.10 – 3.14 |
+| transformers 5.15.1 | ≥ 3.10 |
+
+Intersection: **3.12 or 3.13**. This plan pins **3.12** — the wider margin, and it matches the
+existing `mandala` repo so both tracks share a toolchain.
+
+## The `pyproject.toml` starting block
+
+Don't paste this blind — paste the output of *your* re-verify run. This is the shape.
+
+```toml
+[project]
+name = "setu"
+version = "0.1.0"
+requires-python = "==3.12.*"
+dependencies = [
+    "numpy==2.5.2",
+    "pandas==3.0.5",
+    "python-dotenv==1.2.3",
+]
+
+[dependency-groups]
+dev = [
+    "ruff==0.16.4",
+    "pytest==9.1.1",
+    "ipykernel==7.3.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers"
+markers = ["live: hits a real API — skipped by default and never run in CI"]
+```
+
+> **Dependencies are added phase by phase, not all at once.** `uv add "scikit-learn==1.9.0"` on
+> Day 76, not Day 1. A day that installs a package it does not use is a day that has not been
+> thought about. Install-on-demand also keeps `uv.lock` a readable history of what the plan needed
+> and when.
+
+## ⚠️ The three pins that will hurt if you ignore them
+
+| Pin | The trap | Where the plan handles it |
+|---|---|---|
+| `pandas==3.0.x` | Copy-on-Write means `df["a"][mask] = v` silently does nothing. Strings are `str`, not `object`, so `df.dtypes == "object"` finds no text columns. | Day 26 opens with both, reproduced live |
+| `numpy==2.5.x` | `np.float_`, `np.in1d` and friends are removed. Every pre-2024 tutorial uses them. | Day 20 teaches only the 2.x names |
+| `transformers==5.x` | Major version. v4-era API shapes in blog posts will not run. | Every Phase-16 day ends with a live-docs verify link |
