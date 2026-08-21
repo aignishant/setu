@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **36** | 14.9% |
+| 📄 Lesson docs written | **42** | 17.4% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **205** | 85.1% |
+| ⬜ Still to write | **199** | 82.6% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  36/241
+written  ███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  42/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -34,7 +34,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 6/6 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 10/10 | 0/10 |
-| 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0/6 |
+| 5 | M5 | Visualisation (Module 5) | 36–41 | 6/6 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 0/10 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 0/6 | 0/6 |
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 0/11 | 0/11 |
@@ -127,12 +127,12 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 36 | Matplotlib — figure, axes, and the object API | VIZ-01 | lab | ⬜ pending | — |
-| 37 | Customising charts; choosing the right chart type | VIZ-02, VIZ-03 | lab | ⬜ pending | — |
-| 38 | Seaborn — statistical plots and faceting | VIZ-04 | lab | ⬜ pending | — |
-| 39 | Distributions and relationships; the correlation heatmap | VIZ-05, VIZ-06 | lab | ⬜ pending | — |
-| 40 | Styling, palettes, and colour-blind-safe defaults | VIZ-07 | lab | ⬜ pending | — |
-| 41 | Plotly — when interactivity earns its weight | VIZ-08 | gate | ⬜ pending | — |
+| 36 | Matplotlib — figure, axes, and the object API | VIZ-01 | lab | 📄 written | 47 |
+| 37 | Customising charts; choosing the right chart type | VIZ-02, VIZ-03 | lab | 📄 written | 53 |
+| 38 | Seaborn — statistical plots and faceting | VIZ-04 | lab | 📄 written | 48 |
+| 39 | Distributions and relationships; the correlation heatmap | VIZ-05, VIZ-06 | lab | 📄 written | 53 |
+| 40 | Styling, palettes, and colour-blind-safe defaults | VIZ-07 | lab | 📄 written | 54 |
+| 41 | Plotly — when interactivity earns its weight | VIZ-08 | gate | 📄 written | 69 |
 
 ### Phase 6 · SQL & NoSQL (Module 6) · Days 42–51
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 36** — Matplotlib — figure, axes, and the object API `(VIZ-01)`
-- **Day 37** — Customising charts; choosing the right chart type `(VIZ-02, VIZ-03)`
-- **Day 38** — Seaborn — statistical plots and faceting `(VIZ-04)`
-- **Day 39** — Distributions and relationships; the correlation heatmap `(VIZ-05, VIZ-06)`
-- **Day 40** — Styling, palettes, and colour-blind-safe defaults `(VIZ-07)`
-- **Day 41** — Plotly — when interactivity earns its weight `(VIZ-08)`
 - **Day 42** — Relational thinking; Supabase Postgres from Python `(DB-01, DB-02)`
 - **Day 43** — `SELECT`, `WHERE`, `ORDER BY`, `GROUP BY`, `HAVING` `(DB-03)`
 - **Day 44** — Primary keys, foreign keys, constraints `(DB-04)`
 - **Day 45** — Joins and unions — the same question in SQL and pandas `(DB-05)`
+- **Day 46** — Subqueries, CTEs, and window functions `(DB-06)`
+- **Day 47** — Parameterised queries and SQLAlchemy Core `(DB-07)`
+- **Day 48** — MongoDB Atlas — documents, collections, and when they beat rows `(DB-08)`
+- **Day 49** — CRUD: insert, find, query operators, sort, projection `(DB-09)`
+- **Day 50** — Updates, deletes, indexes, and the aggregation pipeline `(DB-10, DB-11)`
+- **Day 51** — SQL vs NoSQL — ADR-004 `(DB-12)`
 
