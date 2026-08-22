@@ -18,10 +18,9 @@ committed day at a time, on a **$0 budget**.
 
 ## Where the curriculum comes from
 
-Every teachable unit traces to **one** source: the *Ultimate Data Science & GenAI Bootcamp V2.0*
-syllabus — 27 modules plus an end-to-end projects section. **Phase _N_ of this plan is Module _N_ of
-that syllabus**, for N = 1…27, so traceability back to the source is one-to-one. Phase 0 is the
-foundry; Phases 28–29 are the capstone and the portfolio.
+The curriculum is **self-contained**: 27 modules plus an end-to-end projects section, all defined
+in the plan. **Phase _N_ is Module _N_**, for N = 1…27, so every day traces back to a numbered module
+one-to-one. Phase 0 is the foundry; Phases 28–29 are the capstone and the portfolio.
 
 What this repo adds is the *engineering*: the pins, the tests that can fail, the leakage discipline,
 the human approval gate, and a decision record at the end of every phase.

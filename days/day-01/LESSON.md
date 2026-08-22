@@ -205,8 +205,7 @@ cat > docs/CHANGELOG_PLAN_DS.md <<'EOF'
 # Changelog — Project Setu plan
 
 ## v1.0.0 — initial plan
-Derived from the *Ultimate Data Science & GenAI Bootcamp V2.0* syllabus (27 modules + projects).
-240 days, 30 phases. Stack table generated from live PyPI 2026-08-21.
+Self-contained: 27 modules + projects, 240 days, 30 phases. Stack table generated from live PyPI 2026-08-21.
 
 ## Day 1 verification
 - Ran `days/day-01/lab/verify_pins.py`; evidence in `days/day-01/lab/pins-<date>.txt`.

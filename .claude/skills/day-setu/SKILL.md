@@ -32,6 +32,9 @@ argument-hint: [day-number]
 5. Add a Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
 6. Honor `CLAUDE.md`: exact pins, split-before-fit, read-only by default, from-scratch-before-
    library, at least one failing-able test, zero-budget model calls.
+   Never name a person, instructor, author, channel, academy, bootcamp or training company
+   anywhere in the output. The plan is self-contained and cites no external course or author;
+   do not invent a lineage for it. Tool and library names are fine.
 7. Do NOT solve the `TODO(me)` sections. Teach; don't do the reps.
 8. Run `uv run python scripts/tracker.py` at the end.
 9. Finish by printing: today's IDs, the demo command, and the request budget.

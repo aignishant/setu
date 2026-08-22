@@ -14,8 +14,8 @@ prerequisite_phases: "0–27"
 > on Day 230, and the interrupt you learned on Day 199 is what stops the Generator from publishing
 > on Day 232.
 
-**Source lineage.** The capstone is the source syllabus's **Module 27** (multi-agent research
-automation) with its **Projects section** folded in: the review-scraper becomes the ingestion layer,
+**Lineage.** The capstone is the plan's **Module 27** (multi-agent research
+automation) with the **Projects section** folded in: the review-scraper becomes the ingestion layer,
 the RAG Q&A system becomes the knowledge layer, and the ML project becomes the Analyst agent's brain.
 
 ---

@@ -11,3 +11,6 @@ mlruns/
 .ruff_cache/
 .pytest_cache/
 .DS_Store
+CLAUDE.md
+.claude/
+

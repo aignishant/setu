@@ -1,7 +1,7 @@
 ---
 plan: setu
 version: "v1.0.0"
-source: "Ultimate Data Science & GenAI Bootcamp V2.0 (Krish Naik Academy) — 27 modules + projects section"
+modules: 27
 validated: "2026-08-21"
 days: 240
 phases: 30
@@ -10,11 +10,10 @@ phases: 30
 # 🌉 MASTER PLAN v1.0.0 — Project **Setu**
 ## Data Science → Machine Learning → Deep Learning → Generative AI → **Agentic AI**, built one day at a time
 
-> **Scope note.** Every teachable unit in this plan comes from **one source**: the
-> *Ultimate Data Science & GenAI Bootcamp V2.0* syllabus (Modules 1–27 + the end-to-end
-> projects section). Nothing has been imported from `00_MASTER_PLAN_AGENT_STACKS.md`.
-> Where that plan and this one touch the same ground (LangChain, LangGraph, MCP), this plan
-> teaches the **bootcamp's framing** — LangGraph-centred, RAG-first — not the four-framework bake-off.
+> **Scope note.** This plan is **self-contained**: 27 modules plus an end-to-end projects section,
+> all defined here. Nothing has been imported from `00_MASTER_PLAN_AGENT_STACKS.md`.
+> Where that plan and this one touch the same ground (LangChain, LangGraph, MCP), this plan takes a
+> **LangGraph-centred, RAG-first** line — not the four-framework bake-off.
 >
 > **Stack validated against live PyPI on 2026-08-21.** Every version in Part 2 was read from
 > `pypi.org/pypi/<pkg>/json` on that date, not from memory. Re-verify on your Day 1, then freeze
@@ -27,11 +26,11 @@ phases: 30
 
 **Goal:** in **240 days (30 phases, 0–29)** go from "I can write a `for` loop" to
 "I have shipped an autonomous multi-agent research system that a stranger can run from my README" —
-covering the full arc the bootcamp lays out: Python → data handling → statistics → machine learning →
+covering the full arc this plan lays out: Python → data handling → statistics → machine learning →
 deep learning → NLP → generative AI → vector search → RAG → LangChain → LangGraph → MCP → multi-agent.
 
-240 days at roughly 1.5–2 focused hours each is **10–12 months at five days a week** — exactly the
-duration the source syllabus estimates.
+240 days at roughly 1.5–2 focused hours each is **10–12 months at five days a week** — the duration this plan is
+built around.
 
 **Capstone: Project Setu** *(setu = bridge)* — a **multi-agent research desk**. You point it at a
 question; a Coordinator plans, a Search agent gathers, a Reader agent parses papers, an Analyst agent
@@ -71,7 +70,7 @@ Say that sentence in an interview and you have described the whole field in fift
 
 ## Part 1 — 📜 Operating principles
 
-These are non-negotiable. They are what turns a 27-module syllabus into a portfolio.
+These are non-negotiable. They are what turns a 27-module curriculum into a portfolio.
 
 | # | Principle |
 |---|-----------|
@@ -108,16 +107,16 @@ These are non-negotiable. They are what turns a 27-module syllabus into a portfo
 | Plotting | `matplotlib` · `seaborn` · `plotly` | **3.11.1** · **0.13.2** · **6.9.0** | Matplotlib for control, Seaborn for statistical defaults, Plotly for the interactive Streamlit layer. |
 | Classic ML | `scikit-learn` | **1.9.0** | `set_output(transform="pandas")`, `HistGradientBoosting*`, `TunedThresholdClassifierCV`. Everything routes through `Pipeline` — no exceptions (Principle 8). |
 | Imbalance | `imbalanced-learn` | **0.14.2** | SMOTE and friends — *inside* the pipeline, *after* the split. |
-| Boosting | `xgboost` · `lightgbm` · `catboost` | **3.4.1** · **4.7.0** · **1.2.10** | XGBoost 3.x is the syllabus's named library. LightGBM/CatBoost are the honest comparison. |
+| Boosting | `xgboost` · `lightgbm` · `catboost` | **3.4.1** · **4.7.0** · **1.2.10** | XGBoost 3.x is this plan's named library. LightGBM/CatBoost are the honest comparison. |
 | Explainability | `shap` | **0.52.0** | Global + local attribution. Feeds the ADR on Day 114. |
-| Tuning | `optuna` | **4.9.0** | Replaces the syllabus's implied grid search once grids get expensive. |
-| Classical NLP | `nltk` · `spacy` · `gensim` | **3.10.3** · **3.8.15** · **4.4.0** | NLTK for the teaching primitives the syllabus names; spaCy for POS/NER that is actually fast; gensim for Word2Vec. ⚠️ gensim is the most fragile pin here against NumPy 2.x — verify import on Day 1. |
-| Deep learning | `torch` · `tensorflow` · `keras` | **2.13.0** · **2.21.0** · **3.15.1** | Syllabus names **both** Keras and PyTorch. Plan: **Keras 3 first** (it reads like the maths), **PyTorch second** (it is what the ecosystem ships). Keras 3 is multi-backend — pin the backend explicitly. |
+| Tuning | `optuna` | **4.9.0** | Replaces grid search once grids get expensive. |
+| Classical NLP | `nltk` · `spacy` · `gensim` | **3.10.3** · **3.8.15** · **4.4.0** | NLTK for the teaching primitives this plan needs; spaCy for POS/NER that is actually fast; gensim for Word2Vec. ⚠️ gensim is the most fragile pin here against NumPy 2.x — verify import on Day 1. |
+| Deep learning | `torch` · `tensorflow` · `keras` | **2.13.0** · **2.21.0** · **3.15.1** | This plan teaches **both** Keras and PyTorch. Plan: **Keras 3 first** (it reads like the maths), **PyTorch second** (it is what the ecosystem ships). Keras 3 is multi-backend — pin the backend explicitly. |
 | Transformers | `transformers` · `tokenizers` · `datasets` | **5.15.1** · **0.23.1** · **5.0.1** | ⚠️ **Major (v5).** Do not trust a v4-era tutorial's API shapes; verify against live docs before every DL lesson from Day 138. |
 | Embeddings | `sentence-transformers` | **6.0.0** | **Local, keyless, free.** Every embedding in this plan is computed on your machine. The RAG phase costs $0 by construction. |
 | Vector stores | `chromadb` · `faiss-cpu` · `qdrant-client` · `lancedb` · `pinecone` | **1.5.9** · **1.15.0** · **1.19.0** · **0.37.1** · **9.1.0** | Chroma = default local. FAISS = the from-scratch comparison (Principle 2). Qdrant/LanceDB = local alternatives. Pinecone = 🅿️ free-tier awareness only. |
-| SQL | `sqlalchemy` · `psycopg` · `supabase` | **2.0.52** · **3.3.4** · **2.31.0** | `psycopg` **3**, not `psycopg2`. Supabase free tier is the syllabus's named Postgres host. |
-| NoSQL | `pymongo` | **4.17.0** | MongoDB Atlas free tier (M0), as the syllabus names. Atlas Vector Search is the Module-18 integration. |
+| SQL | `sqlalchemy` · `psycopg` · `supabase` | **2.0.52** · **3.3.4** · **2.31.0** | `psycopg` **3**, not `psycopg2`. Supabase free tier is this plan's Postgres host. |
+| NoSQL | `pymongo` | **4.17.0** | MongoDB Atlas free tier (M0). Atlas Vector Search is the Module-18 integration. |
 | Apps | `streamlit` | **1.62.0** | Dashboards, widgets, `st.session_state`, fragments. The demo surface for every phase. |
 | API | `fastapi` · `uvicorn` · `pydantic` | **0.141.1** · **0.52.4** · **2.13.4** | Capstone backend. Pydantic **v2** — `model_validate`, not `parse_obj`. |
 | LLM orchestration | `langchain` · `langchain-core` | **1.3.16** · **1.6.0** | LangChain **1.x**: `create_agent`, middleware, standard content blocks. `AgentExecutor` is deprecated and is never used in this plan. |
@@ -126,7 +125,7 @@ These are non-negotiable. They are what turns a 27-module syllabus into a portfo
 | Providers | `langchain-google-genai` · `langchain-groq` · `langchain-openai` | **4.3.5** · **1.1.3** · **1.6.0** | The three free doors. `langchain-openai` is pointed at OpenRouter's base URL — not at OpenAI. |
 | Raw clients | `google-genai` · `groq` · `openai` | **2.19.0** · **1.6.0** · **3.3.1** | Principle 2: you call these naked before you call LangChain. |
 | Protocol | `mcp` | **2.0.0** | ⚠️ **Major.** Python SDK 2.x against the current MCP spec revision. Verify the spec revision on the spec page on Day 209 *before* writing a server. |
-| Eval | `ragas` · `rank-bm25` | **0.4.3** · **0.2.2** | RAG metrics; BM25 as the hybrid-search half the syllabus names. |
+| Eval | `ragas` · `rank-bm25` | **0.4.3** · **0.2.2** | RAG metrics; BM25 as the hybrid-search half. |
 | Tracking | `mlflow` | **3.15.1** | Experiment tracking from Phase 12 onward. Local file backend = $0. |
 | Quality | `ruff` · `pytest` | **0.16.4** · **9.1.1** | `ruff check` + `ruff format` + `pytest`. `./m check` must stay green. |
 | Notebooks | `jupyterlab` · `ipykernel` | **4.6.3** · **7.3.0** | Scratchpad only (Principle 6). |
@@ -154,7 +153,7 @@ under test. Every lab prints its request count.
 
 ### 2.2 ⚠️ Three breaking changes this plan teaches head-on
 
-The syllabus was written against an older stack. These three would silently ruin a beginner's month,
+Most material you will find online was written against an older stack. These three would silently ruin a beginner's month,
 so they get first-class treatment rather than a footnote:
 
 1. **pandas 3.0 (shipped 2026-01-21).** Copy-on-Write is the *only* mode — chained assignment
@@ -172,11 +171,11 @@ so they get first-class treatment rather than a footnote:
 
 ## Part 3 — 🗂️ The curricula and the ID scheme
 
-Every teachable unit has an ID. IDs come **directly** from the source syllabus's module topics.
+Every teachable unit has an ID. IDs are defined by the module topics in Part 4.
 IDs live in the matrices (Part 4) and map to days (Part 5). `docs/CURRICULUM_INDEX_DS.md` holds the
 generated day ↔ ID cross-table.
 
-| Curriculum | Prefix | Source modules | Count |
+| Curriculum | Prefix | Modules | Count |
 |---|---|---|---|
 | A — Python engineering | `PY-` | M1, M2 | 24 |
 | B — Data handling | `NP-` `PD-` `VIZ-` `DB-` `APP-` | M3, M4, M5, M6, M7 | 42 |
@@ -561,11 +560,11 @@ Full spec in `docs/CAPSTONE_SETU.md`. Summary matrix:
 
 ## Part 5 — 🗓️ The 240 days (30 phases, 0–29)
 
-> **Phase _N_ = Module _N_ of the source syllabus**, for N = 1…27. Phase 0 is the foundry;
+> **Phase _N_ = Module _N_ of this plan**, for N = 1…27. Phase 0 is the foundry;
 > Phases 28–29 are the capstone and the portfolio. Every phase gate includes the standing
 > freshness check (Principle 13).
 
-| Phase | Days | Source module | Theme | Gate |
+| Phase | Days | Module | Theme | Gate |
 |---|---|---|---|---|
 | **0** | 1–3 | — | **Foundry** | Repo + pins frozen + `./m check` green + three free keys answering |
 | **1** | 4–11 | M1 | Python foundations | 10-function `src/setu/textutils.py`, fully tested |
@@ -781,13 +780,13 @@ Decisions, not blind spots. Each has a reason.
 |---|---|
 | Pre-training an LLM from scratch | Needs compute this plan does not have ($0). DL-24/28 give the architecture; that is the transferable part. |
 | Full MLOps platforms (Kubeflow, SageMaker pipelines, feature stores) | MLflow + GitHub Actions + Docker cover the *concepts*. Platform-specific ops is its own discipline. |
-| Diffusion models & image generation | GEN-04 gives awareness. The syllabus's generative depth is textual; so is Setu. |
+| Diffusion models & image generation | GEN-04 gives awareness. This plan's generative depth is textual. |
 | Reinforcement learning beyond the vocabulary | ML-02 names it. RLHF appears as context in DL-28, not as a lab. |
-| Big data engineering (Spark, Kafka, Airflow, dbt) | Out of the source syllabus. DuckDB + Parquet cover "bigger than RAM" honestly at this scale. |
-| Advanced computer vision (CNNs, detection, segmentation) | The source syllabus's deep-learning arc is sequence- and language-shaped. CNNs are named in DL-01 context only. |
+| Big data engineering (Spark, Kafka, Airflow, dbt) | Out of scope here. DuckDB + Parquet cover "bigger than RAM" honestly at this scale. |
+| Advanced computer vision (CNNs, detection, segmentation) | This plan's deep-learning arc is sequence- and language-shaped. CNNs are named in DL-01 context only. |
 | Paid managed vector DBs as the default | VDB-09 gives Pinecone literacy. Principle 5 makes local the default. |
-| A2A, AP2, and agent-payment protocols | Not in the source syllabus. MCP is the interop story here. |
-| Voice / realtime agents | Not in the source syllabus. Setu is a text-channel system. |
+| A2A, AP2, and agent-payment protocols | Out of scope here. MCP is the interop story. |
+| Voice / realtime agents | Out of scope here. Setu is a text-channel system. |
 
 ---
 
@@ -809,7 +808,7 @@ January and the transformers library went to v5 this year, "expert" is not a fin
 
 - [ ] Re-verify every version in Part 2 against PyPI **today**, then freeze in `pyproject.toml` + `uv.lock`.
 - [ ] Confirm Python 3.12 and that `numpy`, `pandas`, `torch`, `tensorflow`, `gensim` all import together in one environment. If `gensim` fights NumPy 2.x, log it as an addendum before working around it (Principle 14).
-- [ ] Create `docs/CHANGELOG_PLAN_DS.md` with entry `v1.0.0 — initial DS/GenAI plan from bootcamp syllabus`.
+- [ ] Create `docs/CHANGELOG_PLAN_DS.md` with entry `v1.0.0 — initial DS/GenAI plan`.
 - [ ] Generate `docs/TRACEABILITY_DS.md` from Part 4 ↔ Part 5.
 - [ ] Get the three free keys (Gemini, Groq, OpenRouter) and record **today's live** rate limits in `docs/RATE_BUDGET_DS.md`.
 - [ ] Create the Supabase project and the MongoDB Atlas M0 cluster now — both take a while to provision, and Phase 6 is 40 days away.
