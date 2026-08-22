@@ -70,10 +70,12 @@ Every day is a folder — a short **hub** plus one document per **subtopic**, ne
 ```
 days/day-04/
 ├── LESSON.md                     # the hub: the story, the map, setup, the build brief, the eval
-├── parts/
-│   ├── 1.1-what-an-object-is.md  # one idea each: plain language → mechanism → line by line
-│   ├── 1.2-identity-vs-equality.md
-│   └── 2.1-mutability-in-memory.md
+├── parts/                        # one folder per section, one document per subtopic
+│   ├── 01/
+│   │   ├── 1.1-what-an-object-is.md
+│   │   └── 1.2-identity-vs-equality.md
+│   └── 02/
+│       └── 2.1-mutability-in-memory.md
 └── CHECKLIST.md                  # ./m done 4 refuses to commit until this is ticked
 ```
 

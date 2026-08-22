@@ -50,9 +50,11 @@ days/day-NN/
 ├── LESSON.md      # the hub — the story, the map of parts, setup, build brief, the eval, the budget
 ├── CHECKLIST.md   # the definition of done. `./m done NN` refuses to commit until it's ticked.
 ├── parts/         # THE TEACHING — one document per subtopic
-│   ├── 1.1-<slug>.md
-│   ├── 1.2-<slug>.md
-│   └── 2.1-<slug>.md
+│   ├── 01/        # section 1 — its own folder
+│   │   ├── 1.1-<slug>.md
+│   │   └── 1.2-<slug>.md
+│   └── 02/        # section 2
+│       └── 2.1-<slug>.md
 ├── _legacy/       # the old v1.0.0 single-file lesson, kept until the day is regenerated
 └── lab/           # you create this; `./m scaffold NN` makes the folder
 ```
@@ -71,6 +73,11 @@ The number is `<section>.<subtopic>`, both scoped to that day.
 So on a two-ID day, `1.x` is the first ID, `2.x` is the second, and a `3.x` is usually the synthesis
 — the trap you can only see once both ideas are true at the same time. Whatever the grouping is, the
 hub says so explicitly.
+
+**Each section gets its own folder**, numbered with two digits: section 1 is `parts/01/`, section 12
+is `parts/12/`. So the third subtopic of section 2 is `parts/02/2.3-<slug>.md`. On a day with twenty
+parts this is the difference between a readable folder and a wall of filenames — and a section is
+exactly the chunk you will want to sit down with at once.
 
 ### The shape of every part document
 

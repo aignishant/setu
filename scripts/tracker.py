@@ -100,7 +100,8 @@ def inspect(day: Day) -> Day:
     if folder is None:
         return day
     day.folder = folder.relative_to(ROOT).as_posix()
-    day.parts = len(list((folder / "parts").glob("*.md"))) if (folder / "parts").is_dir() else 0
+    parts_dir = folder / "parts"
+    day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
     day.legacy = (folder / "_legacy" / "LESSON.md").is_file()
     # v2.0.0: a hub without parts/ is not a written day.
     day.written = (folder / "LESSON.md").is_file() and day.parts > 0

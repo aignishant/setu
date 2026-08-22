@@ -34,7 +34,9 @@ thinly-covered subtopic from a missing one.
   *The story* and a mandatory *In production*), the twelve required sections of a hub, the `level`
   ladder (`foundation → working → production`), splitting by idea boundary rather than length, and
   the seven failure modes this replaces.
-- Days become `days/day-NN/{LESSON.md, CHECKLIST.md, parts/, lab/}`.
+- Days become `days/day-NN/{LESSON.md, CHECKLIST.md, parts/, lab/}`, with one folder per
+  section inside `parts/` — `parts/01/1.1-<slug>.md`, `parts/02/2.3-<slug>.md` — so a day with
+  twenty parts stays navigable.
 - New `scripts/depth_check.py` and `./m depth [NN]` enforce the contract mechanically, including a
   hard failure on any time estimate found in a day folder (Principle 17) and on a `level` outside
   the three allowed values.

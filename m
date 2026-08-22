@@ -19,7 +19,7 @@ case "${1:-help}" in
     [ -n "$D" ] || { echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1; }
     if [ -f "$D/LESSON.md" ] && [ -d "$D/parts" ]; then
       echo "-> open $D/LESSON.md   (the hub - read its §2 map, then work through parts/ in order)"
-      ls "$D/parts" | sed 's|^|     parts/|'
+      find "$D/parts" -name '*.md' | sort | sed "s|^$D/|     |"
     elif [ -f "$D/_legacy/LESSON.md" ]; then
       echo "!! day $DAY is still on the v1.0.0 single-file format (plan Part 11 not applied yet)."
       echo "-> open $D/_legacy/LESSON.md   -- workable, but regenerate it with /day-setu $DAY"
@@ -32,7 +32,7 @@ case "${1:-help}" in
     [ -z "$DAY" ] && { echo "usage: ./m parts <day>"; exit 1; }
     D="$(daydir "$DAY")"
     [ -d "$D/parts" ] || { echo "day $DAY has no parts/ - it is not written (plan Part 11)"; exit 1; }
-    ls "$D/parts"
+    find "$D/parts" -name '*.md' | sort | sed "s|^$D/parts/||"
     ;;
 
   depth)

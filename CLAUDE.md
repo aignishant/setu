@@ -43,14 +43,20 @@ days/day-NN/
 ├── LESSON.md      # hub: orientation + part map + setup + build brief + eval + budget
 ├── CHECKLIST.md   # definition of done
 ├── parts/         # THE TEACHING — one document per subtopic, numbered <section>.<subtopic>
-│   ├── 1.1-<slug>.md
-│   ├── 1.2-<slug>.md
-│   └── 2.1-<slug>.md
+│   ├── 01/        # one folder per section, two digits, zero-padded
+│   │   ├── 1.1-<slug>.md
+│   │   └── 1.2-<slug>.md
+│   └── 02/
+│       └── 2.1-<slug>.md
 ├── _legacy/       # transitional: the v1.0.0 single-file lesson, reference only
 └── lab/           # the learner's own code
 ```
 
 - **`parts/` is mandatory.** A day without it is not written.
+- **Every part lives in its section's folder**: `parts/01/1.1-<slug>.md`, `parts/02/2.3-<slug>.md`.
+  Never loose in `parts/`. The folder number and the number before the dot must agree.
+- **Links between parts are relative**: a sibling is `1.2-<slug>.md`, another section is
+  `../01/1.5-<slug>.md`, the hub is `../../LESSON.md`.
 - **The hub never teaches.** No `Line by line:` walkthrough in `LESSON.md`; it lives in the parts.
 - **Section numbers group subtopics that share one mental model** — usually one curriculum ID, one
   pipeline stage, or one phase of a derivation. The hub's §2 map states what each section means.

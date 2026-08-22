@@ -863,15 +863,26 @@ days/day-NN/
 ├── LESSON.md          # the hub — orientation, story, part map, build brief, eval, budget
 ├── CHECKLIST.md       # the definition of done; ./m done NN refuses to commit until ticked
 ├── parts/             # the teaching, one document per subtopic
-│   ├── 1.1-<slug>.md
-│   ├── 1.2-<slug>.md
-│   ├── 2.1-<slug>.md
-│   └── …
+│   ├── 01/            # section 1 — one folder per section
+│   │   ├── 1.1-<slug>.md
+│   │   └── 1.2-<slug>.md
+│   ├── 02/            # section 2
+│   │   ├── 2.1-<slug>.md
+│   │   └── 2.2-<slug>.md
+│   └── 03/
+│       └── 3.1-<slug>.md
 ├── _legacy/           # (transitional) the v1.0.0 single-file lesson, kept for reference
 └── lab/               # created by ./m scaffold NN; the learner's own code
 ```
 
 `parts/` is mandatory. A day with no `parts/` directory is, by definition, not written.
+
+**Every part lives inside its section's folder**, named with two digits and zero-padded: section 1
+is `parts/01/`, section 12 is `parts/12/`. A part document is never loose in `parts/`. The folder
+number and the number before the dot in the filename must agree — `parts/02/2.3-<slug>.md` is
+correct, `parts/02/3.1-<slug>.md` is a bug the depth check rejects. The reason for the folders is
+navigation: a day with twenty-two parts is a wall of filenames without them, and a section is
+exactly the unit a reader wants to open at once.
 
 ### 11.3 The numbering rule — what `1.1` and `2.3` mean
 
@@ -894,8 +905,13 @@ pass, `2.x` the chain rule on one weight, `3.x` the general case, `4.x` the grad
 data-handling day uses them as *pipeline order*. **The grouping must be stated in the hub;** an
 unexplained numbering is a bug in the doc.
 
-Filenames are `<section>.<subtopic>-<kebab-slug>.md`. The slug is what the subtopic *teaches*, not
-where it sits: `2.3-why-the-split-comes-first.md`, never `2.3-part-three.md`.
+Paths are `parts/<NN>/<section>.<subtopic>-<kebab-slug>.md`, where `<NN>` is the section number
+zero-padded to two digits. The slug is what the subtopic *teaches*, not where it sits:
+`parts/02/2.3-why-the-split-comes-first.md`, never `parts/02/2.3-part-three.md`.
+
+**Links between parts are relative.** Inside one section a sibling is just its filename
+(`1.2-<slug>.md`); across sections it goes up one level (`../01/1.5-<slug>.md`); the hub is
+`../../LESSON.md`. Every `prev`/`next` in the frontmatter uses the same form.
 
 ### 11.4 What a part document must contain
 
@@ -1004,7 +1020,9 @@ The failure modes v2.0.0 exists to prevent, stated so they can be caught in revi
 ### 11.9 Enforcement
 
 `scripts/depth_check.py`, run as `./m depth [NN]`, is the machine-readable half of this contract. It
-fails on: a missing `parts/` directory, a part filename that does not match
+fails on: a missing `parts/` directory, a part document loose in `parts/` instead of inside a
+section folder, a section folder that is not two zero-padded digits, a part whose section folder
+disagrees with the number in its filename, a filename that does not match
 `<section>.<subtopic>-<slug>.md`, a gap in the numbering, any of the ten required sections missing
 or out of order, a code block with no `Line by line:` following it, a `level` outside the three
 allowed values, **any time estimate anywhere in a day folder**, a hub that carries teaching, or a
@@ -1019,4 +1037,4 @@ visible from the progress table alone.
 | Version | Change |
 |---|---|
 | v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
-| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |
+| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/<NN>/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |

@@ -49,11 +49,18 @@ argument-hint: [day-number]
    a forward link to the part that explains it) to each planned part *before* writing.
 9. Print the planned part list to me before writing. If it looks thin, I will say so.
 
-## Step 3 — write the parts (`days/day-NN/parts/<section>.<sub>-<slug>.md`)
+## Step 3 — write the parts (`days/day-NN/parts/<NN>/<section>.<sub>-<slug>.md`)
 
-10. One file per subtopic, named `<section>.<subtopic>-<kebab-slug>.md`. The slug says what the part
+10. **One folder per section**, named with two zero-padded digits — `parts/01/`, `parts/02/`,
+    `parts/12/`. Every part lives inside its section's folder; none is ever loose in `parts/`, and
+    the folder number must match the number before the dot in the filename.
+11. One file per subtopic, named `<section>.<subtopic>-<kebab-slug>.md`. The slug says what the part
     *teaches*, never where it sits. Numbering starts at `1`, has no gaps.
-11. Every part carries all ten sections of Part 11.4, in this order:
+12. **Links are relative to the part's own folder**: a sibling in the same section is
+    `1.2-<slug>.md`; a part in another section is `../01/1.5-<slug>.md`; the hub is
+    `../../LESSON.md`. `prev` and `next` in the frontmatter use the same form. The hub's §2 map
+    links the full path from the day folder: `parts/01/1.1-<slug>.md`.
+13. Every part carries all ten sections of Part 11.4, in this order:
     - **frontmatter** — `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`.
       **No duration field of any kind.**
     - **One-line answer** — the claim in one sentence, before anything else
@@ -74,20 +81,21 @@ argument-hint: [day-number]
       that finds out whether you have actually used it. **Not optional. This is the section that
       makes the document professional rather than introductory.**
     - **Check yourself** — one command to run now, one question to answer out loud
-12. Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
-13. Each part must pass the **standalone test**: readable cold, with its prerequisite part named
+14. Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
+15. Each part must pass the **standalone test**: readable cold, with its prerequisite part named
     and linked.
 
 ## Step 4 — write the hub (`days/day-NN/LESSON.md`)
 
-14. The hub orients and assembles; **it never teaches**. No `Line by line:` in the hub. Required
+16. The hub orients and assembles; **it never teaches**. No `Line by line:` in the hub. Required
     sections, in order (Part 11.5):
     - YAML frontmatter (`day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
       `plan_version: "v2.0.0"`, `parts`, `generated`, `status`, `lab_scaffolded`, `commit`)
     - a yesterday / today / tomorrow blockquote — **no time estimate**
     - `## §1 The story` — a scene and an analogy, plain language, NO code, NO jargon
-    - `## §2 The map` — a table of every part: number, linked title, what it answers, `level`,
-      plus one line saying what each *section* number means. **No minutes column, ever.**
+    - `## §2 The map` — a table of every part: number, linked title (`parts/01/1.1-<slug>.md`), what
+      it answers, `level`, grouped by section with one line saying what each *section* means.
+      **No minutes column, ever.**
     - `## §3 Setup — run this` — every `mkdir`, `touch`, `uv add` the day needs, pinned
     - `## §4 Build brief` — files to create, with `TODO(me)` markers for the learner's reps
     - `## §5 The eval that must be able to fail` — pytest that is RED before the TODOs are done
@@ -100,16 +108,16 @@ argument-hint: [day-number]
 
 ## Step 5 — the checklist (`days/day-NN/CHECKLIST.md`)
 
-15. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
+17. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
     answer its out-loud question), build-brief boxes, a test box per test **including at least one
     "break it, watch it go red, fix it"**, budget, and the commit box. No time estimates.
 
 ## Step 6 — verify
 
-16. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one.
-17. Run `uv run python scripts/tracker.py`.
-18. Delete `days/day-NN/_legacy/` once its content has been fully mined into the parts.
-19. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
+18. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one.
+19. Run `uv run python scripts/tracker.py`.
+20. Delete `days/day-NN/_legacy/` once its content has been fully mined into the parts.
+21. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
 
 ## Always
 

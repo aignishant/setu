@@ -5,7 +5,8 @@ A day is written when it is a hub plus one document per subtopic (Principle 16),
 zero prior knowledge through to production (Principle 18), with no clock anywhere (Principle 17).
 This script is the machine-readable half of that contract: it cannot judge whether an explanation
 is good, but it can refuse a day that has no parts, a numbering gap, a missing required section, a
-code block nobody walked through, a time estimate, or a hub that quietly went back to teaching.
+code block nobody walked through, a time estimate, a part loose outside its section folder, or a hub
+that quietly went back to teaching.
 
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
@@ -24,8 +25,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DAYS = ROOT / "days"
 
-# parts/<section>.<subtopic>-<kebab-slug>.md  ->  "2.3-why-the-split-comes-first.md"
+# parts/<NN>/<section>.<subtopic>-<kebab-slug>.md
+#   ->  "parts/02/2.3-why-the-split-comes-first.md"
 PART_NAME_RE = re.compile(r"^(\d+)\.(\d+)-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+
+# A section folder is the section number, zero-padded to two digits: 01, 02, ... 12.
+SECTION_DIR_RE = re.compile(r"^\d{2}$")
 
 # The ten required sections of a part document, in order (plan Part 11.4). Section 1 is the
 # frontmatter, checked separately; these are the nine that appear in the body.
@@ -164,15 +169,20 @@ def unexplained_code_blocks(text: str) -> list[int]:
             heading = line
             i += 1
             continue
-        fence = re.match(r"^```(\w*)\s*$", line)
+        fence = re.match(r"^(`{3,})(\w*)\s*$", line)
         if not fence:
             i += 1
             continue
 
-        lang = fence.group(1).lower()
+        # A fence may be longer than three backticks so it can contain a shorter one - which
+        # is how a lesson shows the contents of a Markdown file. The closing fence must be at
+        # least as long as the opening one, so a nested block cannot end the outer one.
+        ticks = len(fence.group(1))
+        closing = re.compile(rf"^`{{{ticks},}}\s*$")
+        lang = fence.group(2).lower()
         start = i
         i += 1
-        while i < len(lines) and not lines[i].startswith("```"):
+        while i < len(lines) and not closing.match(lines[i]):
             i += 1
         i += 1  # step over the closing fence
 
@@ -187,7 +197,7 @@ def unexplained_code_blocks(text: str) -> list[int]:
             if re.search(r"line by line", nxt, re.I):
                 explained = True
                 break
-            if re.match(r"^```\w", nxt) or nxt.startswith("## "):
+            if re.match(r"^`{3,}\w", nxt) or nxt.startswith("## "):
                 break
             j += 1
         if not explained:
@@ -196,13 +206,21 @@ def unexplained_code_blocks(text: str) -> list[int]:
 
 
 def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
-    """Validate one parts/ document. Returns its (section, subtopic) numbers."""
-    where = f"parts/{path.name}"
+    """Validate one parts/<NN>/ document. Returns its (section, subtopic) numbers."""
+    where = f"parts/{path.parent.name}/{path.name}"
     match = PART_NAME_RE.match(path.name)
     if not match:
         report.fail(where, "filename must be <section>.<subtopic>-<kebab-slug>.md")
         return None
     section, subtopic = int(match.group(1)), int(match.group(2))
+
+    folder = path.parent.name
+    if folder != f"{section:02d}":
+        report.fail(
+            where,
+            f"lives in parts/{folder}/ but its number says section {section} - "
+            f"it belongs in parts/{section:02d}/",
+        )
 
     text = path.read_text(encoding="utf-8")
     meta = frontmatter(text)
@@ -305,8 +323,13 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
 
     check_no_clocks(text, "LESSON.md", report)
 
-    linked = set(re.findall(r"parts/([\w.\-]+\.md)", content))
-    on_disk = {p.name for p in (folder / "parts").glob("*.md")}
+    linked = set(re.findall(r"parts/(\d+/[\w.\-]+\.md)", content))
+    on_disk = {
+        f"{d.name}/{f.name}"
+        for d in (folder / "parts").iterdir()
+        if d.is_dir()
+        for f in d.glob("*.md")
+    }
     for name in sorted(on_disk - linked):
         report.fail("LESSON.md", f"§2 map does not link parts/{name}")
 
@@ -323,9 +346,26 @@ def check_day(number: int) -> Report:
         report.fail("parts/", "missing - a day with no parts/ is not written (plan Part 11.1)")
         return report
 
-    files = sorted(parts_dir.glob("*.md"))
+    loose = sorted(parts_dir.glob("*.md"))
+    for stray in loose:
+        report.fail(
+            f"parts/{stray.name}",
+            "loose in parts/ - every part lives in its section folder, e.g. parts/01/",
+        )
+
+    for entry in sorted(parts_dir.iterdir()):
+        if entry.is_dir() and not SECTION_DIR_RE.match(entry.name):
+            report.fail(
+                f"parts/{entry.name}/",
+                "section folders are the section number zero-padded to two digits (01, 02, ...)",
+            )
+
+    files = sorted(
+        (f for d in parts_dir.iterdir() if d.is_dir() for f in d.glob("*.md")),
+        key=lambda f: (f.parent.name, f.name),
+    )
     if not files:
-        report.fail("parts/", "empty")
+        report.fail("parts/", "empty - no section folders holding part documents")
         return report
 
     report.parts = len(files)
