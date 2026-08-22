@@ -1,7 +1,7 @@
 ---
 name: tracker
 plan: setu
-generated: "2026-08-21"
+generated: "2026-08-22"
 generator: scripts/tracker.py
 ---
 
@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **69** | 28.6% |
+| 📄 Lesson docs written | **76** | 31.5% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **172** | 71.4% |
+| ⬜ Still to write | **165** | 68.5% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ███████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  69/241
+written  █████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░  76/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -38,7 +38,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 10/10 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 6/6 | 0/6 |
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 11/11 | 0/11 |
-| 9 | M9 | Inferential statistics (Module 9) | 69–75 | 0/7 | 0/7 |
+| 9 | M9 | Inferential statistics (Module 9) | 69–75 | 7/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 0/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 0/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 0/16 | 0/16 |
@@ -180,13 +180,13 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 69 | Hypothesis testing — the mechanism, step by step | ST-16 | lab | ⬜ pending | — |
-| 70 | p-values, significance, Type I/II error, power | ST-17 | lab | ⬜ pending | — |
-| 71 | t-tests and ANOVA | ST-18 | lab | ⬜ pending | — |
-| 72 | Bayes' theorem and Bayesian updating | ST-19 | lab | ⬜ pending | — |
-| 73 | Chi-square: distribution, goodness-of-fit, independence | ST-20 | lab | ⬜ pending | — |
-| 74 | Multiple comparisons and p-hacking, demonstrated | ST-21 | lab | ⬜ pending | — |
-| 75 | A statistical report you would defend — ADR-005 | ST-22 | gate | ⬜ pending | — |
+| 69 | Hypothesis testing — the mechanism, step by step | ST-16 | lab | 📄 written | 70 |
+| 70 | p-values, significance, Type I/II error, power | ST-17 | lab | 📄 written | 75 |
+| 71 | t-tests and ANOVA | ST-18 | lab | 📄 written | 77 |
+| 72 | Bayes' theorem and Bayesian updating | ST-19 | lab | 📄 written | 79 |
+| 73 | Chi-square: distribution, goodness-of-fit, independence | ST-20 | lab | 📄 written | 72 |
+| 74 | Multiple comparisons and p-hacking, demonstrated | ST-21 | lab | 📄 written | 71 |
+| 75 | A statistical report you would defend — ADR-005 | ST-22 | gate | 📄 written | 70 |
 
 ### Phase 10 · Feature engineering (Module 10) · Days 76–83
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 69** — Hypothesis testing — the mechanism, step by step `(ST-16)`
-- **Day 70** — p-values, significance, Type I/II error, power `(ST-17)`
-- **Day 71** — t-tests and ANOVA `(ST-18)`
-- **Day 72** — Bayes' theorem and Bayesian updating `(ST-19)`
-- **Day 73** — Chi-square: distribution, goodness-of-fit, independence `(ST-20)`
-- **Day 74** — Multiple comparisons and p-hacking, demonstrated `(ST-21)`
-- **Day 75** — A statistical report you would defend — ADR-005 `(ST-22)`
 - **Day 76** — Missing data mechanisms and imputation strategies `(FE-01)`
 - **Day 77** — Outlier detection — IQR, z-score, isolation forest `(FE-02)`
 - **Day 78** — Imbalanced data — resampling, SMOTE, class weights, thresholds `(FE-03)`
+- **Day 79** — The split, first — train/val/test, stratified, grouped `(FE-04)`
+- **Day 80** — Scaling — standard, min-max, robust `(FE-05)`
+- **Day 81** — Encoding — one-hot, ordinal, target encoding and its leak `(FE-06)`
+- **Day 82** — Feature construction — interactions, binning, dates, transforms `(FE-07)`
+- **Day 83** — Feature selection and the `ColumnTransformer` pipeline `(FE-08, FE-09)`
+- **Day 84** — The EDA loop and an automated `audit(df)` `(EDA-01, EDA-02)`
+- **Day 85** — Univariate and bivariate exploration `(EDA-03)`
 
