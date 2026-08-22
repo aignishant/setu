@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **111** | 46.1% |
+| 📄 Lesson docs written | **117** | 48.5% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **130** | 53.9% |
+| ⬜ Still to write | **124** | 51.5% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██████████████████░░░░░░░░░░░░░░░░░░░░░░  111/241
+written  ███████████████████░░░░░░░░░░░░░░░░░░░░░  117/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -42,7 +42,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
-| 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 4/10 | 0/10 |
+| 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 10/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 0/8 | 0/8 |
 | 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
 | 16 | M16 | Sequence models & transformers (Module 16) | 138–149 | 0/12 | 0/12 |
@@ -242,12 +242,12 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 108 | Bagging and Random Forest | ML-19 | lab | 📄 written | 75 |
 | 109 | Out-of-bag evaluation and honest feature importance | ML-20 | lab | 📄 written | 77 |
 | 110 | Boosting intuition — AdaBoost to gradient boosting, by hand | ML-21 | lab | 📄 written | 84 |
-| 111 | Gradient Boosting classifier and regressor | ML-22 | lab | ⬜ pending | — |
-| 112 | XGBoost — early stopping and the hyperparameters that matter | ML-23 | lab | ⬜ pending | — |
-| 113 | LightGBM and CatBoost — the honest comparison | ML-24 | lab | ⬜ pending | — |
-| 114 | SHAP — what the model actually keys on — ADR-008 | ML-25 | lab | ⬜ pending | — |
-| 115 | Clustering, distance metrics, and K-Means from scratch | ML-26, ML-27, ML-28 | lab | ⬜ pending | — |
-| 116 | MLflow + Project: Network Intrusion Detection System | ML-29, ML-30 | gate | ⬜ pending | — |
+| 111 | Gradient Boosting classifier and regressor | ML-22 | lab | 📄 written | 88 |
+| 112 | XGBoost — early stopping and the hyperparameters that matter | ML-23 | lab | 📄 written | 83 |
+| 113 | LightGBM and CatBoost — the honest comparison | ML-24 | lab | 📄 written | 75 |
+| 114 | SHAP — what the model actually keys on — ADR-008 | ML-25 | lab | 📄 written | 86 |
+| 115 | Clustering, distance metrics, and K-Means from scratch | ML-26, ML-27, ML-28 | lab | 📄 written | 95 |
+| 116 | MLflow + Project: Network Intrusion Detection System | ML-29, ML-30 | gate | 📄 written | 94 |
 
 ### Phase 14 · Classical NLP (Module 14) · Days 117–124
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 111** — Gradient Boosting classifier and regressor `(ML-22)`
-- **Day 112** — XGBoost — early stopping and the hyperparameters that matter `(ML-23)`
-- **Day 113** — LightGBM and CatBoost — the honest comparison `(ML-24)`
-- **Day 114** — SHAP — what the model actually keys on — ADR-008 `(ML-25)`
-- **Day 115** — Clustering, distance metrics, and K-Means from scratch `(ML-26, ML-27, ML-28)`
-- **Day 116** — MLflow + Project: Network Intrusion Detection System `(ML-29, ML-30)`
 - **Day 117** — What NLP is; normalisation and tokenisation `(NLP-01, NLP-02)`
 - **Day 118** — Stemming, lemmatisation, and when stopwords carry meaning `(NLP-03, NLP-04)`
 - **Day 119** — Parts-of-speech tagging with NLTK and spaCy `(NLP-05)`
 - **Day 120** — Named Entity Recognition `(NLP-06)`
+- **Day 121** — One-hot, Bag of Words, and n-grams `(NLP-07, NLP-08)`
+- **Day 122** — TF-IDF from scratch, then `TfidfVectorizer` `(NLP-09)`
+- **Day 123** — Word vectors, cosine similarity, and Word2Vec `(NLP-10, NLP-11)`
+- **Day 124** — Project: TF-IDF text classifier — the baseline to beat `(NLP-12)`
+- **Day 125** — Why deep learning now; the perceptron by hand `(DL-01, DL-02)`
+- **Day 126** — Forward propagation is matrix multiplication `(DL-03)`
 
