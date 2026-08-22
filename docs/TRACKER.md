@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **76** | 31.5% |
+| 📄 Lesson docs written | **84** | 34.9% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **165** | 68.5% |
+| ⬜ Still to write | **157** | 65.1% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  █████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░  76/241
+written  ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░  84/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -39,7 +39,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 6/6 | 0/6 |
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 11/11 | 0/11 |
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 7/7 | 0/7 |
-| 10 | M10 | Feature engineering (Module 10) | 76–83 | 0/8 | 0/8 |
+| 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 0/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 0/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 0/10 | 0/10 |
@@ -192,14 +192,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 76 | Missing data mechanisms and imputation strategies | FE-01 | lab | ⬜ pending | — |
-| 77 | Outlier detection — IQR, z-score, isolation forest | FE-02 | lab | ⬜ pending | — |
-| 78 | Imbalanced data — resampling, SMOTE, class weights, thresholds | FE-03 | lab | ⬜ pending | — |
-| 79 | The split, first — train/val/test, stratified, grouped | FE-04 | lab | ⬜ pending | — |
-| 80 | Scaling — standard, min-max, robust | FE-05 | lab | ⬜ pending | — |
-| 81 | Encoding — one-hot, ordinal, target encoding and its leak | FE-06 | lab | ⬜ pending | — |
-| 82 | Feature construction — interactions, binning, dates, transforms | FE-07 | lab | ⬜ pending | — |
-| 83 | Feature selection and the `ColumnTransformer` pipeline | FE-08, FE-09 | gate | ⬜ pending | — |
+| 76 | Missing data mechanisms and imputation strategies | FE-01 | lab | 📄 written | 67 |
+| 77 | Outlier detection — IQR, z-score, isolation forest | FE-02 | lab | 📄 written | 63 |
+| 78 | Imbalanced data — resampling, SMOTE, class weights, thresholds | FE-03 | lab | 📄 written | 64 |
+| 79 | The split, first — train/val/test, stratified, grouped | FE-04 | lab | 📄 written | 76 |
+| 80 | Scaling — standard, min-max, robust | FE-05 | lab | 📄 written | 67 |
+| 81 | Encoding — one-hot, ordinal, target encoding and its leak | FE-06 | lab | 📄 written | 70 |
+| 82 | Feature construction — interactions, binning, dates, transforms | FE-07 | lab | 📄 written | 74 |
+| 83 | Feature selection and the `ColumnTransformer` pipeline | FE-08, FE-09 | gate | 📄 written | 86 |
 
 ### Phase 11 · EDA (Module 11) · Days 84–90
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 76** — Missing data mechanisms and imputation strategies `(FE-01)`
-- **Day 77** — Outlier detection — IQR, z-score, isolation forest `(FE-02)`
-- **Day 78** — Imbalanced data — resampling, SMOTE, class weights, thresholds `(FE-03)`
-- **Day 79** — The split, first — train/val/test, stratified, grouped `(FE-04)`
-- **Day 80** — Scaling — standard, min-max, robust `(FE-05)`
-- **Day 81** — Encoding — one-hot, ordinal, target encoding and its leak `(FE-06)`
-- **Day 82** — Feature construction — interactions, binning, dates, transforms `(FE-07)`
-- **Day 83** — Feature selection and the `ColumnTransformer` pipeline `(FE-08, FE-09)`
 - **Day 84** — The EDA loop and an automated `audit(df)` `(EDA-01, EDA-02)`
 - **Day 85** — Univariate and bivariate exploration `(EDA-03)`
+- **Day 86** — Multivariate structure; PCA for looking, not modelling `(EDA-04)`
+- **Day 87** — Case study — sentiment of movie reviews `(EDA-05)`
+- **Day 88** — Case study — wine quality and type `(EDA-06)`
+- **Day 89** — Case study — stock and commodity prices (and the forecasting trap) `(EDA-07)`
+- **Day 90** — An EDA report that changes a decision — ADR-006 `(EDA-08)`
+- **Day 91** — AI vs ML vs DL vs Data Science; the four learning types `(ML-01, ML-02)`
+- **Day 92** — Simple linear regression from scratch `(ML-03)`
+- **Day 93** — Multiple linear regression, assumptions, multicollinearity `(ML-04)`
 
