@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **107** | 44.4% |
+| 📄 Lesson docs written | **111** | 46.1% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **134** | 55.6% |
+| ⬜ Still to write | **130** | 53.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██████████████████░░░░░░░░░░░░░░░░░░░░░░  107/241
+written  ██████████████████░░░░░░░░░░░░░░░░░░░░░░  111/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -42,7 +42,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
-| 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 0/10 | 0/10 |
+| 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 4/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 0/8 | 0/8 |
 | 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
 | 16 | M16 | Sequence models & transformers (Module 16) | 138–149 | 0/12 | 0/12 |
@@ -232,20 +232,20 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 103 | KNN and the curse of dimensionality | ML-14 | lab | 📄 written | 74 |
 | 104 | Support Vector Machines and the kernel trick | ML-15 | lab | 📄 written | 78 |
 | 105 | Decision trees — entropy, Gini, pruning | ML-16 | lab | 📄 written | 77 |
-| 106 | Hyperparameter search — grid, random, Optuna | ML-17 | gate | 📄 written | 103 |
+| 106 | Hyperparameter search — grid, random, Optuna — ADR-007 | ML-17 | gate | 📄 written | 103 |
 
 ### Phase 13 · Ensembles & clustering (Module 13) · Days 107–116
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 107 | Why averaging works — the bias/variance view of ensembles | ML-18 | lab | ⬜ pending | — |
-| 108 | Bagging and Random Forest | ML-19 | lab | ⬜ pending | — |
-| 109 | Out-of-bag evaluation and honest feature importance | ML-20 | lab | ⬜ pending | — |
-| 110 | Boosting intuition — AdaBoost to gradient boosting, by hand | ML-21 | lab | ⬜ pending | — |
+| 107 | Why averaging works — the bias/variance view of ensembles | ML-18 | lab | 📄 written | 85 |
+| 108 | Bagging and Random Forest | ML-19 | lab | 📄 written | 75 |
+| 109 | Out-of-bag evaluation and honest feature importance | ML-20 | lab | 📄 written | 77 |
+| 110 | Boosting intuition — AdaBoost to gradient boosting, by hand | ML-21 | lab | 📄 written | 84 |
 | 111 | Gradient Boosting classifier and regressor | ML-22 | lab | ⬜ pending | — |
 | 112 | XGBoost — early stopping and the hyperparameters that matter | ML-23 | lab | ⬜ pending | — |
 | 113 | LightGBM and CatBoost — the honest comparison | ML-24 | lab | ⬜ pending | — |
-| 114 | SHAP — what the model actually keys on — ADR-007 | ML-25 | lab | ⬜ pending | — |
+| 114 | SHAP — what the model actually keys on — ADR-008 | ML-25 | lab | ⬜ pending | — |
 | 115 | Clustering, distance metrics, and K-Means from scratch | ML-26, ML-27, ML-28 | lab | ⬜ pending | — |
 | 116 | MLflow + Project: Network Intrusion Detection System | ML-29, ML-30 | gate | ⬜ pending | — |
 
@@ -305,7 +305,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 151 | Next-token prediction, end to end, from your own model | GEN-03 | lab | ⬜ pending | — |
 | 152 | The landscape — LLMs, diffusion, multimodal — and the limits | GEN-04 | concept | ⬜ pending | — |
 | 153 | Prompting as interface design; hallucination and grounding | GEN-05, GEN-06 | lab | ⬜ pending | — |
-| 154 | The end-to-end GenAI project lifecycle — ADR-008 | GEN-07 | gate | ⬜ pending | — |
+| 154 | The end-to-end GenAI project lifecycle — ADR-009 | GEN-07 | gate | ⬜ pending | — |
 
 ### Phase 18 · Vector databases (Module 18) · Days 155–161
 
@@ -317,7 +317,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 158 | Chroma — collections, metadata, filtering | VDB-06 | lab | ⬜ pending | — |
 | 159 | FAISS — flat vs IVF vs HNSW, benchmarked | VDB-07 | lab | ⬜ pending | — |
 | 160 | Qdrant and LanceDB; Pinecone literacy | VDB-08, VDB-09 | lab | ⬜ pending | — |
-| 161 | Atlas Vector Search; choosing a store — ADR-009 | VDB-10, VDB-11 | gate | ⬜ pending | — |
+| 161 | Atlas Vector Search; choosing a store — ADR-010 | VDB-10, VDB-11 | gate | ⬜ pending | — |
 
 ### Phase 19 · RAG (Module 19) · Days 162–171
 
@@ -355,7 +355,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 |---|---|---|---|---|---|
 | 182 | What an AI agent is — the think → act → observe loop | AGT-01, AGT-02 | concept | ⬜ pending | — |
 | 183 | Agentic vs generative AI; multi-agent collaboration topologies | AGT-03, AGT-04 | concept | ⬜ pending | — |
-| 184 | The framework landscape; Setu's permission table — ADR-010 | AGT-05, AGT-06 | gate | ⬜ pending | — |
+| 184 | The framework landscape; Setu's permission table — ADR-011 | AGT-05, AGT-06 | gate | ⬜ pending | — |
 
 ### Phase 22 · LangGraph fundamentals (Module 22) · Days 185–191
 
@@ -399,7 +399,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 205 | C-RAG — grade retrieved documents, re-query on failure | RAG-17 | lab | ⬜ pending | — |
 | 206 | Self-RAG — reflection and self-critique loops | RAG-18 | lab | ⬜ pending | — |
 | 207 | Self-RAG over a vector DB, deployed locally | RAG-19 | lab | ⬜ pending | — |
-| 208 | Four-architecture bake-off on one eval set — ADR-012 | RAG-20 | gate | ⬜ pending | — |
+| 208 | Four-architecture bake-off on one eval set — ADR-013 | RAG-20 | gate | ⬜ pending | — |
 
 ### Phase 26 · Model Context Protocol (Module 26) · Days 209–215
 
@@ -411,7 +411,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 212 | Integrating with Claude Desktop and Cursor IDE | MCP-06 | lab | ⬜ pending | — |
 | 213 | Consuming MCP servers from LangChain and LangGraph | MCP-07 | lab | ⬜ pending | — |
 | 214 | Open MCP registries, the Docker catalog, and a security review | MCP-08, MCP-09 | lab | ⬜ pending | — |
-| 215 | Auth; agent-as-MCP-server; the freshness drill — ADR-011 | MCP-10, MCP-11, MCP-12 | gate | ⬜ pending | — |
+| 215 | Auth; agent-as-MCP-server; the freshness drill — ADR-012 | MCP-10, MCP-11, MCP-12 | gate | ⬜ pending | — |
 
 ### Phase 27 · Multi-agent systems (Module 27) · Days 216–224
 
@@ -431,7 +431,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 225 | Architecture on one page — ADR-013 | CAP-01 | lab | ⬜ pending | — |
+| 225 | Architecture on one page — ADR-014 | CAP-01 | lab | ⬜ pending | — |
 | 226 | The data layer — Postgres schema, Mongo collections, Chroma index | CAP-02 | lab | ⬜ pending | — |
 | 227 | Ingestion — the review-scraper project, generalised | CAP-03 | project | ⬜ pending | — |
 | 228 | The hardened `paper-db` MCP server | CAP-04 | lab | ⬜ pending | — |
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 107** — Why averaging works — the bias/variance view of ensembles `(ML-18)`
-- **Day 108** — Bagging and Random Forest `(ML-19)`
-- **Day 109** — Out-of-bag evaluation and honest feature importance `(ML-20)`
-- **Day 110** — Boosting intuition — AdaBoost to gradient boosting, by hand `(ML-21)`
 - **Day 111** — Gradient Boosting classifier and regressor `(ML-22)`
 - **Day 112** — XGBoost — early stopping and the hyperparameters that matter `(ML-23)`
 - **Day 113** — LightGBM and CatBoost — the honest comparison `(ML-24)`
-- **Day 114** — SHAP — what the model actually keys on — ADR-007 `(ML-25)`
+- **Day 114** — SHAP — what the model actually keys on — ADR-008 `(ML-25)`
 - **Day 115** — Clustering, distance metrics, and K-Means from scratch `(ML-26, ML-27, ML-28)`
 - **Day 116** — MLflow + Project: Network Intrusion Detection System `(ML-29, ML-30)`
+- **Day 117** — What NLP is; normalisation and tokenisation `(NLP-01, NLP-02)`
+- **Day 118** — Stemming, lemmatisation, and when stopwords carry meaning `(NLP-03, NLP-04)`
+- **Day 119** — Parts-of-speech tagging with NLTK and spaCy `(NLP-05)`
+- **Day 120** — Named Entity Recognition `(NLP-06)`
 
