@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **125** | 51.9% |
+| 📄 Lesson docs written | **128** | 53.1% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **116** | 48.1% |
+| ⬜ Still to write | **113** | 46.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  █████████████████████░░░░░░░░░░░░░░░░░░░  125/241
+written  █████████████████████░░░░░░░░░░░░░░░░░░░  128/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -44,7 +44,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 10/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 8/8 | 0/8 |
-| 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
+| 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 3/13 | 0/13 |
 | 16 | M16 | Sequence models & transformers (Module 16) | 138–149 | 0/12 | 0/12 |
 | 17 | M17 | Generative AI foundations (Module 17) | 150–154 | 0/5 | 0/5 |
 | 18 | M18 | Vector databases (Module 18) | 155–161 | 0/7 | 0/7 |
@@ -266,9 +266,9 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 125 | Why deep learning now; the perceptron by hand | DL-01, DL-02 | lab | ⬜ pending | — |
-| 126 | Forward propagation is matrix multiplication | DL-03 | lab | ⬜ pending | — |
-| 127 | The chain rule and backpropagation, derived on paper | DL-04 | lab | ⬜ pending | — |
+| 125 | Why deep learning now; the perceptron by hand | DL-01, DL-02 | lab | 📄 written | 79 |
+| 126 | Forward propagation is matrix multiplication | DL-03 | lab | 📄 written | 88 |
+| 127 | The chain rule and backpropagation, derived on paper | DL-04 | lab | 📄 written | 80 |
 | 128 | A full training loop in pure NumPy | DL-05 | lab | ⬜ pending | — |
 | 129 | Activation functions and the vanishing gradient, reproduced | DL-06, DL-07 | lab | ⬜ pending | — |
 | 130 | Loss functions — MSE, MAE, BCE, categorical cross-entropy | DL-08 | lab | ⬜ pending | — |
@@ -457,9 +457,6 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 125** — Why deep learning now; the perceptron by hand `(DL-01, DL-02)`
-- **Day 126** — Forward propagation is matrix multiplication `(DL-03)`
-- **Day 127** — The chain rule and backpropagation, derived on paper `(DL-04)`
 - **Day 128** — A full training loop in pure NumPy `(DL-05)`
 - **Day 129** — Activation functions and the vanishing gradient, reproduced `(DL-06, DL-07)`
 - **Day 130** — Loss functions — MSE, MAE, BCE, categorical cross-entropy `(DL-08)`
@@ -467,4 +464,7 @@ The next ten unwritten days, in order:
 - **Day 132** — Weight initialisation — Xavier and He `(DL-10)`
 - **Day 133** — Dropout, batch normalisation, layer normalisation `(DL-11, DL-12)`
 - **Day 134** — Keras 3 — Sequential, functional API, callbacks `(DL-13)`
+- **Day 135** — PyTorch — tensors, autograd, `nn.Module`, the explicit loop `(DL-14)`
+- **Day 136** — `Dataset`, `DataLoader`, batching, and your hardware reality `(DL-15)`
+- **Day 137** — TensorBoard and reading a training curve honestly `(DL-16)`
 
