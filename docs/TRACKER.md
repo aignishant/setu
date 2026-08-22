@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **84** | 34.9% |
+| 📄 Lesson docs written | **91** | 37.8% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **157** | 65.1% |
+| ⬜ Still to write | **150** | 62.2% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░  84/241
+written  ███████████████░░░░░░░░░░░░░░░░░░░░░░░░░  91/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -40,7 +40,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 8 | M8 | Statistics foundations (Module 8) | 58–68 | 11/11 | 0/11 |
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 7/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
-| 11 | M11 | EDA (Module 11) | 84–90 | 0/7 | 0/7 |
+| 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 0/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 0/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 0/8 | 0/8 |
@@ -205,13 +205,13 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 84 | The EDA loop and an automated `audit(df)` | EDA-01, EDA-02 | lab | ⬜ pending | — |
-| 85 | Univariate and bivariate exploration | EDA-03 | lab | ⬜ pending | — |
-| 86 | Multivariate structure; PCA for looking, not modelling | EDA-04 | lab | ⬜ pending | — |
-| 87 | Case study — sentiment of movie reviews | EDA-05 | project | ⬜ pending | — |
-| 88 | Case study — wine quality and type | EDA-06 | project | ⬜ pending | — |
-| 89 | Case study — stock and commodity prices (and the forecasting trap) | EDA-07 | project | ⬜ pending | — |
-| 90 | An EDA report that changes a decision — ADR-006 | EDA-08 | gate | ⬜ pending | — |
+| 84 | The EDA loop and an automated `audit(df)` | EDA-01, EDA-02 | lab | 📄 written | 67 |
+| 85 | Univariate and bivariate exploration | EDA-03 | lab | 📄 written | 74 |
+| 86 | Multivariate structure; PCA for looking, not modelling | EDA-04 | lab | 📄 written | 74 |
+| 87 | Case study — sentiment of movie reviews | EDA-05 | project | 📄 written | 76 |
+| 88 | Case study — wine quality and type | EDA-06 | project | 📄 written | 67 |
+| 89 | Case study — stock and commodity prices (and the forecasting trap) | EDA-07 | project | 📄 written | 74 |
+| 90 | An EDA report that changes a decision — ADR-006 | EDA-08 | gate | 📄 written | 75 |
 
 ### Phase 12 · Machine learning fundamentals (Module 12) · Days 91–106
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 84** — The EDA loop and an automated `audit(df)` `(EDA-01, EDA-02)`
-- **Day 85** — Univariate and bivariate exploration `(EDA-03)`
-- **Day 86** — Multivariate structure; PCA for looking, not modelling `(EDA-04)`
-- **Day 87** — Case study — sentiment of movie reviews `(EDA-05)`
-- **Day 88** — Case study — wine quality and type `(EDA-06)`
-- **Day 89** — Case study — stock and commodity prices (and the forecasting trap) `(EDA-07)`
-- **Day 90** — An EDA report that changes a decision — ADR-006 `(EDA-08)`
 - **Day 91** — AI vs ML vs DL vs Data Science; the four learning types `(ML-01, ML-02)`
 - **Day 92** — Simple linear regression from scratch `(ML-03)`
 - **Day 93** — Multiple linear regression, assumptions, multicollinearity `(ML-04)`
+- **Day 94** — Regression metrics — MSE, MAE, RMSE, R², adjusted R² `(ML-05)`
+- **Day 95** — Gradient descent from scratch — batch, stochastic, mini-batch `(ML-06)`
+- **Day 96** — Bias–variance, over/underfitting, learning curves `(ML-07)`
+- **Day 97** — Cross-validation — k-fold, stratified, grouped, time-series `(ML-08)`
+- **Day 98** — Regularisation — Ridge, Lasso, ElasticNet `(ML-09)`
+- **Day 99** — Logistic regression from scratch `(ML-10)`
+- **Day 100** — Confusion matrix; picking the metric from the cost of the error `(ML-11)`
 
