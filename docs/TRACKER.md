@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **120** | 49.8% |
+| 📄 Lesson docs written | **123** | 51.0% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **121** | 50.2% |
+| ⬜ Still to write | **118** | 49.0% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ████████████████████░░░░░░░░░░░░░░░░░░░░  120/241
+written  ████████████████████░░░░░░░░░░░░░░░░░░░░  123/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -43,7 +43,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 10/10 | 0/10 |
-| 14 | M14 | Classical NLP (Module 14) | 117–124 | 3/8 | 0/8 |
+| 14 | M14 | Classical NLP (Module 14) | 117–124 | 6/8 | 0/8 |
 | 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
 | 16 | M16 | Sequence models & transformers (Module 16) | 138–149 | 0/12 | 0/12 |
 | 17 | M17 | Generative AI foundations (Module 17) | 150–154 | 0/5 | 0/5 |
@@ -256,9 +256,9 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 117 | What NLP is; normalisation and tokenisation | NLP-01, NLP-02 | lab | 📄 written | 90 |
 | 118 | Stemming, lemmatisation, and when stopwords carry meaning | NLP-03, NLP-04 | lab | 📄 written | 94 |
 | 119 | Parts-of-speech tagging with NLTK and spaCy | NLP-05 | lab | 📄 written | 84 |
-| 120 | Named Entity Recognition | NLP-06 | lab | ⬜ pending | — |
-| 121 | One-hot, Bag of Words, and n-grams | NLP-07, NLP-08 | lab | ⬜ pending | — |
-| 122 | TF-IDF from scratch, then `TfidfVectorizer` | NLP-09 | lab | ⬜ pending | — |
+| 120 | Named Entity Recognition | NLP-06 | lab | 📄 written | 90 |
+| 121 | One-hot, Bag of Words, and n-grams | NLP-07, NLP-08 | lab | 📄 written | 88 |
+| 122 | TF-IDF from scratch, then `TfidfVectorizer` | NLP-09 | lab | 📄 written | 91 |
 | 123 | Word vectors, cosine similarity, and Word2Vec | NLP-10, NLP-11 | lab | ⬜ pending | — |
 | 124 | Project: TF-IDF text classifier — the baseline to beat | NLP-12 | gate | ⬜ pending | — |
 
@@ -457,9 +457,6 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 120** — Named Entity Recognition `(NLP-06)`
-- **Day 121** — One-hot, Bag of Words, and n-grams `(NLP-07, NLP-08)`
-- **Day 122** — TF-IDF from scratch, then `TfidfVectorizer` `(NLP-09)`
 - **Day 123** — Word vectors, cosine similarity, and Word2Vec `(NLP-10, NLP-11)`
 - **Day 124** — Project: TF-IDF text classifier — the baseline to beat `(NLP-12)`
 - **Day 125** — Why deep learning now; the perceptron by hand `(DL-01, DL-02)`
@@ -467,4 +464,7 @@ The next ten unwritten days, in order:
 - **Day 127** — The chain rule and backpropagation, derived on paper `(DL-04)`
 - **Day 128** — A full training loop in pure NumPy `(DL-05)`
 - **Day 129** — Activation functions and the vanishing gradient, reproduced `(DL-06, DL-07)`
+- **Day 130** — Loss functions — MSE, MAE, BCE, categorical cross-entropy `(DL-08)`
+- **Day 131** — Optimisers — SGD → Momentum → RMSProp → Adam → AdamW `(DL-09)`
+- **Day 132** — Weight initialisation — Xavier and He `(DL-10)`
 
