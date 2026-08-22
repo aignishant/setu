@@ -1,13 +1,14 @@
 ---
 plan: setu
-version: "v1.0.0"
+version: "v2.0.0"
 modules: 27
 validated: "2026-08-21"
 days: 240
 phases: 30
+doc_architecture: "hub + parts/ (see Part 11)"
 ---
 
-# 🌉 MASTER PLAN v1.0.0 — Project **Setu**
+# 🌉 MASTER PLAN v2.0.0 — Project **Setu**
 ## Data Science → Machine Learning → Deep Learning → Generative AI → **Agentic AI**, built one day at a time
 
 > **Scope note.** This plan is **self-contained**: 27 modules plus an end-to-end projects section,
@@ -89,6 +90,7 @@ These are non-negotiable. They are what turns a 27-module curriculum into a port
 | 13 | **Weekly freshness check.** Every Friday: release notes for every pin, plus the MCP spec page. Findings become an addendum, never an ad-hoc code change. |
 | 14 | **If reality changes, the plan is amended first.** Ecosystem shift → versioned addendum → then code. This file exists because that habit works. |
 | 15 | **Never train on the test set, never demo on the training set.** Said twice on purpose. It is the single most common way a portfolio project dies in an interview. |
+| 16 | **Depth over density.** A day is taught as a *hub plus one document per subtopic* (Part 11), never as one long page. If a subtopic cannot be read on its own, understood without scrolling past a different subtopic, and explained back out loud, it has not been split finely enough. A wall of text is not depth — it is depth's disguise. |
 
 ---
 
@@ -817,3 +819,147 @@ January and the transformers library went to v5 this year, "expert" is not a fin
 
 *Amendment protocol: ecosystem change → new `NN_MASTER_PLAN_DS_ADDENDUM_*.md` → merge IDs into this
 file → bump version → log it. Never patch code around a plan that has gone stale.*
+
+---
+
+## Part 11 — 📐 The depth contract (doc architecture, v2.0.0)
+
+> **Why this part exists.** v1.0.0 taught each day as a single `LESSON.md`. By Phase 15 those files
+> were 40 000 characters long and a whole subject — deriving backpropagation — sat under one `##`
+> heading. That is not depth; it is density wearing depth's coat. A reader cannot revisit one idea
+> without re-reading four, and cannot tell whether a subtopic was covered thinly or not at all.
+> v2.0.0 splits every day into **one hub plus one document per subtopic** and states, below, exactly
+> what "covered properly" means. This is Principle 16, made checkable.
+
+### 11.1 The folder shape
+
+Every day, without exception, is a folder of this shape:
+
+```
+days/day-NN/
+├── LESSON.md          # the hub — orientation, story, part map, build brief, eval, budget
+├── CHECKLIST.md       # the definition of done; ./m done NN refuses to commit until ticked
+├── parts/             # the teaching, one document per subtopic
+│   ├── 1.1-<slug>.md
+│   ├── 1.2-<slug>.md
+│   ├── 2.1-<slug>.md
+│   └── …
+├── _legacy/           # (transitional) the v1.0.0 single-file lesson, kept for reference
+└── lab/               # created by ./m scaffold NN; the learner's own code
+```
+
+`parts/` is mandatory. A day with no `parts/` directory is, by definition, not written.
+
+### 11.2 The numbering rule — what `1.1` and `2.3` mean
+
+Part numbers are **`<section>.<subtopic>`**, both scoped to the day.
+
+- The **section** number groups subtopics that share one mental model. A section is usually one
+  curriculum ID, one stage of a pipeline, or one phase of a derivation.
+- The **subtopic** number is the reading order inside that section. It starts at `1`, never `0`.
+
+The hub's part map declares what each section *is*. A typical lab day:
+
+| Section | Means | Example subtopics |
+|---|---|---|
+| **1.x** | the first ID of the day | `1.1` what it is · `1.2` how it behaves · `1.3` where it bites |
+| **2.x** | the second ID of the day | `2.1` … `2.2` … |
+| **3.x** | the synthesis — the two IDs meeting | `3.1` the trap only visible when both are true |
+
+A derivation day (`DL-04`, backpropagation) instead uses sections as *stages*: `1.x` the forward
+pass, `2.x` the chain rule on one weight, `3.x` the general case, `4.x` the gradient check. A
+data-handling day uses them as *pipeline order*. **The grouping must be stated in the hub;** an
+unexplained numbering is a bug in the doc.
+
+Filenames are `<section>.<subtopic>-<kebab-slug>.md`. The slug is what the subtopic *teaches*, not
+where it sits: `2.3-why-the-split-comes-first.md`, never `2.3-part-three.md`.
+
+### 11.3 What a part document must contain
+
+Every file in `parts/` carries all eight of these, in this order. This is the contract
+`./m depth NN` enforces.
+
+| # | Section | The rule |
+|---|---|---|
+| 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `reading_minutes`, `prev`, `next`. Machine-read; the reader ignores it. |
+| 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who only reads this line has learned something true. |
+| 3 | **The idea in plain language** | Analogy first, jargon second, and the jargon is defined *the first time it appears*. No code in this section. |
+| 4 | **Why Setu needs it** | The concrete downstream day that breaks without this. "You will meet this again on Day 162" is the shape. Never "this is important". |
+| 5 | **The mechanism** | The runnable code, or the derivation, or the diagram. Mermaid whenever the concept is spatial, sequential, or a state machine (Principle 3's companion rule). |
+| 6 | **Line by line** | Every non-obvious token of every code block, explained — and *why it is that line and not another*. An unexplained line is a bug in the doc. |
+| 7 | **When it breaks** | The real error text, reproduced. What the traceback says, what it actually means, and the smallest fix. |
+| 8 | **Check yourself** | One command the reader can run right now, plus one question they must answer out loud without scrolling up. |
+
+Two further rules that have no section of their own:
+
+- **The one-idea test.** If a part document needs the word "also" to introduce its second half, it
+  is two parts. Split it.
+- **The standalone test.** A part must be readable cold, with only its `prev` links assumed. If it
+  depends on an unstated earlier part, name the part and link it.
+
+### 11.4 What the hub (`LESSON.md`) must contain
+
+The hub is **orientation and assembly, never the teaching itself**. It carries no `Line by line:`
+walkthrough — that lives in the parts. Required, in order:
+
+1. **frontmatter** — `day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
+   `plan_version`, `parts` (the count), `generated`, `status`, `lab_scaffolded`, `commit`.
+2. **yesterday / today / tomorrow** — one line each, as a blockquote.
+3. **§1 The story** — the day's whole idea as an analogy, in plain language, before any code.
+4. **§2 The map** — a table of every part: number, title, what it answers, minutes. This is the
+   table of contents and the reading order. Every row links to its file.
+5. **§3 Setup — run this** — every `mkdir`, `touch`, `uv add <pkg>==<exact>` the day needs, pinned.
+6. **§4 Build brief** — the files to create, with `TODO(me)` markers left unsolved (Principle 6).
+7. **§5 The eval that must be able to fail** — the pytest that is RED before the TODOs are done
+   (Principle 7).
+8. **§6 Request budget** — model calls, network, cost (Principle 5). `0` is an answer; state it.
+9. **§7 Traps** — the mistakes that eat an evening.
+10. **§8 Verify before you code** — live documentation URLs, actually fetched on the day of writing.
+11. **§9 Say it in an interview** — one paragraph, spoken voice.
+12. **§10 Done when** — pointer to `CHECKLIST.md`.
+
+### 11.5 How finely to split — the sizing guide
+
+| Day kind | Typical parts | Split by |
+|---|---|---|
+| `setup` | 8–12 | one tool, one file, or one command per part |
+| `lab` (1 ID) | 4–7 | mechanism → behaviour → edge case → failure mode |
+| `lab` (2 IDs) | 6–10 | one section per ID, plus a synthesis section |
+| `concept` | 4–6 | one claim per part, each with its evidence |
+| `gate` | 5–8 | one acceptance criterion per part |
+| `project` | 8–14 | one component per part, in build order |
+
+These are the observed shapes of a well-split day, not quotas. **A part is finished when its one
+idea is fully explained, not when it reaches a length.** Ten honest parts beat fourteen padded ones,
+and a day that genuinely needs sixteen gets sixteen.
+
+### 11.6 What "in depth" is not
+
+The failure modes v2.0.0 exists to prevent, stated so they can be caught in review:
+
+- **Splitting without deepening.** Cutting one 40 000-character page into six 6 000-character pages
+  changes nothing. Each part must gain the mechanism, the failure text, and the check it never had.
+- **Summary in place of explanation.** "This line configures the optimizer" is a caption. "`lr=0.01`
+  because at `0.1` this loss surface oscillates — try it and watch" is an explanation.
+- **Assuming the previous day.** Each part names its prerequisite and links it. 240 days is long
+  enough that Day 3 is genuinely forgotten by Day 130.
+- **Code without failure.** Every mechanism section has a matching "when it breaks" with the *actual*
+  error string, because that string is what the reader will meet at 11pm, not the happy path.
+- **Solved reps.** `TODO(me)` stays `TODO(me)` (Principle 6). Depth is in the explanation, never in
+  doing the learner's exercise for them.
+
+### 11.7 Enforcement
+
+`scripts/depth_check.py`, run as `./m depth [NN]`, is the machine-readable half of this contract. It
+fails on: a missing `parts/` directory, a part filename that does not match
+`<section>.<subtopic>-<slug>.md`, a gap in the numbering, a missing required section, a code block
+with no `Line by line:` following it, a hub that carries teaching, or a `parts` frontmatter count
+that disagrees with the directory. `docs/TRACKER.md` reports the part count of every written day, so
+a thin day is visible from the progress table alone.
+
+### 11.8 Amendment record
+
+| Version | Change |
+|---|---|
+| v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
+| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principle 16, this Part 11, `parts/`-based days, `scripts/depth_check.py`, and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |

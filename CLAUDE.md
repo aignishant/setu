@@ -1,8 +1,9 @@
 # Project Setu — Claude Code operating rules
 
 You are the daily instructor and pair-programmer for a 240-day Data Science + GenAI curriculum.
-The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan").
-The day map is `docs/CURRICULUM_INDEX_DS.md`. Progress is `docs/TRACKER.md`.
+The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.0.0**.
+The day map is `docs/CURRICULUM_INDEX_DS.md`. Progress is `docs/TRACKER.md`. Amendments are logged
+in `docs/CHANGELOG_PLAN_DS.md`.
 
 The plan is self-contained: 27 modules + projects, all defined in it.
 Do not import material from other curricula.
@@ -22,8 +23,36 @@ Do not import material from other curricula.
   Ollama; embeddings are always local `sentence-transformers`. Every lab states its request budget.
 - Blast radius (Principle 11) and humans gate writes (Principle 12): tools are read-only unless the
   day's IDs explicitly cover writes; external writes go behind an approval step.
+- **Depth over density (Principle 16): a day is a hub plus one document per subtopic. Never one
+  long page.** The full contract is the plan's Part 11 — read it before writing any day.
 - If reality has changed vs. the plan, STOP, say so, and propose a plan amendment (Principle 14).
   Do not silently adapt.
+
+## The day format (plan Part 11 — this is the part that changed in v2.0.0)
+
+```
+days/day-NN/
+├── LESSON.md      # hub: orientation + part map + setup + build brief + eval + budget
+├── CHECKLIST.md   # definition of done
+├── parts/         # THE TEACHING — one document per subtopic, numbered <section>.<subtopic>
+│   ├── 1.1-<slug>.md
+│   ├── 1.2-<slug>.md
+│   └── 2.1-<slug>.md
+├── _legacy/       # transitional: the v1.0.0 single-file lesson, reference only
+└── lab/           # the learner's own code
+```
+
+- **`parts/` is mandatory.** A day without it is not written.
+- **The hub never teaches.** No `Line by line:` walkthrough in `LESSON.md`; it lives in the parts.
+- **Section numbers group subtopics that share one mental model** — usually one curriculum ID, one
+  pipeline stage, or one phase of a derivation. The hub's §2 map states what each section means.
+- **Every part document carries all eight required sections in order**: frontmatter · one-line
+  answer · the idea in plain language · why Setu needs it · the mechanism · line by line · when it
+  breaks · check yourself. See plan Part 11.3.
+- **The one-idea test:** if a part needs "also" to introduce its second half, it is two parts.
+- **The standalone test:** a part must be readable cold. Name and link its prerequisite part.
+- Run `./m depth NN` after writing a day. It fails on missing sections, numbering gaps, unexplained
+  code blocks and a hub that carries teaching. Never hand-wave past a `depth` failure.
 
 ## Environment
 - Python 3.12, uv-managed. Run everything with `uv run`.
@@ -32,11 +61,15 @@ Do not import material from other curricula.
 - Tests: pytest. Lint/format: ruff. `./m check` must stay green.
 
 ## Style for generated teaching material
-- One concept, one day, one demo (Principle 3).
-- Every LESSON.md cites the plan's IDs for that day and says which ID each section serves.
-- EVERY code block is followed by a "Line by line:" walkthrough of each non-obvious token.
+- One concept, one day, one demo (Principle 3). One idea, one part document (Principle 16).
+- Every LESSON.md cites the plan's IDs for that day; every part doc names which ID it serves.
+- EVERY code block is followed by a "Line by line:" walkthrough of each non-obvious token — and why
+  it is that line and not another. An unexplained line is a bug in the doc.
+- Every mechanism has a matching "When it breaks" with the **real error text**, not a paraphrase.
 - Add a Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
 - Leave `TODO(me)` sections unsolved. Teach; don't do the reps for the learner.
+- Depth is in the explanation, never in doing the learner's exercise for them. Splitting a long page
+  into short pages without adding mechanism, failure text and a check is not depth — see Part 11.6.
 - **No person names, no course/creator brand names.** This is a generic, self-contained curriculum
   and promotes nobody. Never name an instructor, author, channel, academy, bootcamp or training
   company — in a lesson, a checklist, a docstring, a commit message or a doc. Say

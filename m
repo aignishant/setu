@@ -17,7 +17,27 @@ case "${1:-help}" in
     [ -z "$DAY" ] && { echo "usage: ./m start <day>"; exit 1; }
     D="$(daydir "$DAY")"
     [ -n "$D" ] || { echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1; }
-    echo "-> open $D/LESSON.md"
+    if [ -f "$D/LESSON.md" ] && [ -d "$D/parts" ]; then
+      echo "-> open $D/LESSON.md   (the hub - read its §2 map, then work through parts/ in order)"
+      ls "$D/parts" | sed 's|^|     parts/|'
+    elif [ -f "$D/_legacy/LESSON.md" ]; then
+      echo "!! day $DAY is still on the v1.0.0 single-file format (plan Part 11 not applied yet)."
+      echo "-> open $D/_legacy/LESSON.md   -- workable, but regenerate it with /day-setu $DAY"
+    else
+      echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1
+    fi
+    ;;
+
+  parts)
+    [ -z "$DAY" ] && { echo "usage: ./m parts <day>"; exit 1; }
+    D="$(daydir "$DAY")"
+    [ -d "$D/parts" ] || { echo "day $DAY has no parts/ - it is not written (plan Part 11)"; exit 1; }
+    ls "$D/parts"
+    ;;
+
+  depth)
+    if [ -n "$DAY" ]; then uv run python scripts/depth_check.py "$DAY"
+    else uv run python scripts/depth_check.py; fi
     ;;
   scaffold)
     [ -z "$DAY" ] && { echo "usage: ./m scaffold <day>"; exit 1; }
@@ -28,6 +48,7 @@ case "${1:-help}" in
     uv run ruff check .
     uv run ruff format --check .
     uv run python -m pytest -q -m "not live"
+    uv run python scripts/depth_check.py
     echo "OK all green"
     ;;
   tracker)
@@ -55,9 +76,11 @@ usage: ./m <command> [day]
 
   status         how many days are written / complete
   tracker        regenerate docs/TRACKER.md
-  start N        point at day N's lesson
+  start N        point at day N's hub and list its parts/
+  parts N        list day N's sub-topic documents
+  depth [N]      check day N (or every written day) against the plan's Part 11 depth contract
   scaffold N     create days/day-NN/lab/
-  check          ruff check + ruff format --check + offline pytest
+  check          ruff + ruff format + offline pytest + depth contract
   done N         refuse unless checklist ticked and checks green, then commit
 USAGE
     ;;

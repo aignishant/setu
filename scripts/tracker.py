@@ -5,6 +5,10 @@ Single source of truth for the day list is the curriculum index; this script nev
 invents a day. Status is read from the filesystem and the checklists, so the tracker
 cannot drift from reality.
 
+Under plan v2.0.0 a day counts as written only when it has the hub *and* a non-empty
+parts/ directory (Principle 16, plan Part 11). A day still carrying only its v1.0.0
+single-file lesson is reported as legacy, which is what makes the regeneration visible.
+
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
     uv run python scripts/tracker.py --summary  # one-line progress, no file written
 """
@@ -39,6 +43,8 @@ class Day:
     complete: bool = False
     open_boxes: int = 0
     folder: str = ""
+    parts: int = 0
+    legacy: bool = False
 
 
 @dataclass
@@ -94,7 +100,10 @@ def inspect(day: Day) -> Day:
     if folder is None:
         return day
     day.folder = folder.relative_to(ROOT).as_posix()
-    day.written = (folder / "LESSON.md").is_file()
+    day.parts = len(list((folder / "parts").glob("*.md"))) if (folder / "parts").is_dir() else 0
+    day.legacy = (folder / "_legacy" / "LESSON.md").is_file()
+    # v2.0.0: a hub without parts/ is not a written day.
+    day.written = (folder / "LESSON.md").is_file() and day.parts > 0
     checklist = folder / "CHECKLIST.md"
     day.has_checklist = checklist.is_file()
     if day.has_checklist:
@@ -112,6 +121,8 @@ def badge(day: Day) -> str:
         return "📄 written"
     if day.written:
         return "⚠️ no checklist"
+    if day.legacy:
+        return "🗃️ legacy"
     return "⬜ pending"
 
 
@@ -127,6 +138,8 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "total": len(all_days),
         "written": sum(d.written for d in all_days),
         "complete": sum(d.complete for d in all_days),
+        "legacy": sum(d.legacy and not d.written for d in all_days),
+        "parts": sum(d.parts for d in all_days),
     }
     stats["pending"] = stats["total"] - stats["written"]
     pct = 100 * stats["written"] / stats["total"]
@@ -145,15 +158,23 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "(and automatically by `./m done N`) from `docs/CURRICULUM_INDEX_DS.md` "
         "plus what is actually on disk.",
         "",
+        "> **Plan v2.0.0.** A day counts as *written* only when it has a hub **and** a non-empty "
+        "`parts/` directory (Principle 16 · plan Part 11). Days marked 🗃️ legacy still carry their "
+        "v1.0.0 single-file lesson at `days/day-NN/_legacy/LESSON.md` and are workable from it "
+        "until they are regenerated.",
+        "",
         "## Progress",
         "",
         "| | Count | Of total |",
         "|---|---|---|",
-        f"| 📄 Lesson docs written | **{stats['written']}** | {pct:.1f}% |",
+        f"| 📄 Days written in the v2.0.0 shape | **{stats['written']}** | {pct:.1f}% |",
+        f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",
-        f"| ⬜ Still to write | **{stats['pending']}** |"
-        f" {100 * stats['pending'] / stats['total']:.1f}% |",
+        f"| 🗃️ Legacy days awaiting regeneration | **{stats['legacy']}** |"
+        f" {100 * stats['legacy'] / stats['total']:.1f}% |",
+        f"| ⬜ Never written | **{stats['pending'] - stats['legacy']}** |"
+        f" {100 * (stats['pending'] - stats['legacy']) / stats['total']:.1f}% |",
         f"| Total days in plan | {stats['total']} | (Day 0 + Days 1–240) |",
         "",
         "```",
@@ -161,21 +182,25 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         f"{stats['written']}/{stats['total']}",
         f"complete {bar(stats['complete'], stats['total'])}  "
         f"{stats['complete']}/{stats['total']}",
+        f"legacy   {bar(stats['legacy'], stats['total'])}  "
+        f"{stats['legacy']}/{stats['total']}",
         "```",
         "",
-        "**Legend:** ✅ done (checklist fully ticked) · 📄 written (lesson + checklist exist) · "
-        "⚠️ no checklist · ⬜ pending (not written yet)",
+        "**Legend:** ✅ done (checklist fully ticked) · 📄 written (hub + `parts/` + checklist) · "
+        "⚠️ no checklist · 🗃️ legacy (v1.0.0 lesson only, needs regenerating) · "
+        "⬜ pending (never written)",
         "",
         "## By phase",
         "",
-        "| Phase | Module | Theme | Days | Written | Done |",
-        "|---|---|---|---|---|---|",
+        "| Phase | Module | Theme | Days | Written | Parts | Done |",
+        "|---|---|---|---|---|---|---|",
     ]
 
     zero_written = int(day_zero.written)
     out.append(
         f"| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | "
         f"{zero_written + sum(d.written for d in phases[0].days)}/4 | "
+        f"{day_zero.parts + sum(d.parts for d in phases[0].days)} | "
         f"{int(day_zero.complete) + sum(d.complete for d in phases[0].days)}/4 |"
     )
     for phase in phases[1:]:
@@ -184,6 +209,7 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         out.append(
             f"| {phase.number} | {module} | {phase.name} | {phase.span} | "
             f"{sum(d.written for d in phase.days)}/{n} | "
+            f"{sum(d.parts for d in phase.days)} | "
             f"{sum(d.complete for d in phase.days)}/{n} |"
         )
 
@@ -191,8 +217,8 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
     out += [
         "### Phase 0 · Foundry · Days 0–3",
         "",
-        "| Day | Title | IDs | Kind | Status | Open boxes |",
-        "|---|---|---|---|---|---|",
+        "| Day | Title | IDs | Kind | Status | Parts | Open boxes |",
+        "|---|---|---|---|---|---|---|",
         row(day_zero),
     ]
     out += [row(d) for d in phases[0].days]
@@ -202,8 +228,8 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         out += [
             f"### Phase {phase.number} · {phase.name} · Days {phase.span}",
             "",
-            "| Day | Title | IDs | Kind | Status | Open boxes |",
-            "|---|---|---|---|---|---|",
+            "| Day | Title | IDs | Kind | Status | Parts | Open boxes |",
+            "|---|---|---|---|---|---|---|",
         ]
         out += [row(d) for d in phase.days]
         out.append("")
@@ -215,9 +241,13 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
     pending = [d for d in all_days if not d.written]
     if pending:
         nxt = pending[:10]
-        out.append("The next ten unwritten days, in order:")
+        out.append("The next ten days to write, in order:")
         out.append("")
-        out += [f"- **Day {d.number}** — {d.title} `({d.ids})`" for d in nxt]
+        out += [
+            f"- **Day {d.number}** — {d.title} `({d.ids})`"
+            + ("  ·  🗃️ has a v1.0.0 lesson to mine" if d.legacy else "")
+            for d in nxt
+        ]
     else:
         out.append("Every day is written. 🎉")
     out.append("")
@@ -232,7 +262,11 @@ def bar(done: int, total: int, width: int = 40) -> str:
 def row(day: Day) -> str:
     title = day.title if len(day.title) <= 78 else day.title[:75] + "…"
     boxes = str(day.open_boxes) if day.has_checklist else "—"
-    return f"| {day.number} | {title} | {day.ids} | {day.kind} | {badge(day)} | {boxes} |"
+    parts = str(day.parts) if day.parts else "—"
+    return (
+        f"| {day.number} | {title} | {day.ids} | {day.kind} | "
+        f"{badge(day)} | {parts} | {boxes} |"
+    )
 
 
 def main() -> int:
@@ -240,8 +274,10 @@ def main() -> int:
     content, stats = build(phases)
     if "--summary" in sys.argv:
         print(
-            f"Setu: {stats['written']}/{stats['total']} lesson docs written, "
-            f"{stats['complete']} days completed, {stats['pending']} to go."
+            f"Setu: {stats['written']}/{stats['total']} days in the v2.0.0 shape "
+            f"({stats['parts']} sub-topic docs), {stats['complete']} completed, "
+            f"{stats['legacy']} legacy to regenerate, "
+            f"{stats['pending'] - stats['legacy']} never written."
         )
         return 0
     TRACKER.write_text(content + "\n", encoding="utf-8")
