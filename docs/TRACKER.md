@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **129** | 53.5% |
+| 📄 Lesson docs written | **131** | 54.4% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **112** | 46.5% |
+| ⬜ Still to write | **110** | 45.6% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  █████████████████████░░░░░░░░░░░░░░░░░░░  129/241
+written  ██████████████████████░░░░░░░░░░░░░░░░░░  131/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -44,7 +44,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 10/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 8/8 | 0/8 |
-| 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 4/13 | 0/13 |
+| 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 6/13 | 0/13 |
 | 16 | M16 | Sequence models & transformers (Module 16) | 138–149 | 0/12 | 0/12 |
 | 17 | M17 | Generative AI foundations (Module 17) | 150–154 | 0/5 | 0/5 |
 | 18 | M18 | Vector databases (Module 18) | 155–161 | 0/7 | 0/7 |
@@ -270,8 +270,8 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 126 | Forward propagation is matrix multiplication | DL-03 | lab | 📄 written | 88 |
 | 127 | The chain rule and backpropagation, derived on paper | DL-04 | lab | 📄 written | 80 |
 | 128 | A full training loop in pure NumPy | DL-05 | lab | 📄 written | 96 |
-| 129 | Activation functions and the vanishing gradient, reproduced | DL-06, DL-07 | lab | ⬜ pending | — |
-| 130 | Loss functions — MSE, MAE, BCE, categorical cross-entropy | DL-08 | lab | ⬜ pending | — |
+| 129 | Activation functions and the vanishing gradient, reproduced | DL-06, DL-07 | lab | 📄 written | 94 |
+| 130 | Loss functions — MSE, MAE, BCE, categorical cross-entropy | DL-08 | lab | 📄 written | 97 |
 | 131 | Optimisers — SGD → Momentum → RMSProp → Adam → AdamW | DL-09 | lab | ⬜ pending | — |
 | 132 | Weight initialisation — Xavier and He | DL-10 | lab | ⬜ pending | — |
 | 133 | Dropout, batch normalisation, layer normalisation | DL-11, DL-12 | lab | ⬜ pending | — |
@@ -457,8 +457,6 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 129** — Activation functions and the vanishing gradient, reproduced `(DL-06, DL-07)`
-- **Day 130** — Loss functions — MSE, MAE, BCE, categorical cross-entropy `(DL-08)`
 - **Day 131** — Optimisers — SGD → Momentum → RMSProp → Adam → AdamW `(DL-09)`
 - **Day 132** — Weight initialisation — Xavier and He `(DL-10)`
 - **Day 133** — Dropout, batch normalisation, layer normalisation `(DL-11, DL-12)`
@@ -467,4 +465,6 @@ The next ten unwritten days, in order:
 - **Day 136** — `Dataset`, `DataLoader`, batching, and your hardware reality `(DL-15)`
 - **Day 137** — TensorBoard and reading a training curve honestly `(DL-16)`
 - **Day 138** — Sequence data; why MLPs fail on it; RNNs and BPTT `(DL-17, DL-18)`
+- **Day 139** — LSTM — the three gates and the cell state `(DL-19)`
+- **Day 140** — GRU; bidirectional and stacked recurrent layers `(DL-20, DL-21)`
 
