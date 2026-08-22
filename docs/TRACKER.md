@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **101** | 41.9% |
+| 📄 Lesson docs written | **107** | 44.4% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **140** | 58.1% |
+| ⬜ Still to write | **134** | 55.6% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  █████████████████░░░░░░░░░░░░░░░░░░░░░░░  101/241
+written  ██████████████████░░░░░░░░░░░░░░░░░░░░░░  107/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -41,7 +41,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 7/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
-| 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 10/16 | 0/16 |
+| 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 16/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 0/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 0/8 | 0/8 |
 | 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
@@ -227,12 +227,12 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 98 | Regularisation — Ridge, Lasso, ElasticNet | ML-09 | lab | 📄 written | 76 |
 | 99 | Logistic regression from scratch | ML-10 | lab | 📄 written | 78 |
 | 100 | Confusion matrix; picking the metric from the cost of the error | ML-11 | lab | 📄 written | 80 |
-| 101 | ROC-AUC, PR-AUC, calibration, threshold tuning | ML-12 | lab | ⬜ pending | — |
-| 102 | Naive Bayes — Bayes' theorem, made concrete | ML-13 | lab | ⬜ pending | — |
-| 103 | KNN and the curse of dimensionality | ML-14 | lab | ⬜ pending | — |
-| 104 | Support Vector Machines and the kernel trick | ML-15 | lab | ⬜ pending | — |
-| 105 | Decision trees — entropy, Gini, pruning | ML-16 | lab | ⬜ pending | — |
-| 106 | Hyperparameter search — grid, random, Optuna | ML-17 | gate | ⬜ pending | — |
+| 101 | ROC-AUC, PR-AUC, calibration, threshold tuning | ML-12 | lab | 📄 written | 75 |
+| 102 | Naive Bayes — Bayes' theorem, made concrete | ML-13 | lab | 📄 written | 69 |
+| 103 | KNN and the curse of dimensionality | ML-14 | lab | 📄 written | 74 |
+| 104 | Support Vector Machines and the kernel trick | ML-15 | lab | 📄 written | 78 |
+| 105 | Decision trees — entropy, Gini, pruning | ML-16 | lab | 📄 written | 77 |
+| 106 | Hyperparameter search — grid, random, Optuna | ML-17 | gate | 📄 written | 103 |
 
 ### Phase 13 · Ensembles & clustering (Module 13) · Days 107–116
 
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 101** — ROC-AUC, PR-AUC, calibration, threshold tuning `(ML-12)`
-- **Day 102** — Naive Bayes — Bayes' theorem, made concrete `(ML-13)`
-- **Day 103** — KNN and the curse of dimensionality `(ML-14)`
-- **Day 104** — Support Vector Machines and the kernel trick `(ML-15)`
-- **Day 105** — Decision trees — entropy, Gini, pruning `(ML-16)`
-- **Day 106** — Hyperparameter search — grid, random, Optuna `(ML-17)`
 - **Day 107** — Why averaging works — the bias/variance view of ensembles `(ML-18)`
 - **Day 108** — Bagging and Random Forest `(ML-19)`
 - **Day 109** — Out-of-bag evaluation and honest feature importance `(ML-20)`
 - **Day 110** — Boosting intuition — AdaBoost to gradient boosting, by hand `(ML-21)`
+- **Day 111** — Gradient Boosting classifier and regressor `(ML-22)`
+- **Day 112** — XGBoost — early stopping and the hyperparameters that matter `(ML-23)`
+- **Day 113** — LightGBM and CatBoost — the honest comparison `(ML-24)`
+- **Day 114** — SHAP — what the model actually keys on — ADR-007 `(ML-25)`
+- **Day 115** — Clustering, distance metrics, and K-Means from scratch `(ML-26, ML-27, ML-28)`
+- **Day 116** — MLflow + Project: Network Intrusion Detection System `(ML-29, ML-30)`
 
