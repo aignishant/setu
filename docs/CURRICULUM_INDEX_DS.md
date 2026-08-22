@@ -188,7 +188,7 @@ definition-of-done artifact.
 | 103 | KNN and the curse of dimensionality | ML-14 | lab |
 | 104 | Support Vector Machines and the kernel trick | ML-15 | lab |
 | 105 | Decision trees — entropy, Gini, pruning | ML-16 | lab |
-| 106 | Hyperparameter search — grid, random, Optuna | ML-17 | gate |
+| 106 | Hyperparameter search — grid, random, Optuna — **ADR-007** | ML-17 | gate |
 
 ## Phase 13 · Ensembles & clustering (Module 13) · Days 107–116
 
@@ -201,7 +201,7 @@ definition-of-done artifact.
 | 111 | Gradient Boosting classifier and regressor | ML-22 | lab |
 | 112 | XGBoost — early stopping and the hyperparameters that matter | ML-23 | lab |
 | 113 | LightGBM and CatBoost — the honest comparison | ML-24 | lab |
-| 114 | SHAP — what the model actually keys on — **ADR-007** | ML-25 | lab |
+| 114 | SHAP — what the model actually keys on — **ADR-008** | ML-25 | lab |
 | 115 | Clustering, distance metrics, and K-Means from scratch | ML-26, ML-27, ML-28 | lab |
 | 116 | MLflow + **Project: Network Intrusion Detection System** | ML-29, ML-30 | gate |
 
@@ -261,7 +261,7 @@ definition-of-done artifact.
 | 151 | Next-token prediction, end to end, from your own model | GEN-03 | lab |
 | 152 | The landscape — LLMs, diffusion, multimodal — and the limits | GEN-04 | concept |
 | 153 | Prompting as interface design; hallucination and grounding | GEN-05, GEN-06 | lab |
-| 154 | The end-to-end GenAI project lifecycle — **ADR-008** | GEN-07 | gate |
+| 154 | The end-to-end GenAI project lifecycle — **ADR-009** | GEN-07 | gate |
 
 ## Phase 18 · Vector databases (Module 18) · Days 155–161
 
@@ -273,7 +273,7 @@ definition-of-done artifact.
 | 158 | Chroma — collections, metadata, filtering | VDB-06 | lab |
 | 159 | FAISS — flat vs IVF vs HNSW, benchmarked | VDB-07 | lab |
 | 160 | Qdrant and LanceDB; Pinecone literacy | VDB-08, VDB-09 | lab |
-| 161 | Atlas Vector Search; choosing a store — **ADR-009** | VDB-10, VDB-11 | gate |
+| 161 | Atlas Vector Search; choosing a store — **ADR-010** | VDB-10, VDB-11 | gate |
 
 ## Phase 19 · RAG (Module 19) · Days 162–171
 
@@ -311,7 +311,7 @@ definition-of-done artifact.
 |---|---|---|---|
 | 182 | What an AI agent is — the think → act → observe loop | AGT-01, AGT-02 | concept |
 | 183 | Agentic vs generative AI; multi-agent collaboration topologies | AGT-03, AGT-04 | concept |
-| 184 | The framework landscape; Setu's permission table — **ADR-010** | AGT-05, AGT-06 | gate |
+| 184 | The framework landscape; Setu's permission table — **ADR-011** | AGT-05, AGT-06 | gate |
 
 ## Phase 22 · LangGraph fundamentals (Module 22) · Days 185–191
 
@@ -355,7 +355,7 @@ definition-of-done artifact.
 | 205 | C-RAG — grade retrieved documents, re-query on failure | RAG-17 | lab |
 | 206 | Self-RAG — reflection and self-critique loops | RAG-18 | lab |
 | 207 | Self-RAG over a vector DB, deployed locally | RAG-19 | lab |
-| 208 | Four-architecture bake-off on one eval set — **ADR-012** | RAG-20 | gate |
+| 208 | Four-architecture bake-off on one eval set — **ADR-013** | RAG-20 | gate |
 
 ## Phase 26 · Model Context Protocol (Module 26) · Days 209–215
 
@@ -367,7 +367,7 @@ definition-of-done artifact.
 | 212 | Integrating with Claude Desktop and Cursor IDE | MCP-06 | lab |
 | 213 | Consuming MCP servers from LangChain and LangGraph | MCP-07 | lab |
 | 214 | Open MCP registries, the Docker catalog, and a security review | MCP-08, MCP-09 | lab |
-| 215 | Auth; agent-as-MCP-server; the freshness drill — **ADR-011** | MCP-10, MCP-11, MCP-12 | gate |
+| 215 | Auth; agent-as-MCP-server; the freshness drill — **ADR-012** | MCP-10, MCP-11, MCP-12 | gate |
 
 ## Phase 27 · Multi-agent systems (Module 27) · Days 216–224
 
@@ -389,7 +389,7 @@ Full specification: `docs/CAPSTONE_SETU.md`
 
 | Day | Title | IDs | Kind |
 |---|---|---|---|
-| 225 | Architecture on one page — **ADR-013** | CAP-01 | lab |
+| 225 | Architecture on one page — **ADR-014** | CAP-01 | lab |
 | 226 | The data layer — Postgres schema, Mongo collections, Chroma index | CAP-02 | lab |
 | 227 | Ingestion — the review-scraper project, generalised | CAP-03 | project |
 | 228 | The hardened `paper-db` MCP server | CAP-04 | lab |
@@ -423,13 +423,14 @@ Full specification: `docs/CAPSTONE_SETU.md`
 | ADR-004 | 51 | Postgres, MongoDB, or both — and why both is not a cop-out |
 | ADR-005 | 75 | A statistical claim, its assumptions, and its error bar |
 | ADR-006 | 90 | What the EDA found, and which modelling decision it changed |
-| ADR-007 | 114 | Which model ships, and what SHAP says it keys on |
-| ADR-008 | 154 | The GenAI project lifecycle for Setu — and where guardrails sit |
-| ADR-009 | 161 | Which vector store, and what would make us switch |
-| ADR-010 | 184 | The permission table: what each agent may read, call, and write |
-| ADR-011 | 215 | Why every Setu data source sits behind MCP |
-| ADR-012 | 208 | Which RAG architecture wins on our eval set, and by how much |
-| ADR-013 | 225 | The capstone architecture, defended end to end |
+| ADR-007 | 106 | Which model ships, and the honest estimate of how it performs |
+| ADR-008 | 114 | What SHAP says the model keys on, and whether we believe it |
+| ADR-009 | 154 | The GenAI project lifecycle for Setu — and where guardrails sit |
+| ADR-010 | 161 | Which vector store, and what would make us switch |
+| ADR-011 | 184 | The permission table: what each agent may read, call, and write |
+| ADR-012 | 215 | Why every Setu data source sits behind MCP |
+| ADR-013 | 208 | Which RAG architecture wins on our eval set, and by how much |
+| ADR-014 | 225 | The capstone architecture, defended end to end |
 
 ## Standing weekly items
 
