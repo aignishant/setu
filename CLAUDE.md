@@ -48,7 +48,6 @@ days/day-NN/
 │   │   └── 1.2-<slug>.md
 │   └── 02/
 │       └── 2.1-<slug>.md
-├── _legacy/       # transitional: the v1.0.0 single-file lesson, reference only
 └── lab/           # the learner's own code
 ```
 

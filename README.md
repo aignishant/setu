@@ -158,9 +158,9 @@ That skill lives at [`.claude/skills/day-setu/SKILL.md`](.claude/skills/day-setu
 the split first, writes one `parts/` document per subtopic, then assembles the hub — and ends by
 running `./m depth N`, which is what stops a thin day from being called written.
 
-Days written under plan v1.0.0 (the old single-file format) are archived at
-`days/day-NN/_legacy/LESSON.md` and are being regenerated from Day 0 forward. `docs/TRACKER.md`
-marks them 🗃️ legacy; they are still workable in the meantime.
+The v1.0.0 lessons (one long `LESSON.md` per day) were deleted rather than converted — splitting a
+shallow page into shallower pages is not depth. Every day is written fresh from the plan, from Day 0
+forward, so `days/` fills up gradually; `docs/TRACKER.md` is the honest picture.
 
 ## Repository layout
 

@@ -871,7 +871,6 @@ days/day-NN/
 │   │   └── 2.2-<slug>.md
 │   └── 03/
 │       └── 3.1-<slug>.md
-├── _legacy/           # (transitional) the v1.0.0 single-file lesson, kept for reference
 └── lab/               # created by ./m scaffold NN; the learner's own code
 ```
 
@@ -1037,4 +1036,4 @@ visible from the progress table alone.
 | Version | Change |
 |---|---|
 | v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
-| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/<NN>/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |
+| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/<NN>/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons were removed rather than converted: every day is rewritten from the plan, from Day 0 forward. |

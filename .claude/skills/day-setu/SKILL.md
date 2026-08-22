@@ -28,10 +28,10 @@ argument-hint: [day-number]
 2. Read `docs/TRACKER.md` for what is already written and at what depth.
 3. Read `days/` for what exists. Build on prior days' code in `src/setu/` — never duplicate it.
    If the previous day's `CHECKLIST.md` has unticked boxes, warn me and ask before proceeding.
-4. If `days/day-NN/_legacy/LESSON.md` exists, read it. It is the v1.0.0 draft: **mine it for
-   correctness, then discard its structure.** Everything it covered must survive into the parts, and
-   each surviving topic must gain the story, the mechanism, the failure text, the production face
-   and the check it did not have. Never copy a `_legacy` section across wholesale.
+4. There is no previous draft to work from — the v1.0.0 lessons were deleted, deliberately. Every
+   day is written fresh from the plan's matrices, the curriculum index, and the live documentation
+   you verify on the day. Read the neighbouring written days instead, for continuity of voice and to
+   see which ideas have already been introduced and can be linked rather than re-explained.
 
 ## Step 2 — plan the split (do this before writing prose)
 
@@ -116,8 +116,7 @@ argument-hint: [day-number]
 
 18. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one.
 19. Run `uv run python scripts/tracker.py`.
-20. Delete `days/day-NN/_legacy/` once its content has been fully mined into the parts.
-21. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
+20. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
 
 ## Always
 
@@ -129,5 +128,5 @@ argument-hint: [day-number]
   lineage for it. Tool and library names are fine, as is citing a paper by its title.
 - The failures this format exists to prevent (Part 11.8): splitting without deepening · summary in
   place of explanation · **stopping at the toy example** · assuming the previous day · code without
-  failure · **trimming to fit** · solved reps. If a part gained no story, no mechanism, no failure
-  text and no production section versus the `_legacy` prose, it is not done.
+  failure · **trimming to fit** · solved reps. A part with no story, no mechanism, no real failure
+  text and no production section is not done, however long it is.

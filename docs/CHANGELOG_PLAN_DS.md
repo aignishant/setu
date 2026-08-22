@@ -13,7 +13,7 @@ code or lesson changes. Newest first.
 ## v2.0.0 — 2026-08-22 — the depth contract
 
 **Trigger.** Review of the written days (0–132) found the v1.0.0 single-file lesson format had
-failed at scale. `days/day-127/_legacy/LESSON.md` is 40 668 characters and puts the entire
+failed at scale. Day 127's lesson ran to 40 668 characters and put the entire
 derivation of backpropagation under one `##` heading. Days 120–132 average ~38 000 characters. A
 reader cannot revisit one subtopic without re-reading its neighbours, and there is no way to tell a
 thinly-covered subtopic from a missing one.
@@ -40,8 +40,8 @@ thinly-covered subtopic from a missing one.
 - New `scripts/depth_check.py` and `./m depth [NN]` enforce the contract mechanically, including a
   hard failure on any time estimate found in a day folder (Principle 17) and on a `level` outside
   the three allowed values.
-- `scripts/tracker.py` now reports a part count per day and distinguishes `🗃️ legacy` (written under
-  v1.0.0, awaiting regeneration) from `⬜ pending` (never written).
+- `scripts/tracker.py` now reports a part count per day, so a thin day is visible from the progress
+  table alone.
 
 **Explicitly unchanged.** No day, ID, phase boundary, gate, pin, dataset or principle 1–15 is
 touched. The 240-day arc and all 276 IDs are identical to v1.0.0. This is a documentation-format
@@ -52,9 +52,10 @@ from it. Day numbers remain an index into the subject. A day whose subject is la
 compressed to fit an evening; it is read across as many sittings as it needs, and `./m done N` is
 gated on a ticked checklist and green checks, never on elapsed time.
 
-**Migration.** All 133 v1.0.0 lessons were moved to `days/day-NN/_legacy/LESSON.md` on 2026-08-22
-(nothing deleted; git history intact). Days are regenerated in the v2.0.0 shape from Day 0 forward.
-A day whose `parts/` directory does not exist yet is still workable from its `_legacy/LESSON.md`.
+**Migration.** All 133 v1.0.0 lessons were **deleted** on 2026-08-22 (commit `2b290ba`; recoverable
+from git history if ever needed). They were not converted, because splitting a shallow page into
+shallower pages is not depth — see Part 11.8. Every day is rewritten from the plan, from Day 0
+forward, so `days/` refills gradually and `docs/TRACKER.md` reports the real position.
 
 ---
 

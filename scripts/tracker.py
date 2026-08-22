@@ -6,8 +6,7 @@ invents a day. Status is read from the filesystem and the checklists, so the tra
 cannot drift from reality.
 
 Under plan v2.0.0 a day counts as written only when it has the hub *and* a non-empty
-parts/ directory (Principle 16, plan Part 11). A day still carrying only its v1.0.0
-single-file lesson is reported as legacy, which is what makes the regeneration visible.
+parts/ directory of sub-topic documents (Principle 16, plan Part 11).
 
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
     uv run python scripts/tracker.py --summary  # one-line progress, no file written
@@ -44,7 +43,6 @@ class Day:
     open_boxes: int = 0
     folder: str = ""
     parts: int = 0
-    legacy: bool = False
 
 
 @dataclass
@@ -102,7 +100,6 @@ def inspect(day: Day) -> Day:
     day.folder = folder.relative_to(ROOT).as_posix()
     parts_dir = folder / "parts"
     day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
-    day.legacy = (folder / "_legacy" / "LESSON.md").is_file()
     # v2.0.0: a hub without parts/ is not a written day.
     day.written = (folder / "LESSON.md").is_file() and day.parts > 0
     checklist = folder / "CHECKLIST.md"
@@ -122,8 +119,6 @@ def badge(day: Day) -> str:
         return "📄 written"
     if day.written:
         return "⚠️ no checklist"
-    if day.legacy:
-        return "🗃️ legacy"
     return "⬜ pending"
 
 
@@ -139,7 +134,6 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "total": len(all_days),
         "written": sum(d.written for d in all_days),
         "complete": sum(d.complete for d in all_days),
-        "legacy": sum(d.legacy and not d.written for d in all_days),
         "parts": sum(d.parts for d in all_days),
     }
     stats["pending"] = stats["total"] - stats["written"]
@@ -160,9 +154,8 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "plus what is actually on disk.",
         "",
         "> **Plan v2.0.0.** A day counts as *written* only when it has a hub **and** a non-empty "
-        "`parts/` directory (Principle 16 · plan Part 11). Days marked 🗃️ legacy still carry their "
-        "v1.0.0 single-file lesson at `days/day-NN/_legacy/LESSON.md` and are workable from it "
-        "until they are regenerated.",
+        "`parts/` directory (Principle 16 · plan Part 11). The v1.0.0 single-file lessons were "
+        "deleted rather than converted, so `days/` refills one rewritten day at a time.",
         "",
         "## Progress",
         "",
@@ -172,21 +165,17 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",
-        f"| 🗃️ Legacy days awaiting regeneration | **{stats['legacy']}** |"
-        f" {100 * stats['legacy'] / stats['total']:.1f}% |",
-        f"| ⬜ Never written | **{stats['pending'] - stats['legacy']}** |"
-        f" {100 * (stats['pending'] - stats['legacy']) / stats['total']:.1f}% |",
+        f"| ⬜ Still to write | **{stats['pending']}** |"
+        f" {100 * stats['pending'] / stats['total']:.1f}% |",
         f"| Total days in plan | {stats['total']} | (Day 0 + Days 1–240) |",
         "",
         "```",
         f"written  {bar(stats['written'], stats['total'])}  {stats['written']}/{stats['total']}",
         f"complete {bar(stats['complete'], stats['total'])}  {stats['complete']}/{stats['total']}",
-        f"legacy   {bar(stats['legacy'], stats['total'])}  {stats['legacy']}/{stats['total']}",
         "```",
         "",
         "**Legend:** ✅ done (checklist fully ticked) · 📄 written (hub + `parts/` + checklist) · "
-        "⚠️ no checklist · 🗃️ legacy (v1.0.0 lesson only, needs regenerating) · "
-        "⬜ pending (never written)",
+        "⚠️ no checklist · ⬜ pending (not written yet)",
         "",
         "## By phase",
         "",
@@ -241,11 +230,7 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         nxt = pending[:10]
         out.append("The next ten days to write, in order:")
         out.append("")
-        out += [
-            f"- **Day {d.number}** — {d.title} `({d.ids})`"
-            + ("  ·  🗃️ has a v1.0.0 lesson to mine" if d.legacy else "")
-            for d in nxt
-        ]
+        out += [f"- **Day {d.number}** — {d.title} `({d.ids})`" for d in nxt]
     else:
         out.append("Every day is written. 🎉")
     out.append("")
@@ -269,10 +254,9 @@ def main() -> int:
     content, stats = build(phases)
     if "--summary" in sys.argv:
         print(
-            f"Setu: {stats['written']}/{stats['total']} days in the v2.0.0 shape "
+            f"Setu: {stats['written']}/{stats['total']} days written "
             f"({stats['parts']} sub-topic docs), {stats['complete']} completed, "
-            f"{stats['legacy']} legacy to regenerate, "
-            f"{stats['pending'] - stats['legacy']} never written."
+            f"{stats['pending']} to go."
         )
         return 0
     TRACKER.write_text(content + "\n", encoding="utf-8")

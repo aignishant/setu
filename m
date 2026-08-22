@@ -7,7 +7,10 @@ pad() { printf "%02d" "$1"; }
 
 daydir() {
   local n="$1"
-  if [ -d "days/day-$(pad "$n")" ]; then echo "days/day-$(pad "$n")"
+  # Day 0 lives in day-00-setup; every other day is day-NN. Kept in step with
+  # find_folder() in scripts/tracker.py and scripts/depth_check.py.
+  if [ "$n" = "0" ] && [ -d "days/day-00-setup" ]; then echo "days/day-00-setup"
+  elif [ -d "days/day-$(pad "$n")" ]; then echo "days/day-$(pad "$n")"
   elif [ -d "days/day-$n" ]; then echo "days/day-$n"
   else echo ""; fi
 }
@@ -20,9 +23,6 @@ case "${1:-help}" in
     if [ -f "$D/LESSON.md" ] && [ -d "$D/parts" ]; then
       echo "-> open $D/LESSON.md   (the hub - read its §2 map, then work through parts/ in order)"
       find "$D/parts" -name '*.md' | sort | sed "s|^$D/|     |"
-    elif [ -f "$D/_legacy/LESSON.md" ]; then
-      echo "!! day $DAY is still on the v1.0.0 single-file format (plan Part 11 not applied yet)."
-      echo "-> open $D/_legacy/LESSON.md   -- workable, but regenerate it with /day-setu $DAY"
     else
       echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1
     fi
@@ -47,7 +47,11 @@ case "${1:-help}" in
   check)
     uv run ruff check .
     uv run ruff format --check .
-    uv run python -m pytest -q -m "not live"
+    # pytest exits 5 when it collects no tests at all. That is not a failure while the
+    # repository is still being written out - but any real test failure still is.
+    set +e; uv run python -m pytest -q -m "not live"; rc=$?; set -e
+    if [ "$rc" -eq 5 ]; then echo "note: no tests collected yet"
+    elif [ "$rc" -ne 0 ]; then exit "$rc"; fi
     uv run python scripts/depth_check.py
     echo "OK all green"
     ;;

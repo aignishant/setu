@@ -55,7 +55,6 @@ days/day-NN/
 │   │   └── 1.2-<slug>.md
 │   └── 02/        # section 2
 │       └── 2.1-<slug>.md
-├── _legacy/       # the old v1.0.0 single-file lesson, kept until the day is regenerated
 └── lab/           # you create this; `./m scaffold NN` makes the folder
 ```
 
@@ -129,22 +128,16 @@ The hub orients and assembles. **It never teaches** — there is no line-by-line
 
 ---
 
-## About `_legacy/`
+## Why days appear one at a time
 
-Plan v1.0.0 taught each day as a single `LESSON.md`. Those files grew to 40 000 characters, and by
+Plan v1.0.0 taught each day as a single `LESSON.md`. Those files grew past 40 000 characters, and by
 Phase 15 an entire subject — deriving backpropagation — sat under one heading. Plan **v2.0.0**
-replaced that format with the hub-plus-`parts/` shape above.
+replaced that format with the hub-plus-`parts/` shape above, and the v1.0.0 lessons were **deleted
+rather than converted**: splitting a shallow page into shallower pages is not depth (plan Part 11.8),
+so every day is rewritten from the plan itself.
 
-The 133 v1.0.0 lessons were **moved, not deleted**, to `days/day-NN/_legacy/LESSON.md` on
-2026-08-22. Days are being regenerated from Day 0 forward.
-
-- A day with `parts/` is on the current format. Read `LESSON.md`.
-- A day with only `_legacy/` still works — read `_legacy/LESSON.md` — but it has not been split or
-  deepened yet, and its v1.0.0 prose still carries the time estimates that Principle 17 removed.
-  `./m start N` tells you which one you are looking at, and `docs/TRACKER.md` marks it 🗃️ legacy.
-
-When a day is regenerated its `_legacy/` folder is deleted, because the content has by then been
-mined into the parts.
+That means `days/` fills up gradually. `docs/TRACKER.md` is the honest picture of how far it has got,
+and `./m status` prints the one-line version.
 
 ---
 
@@ -188,6 +181,6 @@ next one:
 ```
 
 That skill (`.claude/skills/day-setu/SKILL.md`) reads the plan, the index, the tracker, the existing
-days and any `_legacy/` draft, and produces the hub, the `parts/` documents, the lab scaffold and
-the checklist in the format above. It ends by running `./m depth 12`, which is what stops a thin day
+days, and produces the hub, the `parts/` documents, the lab scaffold and the checklist in the
+format above. It ends by running `./m depth 12`, which is what stops a thin day
 from being called written.

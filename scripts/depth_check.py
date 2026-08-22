@@ -5,8 +5,8 @@ A day is written when it is a hub plus one document per subtopic (Principle 16),
 zero prior knowledge through to production (Principle 18), with no clock anywhere (Principle 17).
 This script is the machine-readable half of that contract: it cannot judge whether an explanation
 is good, but it can refuse a day that has no parts, a numbering gap, a missing required section, a
-code block nobody walked through, a time estimate, a part loose outside its section folder, or a hub
-that quietly went back to teaching.
+code block nobody walked through, a time estimate, a dead cross-part link, a part loose outside its
+section folder, or a hub that quietly went back to teaching.
 
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
@@ -253,7 +253,24 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
         report.fail(where, f"code block at line {line_no} has no 'Line by line' walkthrough")
 
     check_no_clocks(text, where, report)
+    check_links(path, where, report)
     return section, subtopic
+
+
+def check_links(path: Path, where: str, report: Report) -> None:
+    """Every relative Markdown link in a part must resolve to a file that exists.
+
+    Cross-section links go up a level (../01/1.5-<slug>.md) and are easy to get wrong, so a
+    dead link here is a routine mistake rather than an exotic one. External links are skipped;
+    this cannot check the internet.
+    """
+    text = path.read_text(encoding="utf-8")
+    text = re.sub(r"```.*?```", "", text, flags=re.S)
+    for target in re.findall(r"\]\(([^)#]+\.md)(?:#[^)]*)?\)", text):
+        if target.startswith(("http://", "https://", "/")):
+            continue
+        if not (path.parent / target).resolve().is_file():
+            report.fail(where, f"dead link: {target}")
 
 
 def check_no_clocks(text: str, where: str, report: Report) -> None:
@@ -322,6 +339,7 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
         report.fail("LESSON.md", "the hub must not teach - move the walkthrough into a part")
 
     check_no_clocks(text, "LESSON.md", report)
+    check_links(hub, "LESSON.md", report)
 
     linked = set(re.findall(r"parts/(\d+/[\w.\-]+\.md)", content))
     on_disk = {
