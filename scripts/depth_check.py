@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """Enforce the plan's Part 11 depth contract on a day folder.
 
-A day is written when it is a hub plus one document per subtopic (Principle 16). This script
-is the machine-readable half of that contract: it cannot judge whether an explanation is good,
-but it can refuse a day that has no parts, a numbering gap, a missing required section, a code
-block nobody walked through, or a hub that quietly went back to teaching.
+A day is written when it is a hub plus one document per subtopic (Principle 16), each taken from
+zero prior knowledge through to production (Principle 18), with no clock anywhere (Principle 17).
+This script is the machine-readable half of that contract: it cannot judge whether an explanation
+is good, but it can refuse a day that has no parts, a numbering gap, a missing required section, a
+code block nobody walked through, a time estimate, or a hub that quietly went back to teaching.
 
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
@@ -26,19 +27,41 @@ DAYS = ROOT / "days"
 # parts/<section>.<subtopic>-<kebab-slug>.md  ->  "2.3-why-the-split-comes-first.md"
 PART_NAME_RE = re.compile(r"^(\d+)\.(\d+)-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
 
-# The eight required sections of a part document, in order (plan Part 11.3). Section 1 is the
-# frontmatter, checked separately; these are the seven that appear as headings.
+# The ten required sections of a part document, in order (plan Part 11.4). Section 1 is the
+# frontmatter, checked separately; these are the nine that appear in the body.
 PART_SECTIONS = [
     ("one-line answer", re.compile(r"^#{2,3}\s.*one[- ]line answer", re.I | re.M)),
+    ("the story", re.compile(r"^#{2,3}\s.*the story", re.I | re.M)),
     ("the idea in plain language", re.compile(r"^#{2,3}\s.*idea in plain language", re.I | re.M)),
     ("why Setu needs it", re.compile(r"^#{2,3}\s.*why setu needs it", re.I | re.M)),
     ("the mechanism", re.compile(r"^#{2,3}\s.*mechanism", re.I | re.M)),
     ("line by line", re.compile(r"^#{2,3}\s.*line by line|^\*\*Line by line:?\*\*", re.I | re.M)),
     ("when it breaks", re.compile(r"^#{2,3}\s.*when it breaks", re.I | re.M)),
+    ("in production", re.compile(r"^#{2,3}\s.*in production", re.I | re.M)),
     ("check yourself", re.compile(r"^#{2,3}\s.*check yourself", re.I | re.M)),
 ]
 
-PART_FRONTMATTER_KEYS = ["day", "part", "title", "ids", "reading_minutes", "prev", "next"]
+PART_FRONTMATTER_KEYS = ["day", "part", "title", "ids", "level", "prerequisites", "prev", "next"]
+
+# Principle 18: every part declares where it leaves the reader.
+LEVELS = {"foundation", "working", "production"}
+
+# Principle 17: a day is a unit of subject, not a unit of time. Nothing in a day folder may
+# suggest a duration or a pace - not "takes 20 minutes", not "reading_minutes", not "Day 3 of 4".
+TIME_BANS = [
+    (
+        re.compile(
+            r"^\s*(reading_minutes|duration|time_estimate|minutes|est_time)\s*:", re.I | re.M
+        ),
+        "a duration field in frontmatter",
+    ),
+    (
+        re.compile(r"\b\d+\s*[-–]?\s*\d*\s*(minutes?|mins?|hours?|hrs?)\b(?!\s*(of |the ))", re.I),
+        "a time estimate in the prose",
+    ),
+    (re.compile(r"\*\*Time:?\*\*", re.I), "a **Time:** line"),
+    (re.compile(r"should take (about |around |roughly )?\w+", re.I), "a 'should take ...' pace"),
+]
 
 HUB_FRONTMATTER_KEYS = [
     "day",
@@ -161,10 +184,10 @@ def unexplained_code_blocks(text: str) -> list[int]:
         explained = False
         while j < len(lines):
             nxt = lines[j]
-            if re.match(r"^```\w", nxt) or nxt.startswith("## "):
-                break
             if re.search(r"line by line", nxt, re.I):
                 explained = True
+                break
+            if re.match(r"^```\w", nxt) or nxt.startswith("## "):
                 break
             j += 1
         if not explained:
@@ -193,6 +216,9 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
             report.fail(where, f"frontmatter day is {meta.get('day')!r}, expected {day}")
         if meta.get("part", "").strip('"') != f"{section}.{subtopic}":
             report.fail(where, f"frontmatter part should be {section}.{subtopic}")
+        level = meta.get("level", "").strip('"').lower()
+        if level and level not in LEVELS:
+            report.fail(where, f"level is {level!r}, must be one of {sorted(LEVELS)}")
 
     content = body(text)
     seen_at: list[int] = []
@@ -208,7 +234,22 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
     for line_no in unexplained_code_blocks(content):
         report.fail(where, f"code block at line {line_no} has no 'Line by line' walkthrough")
 
+    check_no_clocks(text, where, report)
     return section, subtopic
+
+
+def check_no_clocks(text: str, where: str, report: Report) -> None:
+    """Principle 17: no time estimates anywhere in a day folder.
+
+    Content is never trimmed to fit a schedule, so no document may imply one. Code fences are
+    stripped first - a real command may legitimately mention a timeout.
+    """
+    prose = re.sub(r"```.*?```", "", text, flags=re.S)
+    for pattern, description in TIME_BANS:
+        hit = pattern.search(prose)
+        if hit:
+            snippet = hit.group(0).strip().replace("\n", " ")
+            report.fail(where, f"{description} ({snippet!r}) - a day has no clock (Principle 17)")
 
 
 def check_numbering(numbers: list[tuple[int, int]], report: Report) -> None:
@@ -224,7 +265,9 @@ def check_numbering(numbers: list[tuple[int, int]], report: Report) -> None:
     for section in sections:
         subs = sorted(sub for s, sub in numbers if s == section)
         if subs != list(range(1, len(subs) + 1)):
-            report.fail("parts/", f"section {section} subtopics are {subs}, expected 1..{len(subs)}")
+            report.fail(
+                "parts/", f"section {section} subtopics are {subs}, expected 1..{len(subs)}"
+            )
 
 
 def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
@@ -259,6 +302,8 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
 
     if re.search(r"line by line", content, re.I):
         report.fail("LESSON.md", "the hub must not teach - move the walkthrough into a part")
+
+    check_no_clocks(text, "LESSON.md", report)
 
     linked = set(re.findall(r"parts/([\w.\-]+\.md)", content))
     on_disk = {p.name for p in (folder / "parts").glob("*.md")}

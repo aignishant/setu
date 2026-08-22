@@ -148,7 +148,7 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "---",
         "name: tracker",
         "plan: setu",
-        f"generated: \"{date.today().isoformat()}\"",
+        f'generated: "{date.today().isoformat()}"',
         "generator: scripts/tracker.py",
         "---",
         "",
@@ -178,12 +178,9 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         f"| Total days in plan | {stats['total']} | (Day 0 + Days 1–240) |",
         "",
         "```",
-        f"written  {bar(stats['written'], stats['total'])}  "
-        f"{stats['written']}/{stats['total']}",
-        f"complete {bar(stats['complete'], stats['total'])}  "
-        f"{stats['complete']}/{stats['total']}",
-        f"legacy   {bar(stats['legacy'], stats['total'])}  "
-        f"{stats['legacy']}/{stats['total']}",
+        f"written  {bar(stats['written'], stats['total'])}  {stats['written']}/{stats['total']}",
+        f"complete {bar(stats['complete'], stats['total'])}  {stats['complete']}/{stats['total']}",
+        f"legacy   {bar(stats['legacy'], stats['total'])}  {stats['legacy']}/{stats['total']}",
         "```",
         "",
         "**Legend:** ✅ done (checklist fully ticked) · 📄 written (hub + `parts/` + checklist) · "
@@ -263,10 +260,7 @@ def row(day: Day) -> str:
     title = day.title if len(day.title) <= 78 else day.title[:75] + "…"
     boxes = str(day.open_boxes) if day.has_checklist else "—"
     parts = str(day.parts) if day.parts else "—"
-    return (
-        f"| {day.number} | {title} | {day.ids} | {day.kind} | "
-        f"{badge(day)} | {parts} | {boxes} |"
-    )
+    return f"| {day.number} | {title} | {day.ids} | {day.kind} | {badge(day)} | {parts} | {boxes} |"
 
 
 def main() -> int:

@@ -91,6 +91,8 @@ These are non-negotiable. They are what turns a 27-module curriculum into a port
 | 14 | **If reality changes, the plan is amended first.** Ecosystem shift → versioned addendum → then code. This file exists because that habit works. |
 | 15 | **Never train on the test set, never demo on the training set.** Said twice on purpose. It is the single most common way a portfolio project dies in an interview. |
 | 16 | **Depth over density.** A day is taught as a *hub plus one document per subtopic* (Part 11), never as one long page. If a subtopic cannot be read on its own, understood without scrolling past a different subtopic, and explained back out loud, it has not been split finely enough. A wall of text is not depth — it is depth's disguise. |
+| 17 | **A day is a unit of subject, not a unit of time.** No lesson carries a time estimate, a "should take 90 minutes", or a pace. A topic is finished when it is understood — it may take one sitting or five. Nothing is ever trimmed to fit a clock, and the day number is an index into the subject, not a promise about hours. |
+| 18 | **Assume no prior knowledge, finish at production.** Every subtopic opens where a reader who has never met the idea can stand, defines its jargon on first use, and does not stop at the toy example: it ends with how the idea is actually used in a production system, what a senior engineer does differently, and what breaks at scale. Strong basics and advanced technique are the same document, in that order. |
 
 ---
 
@@ -828,10 +830,31 @@ file → bump version → log it. Never patch code around a plan that has gone s
 > were 40 000 characters long and a whole subject — deriving backpropagation — sat under one `##`
 > heading. That is not depth; it is density wearing depth's coat. A reader cannot revisit one idea
 > without re-reading four, and cannot tell whether a subtopic was covered thinly or not at all.
-> v2.0.0 splits every day into **one hub plus one document per subtopic** and states, below, exactly
-> what "covered properly" means. This is Principle 16, made checkable.
+>
+> v2.0.0 replaces that format. A day is now **one hub plus one document per subtopic**, every
+> document written from zero prior knowledge and carried through to how the idea is used in
+> production. This part states exactly what "covered properly" means, so it can be reviewed and
+> partly machine-checked. It is Principles 16, 17 and 18, made concrete.
 
-### 11.1 The folder shape
+### 11.1 The three commitments
+
+Everything below follows from three sentences.
+
+**One idea per document.** A subtopic that cannot be read alone, understood without scrolling past a
+different subtopic, and explained back out loud is not one subtopic — it is several, badly stacked.
+
+**No clocks.** Nothing in these documents carries a time estimate, a "this should take 90 minutes",
+or a suggested pace. A topic takes as long as it takes; the reader may spend one sitting or five on
+a single part. **Content is never trimmed to fit a schedule**, and a day is never declared finished
+because a duration elapsed. The day number is an index into the subject, nothing more.
+
+**Zero to production, in one document.** Each part starts where a reader who has never heard of the
+idea can stand, and ends where a working professional stands: how the idea appears in a real system,
+what a senior engineer does differently from the tutorial version, what fails at scale, and what a
+reviewer or interviewer will probe. Strong fundamentals and advanced technique are not separate
+tracks — they are the beginning and the end of the same page.
+
+### 11.2 The folder shape
 
 Every day, without exception, is a folder of this shape:
 
@@ -850,7 +873,7 @@ days/day-NN/
 
 `parts/` is mandatory. A day with no `parts/` directory is, by definition, not written.
 
-### 11.2 The numbering rule — what `1.1` and `2.3` mean
+### 11.3 The numbering rule — what `1.1` and `2.3` mean
 
 Part numbers are **`<section>.<subtopic>`**, both scoped to the day.
 
@@ -874,40 +897,46 @@ unexplained numbering is a bug in the doc.
 Filenames are `<section>.<subtopic>-<kebab-slug>.md`. The slug is what the subtopic *teaches*, not
 where it sits: `2.3-why-the-split-comes-first.md`, never `2.3-part-three.md`.
 
-### 11.3 What a part document must contain
+### 11.4 What a part document must contain
 
-Every file in `parts/` carries all eight of these, in this order. This is the contract
-`./m depth NN` enforces.
+Every file in `parts/` carries all ten of these, in this order. Sections 2–10 are the reader's path
+from "never heard of it" to "could defend this in a design review".
 
 | # | Section | The rule |
 |---|---|---|
-| 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `reading_minutes`, `prev`, `next`. Machine-read; the reader ignores it. |
-| 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who only reads this line has learned something true. |
-| 3 | **The idea in plain language** | Analogy first, jargon second, and the jargon is defined *the first time it appears*. No code in this section. |
-| 4 | **Why Setu needs it** | The concrete downstream day that breaks without this. "You will meet this again on Day 162" is the shape. Never "this is important". |
-| 5 | **The mechanism** | The runnable code, or the derivation, or the diagram. Mermaid whenever the concept is spatial, sequential, or a state machine (Principle 3's companion rule). |
-| 6 | **Line by line** | Every non-obvious token of every code block, explained — and *why it is that line and not another*. An unexplained line is a bug in the doc. |
-| 7 | **When it breaks** | The real error text, reproduced. What the traceback says, what it actually means, and the smallest fix. |
-| 8 | **Check yourself** | One command the reader can run right now, plus one question they must answer out loud without scrolling up. |
+| 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`. Machine-read; the reader ignores it. **No duration field of any kind** (Principle 17). |
+| 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who reads only this line has learned something true. |
+| 3 | **The story** | A concrete scene before any abstraction: a person, a machine, a failure, a decision. Storytelling is not decoration here — it is the hook the definition hangs on, and it comes **first**, in plain words, with no jargon at all. |
+| 4 | **The idea in plain language** | The concept itself, assuming the reader has never met it (Principle 18). Every term is defined the first time it appears, **including terms from earlier days** — link the part that introduced them rather than assuming recall. No code. |
+| 5 | **Why Setu needs it** | The concrete downstream day that breaks without this. "You will meet this again on Day 162, where the retriever's scores are cosine similarities" is the shape. Never "this is important". |
+| 6 | **The mechanism** | How it actually works: the runnable code, the derivation with every algebraic step shown, or the diagram. Nothing skipped as "obvious". Mermaid whenever the concept is spatial, sequential, or a state machine. |
+| 7 | **Line by line** | Every non-obvious token of every code block, explained — and *why it is that line and not another*. Written as a `**Line by line:**` list **immediately after each code block**, so a reader never scrolls to find the explanation of what they are looking at. Blocks that show error output or a bare check command are exempt. An unexplained line is a bug in the doc. |
+| 8 | **When it breaks** | The **real** error text, reproduced verbatim. What the traceback says, what it actually means, and the smallest fix. This is what the reader meets at 11pm — not the happy path. |
+| 9 | **In production** | Where this idea shows up in a real system, and what changes there: the version a professional writes instead of the teaching version, what degrades at scale or under concurrency, the failure mode that only appears with real data, the review comment a senior engineer would leave, and the question an interviewer asks to find out whether you have actually used it. **This section is what makes the document professional rather than introductory, and it is not optional.** |
+| 10 | **Check yourself** | One command the reader can run right now, plus one question they must answer out loud without scrolling up. |
 
-Two further rules that have no section of their own:
+Three further rules that have no section of their own:
 
 - **The one-idea test.** If a part document needs the word "also" to introduce its second half, it
   is two parts. Split it.
-- **The standalone test.** A part must be readable cold, with only its `prev` links assumed. If it
-  depends on an unstated earlier part, name the part and link it.
+- **The standalone test.** A part must be readable cold. If it depends on an earlier idea, name that
+  part and link it — never assume the reader remembers Day 3 on Day 130.
+- **The no-shortcut test.** If an explanation contains "for now, just accept that", either explain it
+  or move it to its own part and link forward. A deferred explanation must have an address.
 
-### 11.4 What the hub (`LESSON.md`) must contain
+### 11.5 What the hub (`LESSON.md`) must contain
 
 The hub is **orientation and assembly, never the teaching itself**. It carries no `Line by line:`
 walkthrough — that lives in the parts. Required, in order:
 
 1. **frontmatter** — `day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
    `plan_version`, `parts` (the count), `generated`, `status`, `lab_scaffolded`, `commit`.
-2. **yesterday / today / tomorrow** — one line each, as a blockquote.
-3. **§1 The story** — the day's whole idea as an analogy, in plain language, before any code.
-4. **§2 The map** — a table of every part: number, title, what it answers, minutes. This is the
-   table of contents and the reading order. Every row links to its file.
+2. **yesterday / today / tomorrow** — one line each, as a blockquote. No time estimate.
+3. **§1 The story** — the day's whole idea as a scene and an analogy, in plain language, before any
+   code and before any jargon.
+4. **§2 The map** — a table of every part: number, linked title, what it answers, and its `level`
+   (foundation → working → production). This is the table of contents and the reading order, and it
+   states what each *section* number means for this day. **No minutes column, ever.**
 5. **§3 Setup — run this** — every `mkdir`, `touch`, `uv add <pkg>==<exact>` the day needs, pinned.
 6. **§4 Build brief** — the files to create, with `TODO(me)` markers left unsolved (Principle 6).
 7. **§5 The eval that must be able to fail** — the pytest that is RED before the TODOs are done
@@ -916,50 +945,78 @@ walkthrough — that lives in the parts. Required, in order:
 9. **§7 Traps** — the mistakes that eat an evening.
 10. **§8 Verify before you code** — live documentation URLs, actually fetched on the day of writing.
 11. **§9 Say it in an interview** — one paragraph, spoken voice.
-12. **§10 Done when** — pointer to `CHECKLIST.md`.
+12. **§10 Done when** — pointer to `CHECKLIST.md`. Defined by understanding and green checks, never
+    by elapsed time.
 
-### 11.5 How finely to split — the sizing guide
+### 11.6 The `level` field — how a day climbs
 
-| Day kind | Typical parts | Split by |
-|---|---|---|
-| `setup` | 8–12 | one tool, one file, or one command per part |
-| `lab` (1 ID) | 4–7 | mechanism → behaviour → edge case → failure mode |
-| `lab` (2 IDs) | 6–10 | one section per ID, plus a synthesis section |
-| `concept` | 4–6 | one claim per part, each with its evidence |
-| `gate` | 5–8 | one acceptance criterion per part |
-| `project` | 8–14 | one component per part, in build order |
+Every part declares one `level`, and a well-built day climbs through them in order:
 
-These are the observed shapes of a well-split day, not quotas. **A part is finished when its one
-idea is fully explained, not when it reaches a length.** Ten honest parts beat fourteen padded ones,
-and a day that genuinely needs sixteen gets sixteen.
+| `level` | The reader at the end of this part |
+|---|---|
+| `foundation` | Knows what the thing *is* and could define it to someone else without using the word itself. |
+| `working` | Can use it correctly on their own data, and recognises its error messages on sight. |
+| `production` | Knows what changes when it runs in a real system — scale, concurrency, cost, failure, review — and can defend the choice. |
 
-### 11.6 What "in depth" is not
+A day that is all `foundation` is a tutorial. A day that opens at `production` has skipped the
+reader. Most days run `foundation → working → production`; a single part may itself climb, which is
+exactly what §9 *In production* is for.
+
+### 11.7 How finely to split
+
+Split by **idea boundaries, never by length or by pace**. A part is finished when its one idea is
+fully explained — including its production face — and not before.
+
+| Day kind | Split by |
+|---|---|
+| `setup` | one tool, one file, or one command per part |
+| `lab` (1 ID) | mechanism → behaviour → edge case → failure mode → production use |
+| `lab` (2 IDs) | one section per ID, plus a synthesis section where they meet |
+| `concept` | one claim per part, each with its evidence |
+| `gate` | one acceptance criterion per part |
+| `project` | one component per part, in build order |
+
+There is deliberately **no target part count and no target length**. If a subject needs four parts it
+gets four; if it needs twenty-two it gets twenty-two, and the day simply spans more sittings
+(Principle 17). The only wrong answers are a part that carries two ideas and a part that stops
+before production.
+
+### 11.8 What "in depth" is not
 
 The failure modes v2.0.0 exists to prevent, stated so they can be caught in review:
 
 - **Splitting without deepening.** Cutting one 40 000-character page into six 6 000-character pages
-  changes nothing. Each part must gain the mechanism, the failure text, and the check it never had.
+  changes nothing. Each part must gain the story, the mechanism, the failure text, the production
+  face and the check it never had.
 - **Summary in place of explanation.** "This line configures the optimizer" is a caption. "`lr=0.01`
   because at `0.1` this loss surface oscillates — try it and watch" is an explanation.
+- **Stopping at the toy example.** A part that shows the idea working on ten rows and never says what
+  happens at ten million has taught half the subject. §9 is where the other half lives.
 - **Assuming the previous day.** Each part names its prerequisite and links it. 240 days is long
   enough that Day 3 is genuinely forgotten by Day 130.
-- **Code without failure.** Every mechanism section has a matching "when it breaks" with the *actual*
-  error string, because that string is what the reader will meet at 11pm, not the happy path.
+- **Code without failure.** Every mechanism has a matching "when it breaks" with the *actual* error
+  string, because that string is what the reader will meet at 11pm.
+- **Trimming to fit.** Cutting an explanation because the day "is getting long" is the one edit this
+  format forbids outright (Principle 17). Split it into another part instead.
 - **Solved reps.** `TODO(me)` stays `TODO(me)` (Principle 6). Depth is in the explanation, never in
   doing the learner's exercise for them.
 
-### 11.7 Enforcement
+### 11.9 Enforcement
 
 `scripts/depth_check.py`, run as `./m depth [NN]`, is the machine-readable half of this contract. It
 fails on: a missing `parts/` directory, a part filename that does not match
-`<section>.<subtopic>-<slug>.md`, a gap in the numbering, a missing required section, a code block
-with no `Line by line:` following it, a hub that carries teaching, or a `parts` frontmatter count
-that disagrees with the directory. `docs/TRACKER.md` reports the part count of every written day, so
-a thin day is visible from the progress table alone.
+`<section>.<subtopic>-<slug>.md`, a gap in the numbering, any of the ten required sections missing
+or out of order, a code block with no `Line by line:` following it, a `level` outside the three
+allowed values, **any time estimate anywhere in a day folder**, a hub that carries teaching, or a
+`parts` frontmatter count that disagrees with the directory.
 
-### 11.8 Amendment record
+What it cannot check is whether an explanation is any good. That is what §11.8 is for, and it is
+reviewed by reading. `docs/TRACKER.md` reports the part count of every written day, so a thin day is
+visible from the progress table alone.
+
+### 11.10 Amendment record
 
 | Version | Change |
 |---|---|
 | v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
-| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principle 16, this Part 11, `parts/`-based days, `scripts/depth_check.py`, and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |
+| **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons are archived at `days/day-NN/_legacy/LESSON.md` and are regenerated day by day from Day 0 forward. |

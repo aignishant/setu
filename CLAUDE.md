@@ -25,6 +25,14 @@ Do not import material from other curricula.
   day's IDs explicitly cover writes; external writes go behind an approval step.
 - **Depth over density (Principle 16): a day is a hub plus one document per subtopic. Never one
   long page.** The full contract is the plan's Part 11 — read it before writing any day.
+- **No clocks (Principle 17).** A day is a unit of subject, not of time. Never write a time
+  estimate, a duration, a "should take ~2 hours" or a pace, anywhere — frontmatter, prose or
+  checklist. A topic is finished when it is understood, however many sittings that takes. **Never
+  trim an explanation because a day is getting long; split it into another part instead.**
+- **Assume no prior knowledge, finish at production (Principle 18).** Open where someone who has
+  never met the idea can stand, define every term on first use, and carry it through to the
+  real-system version: what changes at scale, what a senior reviewer says, what an interviewer
+  probes. Basics and advanced technique are the same document, in that order.
 - If reality has changed vs. the plan, STOP, say so, and propose a plan amendment (Principle 14).
   Do not silently adapt.
 
@@ -46,11 +54,18 @@ days/day-NN/
 - **The hub never teaches.** No `Line by line:` walkthrough in `LESSON.md`; it lives in the parts.
 - **Section numbers group subtopics that share one mental model** — usually one curriculum ID, one
   pipeline stage, or one phase of a derivation. The hub's §2 map states what each section means.
-- **Every part document carries all eight required sections in order**: frontmatter · one-line
-  answer · the idea in plain language · why Setu needs it · the mechanism · line by line · when it
-  breaks · check yourself. See plan Part 11.3.
+- **Every part document carries all ten required sections in order**: frontmatter · one-line
+  answer · **the story** · the idea in plain language · why Setu needs it · the mechanism · line by
+  line · when it breaks · **in production** · check yourself. See plan Part 11.4.
+- **The story comes first and carries no jargon** — a concrete scene, a person, a failure, a
+  decision. It is the hook the definition hangs on, not decoration.
+- **`In production` is not optional.** A part that shows the idea working on ten rows and never says
+  what happens at ten million has taught half the subject.
+- **Every part declares a `level`** — `foundation` · `working` · `production` — and a day climbs.
 - **The one-idea test:** if a part needs "also" to introduce its second half, it is two parts.
 - **The standalone test:** a part must be readable cold. Name and link its prerequisite part.
+- **The no-shortcut test:** "for now, just accept that" is banned unless it links forward to the
+  part that explains it. A deferred explanation must have an address.
 - Run `./m depth NN` after writing a day. It fails on missing sections, numbering gaps, unexplained
   code blocks and a hub that carries teaching. Never hand-wave past a `depth` failure.
 
@@ -69,7 +84,10 @@ days/day-NN/
 - Add a Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
 - Leave `TODO(me)` sections unsolved. Teach; don't do the reps for the learner.
 - Depth is in the explanation, never in doing the learner's exercise for them. Splitting a long page
-  into short pages without adding mechanism, failure text and a check is not depth — see Part 11.6.
+  into short pages without adding story, mechanism, failure text and a production section is not
+  depth — see Part 11.8.
+- Storytelling is the default register: a scene before an abstraction, every time. The reader is
+  learning this to work on production systems, so no idea stops at the toy example.
 - **No person names, no course/creator brand names.** This is a generic, self-contained curriculum
   and promotes nobody. Never name an instructor, author, channel, academy, bootcamp or training
   company — in a lesson, a checklist, a docstring, a commit message or a doc. Say

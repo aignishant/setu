@@ -7,7 +7,7 @@
 
 ---
 
-## The four rules these docs follow
+## The six rules these docs follow
 
 1. **All the code lives in the docs. None of it is pre-written in the repo.**
    You type it, you own it. There is no `src/setu/*.py` waiting for you — every line you will ever
@@ -22,9 +22,24 @@
    `mkdir -p`, `touch`, `uv add package==1.2.3`, the run command, the test command. You should never
    have to infer "and now presumably I create a folder".
 
-4. **One idea per document.** *(new in plan v2.0.0 — Principle 16)*
+4. **One idea per document.** *(plan v2.0.0 — Principle 16)*
    A day is not one long page. It is a short hub plus one document per subtopic, in `parts/`. If a
    document needs the word "also" to introduce its second half, it should have been two documents.
+
+5. **There are no clocks here.** *(Principle 17)*
+   You will not find "this takes 90 minutes" anywhere in these documents, because it would be a lie
+   and because it invites trimming. **A day is a unit of subject, not a unit of time.** Day 26 might
+   take you one evening or four; both are the day being done properly. Nothing is ever cut short to
+   fit a schedule — if a subject needs twenty-two documents, it gets twenty-two. `./m done N` is
+   gated on a ticked checklist and green checks, never on hours elapsed.
+
+6. **Zero prior knowledge in, production knowledge out.** *(Principle 18)*
+   Every document starts where someone who has never heard of the idea can stand — the jargon is
+   defined the first time it appears, including jargon from earlier days, with a link back. And no
+   document stops at the toy example: each one ends with **In production** — what a professional
+   writes instead of the teaching version, what breaks at scale or under concurrency, the comment a
+   senior engineer leaves on that code, and the question an interviewer asks to find out whether you
+   have really used it. Strong fundamentals and advanced technique are the same page, in that order.
 
 ---
 
@@ -59,19 +74,32 @@ hub says so explicitly.
 
 ### The shape of every part document
 
-Eight sections, always in this order. This is the depth contract (plan Part 11.3), and
-`./m depth NN` fails the day if any of them is missing.
+Ten sections, always in this order. They trace one path: from a reader who has never heard of the
+idea, to one who could defend it in a design review. This is the depth contract (plan Part 11.4),
+and `./m depth NN` fails the day if any of them is missing.
 
 | Section | What it's for |
 |---|---|
-| **frontmatter** | `day`, `part`, `title`, `ids`, `reading_minutes`, `prev`, `next` — machine-read |
+| **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next` — machine-read. No duration field; see rule 5. |
 | **One-line answer** | the whole claim in one sentence, before anything else |
-| **The idea in plain language** | analogy first, jargon defined on first use, no code |
+| **The story** | a concrete scene — a person, a machine, a failure, a decision — with no jargon at all. The hook the definition hangs on. |
+| **The idea in plain language** | the concept from zero, every term defined the first time it appears, no code |
 | **Why Setu needs it** | the specific later day that breaks without this |
-| **The mechanism** | the runnable code, the derivation, or the diagram |
+| **The mechanism** | the runnable code, the derivation with every step shown, or the diagram |
 | **Line by line** | every non-obvious token, and why it is that line and not another |
 | **When it breaks** | the **real** error text, what it means, the smallest fix |
+| **In production** | what changes in a real system: the professional's version, what degrades at scale, the senior reviewer's comment, the interviewer's question |
 | **Check yourself** | one command to run now, one question to answer out loud |
+
+### `level` — where a part leaves you
+
+Every part declares one, and a well-built day climbs through them:
+
+| `level` | You can… |
+|---|---|
+| `foundation` | say what the thing *is*, without using the word itself |
+| `working` | use it correctly on your own data, and recognise its error messages on sight |
+| `production` | say what changes when it runs in a real system — scale, concurrency, cost, failure — and defend the choice |
 
 ### The shape of every hub (`LESSON.md`)
 
@@ -82,7 +110,7 @@ The hub orients and assembles. **It never teaches** — there is no line-by-line
 | **frontmatter** | machine-readable tracking. **`./m` and `scripts/tracker.py` read this, not you.** |
 | **yesterday / today / tomorrow** | where this day sits, in one line each |
 | **§1 The story** | the idea in plain English with an analogy, before any code |
-| **§2 The map** | every part, what it answers, how long it takes — the reading order |
+| **§2 The map** | every part, what it answers, its `level` — the reading order |
 | **§3 Setup — run this** | every `mkdir`, `touch`, `uv add` today needs |
 | **§4 Build brief** | the file list, and which parts are yours to write (`TODO(me)`) |
 | **§5 The eval** | the test that must be able to **fail** (Principle 7) |
@@ -90,7 +118,7 @@ The hub orients and assembles. **It never teaches** — there is no line-by-line
 | **§7 Traps** | the mistakes that eat an evening |
 | **§8 Verify before you code** | the live docs pages to check |
 | **§9 Say it in an interview** | one paragraph, spoken voice |
-| **§10 Done when** | pointer to `CHECKLIST.md` |
+| **§10 Done when** | pointer to `CHECKLIST.md` — defined by understanding, never by elapsed time |
 
 ---
 
@@ -105,8 +133,8 @@ The 133 v1.0.0 lessons were **moved, not deleted**, to `days/day-NN/_legacy/LESS
 
 - A day with `parts/` is on the current format. Read `LESSON.md`.
 - A day with only `_legacy/` still works — read `_legacy/LESSON.md` — but it has not been split or
-  deepened yet. `./m start N` will tell you which one you are looking at, and `docs/TRACKER.md`
-  marks it 🗃️ legacy.
+  deepened yet, and its v1.0.0 prose still carries the time estimates that Principle 17 removed.
+  `./m start N` tells you which one you are looking at, and `docs/TRACKER.md` marks it 🗃️ legacy.
 
 When a day is regenerated its `_legacy/` folder is deleted, because the content has by then been
 mined into the parts.

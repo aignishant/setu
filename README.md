@@ -78,16 +78,24 @@ days/day-04/
 ```
 
 The number is `<section>.<subtopic>`: the section groups subtopics that share one mental model
-(usually one curriculum ID), and the hub's §2 map says what each section means. Every part carries
-the same eight sections — one-line answer, the idea in plain language, why Setu needs it, the
-mechanism, **line by line**, when it breaks, check yourself — and `./m depth N` fails the day if any
-is missing. The full standard is [Part 11 of the
+(usually one curriculum ID), and the hub's §2 map says what each section means.
+
+Every part carries the same ten sections, and they trace one path — from a reader who has never
+heard of the idea to one who could defend it in a design review: one-line answer → **the story**
+(a scene, no jargon) → the idea in plain language → why Setu needs it → the mechanism → **line by
+line** → when it breaks (the real error text) → **in production** (what changes at scale, what a
+senior reviewer says, what an interviewer probes) → check yourself. `./m depth N` fails the day if
+any is missing.
+
+Two things you will not find in these documents: a time estimate, and an idea that stops at the toy
+example. A day is a unit of subject, not of time — it takes as many sittings as it takes, and
+nothing is trimmed to fit. The full standard is [Part 11 of the
 plan](docs/00_MASTER_PLAN_DS_GENAI.md#part-11--the-depth-contract-doc-architecture-v200);
 `days/README.md` is the reader's version.
 
-## The sixteen rules this repo runs on
+## The eighteen rules this repo runs on
 
-The full list is Part 1 of the plan. The six that shape every file:
+The full list is Part 1 of the plan. The eight that shape every file:
 
 1. **Build daily.** Reading without a commit is not a completed day.
 2. **From scratch before library.** Gradient descent before `LinearRegression`. Cosine similarity
@@ -99,6 +107,10 @@ The full list is Part 1 of the plan. The six that shape every file:
    selector — every single time.
 16. **Depth over density.** One idea, one document. A wall of text is not depth — it is depth's
     disguise.
+17. **A day is a unit of subject, not of time.** No lesson carries a time estimate or a pace, and
+    nothing is ever trimmed to fit a schedule. A topic is done when it is understood.
+18. **Assume no prior knowledge, finish at production.** Every subtopic starts from zero and ends
+    with how the idea is used in a real system — what breaks at scale, what a senior reviewer says.
 
 ## Zero budget, seriously
 
