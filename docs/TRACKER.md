@@ -13,13 +13,13 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Lesson docs written | **91** | 37.8% |
+| 📄 Lesson docs written | **101** | 41.9% |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **150** | 62.2% |
+| ⬜ Still to write | **140** | 58.1% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ███████████████░░░░░░░░░░░░░░░░░░░░░░░░░  91/241
+written  █████████████████░░░░░░░░░░░░░░░░░░░░░░░  101/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -41,7 +41,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | 9 | M9 | Inferential statistics (Module 9) | 69–75 | 7/7 | 0/7 |
 | 10 | M10 | Feature engineering (Module 10) | 76–83 | 8/8 | 0/8 |
 | 11 | M11 | EDA (Module 11) | 84–90 | 7/7 | 0/7 |
-| 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 0/16 | 0/16 |
+| 12 | M12 | Machine learning fundamentals (Module 12) | 91–106 | 10/16 | 0/16 |
 | 13 | M13 | Ensembles & clustering (Module 13) | 107–116 | 0/10 | 0/10 |
 | 14 | M14 | Classical NLP (Module 14) | 117–124 | 0/8 | 0/8 |
 | 15 | M15 | Deep learning foundations (Module 15) | 125–137 | 0/13 | 0/13 |
@@ -217,16 +217,16 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Open boxes |
 |---|---|---|---|---|---|
-| 91 | AI vs ML vs DL vs Data Science; the four learning types | ML-01, ML-02 | concept | ⬜ pending | — |
-| 92 | Simple linear regression from scratch | ML-03 | lab | ⬜ pending | — |
-| 93 | Multiple linear regression, assumptions, multicollinearity | ML-04 | lab | ⬜ pending | — |
-| 94 | Regression metrics — MSE, MAE, RMSE, R², adjusted R² | ML-05 | lab | ⬜ pending | — |
-| 95 | Gradient descent from scratch — batch, stochastic, mini-batch | ML-06 | lab | ⬜ pending | — |
-| 96 | Bias–variance, over/underfitting, learning curves | ML-07 | lab | ⬜ pending | — |
-| 97 | Cross-validation — k-fold, stratified, grouped, time-series | ML-08 | lab | ⬜ pending | — |
-| 98 | Regularisation — Ridge, Lasso, ElasticNet | ML-09 | lab | ⬜ pending | — |
-| 99 | Logistic regression from scratch | ML-10 | lab | ⬜ pending | — |
-| 100 | Confusion matrix; picking the metric from the cost of the error | ML-11 | lab | ⬜ pending | — |
+| 91 | AI vs ML vs DL vs Data Science; the four learning types | ML-01, ML-02 | concept | 📄 written | 73 |
+| 92 | Simple linear regression from scratch | ML-03 | lab | 📄 written | 74 |
+| 93 | Multiple linear regression, assumptions, multicollinearity | ML-04 | lab | 📄 written | 81 |
+| 94 | Regression metrics — MSE, MAE, RMSE, R², adjusted R² | ML-05 | lab | 📄 written | 74 |
+| 95 | Gradient descent from scratch — batch, stochastic, mini-batch | ML-06 | lab | 📄 written | 82 |
+| 96 | Bias–variance, over/underfitting, learning curves | ML-07 | lab | 📄 written | 66 |
+| 97 | Cross-validation — k-fold, stratified, grouped, time-series | ML-08 | lab | 📄 written | 75 |
+| 98 | Regularisation — Ridge, Lasso, ElasticNet | ML-09 | lab | 📄 written | 76 |
+| 99 | Logistic regression from scratch | ML-10 | lab | 📄 written | 78 |
+| 100 | Confusion matrix; picking the metric from the cost of the error | ML-11 | lab | 📄 written | 80 |
 | 101 | ROC-AUC, PR-AUC, calibration, threshold tuning | ML-12 | lab | ⬜ pending | — |
 | 102 | Naive Bayes — Bayes' theorem, made concrete | ML-13 | lab | ⬜ pending | — |
 | 103 | KNN and the curse of dimensionality | ML-14 | lab | ⬜ pending | — |
@@ -457,14 +457,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten unwritten days, in order:
 
-- **Day 91** — AI vs ML vs DL vs Data Science; the four learning types `(ML-01, ML-02)`
-- **Day 92** — Simple linear regression from scratch `(ML-03)`
-- **Day 93** — Multiple linear regression, assumptions, multicollinearity `(ML-04)`
-- **Day 94** — Regression metrics — MSE, MAE, RMSE, R², adjusted R² `(ML-05)`
-- **Day 95** — Gradient descent from scratch — batch, stochastic, mini-batch `(ML-06)`
-- **Day 96** — Bias–variance, over/underfitting, learning curves `(ML-07)`
-- **Day 97** — Cross-validation — k-fold, stratified, grouped, time-series `(ML-08)`
-- **Day 98** — Regularisation — Ridge, Lasso, ElasticNet `(ML-09)`
-- **Day 99** — Logistic regression from scratch `(ML-10)`
-- **Day 100** — Confusion matrix; picking the metric from the cost of the error `(ML-11)`
+- **Day 101** — ROC-AUC, PR-AUC, calibration, threshold tuning `(ML-12)`
+- **Day 102** — Naive Bayes — Bayes' theorem, made concrete `(ML-13)`
+- **Day 103** — KNN and the curse of dimensionality `(ML-14)`
+- **Day 104** — Support Vector Machines and the kernel trick `(ML-15)`
+- **Day 105** — Decision trees — entropy, Gini, pruning `(ML-16)`
+- **Day 106** — Hyperparameter search — grid, random, Optuna `(ML-17)`
+- **Day 107** — Why averaging works — the bias/variance view of ensembles `(ML-18)`
+- **Day 108** — Bagging and Random Forest `(ML-19)`
+- **Day 109** — Out-of-bag evaluation and honest feature importance `(ML-20)`
+- **Day 110** — Boosting intuition — AdaBoost to gradient boosting, by hand `(ML-21)`
 
