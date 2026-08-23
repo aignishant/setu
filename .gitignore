@@ -1,16 +1,27 @@
+# --- secrets: never, under any circumstances ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- environments and caches: a tool made them, a tool can remake them ---
 .venv/
 __pycache__/
 *.py[cod]
-.env
+.pytest_cache/
+.ruff_cache/
 .ipynb_checkpoints/
-data/raw/
-data/processed/
+
+# --- data: tracked by provenance, not by Git ---
+data/raw/*
+data/processed/*
+!data/raw/SOURCE.md
+!.gitkeep
+
+# --- generated artifacts ---
 mlruns/
 .chroma/
 *.db
-.ruff_cache/
-.pytest_cache/
-.DS_Store
-CLAUDE.md
-.claude/
-
+dist/
+build/

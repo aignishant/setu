@@ -15,14 +15,14 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.0.0 shape | **1** | 0.4% |
-| 📚 Sub-topic documents in `parts/` | **15** | — |
+| 📄 Days written in the v2.0.0 shape | **2** | 0.8% |
+| 📚 Sub-topic documents in `parts/` | **26** | — |
 | ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **240** | 99.6% |
+| ⬜ Still to write | **239** | 99.2% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  1/241
+written  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  2/241
 complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
 ```
 
@@ -32,7 +32,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Phase | Module | Theme | Days | Written | Parts | Done |
 |---|---|---|---|---|---|---|
-| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 1/4 | 15 | 0/4 |
+| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 2/4 | 26 | 0/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 0/8 | 0 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 0/8 | 0 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
@@ -70,7 +70,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
 | 0 | Toolchain, skeleton, and the ./m script | — | setup | 📄 written | 15 | 61 |
-| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | ⬜ pending | — | — |
+| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | 📄 written | 11 | 70 |
 | 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | ⬜ pending | — | — |
 | 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | ⬜ pending | — | — |
 
@@ -460,7 +460,6 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 1** — Foundry I — the repo, the environment, and pins that don't float `(—)`
 - **Day 2** — Foundry II — the quality machine: ruff, pytest, `./m`, CI `(—)`
 - **Day 3** — Foundry III — three free keys, two free databases, one rate budget `(—)`
 - **Day 4** — Objects, types, and mutability `(PY-01, PY-02)`
@@ -470,4 +469,5 @@ The next ten days to write, in order:
 - **Day 8** — Lists, tuples, sets, dictionaries, and view objects `(PY-07, PY-08)`
 - **Day 9** — List and dict comprehensions `(PY-09)`
 - **Day 10** — Functions, scope, and your first `src/setu/` module `(PY-10)`
+- **Day 11** — Iterators, generators, lambda and `map` `(PY-11, PY-12)`
 

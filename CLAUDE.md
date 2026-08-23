@@ -79,6 +79,8 @@ days/day-NN/
 - Packages are added on the day they are first used, not up front.
 - Exact pins in `pyproject.toml`; the reference table is `docs/PINS_DS.md` (regenerate, don't trust).
 - Tests: pytest. Lint/format: ruff. `./m check` must stay green.
+- **ruff formats Python code blocks inside Markdown**, so lesson code is linted and formatted like
+  any other code. Run `uv run ruff format days/day-NN/` after writing a day.
 
 ## Style for generated teaching material
 - One concept, one day, one demo (Principle 3). One idea, one part document (Principle 16).

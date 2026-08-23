@@ -54,7 +54,7 @@ reporting the day's parts.
 - [ ] `cat .git/HEAD` prints `ref: refs/heads/main`, and you can say why it is a branch name and not a hash
 - [ ] `pyproject.toml` has `requires-python = "==3.12.*"` and every dependency uses `==`
 - [ ] `uv.lock` exists and holds **more** packages than you asked for (the transitive ones)
-- [ ] `rm -rf .venv && uv sync --frozen` rebuilds the environment and `uv run python -c "import dotenv"` works
+- [ ] `rm -rf .venv && uv sync --locked` rebuilds the environment and `uv run python -c "import dotenv"` works
 - [ ] `echo "$VIRTUAL_ENV"` is **empty** while `uv run python` still finds the project interpreter
 
 ## Section 3 — the script that owns the routine

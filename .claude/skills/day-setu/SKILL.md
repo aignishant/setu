@@ -115,6 +115,10 @@ argument-hint: [day-number]
 ## Step 6 — verify
 
 18. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one.
+    Then run `uv run ruff format days/day-NN/` — **ruff formats Python code blocks inside Markdown**,
+    so every ```python block in a lesson must already be canonically formatted or `./m check` fails.
+    Fix `ruff check` findings in lesson code by hand rather than silencing them: teaching code that
+    the project's own linter rejects is a bug in the lesson.
 19. Run `uv run python scripts/tracker.py`.
 20. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
 

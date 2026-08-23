@@ -288,7 +288,7 @@ This day was written **2026-08-23**. Tool interfaces move; check these against t
 you start, and if something has changed, say so and amend the plan rather than working around it
 (Principle 14).
 
-- <https://docs.astral.sh/uv/> — confirm `uv init`, `uv add`, `uv python install`, `uv sync --frozen`
+- <https://docs.astral.sh/uv/> — confirm `uv init`, `uv add`, `uv python install`, `uv sync --locked`
   and `uv run` still take these flags.
 - <https://git-scm.com/download/win> — the current Git for Windows installer.
 - <https://docs.astral.sh/ruff/> — `ruff check` and `ruff format` interfaces.
