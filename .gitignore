@@ -25,3 +25,4 @@ mlruns/
 *.db
 dist/
 build/
+read.md
