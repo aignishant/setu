@@ -2,7 +2,7 @@
 
 Nothing is pre-written here, on purpose (see `days/README.md`, rule 1).
 
-`days/day-02/LESSON.md` §7 contains the full `check.yml`, line by line, with an explanation of
+Day 2's `LESSON.md` §7 (`./m start 2` will point at it) contains the full `check.yml`, line by line, with an explanation of
 why every step is there — including the one line that keeps CI free forever:
 
 ```yaml

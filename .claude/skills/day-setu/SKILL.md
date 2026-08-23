@@ -4,7 +4,7 @@ description: Generate the hub, the parts/ sub-documents, the lab scaffold and th
 argument-hint: [day-number]
 ---
 
-# Generate Day $ARGUMENTS of the Setu plan (v2.0.0 — hub + `parts/`)
+# Generate Day $ARGUMENTS of the Setu plan (v2.1.0 — hub + `parts/`, folders named for their subject)
 
 > **Read `docs/00_MASTER_PLAN_DS_GENAI.md` Part 11 before writing a single line.** It is the depth
 > contract this skill implements. This skill is the procedure; Part 11 is the standard.
@@ -47,20 +47,33 @@ argument-hint: [day-number]
    `foundation` is a tutorial; a day opening at `production` has skipped the reader.
 8. Apply the **one-idea test** and the **no-shortcut test** (no "for now, just accept that" without
    a forward link to the part that explains it) to each planned part *before* writing.
-9. Print the planned part list to me before writing. If it looks thin, I will say so.
+9. **Name the day and its sections before writing a word.** The day folder is
+   `days/day-NN-<slug>/` and each section folder is `parts/NN-<slug>/`, where the slug is one to
+   three kebab-case words for **what is inside**, never for where it sits. `01-versions`,
+   `02-pypi-index`, `03-freezing`, `04-drift` — not `01-section-one`, not `01-part-a`, not a bare
+   `01`. The section slug and the sentence the hub's §2 map uses to introduce that section must
+   agree; if you cannot name a section in three words, the grouping is wrong, not the name.
+10. Print the planned folder names and the part list to me before writing — as the tree you are
+    about to create. If either looks thin, I will say so.
 
-## Step 3 — write the parts (`days/day-NN/parts/<NN>/<section>.<sub>-<slug>.md`)
+## Step 3 — write the parts (`days/day-NN-<slug>/parts/<NN>-<slug>/<section>.<sub>-<slug>.md`)
 
-10. **One folder per section**, named with two zero-padded digits — `parts/01/`, `parts/02/`,
-    `parts/12/`. Every part lives inside its section's folder; none is ever loose in `parts/`, and
-    the folder number must match the number before the dot in the filename.
-11. One file per subtopic, named `<section>.<subtopic>-<kebab-slug>.md`. The slug says what the part
-    *teaches*, never where it sits. Numbering starts at `1`, has no gaps.
-12. **Links are relative to the part's own folder**: a sibling in the same section is
-    `1.2-<slug>.md`; a part in another section is `../01/1.5-<slug>.md`; the hub is
-    `../../LESSON.md`. `prev` and `next` in the frontmatter use the same form. The hub's §2 map
-    links the full path from the day folder: `parts/01/1.1-<slug>.md`.
-13. Every part carries all ten sections of Part 11.4, in this order:
+11. **One folder per section, named `<NN>-<slug>`** — the zero-padded section number, a hyphen, and
+    the name you chose in step 9: `parts/01-versions/`, `parts/02-pypi-index/`, `parts/12-<slug>/`.
+    Every part lives inside its section's folder; none is ever loose in `parts/`, and the folder's
+    number must match the number before the dot in the filename.
+12. One file per subtopic, named `<section>.<subtopic>-<kebab-slug>.md` — **unchanged by v2.1.0**;
+    only the folders gained slugs. The slug says what the part *teaches*, never where it sits.
+    Numbering starts at `1`, has no gaps.
+13. **Links are relative to the part's own folder**: a sibling in the same section is
+    `1.2-<slug>.md`; a part in another section is `../01-versions/1.5-<slug>.md`; the hub is
+    `../../LESSON.md`; a part in another day is
+    `../../../day-NN-<slug>/parts/NN-<slug>/<file>.md`. `prev` and `next` in the frontmatter use
+    the same form. The hub's §2 map links the full path from the day folder:
+    `parts/01-versions/1.1-<slug>.md`. **Read the neighbouring day's real folder names before
+    linking into it** — never guess a slug, and never assume another day numbers its sections the
+    way this one does.
+14. Every part carries all ten sections of Part 11.4, in this order:
     - **frontmatter** — `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`.
       **No duration field of any kind.**
     - **One-line answer** — the claim in one sentence, before anything else
@@ -81,21 +94,22 @@ argument-hint: [day-number]
       that finds out whether you have actually used it. **Not optional. This is the section that
       makes the document professional rather than introductory.**
     - **Check yourself** — one command to run now, one question to answer out loud
-14. Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
-15. Each part must pass the **standalone test**: readable cold, with its prerequisite part named
+15. Mermaid diagram whenever the concept is spatial, sequential, or a state machine.
+16. Each part must pass the **standalone test**: readable cold, with its prerequisite part named
     and linked.
 
-## Step 4 — write the hub (`days/day-NN/LESSON.md`)
+## Step 4 — write the hub (`days/day-NN-<slug>/LESSON.md`)
 
-16. The hub orients and assembles; **it never teaches**. No `Line by line:` in the hub. Required
+17. The hub orients and assembles; **it never teaches**. No `Line by line:` in the hub. Required
     sections, in order (Part 11.5):
     - YAML frontmatter (`day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
-      `plan_version: "v2.0.0"`, `parts`, `generated`, `status`, `lab_scaffolded`, `commit`)
+      `plan_version: "v2.1.0"`, `parts`, `generated`, `status`, `lab_scaffolded`, `commit`)
     - a yesterday / today / tomorrow blockquote — **no time estimate**
     - `## §1 The story` — a scene and an analogy, plain language, NO code, NO jargon
-    - `## §2 The map` — a table of every part: number, linked title (`parts/01/1.1-<slug>.md`), what
-      it answers, `level`, grouped by section with one line saying what each *section* means.
-      **No minutes column, ever.**
+    - `## §2 The map` — a table of every part: number, linked title
+      (`parts/01-versions/1.1-<slug>.md`), what it answers, `level`, grouped by section with one
+      line saying what each *section* means. That line and the section's folder slug must agree —
+      the slug is the three-word version of it. **No minutes column, ever.**
     - `## §3 Setup — run this` — every `mkdir`, `touch`, `uv add` the day needs, pinned
     - `## §4 Build brief` — files to create, with `TODO(me)` markers for the learner's reps
     - `## §5 The eval that must be able to fail` — pytest that is RED before the TODOs are done
@@ -106,21 +120,25 @@ argument-hint: [day-number]
     - `## §10 Done when` — pointer to `CHECKLIST.md`, defined by understanding and green checks,
       never by elapsed time
 
-## Step 5 — the checklist (`days/day-NN/CHECKLIST.md`)
+## Step 5 — the checklist (`days/day-NN-<slug>/CHECKLIST.md`)
 
-17. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
+18. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
     answer its out-loud question), build-brief boxes, a test box per test **including at least one
     "break it, watch it go red, fix it"**, budget, and the commit box. No time estimates.
 
 ## Step 6 — verify
 
-18. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one.
-    Then run `uv run ruff format days/day-NN/` — **ruff formats Python code blocks inside Markdown**,
+19. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one — it is what catches
+    an unslugged folder, a folder whose number disagrees with its filenames, and a cross-day link
+    written against a slug that does not exist.
+    Then run `uv run ruff format days/day-NN-<slug>/` — **ruff formats Python code blocks inside
+    Markdown**,
     so every ```python block in a lesson must already be canonically formatted or `./m check` fails.
     Fix `ruff check` findings in lesson code by hand rather than silencing them: teaching code that
     the project's own linter rejects is a bug in the lesson.
-19. Run `uv run python scripts/tracker.py`.
-20. Finish by printing: today's IDs, the part count, the demo command, and the request budget.
+20. Run `uv run python scripts/tracker.py`.
+21. Finish by printing: today's IDs, the day's folder name, its section folder names, the part
+    count, the demo command, and the request budget.
 
 ## Always
 

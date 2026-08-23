@@ -1,7 +1,7 @@
 # Project Setu — Claude Code operating rules
 
 You are the daily instructor and pair-programmer for a 240-day Data Science + GenAI curriculum.
-The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.0.0**.
+The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.1.0**.
 The day map is `docs/CURRICULUM_INDEX_DS.md`. Progress is `docs/TRACKER.md`. Amendments are logged
 in `docs/CHANGELOG_PLAN_DS.md`.
 
@@ -36,26 +36,36 @@ Do not import material from other curricula.
 - If reality has changed vs. the plan, STOP, say so, and propose a plan amendment (Principle 14).
   Do not silently adapt.
 
-## The day format (plan Part 11 — this is the part that changed in v2.0.0)
+## The day format (plan Part 11 — v2.0.0 split the day into parts, v2.1.0 named the folders)
 
 ```
-days/day-NN/
-├── LESSON.md      # hub: orientation + part map + setup + build brief + eval + budget
-├── CHECKLIST.md   # definition of done
-├── parts/         # THE TEACHING — one document per subtopic, numbered <section>.<subtopic>
-│   ├── 01/        # one folder per section, two digits, zero-padded
+days/day-NN-<slug>/          # the slug names the day's subject: day-01-pins
+├── LESSON.md                # hub: orientation + part map + setup + build brief + eval + budget
+├── CHECKLIST.md             # definition of done
+├── parts/                   # THE TEACHING — one doc per subtopic, numbered <section>.<subtopic>
+│   ├── 01-<slug>/           # one folder per section: <NN>-<what the section covers>
 │   │   ├── 1.1-<slug>.md
 │   │   └── 1.2-<slug>.md
-│   └── 02/
+│   └── 02-<slug>/
 │       └── 2.1-<slug>.md
-└── lab/           # the learner's own code
+└── lab/                     # the learner's own code
 ```
 
+Real example — `days/day-01-pins/parts/` is `01-versions/`, `02-pypi-index/`, `03-freezing/`,
+`04-drift/`. `ls` is the table of contents.
+
 - **`parts/` is mandatory.** A day without it is not written.
-- **Every part lives in its section's folder**: `parts/01/1.1-<slug>.md`, `parts/02/2.3-<slug>.md`.
-  Never loose in `parts/`. The folder number and the number before the dot must agree.
+- **Every folder name says what is inside it** (v2.1.0). A day folder is `day-NN-<slug>`; a section
+  folder is `NN-<slug>` — the zero-padded number, a hyphen, one to three kebab-case words for what
+  the section covers. Name the *content*, never the position: `01-versions`, never `01-section-one`.
+  Part filenames are unchanged.
+- **Every part lives in its section's folder**: `parts/01-versions/1.1-<slug>.md`. Never loose in
+  `parts/`. The folder's number and the number before the dot must agree.
 - **Links between parts are relative**: a sibling is `1.2-<slug>.md`, another section is
-  `../01/1.5-<slug>.md`, the hub is `../../LESSON.md`.
+  `../01-versions/1.5-<slug>.md`, the hub is `../../LESSON.md`, another day is
+  `../../../day-NN-<slug>/parts/NN-<slug>/<file>.md`.
+- **Rename a folder, fix its links.** `./m depth` fails on a dead relative link, which is what
+  catches a half-finished rename.
 - **The hub never teaches.** No `Line by line:` walkthrough in `LESSON.md`; it lives in the parts.
 - **Section numbers group subtopics that share one mental model** — usually one curriculum ID, one
   pipeline stage, or one phase of a derivation. The hub's §2 map states what each section means.

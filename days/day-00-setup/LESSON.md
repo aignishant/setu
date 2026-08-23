@@ -7,7 +7,7 @@ ids: []
 principles: ["P1 build daily", "P4 pin everything", "P6 the notebook is a scratchpad", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: setup
 plan: setu
-plan_version: "v2.0.0"
+plan_version: "v2.1.0"
 parts: 15
 generated: "2026-08-23"
 status: not-started
@@ -82,36 +82,36 @@ Read them in order — each part names its prerequisites and builds on the one b
 
 | Part | What it answers | Level |
 |---|---|---|
-| [1.1 Why one tool must own the environment](parts/01/1.1-why-one-tool-owns-the-environment.md) | Why does `pip install pandas` succeed and `import pandas` still fail? | `foundation` |
-| [1.2 Git, and why a Unix shell on a Windows machine](parts/01/1.2-git-and-git-bash.md) | What does Git actually record, and why is every command here bash? | `foundation` |
-| [1.3 `uv`, the one binary](parts/01/1.3-uv-the-one-binary.md) | What four jobs does `uv` replace, and why is it not a Python package? | `working` |
-| [1.4 Python 3.12, and why not the newest](parts/01/1.4-python-3-12-under-uv.md) | Why is being one version behind the right call? | `working` |
-| [1.5 The editor, and the interpreter trap](parts/01/1.5-the-editor-and-the-interpreter-trap.md) | Why does the editor disagree with the terminal, and which one is right? | `working` |
+| [1.1 Why one tool must own the environment](parts/01-toolchain/1.1-why-one-tool-owns-the-environment.md) | Why does `pip install pandas` succeed and `import pandas` still fail? | `foundation` |
+| [1.2 Git, and why a Unix shell on a Windows machine](parts/01-toolchain/1.2-git-and-git-bash.md) | What does Git actually record, and why is every command here bash? | `foundation` |
+| [1.3 `uv`, the one binary](parts/01-toolchain/1.3-uv-the-one-binary.md) | What four jobs does `uv` replace, and why is it not a Python package? | `working` |
+| [1.4 Python 3.12, and why not the newest](parts/01-toolchain/1.4-python-3-12-under-uv.md) | Why is being one version behind the right call? | `working` |
+| [1.5 The editor, and the interpreter trap](parts/01-toolchain/1.5-the-editor-and-the-interpreter-trap.md) | Why does the editor disagree with the terminal, and which one is right? | `working` |
 
 ### Section 2 — the skeleton on disk
 
 | Part | What it answers | Level |
 |---|---|---|
-| [2.1 The folder skeleton](parts/02/2.1-the-folder-skeleton.md) | What claim does each folder make, and why is the package under `src/`? | `foundation` |
-| [2.2 `.gitignore`, before anything secret exists](parts/02/2.2-gitignore-before-secrets-exist.md) | Why write it now, and why does deleting a leaked key not remove it? | `production` |
-| [2.3 `git init`, and what a repository is](parts/02/2.3-git-init-and-what-a-repo-is.md) | What is inside `.git`, and what is a branch really? | `foundation` |
-| [2.4 `uv init`, `pyproject.toml`, and the lockfile](parts/02/2.4-uv-init-pyproject-and-the-lockfile.md) | What is the difference between intent and resolution, and why commit both? | `working` |
-| [2.5 The `.venv` you never activate](parts/02/2.5-the-venv-you-never-activate.md) | What does `activate` actually do, and why does this project skip it? | `working` |
+| [2.1 The folder skeleton](parts/02-skeleton/2.1-the-folder-skeleton.md) | What claim does each folder make, and why is the package under `src/`? | `foundation` |
+| [2.2 `.gitignore`, before anything secret exists](parts/02-skeleton/2.2-gitignore-before-secrets-exist.md) | Why write it now, and why does deleting a leaked key not remove it? | `production` |
+| [2.3 `git init`, and what a repository is](parts/02-skeleton/2.3-git-init-and-what-a-repo-is.md) | What is inside `.git`, and what is a branch really? | `foundation` |
+| [2.4 `uv init`, `pyproject.toml`, and the lockfile](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md) | What is the difference between intent and resolution, and why commit both? | `working` |
+| [2.5 The `.venv` you never activate](parts/02-skeleton/2.5-the-venv-you-never-activate.md) | What does `activate` actually do, and why does this project skip it? | `working` |
 
 ### Section 3 — the script that owns the routine
 
 | Part | What it answers | Level |
 |---|---|---|
-| [3.1 `set -euo pipefail`](parts/03/3.1-set-euo-pipefail.md) | Which three silent failures does bash do by default, and how do you turn them off? | `production` |
-| [3.2 The `case` dispatcher](parts/03/3.2-the-case-dispatcher.md) | How do five commands live in one file, and why one entry point? | `working` |
-| [3.3 The `done` gate](parts/03/3.3-the-done-gate.md) | Why does a refusal work where a checklist does not? | `production` |
+| [3.1 `set -euo pipefail`](parts/03-m-script/3.1-set-euo-pipefail.md) | Which three silent failures does bash do by default, and how do you turn them off? | `production` |
+| [3.2 The `case` dispatcher](parts/03-m-script/3.2-the-case-dispatcher.md) | How do five commands live in one file, and why one entry point? | `working` |
+| [3.3 The `done` gate](parts/03-m-script/3.3-the-done-gate.md) | Why does a refusal work where a checklist does not? | `production` |
 
 ### Section 4 — closing the day
 
 | Part | What it answers | Level |
 |---|---|---|
-| [4.1 The README that grows](parts/04/4.1-the-readme-that-grows.md) | Why write it on Day 0 rather than Day 239? | `foundation` |
-| [4.2 The first commit, and reading a clean tree](parts/04/4.2-the-first-commit.md) | What do you check in the last moment before a commit becomes permanent? | `working` |
+| [4.1 The README that grows](parts/04-first-commit/4.1-the-readme-that-grows.md) | Why write it on Day 0 rather than Day 239? | `foundation` |
+| [4.2 The first commit, and reading a clean tree](parts/04-first-commit/4.2-the-first-commit.md) | What do you check in the last moment before a commit becomes permanent? | `working` |
 
 ---
 
@@ -167,9 +167,9 @@ Packages pinned today, and the part that explains each:
 
 | Package | Version | Why today |
 |---|---|---|
-| `python-dotenv` | `==1.2.3` | Day 3 reads API keys from `.env` — [2.4](parts/02/2.4-uv-init-pyproject-and-the-lockfile.md) |
-| `ruff` | `==0.16.4` | linter + formatter, `--dev` — [2.4](parts/02/2.4-uv-init-pyproject-and-the-lockfile.md) |
-| `pytest` | `==9.1.1` | Principle 7 needs a test runner, `--dev` — [2.4](parts/02/2.4-uv-init-pyproject-and-the-lockfile.md) |
+| `python-dotenv` | `==1.2.3` | Day 3 reads API keys from `.env` — [2.4](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md) |
+| `ruff` | `==0.16.4` | linter + formatter, `--dev` — [2.4](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md) |
+| `pytest` | `==9.1.1` | Principle 7 needs a test runner, `--dev` — [2.4](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md) |
 
 ---
 
@@ -178,12 +178,12 @@ Packages pinned today, and the part that explains each:
 Three files are yours to write. The parts give you every command and every concept; these are the
 reps, and the `TODO(me)` markers are deliberately unsolved.
 
-**1. `m`** — the daily driver. Parts [3.2](parts/03/3.2-the-case-dispatcher.md) and
-[3.3](parts/03/3.3-the-done-gate.md) contain the full script. Type it; do not copy it from this
+**1. `m`** — the daily driver. Parts [3.2](parts/03-m-script/3.2-the-case-dispatcher.md) and
+[3.3](parts/03-m-script/3.3-the-done-gate.md) contain the full script. Type it; do not copy it from this
 repository. You will edit this file a dozen times over 240 days and you cannot edit what you have
 never read.
 
-**2. `README.md`** — part [4.1](parts/04/4.1-the-readme-that-grows.md) has the shape. Write your own
+**2. `README.md`** — part [4.1](parts/04-first-commit/4.1-the-readme-that-grows.md) has the shape. Write your own
 one-sentence description rather than reusing the one in the example.
 
 **3. `tests/test_setup.py`** — the eval. Create it with this skeleton, then fill in the `TODO(me)`
@@ -261,24 +261,24 @@ takes longer to run.
 
 - **Running these commands in PowerShell.** `mkdir -p`, `touch`, heredocs and `chmod` are Git Bash.
   In PowerShell they either error or, worse, do something subtly different —
-  [1.2](parts/01/1.2-git-and-git-bash.md).
+  [1.2](parts/01-toolchain/1.2-git-and-git-bash.md).
 - **Not reopening the terminal after installing `uv`.** A shell reads `PATH` once, at start. This is
-  the most common "the installer lied to me" moment — [1.3](parts/01/1.3-uv-the-one-binary.md).
+  the most common "the installer lied to me" moment — [1.3](parts/01-toolchain/1.3-uv-the-one-binary.md).
 - **Typing `pip install` out of habit.** It installs into whichever interpreter that `pip` belongs
-  to, and writes nothing down — [1.1](parts/01/1.1-why-one-tool-owns-the-environment.md).
+  to, and writes nothing down — [1.1](parts/01-toolchain/1.1-why-one-tool-owns-the-environment.md).
 - **Writing `.gitignore` after `git init` and after `.env`.** The ordering in §3 is not stylistic; a
-  secret committed once is permanent — [2.2](parts/02/2.2-gitignore-before-secrets-exist.md).
+  secret committed once is permanent — [2.2](parts/02-skeleton/2.2-gitignore-before-secrets-exist.md).
 - **Committing `pyproject.toml` without `uv.lock`.** The two must move together or your machine and
   CI build different environments from the same commit —
-  [2.4](parts/02/2.4-uv-init-pyproject-and-the-lockfile.md).
+  [2.4](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md).
 - **Trusting a green test run from the editor's run button.** It may be using a different
-  interpreter than your terminal — [1.5](parts/01/1.5-the-editor-and-the-interpreter-trap.md).
+  interpreter than your terminal — [1.5](parts/01-toolchain/1.5-the-editor-and-the-interpreter-trap.md).
 - **Forgetting `chmod +x m`.** Permissions belong to the file, not the name, so deleting and
-  recreating the script loses the bit — [3.2](parts/03/3.2-the-case-dispatcher.md).
+  recreating the script loses the bit — [3.2](parts/03-m-script/3.2-the-case-dispatcher.md).
 - **Running `git add -A` without reading `git status --porcelain` first.** Five seconds, every time
-  — [4.2](parts/04/4.2-the-first-commit.md).
+  — [4.2](parts/04-first-commit/4.2-the-first-commit.md).
 - **Ticking a checklist box you did not do.** The gate cannot tell, which is exactly why it is worth
-  nothing if you do — [3.3](parts/03/3.3-the-done-gate.md).
+  nothing if you do — [3.3](parts/03-m-script/3.3-the-done-gate.md).
 
 ---
 

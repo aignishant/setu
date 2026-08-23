@@ -6,7 +6,8 @@ zero prior knowledge through to production (Principle 18), with no clock anywher
 This script is the machine-readable half of that contract: it cannot judge whether an explanation
 is good, but it can refuse a day that has no parts, a numbering gap, a missing required section, a
 code block nobody walked through, a time estimate, a dead cross-part link, a part loose outside its
-section folder, or a hub that quietly went back to teaching.
+section folder, a day or section folder whose name does not say what is inside it, or a hub that
+quietly went back to teaching.
 
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
@@ -25,12 +26,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DAYS = ROOT / "days"
 
-# parts/<NN>/<section>.<subtopic>-<kebab-slug>.md
-#   ->  "parts/02/2.3-why-the-split-comes-first.md"
-PART_NAME_RE = re.compile(r"^(\d+)\.(\d+)-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+KEBAB = r"[a-z0-9]+(?:-[a-z0-9]+)*"
 
-# A section folder is the section number, zero-padded to two digits: 01, 02, ... 12.
-SECTION_DIR_RE = re.compile(r"^\d{2}$")
+# parts/<NN>-<slug>/<section>.<subtopic>-<kebab-slug>.md
+#   ->  "parts/02-the-split/2.3-why-the-split-comes-first.md"
+PART_NAME_RE = re.compile(rf"^(\d+)\.(\d+)-({KEBAB})\.md$")
+
+# A section folder is the zero-padded section number, a hyphen, then a short slug naming what the
+# section covers - 01-toolchain, 02-skeleton, 03-m-script (plan v2.1.0, Part 11.2). A bare 01/
+# forces the reader to open a file to find out what section 1 is about.
+SECTION_DIR_RE = re.compile(rf"^(\d{{2}})-({KEBAB})$")
+
+# A day folder carries the same kind of label: day-<NN>-<slug>, e.g. day-00-setup, day-01-pins.
+DAY_DIR_RE = re.compile(rf"^day-(\d{{2}})-({KEBAB})$")
 
 # The ten required sections of a part document, in order (plan Part 11.4). Section 1 is the
 # frontmatter, checked separately; these are the nine that appear in the body.
@@ -146,10 +154,18 @@ def body(text: str) -> str:
 
 
 def find_day(number: int) -> Path | None:
-    candidates = [DAYS / f"day-{number:02d}", DAYS / f"day-{number}"]
-    if number == 0:
-        candidates.insert(0, DAYS / "day-00-setup")
-    return next((p for p in candidates if p.is_dir()), None)
+    """The folder for one day, found by its number alone.
+
+    Day folders are day-<NN>-<slug> (plan v2.1.0), so the slug is free text and the number is the
+    only stable handle. The older unslugged day-<NN> and day-<N> forms still resolve, so a folder
+    written before the amendment is found and then reported as a naming failure - never as a
+    missing day.
+    """
+    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}-*") if p.is_dir())
+    if slugged:
+        return slugged[0]
+    bare = (DAYS / f"day-{number:02d}", DAYS / f"day-{number}")
+    return next((p for p in bare if p.is_dir()), None)
 
 
 def unexplained_code_blocks(text: str) -> list[int]:
@@ -214,12 +230,15 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
         return None
     section, subtopic = int(match.group(1)), int(match.group(2))
 
+    # The folder's own name is validated once per day in check_day; here we only ask whether the
+    # number it starts with agrees with the number in the filename.
     folder = path.parent.name
-    if folder != f"{section:02d}":
+    folder_match = SECTION_DIR_RE.match(folder)
+    if folder_match and int(folder_match.group(1)) != section:
         report.fail(
             where,
             f"lives in parts/{folder}/ but its number says section {section} - "
-            f"it belongs in parts/{section:02d}/",
+            f"it belongs in parts/{section:02d}-<slug>/",
         )
 
     text = path.read_text(encoding="utf-8")
@@ -324,8 +343,8 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
             report.fail(
                 "LESSON.md", f"frontmatter says parts: {declared}, parts/ holds {part_count}"
             )
-        if meta.get("plan_version", "").strip('"') != "v2.0.0":
-            report.fail("LESSON.md", "plan_version must be v2.0.0")
+        if meta.get("plan_version", "").strip('"') != "v2.1.0":
+            report.fail("LESSON.md", "plan_version must be v2.1.0")
 
     content = body(text)
     for number, name in HUB_SECTIONS:
@@ -341,7 +360,7 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
     check_no_clocks(text, "LESSON.md", report)
     check_links(hub, "LESSON.md", report)
 
-    linked = set(re.findall(r"parts/(\d+/[\w.\-]+\.md)", content))
+    linked = set(re.findall(rf"parts/(\d{{2}}-{KEBAB}/[\w.\-]+\.md)", content))
     on_disk = {
         f"{d.name}/{f.name}"
         for d in (folder / "parts").iterdir()
@@ -359,6 +378,13 @@ def check_day(number: int) -> Report:
         report.fail("days/", f"no folder for day {number}")
         return report
 
+    if not DAY_DIR_RE.match(folder.name):
+        report.fail(
+            f"days/{folder.name}/",
+            "day folders are day-<NN>-<slug> - e.g. day-01-pins. The slug names the day's "
+            "subject, so days/ can be read without opening a hub",
+        )
+
     parts_dir = folder / "parts"
     if not parts_dir.is_dir():
         report.fail("parts/", "missing - a day with no parts/ is not written (plan Part 11.1)")
@@ -375,7 +401,9 @@ def check_day(number: int) -> Report:
         if entry.is_dir() and not SECTION_DIR_RE.match(entry.name):
             report.fail(
                 f"parts/{entry.name}/",
-                "section folders are the section number zero-padded to two digits (01, 02, ...)",
+                "section folders are <NN>-<slug> - the zero-padded section number, a hyphen, and "
+                "a short kebab-case name for what the section covers (01-toolchain, 02-skeleton). "
+                "A bare 01/ says nothing about its contents",
             )
 
     files = sorted(

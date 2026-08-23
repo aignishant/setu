@@ -22,9 +22,11 @@
    `mkdir -p`, `touch`, `uv add package==1.2.3`, the run command, the test command. You should never
    have to infer "and now presumably I create a folder".
 
-4. **One idea per document.** *(plan v2.0.0 — Principle 16)*
+4. **One idea per document, in a folder that says what it is.** *(plan v2.0.0/v2.1.0 — Principle 16)*
    A day is not one long page. It is a short hub plus one document per subtopic, in `parts/`. If a
    document needs the word "also" to introduce its second half, it should have been two documents.
+   Every folder is named for its subject — `days/day-01-pins/parts/03-freezing/` — so you can find
+   where something was taught without opening a file.
 
 5. **There are no clocks here.** *(Principle 17)*
    You will not find "this takes 90 minutes" anywhere in these documents, because it would be a lie
@@ -46,20 +48,35 @@
 ## What's in a day folder
 
 ```
-days/day-NN/
-├── LESSON.md      # the hub — the story, the map of parts, setup, build brief, the eval, the budget
-├── CHECKLIST.md   # the definition of done. `./m done NN` refuses to commit until it's ticked.
-├── parts/         # THE TEACHING — one document per subtopic
-│   ├── 01/        # section 1 — its own folder
+days/day-NN-<slug>/    # the slug names the day's subject
+├── LESSON.md          # the hub — the story, the map of parts, setup, build brief, eval, budget
+├── CHECKLIST.md       # the definition of done. `./m done NN` refuses to commit until it's ticked.
+├── parts/             # THE TEACHING — one document per subtopic
+│   ├── 01-<slug>/     # section 1 — its own folder, named for what it covers
 │   │   ├── 1.1-<slug>.md
 │   │   └── 1.2-<slug>.md
-│   └── 02/        # section 2
+│   └── 02-<slug>/     # section 2
 │       └── 2.1-<slug>.md
-└── lab/           # you create this; `./m scaffold NN` makes the folder
+└── lab/               # you create this; `./m scaffold NN` makes the folder
+```
+
+A real one:
+
+```
+days/day-01-pins/
+├── LESSON.md
+├── CHECKLIST.md
+└── parts/
+    ├── 01-versions/       # what a version number actually is
+    ├── 02-pypi-index/     # reading the truth from the package index
+    ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
+    └── 04-drift/          # noticing when it decays
 ```
 
 **Read the hub first, then the parts in numerical order.** The hub's §2 map is the table of contents
-and tells you what each section number means for that day.
+and tells you what each section number means for that day — but you should be able to guess from
+the folder names alone, and that is the point of them. `./m parts 1` prints the same tree without
+opening anything.
 
 ### What `1.1`, `1.2`, `2.1` mean
 
@@ -73,10 +90,18 @@ So on a two-ID day, `1.x` is the first ID, `2.x` is the second, and a `3.x` is u
 — the trap you can only see once both ideas are true at the same time. Whatever the grouping is, the
 hub says so explicitly.
 
-**Each section gets its own folder**, numbered with two digits: section 1 is `parts/01/`, section 12
-is `parts/12/`. So the third subtopic of section 2 is `parts/02/2.3-<slug>.md`. On a day with twenty
-parts this is the difference between a readable folder and a wall of filenames — and a section is
-exactly the chunk you will want to sit down with at once.
+**Each section gets its own folder**, named `<NN>-<slug>`: the section number in two digits, a
+hyphen, then one to three words for what the section covers — `01-versions`, `02-pypi-index`,
+`12-<slug>`. So the third subtopic of section 2 might be `parts/02-pypi-index/2.3-<slug>.md`. On a
+day with twenty parts this is the difference between a readable folder and a wall of filenames —
+and a section is exactly the chunk you will want to sit down with at once.
+
+The slug always names what is **inside**, never where it sits. `01-versions` is right;
+`01-section-one` tells you nothing you could not already see. Day folders follow the same rule, so
+`ls days/` reads as a syllabus rather than a column of numbers. The *number* is what the tooling
+matches on — `./m`, the depth check and the tracker all find a day by globbing `day-NN-*` — so a
+slug can be improved later without breaking anything except the links pointing at it, which
+`./m depth` will then tell you about.
 
 ### The shape of every part document
 
@@ -134,7 +159,8 @@ Plan v1.0.0 taught each day as a single `LESSON.md`. Those files grew past 40 00
 Phase 15 an entire subject — deriving backpropagation — sat under one heading. Plan **v2.0.0**
 replaced that format with the hub-plus-`parts/` shape above, and the v1.0.0 lessons were **deleted
 rather than converted**: splitting a shallow page into shallower pages is not depth (plan Part 11.8),
-so every day is rewritten from the plan itself.
+so every day is rewritten from the plan itself. Plan **v2.1.0** then gave every day and section
+folder a name, so the tree itself tells you what is in it.
 
 That means `days/` fills up gradually. `docs/TRACKER.md` is the honest picture of how far it has got,
 and `./m status` prints the one-line version.
@@ -163,13 +189,16 @@ everything works unchanged except the installer URLs.
 
 ```bash
 ./m status         # where am I
-./m start 12       # open the hub, and list its parts
-./m parts 12       # just the sub-topic list
-./m scaffold 12    # create days/day-12/lab/
+./m start 12       # point at day 12's hub
+./m parts 12       # list day 12's sections and the documents in each
+./m scaffold 12    # create the lab/ folder inside day 12's folder
 # ... read the hub's §1 and §2, then every part in order, then implement every TODO(me) ...
-./m check          # ruff + offline pytest + the depth contract
+./m depth 12       # the depth contract, on day 12 alone
+./m check          # ruff + offline pytest + the depth contract on every written day
 ./m done 12        # refuses until the checklist is ticked and checks are green
 ```
+
+You never type the slug. Every command takes the day *number* and finds the folder itself.
 
 ## Generating the days that aren't written yet
 
@@ -182,5 +211,6 @@ next one:
 
 That skill (`.claude/skills/day-setu/SKILL.md`) reads the plan, the index, the tracker, the existing
 days, and produces the hub, the `parts/` documents, the lab scaffold and the checklist in the
-format above. It ends by running `./m depth 12`, which is what stops a thin day
-from being called written.
+format above — including the day and section folder names, which it prints for review before it
+writes anything. It ends by running `./m depth 12`, which is what stops a thin day from being
+called written.

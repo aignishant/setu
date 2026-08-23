@@ -15,7 +15,7 @@ Every day cites ≥1 ID; every ID appears in ≥1 day. Regenerate at every phase
 artifact, no new code · `project` = a multi-day-scale deliverable in one day · `gate` = the phase's
 definition-of-done artifact.
 
-**Run a day:** `./m start N` → work through `days/day-NN/LESSON.md` → tick `CHECKLIST.md` → `./m done N`.
+**Run a day:** `./m start N` → work through the day's `LESSON.md` → tick `CHECKLIST.md` → `./m done N`.
 
 ---
 

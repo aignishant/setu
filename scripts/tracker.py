@@ -5,7 +5,7 @@ Single source of truth for the day list is the curriculum index; this script nev
 invents a day. Status is read from the filesystem and the checklists, so the tracker
 cannot drift from reality.
 
-Under plan v2.0.0 a day counts as written only when it has the hub *and* a non-empty
+Under plan v2.1.0 a day counts as written only when it has the hub *and* a non-empty
 parts/ directory of sub-topic documents (Principle 16, plan Part 11).
 
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
@@ -85,11 +85,18 @@ def parse_index() -> list[Phase]:
 
 
 def find_folder(number: int) -> Path | None:
-    """Day 0 lives in day-00-setup; every other day is day-NN."""
-    candidates = [DAYS / f"day-{number:02d}", DAYS / f"day-{number}"]
-    if number == 0:
-        candidates.insert(0, DAYS / "day-00-setup")
-    return next((p for p in candidates if p.is_dir()), None)
+    """The folder for one day, matched on its number - the slug after it is free text.
+
+    Day folders are day-<NN>-<slug> (plan v2.1.0): day-00-setup, day-01-pins. The number is the
+    only part the tracker can rely on, so it globs rather than building a name. The unslugged
+    day-<NN> and day-<N> forms still resolve, so an older folder still shows as written; naming
+    it properly is depth_check.py's job to complain about, not the tracker's.
+    """
+    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}-*") if p.is_dir())
+    if slugged:
+        return slugged[0]
+    bare = (DAYS / f"day-{number:02d}", DAYS / f"day-{number}")
+    return next((p for p in bare if p.is_dir()), None)
 
 
 def inspect(day: Day) -> Day:
@@ -100,7 +107,7 @@ def inspect(day: Day) -> Day:
     day.folder = folder.relative_to(ROOT).as_posix()
     parts_dir = folder / "parts"
     day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
-    # v2.0.0: a hub without parts/ is not a written day.
+    # v2.0.0 onward: a hub without parts/ is not a written day.
     day.written = (folder / "LESSON.md").is_file() and day.parts > 0
     checklist = folder / "CHECKLIST.md"
     day.has_checklist = checklist.is_file()
@@ -153,15 +160,17 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "(and automatically by `./m done N`) from `docs/CURRICULUM_INDEX_DS.md` "
         "plus what is actually on disk.",
         "",
-        "> **Plan v2.0.0.** A day counts as *written* only when it has a hub **and** a non-empty "
-        "`parts/` directory (Principle 16 · plan Part 11). The v1.0.0 single-file lessons were "
-        "deleted rather than converted, so `days/` refills one rewritten day at a time.",
+        "> **Plan v2.1.0.** A day counts as *written* only when it has a hub **and** a non-empty "
+        "`parts/` directory (Principle 16 · plan Part 11). Folders are named for their subject — "
+        "`days/day-NN-<slug>/parts/NN-<slug>/` — so this table and the file tree read the same "
+        "way. The v1.0.0 single-file lessons were deleted rather than converted, so `days/` "
+        "refills one rewritten day at a time.",
         "",
         "## Progress",
         "",
         "| | Count | Of total |",
         "|---|---|---|",
-        f"| 📄 Days written in the v2.0.0 shape | **{stats['written']}** | {pct:.1f}% |",
+        f"| 📄 Days written in the v2.1.0 shape | **{stats['written']}** | {pct:.1f}% |",
         f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",

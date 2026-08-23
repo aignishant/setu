@@ -1,14 +1,14 @@
 ---
 plan: setu
-version: "v2.0.0"
+version: "v2.1.0"
 modules: 27
 validated: "2026-08-21"
 days: 240
 phases: 30
-doc_architecture: "hub + parts/ (see Part 11)"
+doc_architecture: "hub + parts/, folders named for their subject (see Part 11)"
 ---
 
-# 🌉 MASTER PLAN v2.0.0 — Project **Setu**
+# 🌉 MASTER PLAN v2.1.0 — Project **Setu**
 ## Data Science → Machine Learning → Deep Learning → Generative AI → **Agentic AI**, built one day at a time
 
 > **Scope note.** This plan is **self-contained**: 27 modules plus an end-to-end projects section,
@@ -824,7 +824,7 @@ file → bump version → log it. Never patch code around a plan that has gone s
 
 ---
 
-## Part 11 — 📐 The depth contract (doc architecture, v2.0.0)
+## Part 11 — 📐 The depth contract (doc architecture, v2.1.0)
 
 > **Why this part exists.** v1.0.0 taught each day as a single `LESSON.md`. By Phase 15 those files
 > were 40 000 characters long and a whole subject — deriving backpropagation — sat under one `##`
@@ -859,29 +859,54 @@ tracks — they are the beginning and the end of the same page.
 Every day, without exception, is a folder of this shape:
 
 ```
-days/day-NN/
-├── LESSON.md          # the hub — orientation, story, part map, build brief, eval, budget
-├── CHECKLIST.md       # the definition of done; ./m done NN refuses to commit until ticked
-├── parts/             # the teaching, one document per subtopic
-│   ├── 01/            # section 1 — one folder per section
+days/day-NN-<slug>/
+├── LESSON.md              # the hub — orientation, story, part map, build brief, eval, budget
+├── CHECKLIST.md           # the definition of done; ./m done NN refuses to commit until ticked
+├── parts/                 # the teaching, one document per subtopic
+│   ├── 01-<slug>/         # section 1 — one folder per section, labelled with its subject
 │   │   ├── 1.1-<slug>.md
 │   │   └── 1.2-<slug>.md
-│   ├── 02/            # section 2
+│   ├── 02-<slug>/         # section 2
 │   │   ├── 2.1-<slug>.md
 │   │   └── 2.2-<slug>.md
-│   └── 03/
+│   └── 03-<slug>/
 │       └── 3.1-<slug>.md
-└── lab/               # created by ./m scaffold NN; the learner's own code
+└── lab/                   # created by ./m scaffold NN; the learner's own code
+```
+
+Written out for a real day:
+
+```
+days/day-01-pins/
+├── LESSON.md
+├── CHECKLIST.md
+└── parts/
+    ├── 01-versions/       # what a version number is
+    ├── 02-pypi-index/     # reading the truth from the package index
+    ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
+    └── 04-drift/          # noticing when it decays
 ```
 
 `parts/` is mandatory. A day with no `parts/` directory is, by definition, not written.
 
-**Every part lives inside its section's folder**, named with two digits and zero-padded: section 1
-is `parts/01/`, section 12 is `parts/12/`. A part document is never loose in `parts/`. The folder
-number and the number before the dot in the filename must agree — `parts/02/2.3-<slug>.md` is
-correct, `parts/02/3.1-<slug>.md` is a bug the depth check rejects. The reason for the folders is
-navigation: a day with twenty-two parts is a wall of filenames without them, and a section is
-exactly the unit a reader wants to open at once.
+**Every folder name carries its subject** (v2.1.0). A day folder is `day-NN-<slug>`; a section
+folder is `NN-<slug>` — the zero-padded section number, a hyphen, then one to three kebab-case
+words naming what the section covers. The slug says what is *inside*: `01-versions`,
+`02-pypi-index`, `03-freezing`. It is never a restatement of the position — `01-section-one` and
+`01-part-a` are both bugs. This exists so that `ls days/` and `ls days/day-NN-<slug>/parts/` are
+each a table of contents; under bare `01/`, `02/`, `03/` a reader has to open a file to find out
+what section 2 was about, and after two hundred days nobody remembers.
+
+**Every part lives inside its section's folder**, never loose in `parts/`. The folder's number and
+the number before the dot in the filename must agree — `parts/02-pypi-index/2.3-<slug>.md` is
+correct, `parts/02-pypi-index/3.1-<slug>.md` is a bug the depth check rejects. The reason for the
+folders is navigation: a day with twenty-two parts is a wall of filenames without them, and a
+section is exactly the unit a reader wants to open at once.
+
+**The number is the handle, the slug is free text.** `./m`, `scripts/depth_check.py` and
+`scripts/tracker.py` all locate a day by globbing `days/day-NN-*`, never by rebuilding its name, so
+a slug can be corrected later without touching a tool. Renaming a folder does mean fixing the links
+that point into it — the depth check's dead-link pass is what catches a missed one.
 
 ### 11.3 The numbering rule — what `1.1` and `2.3` mean
 
@@ -904,13 +929,23 @@ pass, `2.x` the chain rule on one weight, `3.x` the general case, `4.x` the grad
 data-handling day uses them as *pipeline order*. **The grouping must be stated in the hub;** an
 unexplained numbering is a bug in the doc.
 
-Paths are `parts/<NN>/<section>.<subtopic>-<kebab-slug>.md`, where `<NN>` is the section number
-zero-padded to two digits. The slug is what the subtopic *teaches*, not where it sits:
-`parts/02/2.3-why-the-split-comes-first.md`, never `parts/02/2.3-part-three.md`.
+Paths are `parts/<NN>-<section-slug>/<section>.<subtopic>-<kebab-slug>.md`, where `<NN>` is the
+section number zero-padded to two digits. Both slugs answer "what is in here", never "where does
+this sit": `parts/02-the-split/2.3-why-the-split-comes-first.md`, never
+`parts/02/2.3-part-three.md`.
+
+The three slugs work at different scales, and that is the point of having all three:
+
+| Slug | Scope | Example |
+|---|---|---|
+| the **day** slug | the day's subject, one to three words | `day-01-pins` |
+| the **section** slug | the mental model those subtopics share | `parts/02-pypi-index/` |
+| the **part** slug | the single idea one document teaches | `2.2-yanked-and-prerelease.md` |
 
 **Links between parts are relative.** Inside one section a sibling is just its filename
-(`1.2-<slug>.md`); across sections it goes up one level (`../01/1.5-<slug>.md`); the hub is
-`../../LESSON.md`. Every `prev`/`next` in the frontmatter uses the same form.
+(`1.2-<slug>.md`); across sections it goes up one level (`../01-<slug>/1.5-<slug>.md`); the hub is
+`../../LESSON.md`; another day is `../../../day-NN-<slug>/parts/NN-<slug>/<file>.md`. Every
+`prev`/`next` in the frontmatter uses the same form.
 
 ### 11.4 What a part document must contain
 
@@ -1019,9 +1054,10 @@ The failure modes v2.0.0 exists to prevent, stated so they can be caught in revi
 ### 11.9 Enforcement
 
 `scripts/depth_check.py`, run as `./m depth [NN]`, is the machine-readable half of this contract. It
-fails on: a missing `parts/` directory, a part document loose in `parts/` instead of inside a
-section folder, a section folder that is not two zero-padded digits, a part whose section folder
-disagrees with the number in its filename, a filename that does not match
+fails on: a missing `parts/` directory, a day folder that is not `day-NN-<slug>`, a part document
+loose in `parts/` instead of inside a section folder, a section folder that is not `NN-<slug>`, a
+part whose section folder disagrees with the number in its filename, a filename that does not
+match
 `<section>.<subtopic>-<slug>.md`, a gap in the numbering, any of the ten required sections missing
 or out of order, a code block with no `Line by line:` following it, a `level` outside the three
 allowed values, **any time estimate anywhere in a day folder**, a hub that carries teaching, or a
@@ -1037,3 +1073,4 @@ visible from the progress table alone.
 |---|---|
 | v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
 | **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/<NN>/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons were removed rather than converted: every day is rewritten from the plan, from Day 0 forward. |
+| **v2.1.0** | **Folder naming only. No day, ID, phase, gate, pin, principle or required section changed.** Day folders become `day-NN-<slug>` and section folders `NN-<slug>`, so `days/` and `parts/` read as tables of contents rather than columns of numbers. The tools locate a day by globbing its number, so the slug stays free text. |

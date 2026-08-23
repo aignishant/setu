@@ -10,6 +10,55 @@ code or lesson changes. Newest first.
 
 ---
 
+## v2.1.0 — 2026-08-23 — folders that say what is in them
+
+**Trigger.** With two days written, `days/` already read as `day-00-setup/`, `day-01/`, and every
+day's `parts/` read as `01/ 02/ 03/ 04/`. Nothing in that tree says what any of it is about. To
+find where version specifiers were taught you had to open a hub and read its §2 map — and that is
+with 2 of 241 days on disk. At two hundred days it is a wall of numbers, and the numbers are
+exactly the thing a reader does not remember.
+
+**Amendment.** Part 11.2 and 11.3 only. Folder names now carry their subject:
+
+- A **day folder** is `days/day-NN-<slug>/` — `day-00-setup`, `day-01-pins`. The slug names the
+  day's subject in one to three kebab-case words.
+- A **section folder** is `parts/NN-<slug>/` — the zero-padded section number, a hyphen, then one
+  to three kebab-case words naming what the section covers: `parts/01-versions/`,
+  `parts/02-pypi-index/`, `parts/03-freezing/`, `parts/04-drift/`.
+- The slug names what is **inside**, never the position. `01-section-one` and `01-part-a` are bugs.
+- **Part filenames are unchanged**: `<section>.<subtopic>-<kebab-slug>.md`. The number before the
+  dot must still match the number the folder starts with.
+- Cross-section links gain the slug — `../01-versions/1.3-<slug>.md`. Cross-day links become
+  `../../../day-NN-<slug>/parts/NN-<slug>/<file>.md`. Same-section links are unchanged.
+- **The number stays the handle.** `./m`, `scripts/depth_check.py` and `scripts/tracker.py` locate a
+  day by globbing `days/day-NN-*` rather than rebuilding its name, so a slug can be corrected later
+  without touching a tool. All three still resolve the old unslugged `day-NN` form, so an old folder
+  is reported as a naming failure rather than as a missing day.
+- `scripts/depth_check.py` gains two failures: a day folder that is not `day-NN-<slug>`, and a
+  section folder that is not `NN-<slug>`. Its dead-link pass already catches a rename whose links
+  were not updated.
+- `./m` gains the three commands `days/README.md` had been documenting but which did not exist:
+  `depth [N]`, `tracker`, and `parts N` (which prints a day's sections and their documents).
+  `./m check` now runs the depth contract, as that file already claimed it did. `./m scaffold N`
+  now creates `lab/` inside the day's real folder instead of minting a bare `days/day-NN/`.
+
+**Migration.** Both written days were renamed and every link inside them rewritten:
+
+| Was | Now |
+|---|---|
+| `days/day-00-setup/parts/01…04/` | `parts/01-toolchain/`, `02-skeleton/`, `03-m-script/`, `04-first-commit/` |
+| `days/day-01/` | `days/day-01-pins/` |
+| `days/day-01/parts/01…04/` | `parts/01-versions/`, `02-pypi-index/`, `03-freezing/`, `04-drift/` |
+
+`./m depth` passes on both days. `docs/TRACKER.md` was regenerated.
+
+**Explicitly unchanged.** No day, ID, phase boundary, gate, pin, dataset, principle, required part
+section, hub section or `level` value is touched. The ten-section part contract, the numbering rule
+and the no-clocks rule are identical to v2.0.0. This is a folder-naming amendment only — which is
+why it is a minor bump and not a major one.
+
+---
+
 ## v2.0.0 — 2026-08-22 — the depth contract
 
 **Trigger.** Review of the written days (0–132) found the v1.0.0 single-file lesson format had
