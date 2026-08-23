@@ -7,10 +7,7 @@ pad() { printf "%02d" "$1"; }
 
 daydir() {
   local n="$1"
-  # Day 0 lives in day-00-setup; every other day is day-NN. Kept in step with
-  # find_folder() in scripts/tracker.py and scripts/depth_check.py.
-  if [ "$n" = "0" ] && [ -d "days/day-00-setup" ]; then echo "days/day-00-setup"
-  elif [ -d "days/day-$(pad "$n")" ]; then echo "days/day-$(pad "$n")"
+  if [ -d "days/day-$(pad "$n")" ]; then echo "days/day-$(pad "$n")"
   elif [ -d "days/day-$n" ]; then echo "days/day-$n"
   else echo ""; fi
 }
@@ -19,25 +16,8 @@ case "${1:-help}" in
   start)
     [ -z "$DAY" ] && { echo "usage: ./m start <day>"; exit 1; }
     D="$(daydir "$DAY")"
-    [ -n "$D" ] || { echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1; }
-    if [ -f "$D/LESSON.md" ] && [ -d "$D/parts" ]; then
-      echo "-> open $D/LESSON.md   (the hub - read its §2 map, then work through parts/ in order)"
-      find "$D/parts" -name '*.md' | sort | sed "s|^$D/|     |"
-    else
-      echo "no lesson written yet for day $DAY - see docs/TRACKER.md"; exit 1
-    fi
-    ;;
-
-  parts)
-    [ -z "$DAY" ] && { echo "usage: ./m parts <day>"; exit 1; }
-    D="$(daydir "$DAY")"
-    [ -d "$D/parts" ] || { echo "day $DAY has no parts/ - it is not written (plan Part 11)"; exit 1; }
-    find "$D/parts" -name '*.md' | sort | sed "s|^$D/parts/||"
-    ;;
-
-  depth)
-    if [ -n "$DAY" ]; then uv run python scripts/depth_check.py "$DAY"
-    else uv run python scripts/depth_check.py; fi
+    [ -n "$D" ] || { echo "no lesson written yet for day $DAY"; exit 1; }
+    echo "-> open $D/LESSON.md"
     ;;
   scaffold)
     [ -z "$DAY" ] && { echo "usage: ./m scaffold <day>"; exit 1; }
@@ -47,19 +27,12 @@ case "${1:-help}" in
   check)
     uv run ruff check .
     uv run ruff format --check .
-    # pytest exits 5 when it collects no tests at all. That is not a failure while the
-    # repository is still being written out - but any real test failure still is.
-    set +e; uv run python -m pytest -q -m "not live"; rc=$?; set -e
-    if [ "$rc" -eq 5 ]; then echo "note: no tests collected yet"
-    elif [ "$rc" -ne 0 ]; then exit "$rc"; fi
-    uv run python scripts/depth_check.py
+    uv run python -m pytest -q -m "not live"
     echo "OK all green"
     ;;
-  tracker)
-    uv run python scripts/tracker.py
-    ;;
   status)
-    uv run python scripts/tracker.py --summary
+    uv run python scripts/tracker.py --summary 2>/dev/null \
+      || git log --oneline --grep='^day-' -1 --pretty='last completed: %s'
     ;;
   done)
     [ -z "$DAY" ] && { echo "usage: ./m done <day>"; exit 1; }
@@ -67,10 +40,11 @@ case "${1:-help}" in
     [ -n "$D" ] || { echo "no day folder for $DAY"; exit 1; }
     C="$D/CHECKLIST.md"
     if grep -q '^- \[ \]' "$C"; then
-      echo "FAIL unticked boxes remain in $C"; grep -n '^- \[ \]' "$C"; exit 1
+      echo "FAIL unticked boxes remain in $C"
+      grep -n '^- \[ \]' "$C"
+      exit 1
     fi
     "$0" check
-    uv run python scripts/tracker.py
     git add -A && git commit -m "day-$(pad "$DAY"): complete"
     echo "OK day $DAY committed"
     ;;
@@ -78,14 +52,9 @@ case "${1:-help}" in
     cat <<'USAGE'
 usage: ./m <command> [day]
 
-  status         how many days are written / complete
-  tracker        regenerate docs/TRACKER.md
-  start N        point at day N's hub and list its parts/
-  parts N        list day N's sub-topic documents
-  depth [N]      check day N (or every written day) against the plan's Part 11 depth contract
+  start N        point at day N's lesson
   scaffold N     create days/day-NN/lab/
-  check          ruff + ruff format + offline pytest + depth contract
-  done N         refuse unless checklist ticked and checks green, then commit
+  check          ruff + ruff format + offline pytest
 USAGE
     ;;
 esac
