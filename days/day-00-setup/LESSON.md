@@ -12,7 +12,7 @@ parts: 15
 generated: "2026-08-23"
 status: complete
 lab_scaffolded: false
-commit: ""
+commit: "4de3995"
 ---
 
 # Day 0 — the toolchain, the skeleton, and the `./m` script
