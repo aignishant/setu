@@ -10,7 +10,7 @@ plan: setu
 plan_version: "v2.1.0"
 parts: 15
 generated: "2026-08-23"
-status: not-started
+status: complete
 lab_scaffolded: false
 commit: ""
 ---

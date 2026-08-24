@@ -20,30 +20,30 @@ command, and answered its out-loud question *without scrolling back up*.
 
 ### Section 1 — the tools that own things
 
-- [ ] [1.1 Why one tool must own the environment](parts/01-toolchain/1.1-why-one-tool-owns-the-environment.md)
-- [ ] [1.2 Git, and why a Unix shell on a Windows machine](parts/01-toolchain/1.2-git-and-git-bash.md)
-- [ ] [1.3 `uv`, the one binary](parts/01-toolchain/1.3-uv-the-one-binary.md)
-- [ ] [1.4 Python 3.12, and why not the newest](parts/01-toolchain/1.4-python-3-12-under-uv.md)
-- [ ] [1.5 The editor, and the interpreter trap](parts/01-toolchain/1.5-the-editor-and-the-interpreter-trap.md)
+- [x] [1.1 Why one tool must own the environment](parts/01-toolchain/1.1-why-one-tool-owns-the-environment.md)
+- [x] [1.2 Git, and why a Unix shell on a Windows machine](parts/01-toolchain/1.2-git-and-git-bash.md)
+- [x] [1.3 `uv`, the one binary](parts/01-toolchain/1.3-uv-the-one-binary.md)
+- [x] [1.4 Python 3.12, and why not the newest](parts/01-toolchain/1.4-python-3-12-under-uv.md)
+- [x] [1.5 The editor, and the interpreter trap](parts/01-toolchain/1.5-the-editor-and-the-interpreter-trap.md)
 
 ### Section 2 — the skeleton on disk
 
-- [ ] [2.1 The folder skeleton](parts/02-skeleton/2.1-the-folder-skeleton.md)
-- [ ] [2.2 `.gitignore`, before anything secret exists](parts/02-skeleton/2.2-gitignore-before-secrets-exist.md)
-- [ ] [2.3 `git init`, and what a repository is](parts/02-skeleton/2.3-git-init-and-what-a-repo-is.md)
-- [ ] [2.4 `uv init`, `pyproject.toml`, and the lockfile](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md)
-- [ ] [2.5 The `.venv` you never activate](parts/02-skeleton/2.5-the-venv-you-never-activate.md)
+- [x] [2.1 The folder skeleton](parts/02-skeleton/2.1-the-folder-skeleton.md)
+- [x] [2.2 `.gitignore`, before anything secret exists](parts/02-skeleton/2.2-gitignore-before-secrets-exist.md)
+- [x] [2.3 `git init`, and what a repository is](parts/02-skeleton/2.3-git-init-and-what-a-repo-is.md)
+- [x] [2.4 `uv init`, `pyproject.toml`, and the lockfile](parts/02-skeleton/2.4-uv-init-pyproject-and-the-lockfile.md)
+- [x] [2.5 The `.venv` you never activate](parts/02-skeleton/2.5-the-venv-you-never-activate.md)
 
 ### Section 3 — the script that owns the routine
 
-- [ ] [3.1 `set -euo pipefail`](parts/03-m-script/3.1-set-euo-pipefail.md)
-- [ ] [3.2 The `case` dispatcher](parts/03-m-script/3.2-the-case-dispatcher.md)
-- [ ] [3.3 The `done` gate](parts/03-m-script/3.3-the-done-gate.md)
+- [x] [3.1 `set -euo pipefail`](parts/03-m-script/3.1-set-euo-pipefail.md)
+- [x] [3.2 The `case` dispatcher](parts/03-m-script/3.2-the-case-dispatcher.md)
+- [x] [3.3 The `done` gate](parts/03-m-script/3.3-the-done-gate.md)
 
 ### Section 4 — closing the day
 
-- [ ] [4.1 The README that grows](parts/04-first-commit/4.1-the-readme-that-grows.md)
-- [ ] [4.2 The first commit, and reading a clean tree](parts/04-first-commit/4.2-the-first-commit.md)
+- [x] [4.1 The README that grows](parts/04-first-commit/4.1-the-readme-that-grows.md)
+- [x] [4.2 The first commit, and reading a clean tree](parts/04-first-commit/4.2-the-first-commit.md)
 
 ---
 
@@ -52,9 +52,8 @@ command, and answered its out-loud question *without scrolling back up*.
 Each of these is checkable by a command, and each was checked.
 
 - [x] Git configured — `user.name`, `user.email`, `core.autocrlf input`
-- [ ] `git config --global init.defaultBranch main` — currently still `master` on this machine.
-      This repo is on `main` already, so nothing here is broken; the setting only decides the
-      branch name of the *next* repo you create. One command fixes it.
+- [x] `git config --global init.defaultBranch main` — set. It only decides the branch name of
+      the *next* repo you create; this one was already on `main`.
 - [x] `uv` installed and on `PATH` in a **reopened** shell — `uv --version`
 - [x] Python 3.12 installed under `uv`, and `requires-python = "==3.12.*"` in `pyproject.toml`
 - [x] Skeleton exists: `src/setu/`, `tests/`, `days/`, `docs/adr/`, `data/raw/`,
@@ -77,23 +76,23 @@ Each of these is checkable by a command, and each was checked.
 - [x] **`m`** is executable — `git ls-files -s m` shows mode `100755`, not `100644`
 - [x] **`README.md`** written in your own words, not copied from the example in part 4.1
 - [x] **`tests/test_setup.py`** created from the §4 skeleton
-- [ ] `test_pins_are_exact` — `TODO(me)` body implemented, test passes
-- [ ] `test_env_file_is_ignored` — `TODO(me)` body implemented, test passes
-- [ ] `test_daily_driver_is_executable` — `TODO(me)` body implemented, test passes
+- [x] `test_pins_are_exact` — `TODO(me)` body implemented, test passes
+- [x] `test_env_file_is_ignored` — `TODO(me)` body implemented, test passes
+- [x] `test_daily_driver_is_executable` — `TODO(me)` body implemented, test passes
 
 ---
 
 ## The eval that must be able to fail (Principle 7)
 
-- [ ] Ran `uv run python -m pytest tests/test_setup.py -v` and watched all three go **RED** with
+- [x] Ran `uv run python -m pytest tests/test_setup.py -v` and watched all three go **RED** with
       `NotImplementedError` before implementing anything
-- [ ] **Broke `test_pins_are_exact` on purpose:** changed a pin to `>=1.2.3`, watched it go red,
+- [x] **Broke `test_pins_are_exact` on purpose:** changed a pin to `>=1.2.3`, watched it go red,
       changed it back
-- [ ] **Broke `test_env_file_is_ignored` on purpose:** commented out the `.env` line in
+- [x] **Broke `test_env_file_is_ignored` on purpose:** commented out the `.env` line in
       `.gitignore`, watched it go red, restored it
-- [ ] **Broke `test_daily_driver_is_executable` on purpose:** removed `set -euo pipefail` from `m`,
+- [x] **Broke `test_daily_driver_is_executable` on purpose:** removed `set -euo pipefail` from `m`,
       watched it go red, put it back
-- [ ] `./m check` is green — ruff, ruff format, pytest, and the depth contract
+- [x] `./m check` is green — ruff, ruff format, pytest, and the depth contract
 
 ---
 
@@ -106,5 +105,5 @@ Each of these is checkable by a command, and each was checked.
 
 ## Commit
 
-- [ ] `git status --porcelain` **read** before staging, not after
-- [ ] `./m done 0` run, and it committed rather than refused
+- [x] `git status --porcelain` **read** before staging, not after
+- [x] `./m done 0` run, and it committed rather than refused
