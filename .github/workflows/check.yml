@@ -1,0 +1,61 @@
+# The remote gate. It runs `./m check` and nothing else, so there is exactly one definition of
+# green and it cannot drift between a laptop and a machine created ninety seconds ago.
+#
+# Two decisions were mine to make (Day 2, hub §4):
+#
+# 1. Branch filter — pushes run on `main` only, not on every branch. Every branch that is going to
+#    merge arrives as a pull request, and the `pull_request` trigger already covers it. Running
+#    both would double the minutes for identical information, and minutes are the scarce resource
+#    on a free tier (part 5.3). Work in progress still gets a gate: `./m check` locally.
+#
+# 2. Timeout — 10 minutes. Today's gate finishes in seconds, so this is not a target; it is the
+#    ceiling on what a hung network call may cost. Ten leaves room for a cold cache on a cold
+#    runner and still refuses to burn an afternoon of the allowance. When a day finally trains a
+#    model the number goes up in a commit that says why, rather than being set high now "just in
+#    case" — a timeout nobody chose is a timeout that protects nobody.
+
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # Grouped per branch, so cancelling your own superseded run never cancels anybody else's.
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+# Principle 11, blast radius: this job reads the repository and can do nothing else. It holds no
+# provider key, and after Day 3 it still will not — every test that touches a network is marked
+# `live`, and `./m check` deselects them.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # Pinned by commit hash with the version in a trailing comment. A tag is a mutable pointer
+      # and this code runs with access to the repository; a hash cannot be moved under you.
+      # Both hashes were re-read from the live tags on 2026-08-26 before being written here.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          # One line instead of a hand-written cache step whose key you have to get right.
+          enable-cache: true
+
+      # `--locked` is the half that matters: plain `uv sync` would re-resolve and hide a
+      # pyproject/lockfile disagreement instead of failing on it (Day 1, part 3.2). No separate
+      # Python step — `requires-python = "==3.12.*"` is what decides the interpreter.
+      - name: Install the project
+        run: uv sync --locked
+
+      # The entire gate, in one line, identical to what runs locally.
+      - name: Run the gate
+        run: ./m check

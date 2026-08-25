@@ -57,6 +57,13 @@ case "${1:-help}" in
   check)
     uv run ruff check .
     uv run ruff format --check .
+    # Gate three, and it sits here for both halves of 4.1's rule at once. Cheapest: it parses
+    # markdown and touches no network. Most specific: it reports one file, one line, one block.
+    # It belongs with the two gates above because all three READ code without running it - and
+    # ahead of pytest because nothing should execute until everything has been read. The format
+    # gate reaches into a lesson's python fences but fails OPEN on one it cannot parse (part 2.3),
+    # so without this line an unparseable lesson block is green everywhere in the repository.
+    uv run python scripts/check_blocks.py
     # pytest exits 5 when it collected nothing. Until the first day writes a test that is the
     # honest state of the repo, not a failure - but it is said out loud, because a silently
     # empty test run is exactly how Principle 7 rots. Every other exit code is still fatal.
