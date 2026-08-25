@@ -13,7 +13,7 @@ papers: 2
 generated: "2026-08-23"
 status: complete
 lab_scaffolded: false
-commit: ""
+commit: "e9ab5b0"
 ---
 
 # Day 1 — Foundry I: the repo, the environment, and pins that don't float
