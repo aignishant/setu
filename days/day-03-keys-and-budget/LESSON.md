@@ -13,7 +13,7 @@ papers: 0
 generated: "2026-08-24"
 status: complete
 lab_scaffolded: false
-commit: ""
+commit: "badea4a"
 ---
 
 # Day 3 — Foundry III: three free keys, two free databases, one rate budget
