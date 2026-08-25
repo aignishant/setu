@@ -4,6 +4,11 @@ version = "0.1.0"
 description = "240-day Data Science -> GenAI -> Agentic AI curriculum, built one day at a time."
 requires-python = "==3.12.*"
 dependencies = [
+    "google-genai==2.19.0",
+    "groq==1.6.0",
+    "openai==3.3.1",
+    "psycopg[binary]==3.3.4",
+    "pymongo==4.17.0",
     "python-dotenv==1.2.3",
 ]
 

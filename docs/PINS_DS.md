@@ -58,6 +58,11 @@ uv run python scripts/check_pins.py --markdown
 
 | Package | Pinned | Index | Status |
 |---|---|---|---|
+| google-genai | 2.19.0 | 2.19.0 | current |
+| groq | 1.6.0 | 1.6.0 | current |
+| openai | 3.3.1 | 3.3.1 | current |
+| psycopg | 3.3.4 | 3.3.4 | current |
+| pymongo | 4.17.0 | 4.17.0 | current |
 | python-dotenv | 1.2.3 | 1.2.3 | current |
 | ruff | 0.16.4 | 0.16.4 | current |
 | pytest | 9.1.1 | 9.1.1 | current |

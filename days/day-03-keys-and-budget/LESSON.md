@@ -11,7 +11,7 @@ plan_version: "v2.2.0"
 parts: 13
 papers: 0
 generated: "2026-08-24"
-status: not-started
+status: complete
 lab_scaffolded: false
 commit: ""
 ---
@@ -389,6 +389,25 @@ what a revoked key looks like at eleven at night, months from now.
 | Database connections | one per store; both free tiers, both pinged and closed |
 | Free-tier quota | a negligible fraction of one day's allowance on each door — but **count it**, because [4.3](parts/04-rate-budget/4.3-the-budget-as-a-receipt.md) is about the habit, not the number |
 | Cost | **$0** (Principle 5) — no card on file, on any of the five services |
+
+**Actual, measured 2026-08-26** — and it disagrees with the estimate, so here is the note
+[4.3](parts/04-rate-budget/4.3-the-budget-as-a-receipt.md) asks for:
+
+| Resource | Estimated | Actual | Why |
+|---|---|---|---|
+| LLM API calls | about 12 | **0** | No provider account exists yet, so no hosted door has been opened. The three model probes are written and their call shapes were checked against the installed SDKs, but nothing has been sent. |
+| Network requests | provider endpoints + catalogue + packages | **~40** | 18 to `pypi.org` for the nine pins, 1 to the OpenRouter catalogue (public, no key), the rest package downloads for the five new dependencies. |
+| Database connections | one per store | **0** | Same reason: no connection string. |
+| Free-tier quota | a negligible fraction | **none** | Nothing was spent because nothing was called. |
+| Cost | $0 | **$0** | Principle 5 holds trivially. |
+
+**What this means for the gate.** `./m gate` currently exits **1**, reporting all five required
+doors as `ABSENT` — never configured, as distinct from configured-and-broken. That is the honest
+state, and it is the state the gate was built to report. Phase 0's last clause — *three free keys
+answering* — is **not yet satisfied**. It becomes satisfied the moment five values land in `.env`
+and `./m gate` exits 0; nothing else has to change. Until then, the revocation drill in
+[1.3](parts/01-secrets/1.3-when-a-key-leaks.md) is also still outstanding, because you cannot
+revoke a key you never created.
 
 Write what the day *actually* cost next to this table when you finish. If it disagrees with the
 estimate, the estimate is what changes, with a note saying why — that is the whole of

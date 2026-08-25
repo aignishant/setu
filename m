@@ -51,6 +51,17 @@ case "${1:-help}" in
     if [ -n "$DAY" ]; then uv run python scripts/depth_check.py "$DAY"
     else uv run python scripts/depth_check.py; fi
     ;;
+  gate)
+    # The Phase 0 gate: five credentials and a local runner, each opened for real.
+    #
+    # Should ./m check call ./m gate? No, and the reason is Day 2's part 5.3. `./m check` runs in
+    # CI on every push, and this makes live calls against free-tier allowances with credentials
+    # that deliberately do not exist on a runner. Wiring the two together would put a quota-
+    # spending step behind a command that runs dozens of times a day, and would make the build red
+    # on a network hiccup that has nothing to do with the commit. They answer different questions:
+    # `check` asks "is this code correct", `gate` asks "does this machine still have its keys".
+    uv run python scripts/gate.py
+    ;;
   tracker)
     uv run python scripts/tracker.py
     ;;
@@ -106,7 +117,8 @@ usage: ./m <command> [day]
   scaffold N     create the lab/ folder inside day N's folder
   depth [N]      run the depth contract over day N, or every written day
   tracker        regenerate docs/TRACKER.md from the index and what is on disk
-  check          ruff + ruff format + offline pytest + the depth contract
+  check          ruff + ruff format + lesson blocks + offline pytest + the depth contract
+  gate           open every Phase 0 door for real - live calls, never run in CI
   status         one-line progress
   done N         refuse unless the checklist is ticked and check is green, then commit
 USAGE
