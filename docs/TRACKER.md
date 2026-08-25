@@ -18,13 +18,13 @@ generator: scripts/tracker.py
 | 📄 Days written in the v2.1.0 shape | **10** | 4.1% |
 | 📚 Sub-topic documents in `parts/` | **128** | — |
 | 📜 Primary sources taught in `papers/` | **6** | — |
-| ✅ Days completed (checklist fully ticked) | **1** | 0.4% |
+| ✅ Days completed (checklist fully ticked) | **4** | 1.7% |
 | ⬜ Still to write | **231** | 95.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
 written  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  10/241
-complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  1/241
+complete █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4/241
 ```
 
 **Legend:** ✅ done (checklist fully ticked) · 📄 written (hub + `parts/` + checklist) · ⚠️ no checklist · ⬜ pending (not written yet)
@@ -33,7 +33,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Phase | Module | Theme | Days | Written | Parts | Done |
 |---|---|---|---|---|---|---|
-| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 1/4 |
+| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 4/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 6/8 | 75 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 0/8 | 0 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
@@ -71,9 +71,9 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
 | 0 | Toolchain, skeleton, and the ./m script | — | setup | ✅ done | 15 | 0 |
-| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | 📄 written | 11 | 79 |
-| 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | 📄 written | 14 | 107 |
-| 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | 📄 written | 13 | 112 |
+| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | ✅ done | 11 | 0 |
+| 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | ✅ done | 14 | 0 |
+| 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | ✅ done | 13 | 0 |
 
 ### Phase 1 · Python foundations (Module 1) · Days 4–11
 
