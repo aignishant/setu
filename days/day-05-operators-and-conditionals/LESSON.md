@@ -7,7 +7,7 @@ ids: ["PY-03", "PY-04"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.1.0"
+plan_version: "v2.2.0"
 parts: 13
 generated: "2026-08-25"
 status: not-started

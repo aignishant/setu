@@ -7,7 +7,7 @@ ids: []
 principles: ["P1 build daily", "P2 from scratch before library", "P4 pin everything", "P5 zero budget", "P7 evals before features", "P9 data has provenance", "P11 blast radius", "P13 weekly freshness check", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: gate
 plan: setu
-plan_version: "v2.1.0"
+plan_version: "v2.2.0"
 parts: 13
 generated: "2026-08-24"
 status: not-started

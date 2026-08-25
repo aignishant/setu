@@ -9,6 +9,11 @@ code block nobody walked through, a time estimate, a dead cross-part link, a par
 section folder, a day or section folder whose name does not say what is inside it, or a hub that
 quietly went back to teaching.
 
+Since plan v2.2.0 it also refuses a part that does not say what kind of document it is and where its
+idea came from (`kind:` and `paper:`), a paper part held to the wrong section contract, and a part
+that cites a primary source its day never teaches - because Principle 19 says a source is taught in
+a part of its own, not summarised in a box inside the part that uses it.
+
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
     uv run python scripts/depth_check.py 4 5 6    # several days
@@ -54,7 +59,40 @@ PART_SECTIONS = [
     ("check yourself", re.compile(r"^#{2,3}\s.*check yourself", re.I | re.M)),
 ]
 
-PART_FRONTMATTER_KEYS = ["day", "part", "title", "ids", "level", "prerequisites", "prev", "next"]
+# A paper part carries two sections a concept part does not: the citation, immediately after the
+# one-line answer, and what did not survive, immediately before in production. Everything else is
+# identical - a paper part is a part first, held to the same standard of depth (plan Part 11.4).
+CITATION = ("the citation", re.compile(r"^#{2,3}\s.*the citation", re.I | re.M))
+DEMO = ("the demo", re.compile(r"^#{2,3}\s.*the demo", re.I | re.M))
+DID_NOT_SURVIVE = ("what did not survive", re.compile(r"^#{2,3}\s.*did not survive", re.I | re.M))
+
+PAPER_SECTIONS = (
+    PART_SECTIONS[:1]
+    + [CITATION]
+    + PART_SECTIONS[1:6]
+    + [DEMO]
+    + PART_SECTIONS[6:7]
+    + [DID_NOT_SURVIVE]
+    + PART_SECTIONS[7:]
+)
+
+PART_FRONTMATTER_KEYS = [
+    "day",
+    "part",
+    "title",
+    "ids",
+    "level",
+    "kind",
+    "paper",
+    "prerequisites",
+    "prev",
+    "next",
+]
+
+# Principle 19: a part says what kind of document it is, so the checker knows which contract to hold
+# it to, and what primary source it rests on. `paper: none` is a real answer; an absent key is not,
+# because a missing field cannot be told apart from nobody having looked.
+KINDS = {"concept", "paper"}
 
 # Principle 18: every part declares where it leaves the reader.
 LEVELS = {"foundation", "working", "production"}
@@ -221,8 +259,34 @@ def unexplained_code_blocks(text: str) -> list[int]:
     return offenders
 
 
-def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
-    """Validate one parts/<NN>/ document. Returns its (section, subtopic) numbers."""
+def parse_paper(value: str) -> list[str]:
+    """The identifiers in a `paper:` frontmatter value; empty for `none`.
+
+    `paper: none` gives []. `paper: ["arXiv:1706.03762", "PEP 440"]` gives both, unquoted. This
+    reads the value as text rather than as YAML because the rest of the checker reads frontmatter as
+    text, and an identifier never contains a comma.
+    """
+    raw = value.strip().strip('"').strip("'")
+    if not raw or raw.lower() in {"none", "[]", "null", "~"}:
+        return []
+    return [
+        item.strip().strip('"').strip("'") for item in raw.strip("[]").split(",") if item.strip()
+    ]
+
+
+def check_part(
+    path: Path,
+    day: int,
+    report: Report,
+    cited: dict[str, list[str]],
+    taught: dict[str, list[str]],
+) -> tuple[int, int] | None:
+    """Validate one parts/<NN>-<slug>/ document. Returns its (section, subtopic) numbers.
+
+    `cited` and `taught` accumulate across the day: every identifier a concept part leans on, and
+    every identifier a paper part teaches. check_day compares them, because a citation whose source
+    is taught nowhere is exactly what plan v2.2.0 exists to prevent.
+    """
     where = f"parts/{path.parent.name}/{path.name}"
     match = PART_NAME_RE.match(path.name)
     if not match:
@@ -243,6 +307,7 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
 
     text = path.read_text(encoding="utf-8")
     meta = frontmatter(text)
+    kind = ""
     if meta is None:
         report.fail(where, "no YAML frontmatter")
     else:
@@ -256,16 +321,33 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
         level = meta.get("level", "").strip('"').lower()
         if level and level not in LEVELS:
             report.fail(where, f"level is {level!r}, must be one of {sorted(LEVELS)}")
+        kind = meta.get("kind", "").strip('"').lower()
+        if kind and kind not in KINDS:
+            report.fail(where, f"kind is {kind!r}, must be one of {sorted(KINDS)}")
+        sources = parse_paper(meta.get("paper", ""))
+        if kind == "paper":
+            if not sources:
+                report.fail(
+                    where,
+                    "a kind: paper part must declare the identifier(s) it teaches - paper: none "
+                    "says there is no source, which cannot be true of a paper part",
+                )
+            for identifier in sources:
+                taught.setdefault(identifier, []).append(where)
+        else:
+            for identifier in sources:
+                cited.setdefault(identifier, []).append(where)
 
     content = body(text)
+    required = PAPER_SECTIONS if kind == "paper" else PART_SECTIONS
     seen_at: list[int] = []
-    for name, pattern in PART_SECTIONS:
+    for name, pattern in required:
         found = pattern.search(content)
         if not found:
             report.fail(where, f"missing required section: {name}")
         else:
             seen_at.append(found.start())
-    if len(seen_at) == len(PART_SECTIONS) and seen_at != sorted(seen_at):
+    if len(seen_at) == len(required) and seen_at != sorted(seen_at):
         report.fail(where, "required sections are out of contract order (plan Part 11.3)")
 
     for line_no in unexplained_code_blocks(content):
@@ -343,8 +425,8 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
             report.fail(
                 "LESSON.md", f"frontmatter says parts: {declared}, parts/ holds {part_count}"
             )
-        if meta.get("plan_version", "").strip('"') != "v2.1.0":
-            report.fail("LESSON.md", "plan_version must be v2.1.0")
+        if meta.get("plan_version", "").strip('"') != "v2.2.0":
+            report.fail("LESSON.md", "plan_version must be v2.2.0")
 
     content = body(text)
     for number, name in HUB_SECTIONS:
@@ -415,7 +497,16 @@ def check_day(number: int) -> Report:
         return report
 
     report.parts = len(files)
-    numbers = [n for f in files if (n := check_part(f, number, report)) is not None]
+    cited: dict[str, list[str]] = {}
+    taught: dict[str, list[str]] = {}
+    numbers = [n for f in files if (n := check_part(f, number, report, cited, taught)) is not None]
+    for identifier, wheres in sorted(cited.items()):
+        if identifier not in taught:
+            report.fail(
+                wheres[0],
+                f"cites {identifier} but no part of this day teaches it - a primary source gets a "
+                "kind: paper part of its own (plan Part 11.4, Principle 19)",
+            )
     check_numbering(numbers, report)
     check_hub(folder, number, len(files), report)
 

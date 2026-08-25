@@ -1,7 +1,7 @@
 # Day 4 — CHECKLIST
 
 **IDs covered:** `PY-01`, `PY-02` · **Principles served:** 1, 2, 3, 6, 7, 16, 17, 18
-**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 12, in [`parts/`](parts/)
+**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/)
 
 > `./m done 4` refuses to commit while any box below is unticked. Ticking a box you did not do costs
 > you the only thing the gate was protecting — see
@@ -88,6 +88,18 @@ gate.
 - [ ] Saw a run-time-built string not share an object with an identical literal
 - [ ] Wrote a class whose `__eq__` returns `True` for everything, and confirmed `is None` was immune
 - [ ] Triggered `SyntaxWarning: "is" with a literal` at least once
+
+## Section 4 — the standard underneath
+
+- [ ] Read [4.1 — *IEEE 754*](parts/04-the-standard/4.1-ieee-754.md), ran its check-yourself, answered its out-loud question
+
+**Proof, not belief:**
+
+- [ ] Built `float-microscope/` from 4.1's demo and read `0.1`'s exact 55-place value out of its own bits
+- [ ] Found the rounded final digit in `(0.1).hex()` and can say why that `a` is the whole bug
+- [ ] Watched `1e308 * 10` overflow to `inf` **without raising**, then produce `nan` on subtraction
+- [ ] Confirmed `0.5` and `0.75` are exact — floats are not randomly wrong
+- [ ] Can name the two places money must never be a `float`, and what to use instead
 
 ---
 

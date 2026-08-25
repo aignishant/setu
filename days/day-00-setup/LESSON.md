@@ -7,7 +7,7 @@ ids: []
 principles: ["P1 build daily", "P4 pin everything", "P6 the notebook is a scratchpad", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: setup
 plan: setu
-plan_version: "v2.1.0"
+plan_version: "v2.2.0"
 parts: 15
 generated: "2026-08-23"
 status: complete

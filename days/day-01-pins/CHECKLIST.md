@@ -1,7 +1,7 @@
 # Day 1 — CHECKLIST
 
 **IDs covered:** none (Foundry) · **Principles served:** 4, 7, 13, 14, 16, 17, 18
-**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 11, in [`parts/`](parts/)
+**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/)
 
 > `./m done 1` refuses to commit while any box below is unticked. Ticking a box you did not do costs
 > you the only thing the gate was protecting — see
@@ -76,6 +76,19 @@ Expected: the tool prints a table and exits **0**, `docs/PINS_DS.md` carries **t
 - [ ] Read this repository's own amendment in `docs/CHANGELOG_PLAN_DS.md` and found its four parts
 - [ ] Drafted a drift entry using the template, even though there is nothing to record yet
 
+## Section 5 — the documents underneath
+
+- [ ] Read [5.1 — *Semantic Versioning 2.0.0*](parts/05-the-specs/5.1-semver-2-0-0.md), ran its check-yourself, answered its out-loud question
+- [ ] Read [5.2 — *PEP 440*](parts/05-the-specs/5.2-pep-440.md), ran its check-yourself, answered its out-loud question
+
+**Proof, not belief:**
+
+- [ ] Built `semver-gate/` from 5.1's demo and watched it refuse `2.4.2` for a breaking change
+- [ ] Built `pep440-match/` from 5.2's demo and watched every case agree with `packaging`
+- [ ] Opened both specifications at their canonical URLs and found the clause each demo implements
+- [ ] Watched `Version('1.0.0-alpha.1')` become `1.0.0a1` — a string rewritten by a document you had not read
+- [ ] Can state one rule where the two specifications **disagree**, and which one `uv` obeys
+
 ---
 
 ## Build brief — the reps that are yours
@@ -124,6 +137,8 @@ Say each to an empty room, in your own words, without re-reading:
 - [ ] How you would compute the allowed Python versions from scratch, and why you pick one with room above it
 - [ ] Why a silent breaking change costs more than a loud one
 - [ ] Which principle is detection and which is response, and why neither works alone
+- [ ] What clause 4 of *Semantic Versioning 2.0.0* says about `0.y.z`, and what that does to every `~=` you write against a young package
+- [ ] How *PEP 440* defines `~=`, and why `~=2.2` and `~=2.2.1` are different bets
 
 ## Commit
 

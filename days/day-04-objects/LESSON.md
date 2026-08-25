@@ -7,8 +7,8 @@ ids: ["PY-01", "PY-02"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.1.0"
-parts: 12
+plan_version: "v2.2.0"
+parts: 13
 generated: "2026-08-24"
 status: not-started
 lab_scaffolded: false
@@ -86,7 +86,8 @@ flowchart LR
 **What the section numbers mean today.** This is a `lab` day with two IDs, so the sections are one per
 ID plus a synthesis: **1.x** is `PY-01` — what an object is and the three scalar types built on that;
 **2.x** is `PY-02` — the container types and what mutability does to them; **3.x** is where the two
-meet, which is where the famous bugs live.
+meet, which is where the famous bugs live; and **4.x** is the published standard that decided how
+one of those scalar types behaves, taught as a part of its own (Principle 19).
 
 ### Section 1 — objects, and the scalar types (`PY-01`)
 
@@ -114,6 +115,15 @@ meet, which is where the famous bugs live.
 |---|---|---|
 | [3.1 The mutable default argument, reproduced then fixed](parts/03-identity-trap/3.1-the-mutable-default-argument.md) | When exactly is `[]` in a parameter list evaluated, and how many times? | `production` |
 | [3.2 `is` versus `==`, and why interning is not a promise](parts/03-identity-trap/3.2-is-versus-equals.md) | Why does `code is 200` pass every test and fail in production? | `production` |
+
+### Section 4 — the standard underneath
+
+`int` is Python's own design. `float` is not: it is a forty-year-old published standard that every
+CPU implements, and the surprises in 1.3 are its clauses, not Python's choices.
+
+| Part | What it answers | Level |
+|---|---|---|
+| [4.1 *IEEE 754*, the standard that decided `0.1`](parts/04-the-standard/4.1-ieee-754.md) | Where does `0.30000000000000004` actually come from — and why is `nan != nan` required rather than merely odd? | `production` |
 
 ---
 

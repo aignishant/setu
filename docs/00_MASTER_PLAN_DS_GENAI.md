@@ -1,14 +1,14 @@
 ---
 plan: setu
-version: "v2.1.0"
+version: "v2.2.0"
 modules: 27
 validated: "2026-08-21"
 days: 240
 phases: 30
-doc_architecture: "hub + parts/, folders named for their subject (see Part 11)"
+doc_architecture: "hub + parts/, folders named for their subject, primary sources cited (see Part 11)"
 ---
 
-# 🌉 MASTER PLAN v2.1.0 — Project **Setu**
+# 🌉 MASTER PLAN v2.2.0 — Project **Setu**
 ## Data Science → Machine Learning → Deep Learning → Generative AI → **Agentic AI**, built one day at a time
 
 > **Scope note.** This plan is **self-contained**: 27 modules plus an end-to-end projects section,
@@ -93,6 +93,7 @@ These are non-negotiable. They are what turns a 27-module curriculum into a port
 | 16 | **Depth over density.** A day is taught as a *hub plus one document per subtopic* (Part 11), never as one long page. If a subtopic cannot be read on its own, understood without scrolling past a different subtopic, and explained back out loud, it has not been split finely enough. A wall of text is not depth — it is depth's disguise. |
 | 17 | **A day is a unit of subject, not a unit of time.** No lesson carries a time estimate, a "should take 90 minutes", or a pace. A topic is finished when it is understood — it may take one sitting or five. Nothing is ever trimmed to fit a clock, and the day number is an index into the subject, not a promise about hours. |
 | 18 | **Assume no prior knowledge, finish at production.** Every subtopic opens where a reader who has never met the idea can stand, defines its jargon on first use, and does not stop at the toy example: it ends with how the idea is actually used in a production system, what a senior engineer does differently, and what breaks at scale. Strong basics and advanced technique are the same document, in that order. |
+| 19 | **Teach the primary source.** Where an idea came from one dated document — a paper, a specification, a standard — that document is named, identified, linked **and taught in its own part**. A paper is an idea, and Principle 16 gives every idea its own document: the world before it, what it claimed, its mechanism, what did not survive contact with production, and what a real system does with it now. Every part declares `paper:` in its frontmatter, or `none`; silence is never an answer, because silence cannot be told from nobody having checked. A library's docstring says what the call does; the paper says which of its defaults were measured and which were arbitrary. |
 
 ---
 
@@ -824,7 +825,7 @@ file → bump version → log it. Never patch code around a plan that has gone s
 
 ---
 
-## Part 11 — 📐 The depth contract (doc architecture, v2.1.0)
+## Part 11 — 📐 The depth contract (doc architecture, v2.2.0)
 
 > **Why this part exists.** v1.0.0 taught each day as a single `LESSON.md`. By Phase 15 those files
 > were 40 000 characters long and a whole subject — deriving backpropagation — sat under one `##`
@@ -834,11 +835,18 @@ file → bump version → log it. Never patch code around a plan that has gone s
 > v2.0.0 replaces that format. A day is now **one hub plus one document per subtopic**, every
 > document written from zero prior knowledge and carried through to how the idea is used in
 > production. This part states exactly what "covered properly" means, so it can be reviewed and
-> partly machine-checked. It is Principles 16, 17 and 18, made concrete.
+> partly machine-checked. It is Principles 16, 17, 18 and 19, made concrete.
+>
+> **v2.2.0 adds the paper part.** Everything after Phase 12 of this plan — embeddings,
+> transformers, adapters, retrieval, agent loops — is somebody's named result with a date on it, and
+> a reader who has met only the library call cannot tell a measured default from an arbitrary one.
+> Every part now declares `paper:`, and every primary source a day leans on is taught in **a part
+> document of its own**, to the same depth as any other subject — never summarised in a box inside
+> the part that happens to use it.
 
 ### 11.1 The three commitments
 
-Everything below follows from three sentences.
+Everything below follows from four sentences.
 
 **One idea per document.** A subtopic that cannot be read alone, understood without scrolling past a
 different subtopic, and explained back out loud is not one subtopic — it is several, badly stacked.
@@ -853,6 +861,11 @@ idea can stand, and ends where a working professional stands: how the idea appea
 what a senior engineer does differently from the tutorial version, what fails at scale, and what a
 reviewer or interviewer will probe. Strong fundamentals and advanced technique are not separate
 tracks — they are the beginning and the end of the same page.
+
+**Every idea has an address, and a source is an idea.** Where a subtopic rests on one dated
+document, that document is named, identified, linked — and taught in a part of its own, because a
+paper is a subject, not a footnote. Where a subtopic rests on no such document, the part says so out
+loud — `paper: none` — so that "there is no paper" and "nobody looked" can never be confused.
 
 ### 11.2 The folder shape
 
@@ -954,7 +967,7 @@ from "never heard of it" to "could defend this in a design review".
 
 | # | Section | The rule |
 |---|---|---|
-| 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`. Machine-read; the reader ignores it. **No duration field of any kind** (Principle 17). |
+| 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `kind`, `paper`, `prerequisites`, `prev`, `next`. Machine-read; the reader ignores it. `kind` is `concept` (a part that teaches an idea) or `paper` (a part that teaches a primary source). `paper` is either `none` or a list of the identifiers this subtopic rests on (Principle 19) — there is no default and no omitting it. **No duration field of any kind** (Principle 17). |
 | 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who reads only this line has learned something true. |
 | 3 | **The story** | A concrete scene before any abstraction: a person, a machine, a failure, a decision. Storytelling is not decoration here — it is the hook the definition hangs on, and it comes **first**, in plain words, with no jargon at all. |
 | 4 | **The idea in plain language** | The concept itself, assuming the reader has never met it (Principle 18). Every term is defined the first time it appears, **including terms from earlier days** — link the part that introduced them rather than assuming recall. No code. |
@@ -964,6 +977,114 @@ from "never heard of it" to "could defend this in a design review".
 | 8 | **When it breaks** | The **real** error text, reproduced verbatim. What the traceback says, what it actually means, and the smallest fix. This is what the reader meets at 11pm — not the happy path. |
 | 9 | **In production** | Where this idea shows up in a real system, and what changes there: the version a professional writes instead of the teaching version, what degrades at scale or under concurrency, the failure mode that only appears with real data, the review comment a senior engineer would leave, and the question an interviewer asks to find out whether you have actually used it. **This section is what makes the document professional rather than introductory, and it is not optional.** |
 | 10 | **Check yourself** | One command the reader can run right now, plus one question they must answer out loud without scrolling up. |
+
+#### The paper part (v2.2.0) — a source is a subject, not a footnote
+
+Most of what this plan teaches after Phase 12 is not folklore that accumulated — it is one named
+document with a date on it. A transformer is *"Attention Is All You Need"* (2017). A low-rank adapter
+is *"LoRA: Low-Rank Adaptation of Large Language Models"* (2021). A tool-using agent loop is
+*"ReAct: Synergizing Reasoning and Acting in Language Models"* (2022). A reader who has met only the
+library call knows the API. A reader who has met the document knows which of that API's defaults were
+measured, which were arbitrary, and which the authors already knew would fail — which is exactly what
+is being probed when an interviewer asks why attention divides by the square root of the key
+dimension.
+
+A three-sentence summary in a box cannot carry that, and the one-idea test says so: a paper is its own
+idea, so it gets its own document. **Where a day leans on a primary source, that source is taught in a
+part of its own** — same folder, same numbering, same standard of depth as the parts around it, listed
+in the hub's §2 map like any other part. The parts that use the idea link to it; they do not summarise
+it.
+
+**Every part declares `paper:` and `kind:`, and neither has a default.**
+
+```yaml
+kind: concept                                    # this part teaches an idea
+paper: none                                      # ...and that idea rests on no primary source
+
+kind: concept                                    # this part teaches an idea
+paper: ["arXiv:1706.03762"]                      # ...that came from one, taught in this day's paper part
+
+kind: paper                                      # this part teaches the source itself
+paper: ["arXiv:1706.03762"]                      # ...this one
+```
+
+**Line by line:**
+
+- `kind:` — `concept` or `paper`, nothing else. It is what tells `depth_check.py` which set of
+  required sections to hold the document to, and it is why a paper part can demand two sections a
+  concept part does not have.
+- `paper: none` — the literal, unquoted. It means *checked, and there is no primary source*, and it is
+  what most parts before Phase 12 carry: `for` loops, `.env` files and virtual environments rest on no
+  paper. It is a real answer; an absent key is not.
+- `paper: ["arXiv:1706.03762"]` on a `concept` part — this part *uses* an idea the day teaches
+  elsewhere. The day must contain a `kind: paper` part declaring that same identifier, or the depth
+  check fails: a citation with nowhere to go is the thing this amendment exists to prevent.
+- `paper: [...]` on a `kind: paper` part — the source or sources this document teaches. It may carry
+  more than one identifier only when they are one work: a standard and the survey that explains it, a
+  paper and the erratum that corrects it. Two unrelated sources are two parts.
+- The list holds **identifiers, not titles** — an arXiv id, a DOI, an RFC, a PEP or a standard's
+  annex number. Identifiers are stable, unique and greppable: `grep -rl "1706.03762" days/` finds
+  every part that leans on that paper, which a title full of smart quotes would not.
+
+**Where the paper part sits.** In the section whose mental model the source produced, immediately
+after the part that introduces the idea — so the reading order is *what it is* → *where it came from*
+→ *how it works*, and the mechanism arrives already carrying its motivation. When a day leans on
+several sources, or when the whole day is the paper, they get a section folder of their own named for
+what is in it (`parts/05-the-specs/`, `parts/04-the-sources/`), which is also the shape a day
+retrofitted with sources takes, since appending a section renumbers nothing.
+
+**A paper part carries thirteen sections, in this order** — the ten of any part, plus three:
+
+| # | Section | The rule |
+|---|---|---|
+| 1 | **frontmatter** | As above, with `kind: paper` and a non-empty `paper:` list. |
+| 2 | **One-line answer** | What this document established, in one sentence, in the plan's own words. |
+| 3 | **The citation** | Title in quotes, year of the version being cited, the permanent identifier, the canonical URL **fetched on the day of writing**, and **what to actually read**: "Figure 2 and Section 3.2", never "read the paper". |
+| 4 | **The story** | The world before the document: the problem people had, what they were doing instead, what it cost them. A scene, no jargon — the same rule as any part. |
+| 5 | **The idea in plain language** | The claim itself, with no mathematics and no code, assuming the reader has never met it (Principle 18). Not the abstract, rewritten. |
+| 6 | **Why Setu needs it** | The parts of this day, and the concrete downstream day, that rest on it. Link them. |
+| 7 | **The mechanism** | The method as the document defines it: the derivation with every step shown, or the smallest runnable code that reproduces its core claim. This is where a paper part earns its place over a link. |
+| 8 | **Line by line** | Every non-obvious token, immediately after each code block, as anywhere else. |
+| 9 | **The demo** | One small **end-to-end project that implements the paper's contribution and nothing else**: a named folder, every file listed in full with no elisions, one command that runs it, and its **real** output pasted verbatim. It must be small enough to read in one sitting and complete enough to run unmodified. It closes with one sentence naming what it deliberately leaves out — the parts a production implementation has that are *not* the paper's idea — because a demo that quietly grows a cache, a config file and a CLI has stopped demonstrating the paper. |
+| 10 | **When it breaks** | The **real** error text a reader meets when they implement it: the shape mismatch, the overflow, the `nan` at step 300, verbatim. |
+| 11 | **What did not survive** | The part of the document that production reversed: the hyperparameter everyone quietly ignores, the ablation later work overturned, the claim that only holds at the paper's scale, the baseline now known to be weak. A paper is a dated document, not scripture, and saying so is what separates teaching a source from reciting it. |
+| 12 | **In production** | What a real system does with this idea today: which library implements it, what it renamed, what it changed, and the interview question that finds out whether you have read the source or only the README. |
+| 13 | **Check yourself** | One command to run now, one question to answer out loud. |
+
+**The demo is the section that stops a paper part being a book report.** A reader can nod along to a
+mechanism; they cannot nod along to a program that either runs or does not. The rule is *one feature,
+end to end*: if the paper contributes a scaled dot-product attention block, the demo is a script that
+embeds four tokens and prints an attention matrix — not a transformer, not a training loop, not a
+tokeniser. If the paper contributes a version-precedence algorithm, the demo sorts the specification's
+own example list and asserts the order. Three files is a good size; more than five means the demo has
+acquired a feature the paper did not contribute.
+
+Three rules keep demos honest:
+
+- **Nothing elided.** Every file appears in full. A demo with a `# ... rest of the parser ...` in it
+  cannot be run, and a demo that cannot be run proves nothing.
+- **Real output only.** The output block is pasted from an actual run, on the day of writing, like
+  every error string in this format. Invented output is the same defect as an invented error message.
+- **It states its own omissions.** One closing sentence: what a production implementation would add,
+  and why that addition is not part of the paper's claim. This is what keeps the demo minimal and
+  what makes the *In production* section land.
+
+**Citations name no people.** A work is cited by title, year, identifier and URL — never by author,
+never by "et al.", never by lab or research group. This plan credits no individuals anywhere, and a
+citation is not an exception: the identifier is what makes a source findable, and it is unambiguous
+without a name.
+
+**Not every primary source is a peer-reviewed paper, and the field is still `paper:`.** A
+specification (PEP 440, RFC 9110), a standard (IEEE 754, Unicode Annex #15) or a canonical
+implementation note (CPython's `listsort.txt`) is a primary source and gets a paper part like any
+other. The test is not "was it refereed" but **"is there one dated document that decided this, which
+the reader could open?"** — which is why Day 1 has a part on PEP 440 and Day 8 has one on the
+timsort note.
+
+**A paper part still teaches from zero.** It is not a reading list, a summary or an annotated
+bibliography. If the only way to understand it is to go and read the source first, it is not written
+— see 11.8, of which "summary in place of explanation" is the failure mode that stalks this format
+hardest.
 
 Three further rules that have no section of their own:
 
@@ -1058,10 +1179,16 @@ fails on: a missing `parts/` directory, a day folder that is not `day-NN-<slug>`
 loose in `parts/` instead of inside a section folder, a section folder that is not `NN-<slug>`, a
 part whose section folder disagrees with the number in its filename, a filename that does not
 match
-`<section>.<subtopic>-<slug>.md`, a gap in the numbering, any of the ten required sections missing
+`<section>.<subtopic>-<slug>.md`, a gap in the numbering, any of the required sections missing
 or out of order, a code block with no `Line by line:` following it, a `level` outside the three
 allowed values, **any time estimate anywhere in a day folder**, a hub that carries teaching, or a
 `parts` frontmatter count that disagrees with the directory.
+
+Since v2.2.0 it also fails on: a missing `kind:` or `paper:` key, a `kind` outside `concept` and
+`paper`, a `kind: paper` part that declares `paper: none`, a paper part missing one of its thirteen
+sections (including the runnable demo) or carrying them out of order, and — the check this amendment
+exists for — **a part that cites an identifier the day has no paper part for**. What it cannot check is whether the citation is
+the right one, or whether the account of it is honest.
 
 What it cannot check is whether an explanation is any good. That is what §11.8 is for, and it is
 reviewed by reading. `docs/TRACKER.md` reports the part count of every written day, so a thin day is
@@ -1074,3 +1201,4 @@ visible from the progress table alone.
 | v1.0.0 | 240 days, 30 phases, 276 IDs. One `LESSON.md` per day. |
 | **v2.0.0** | **Doc architecture only. No day, ID, phase, gate, pin or principle 1–15 changed.** Adds Principles 16–18, this Part 11, `parts/<NN>/`-based days, the ten-section part contract with a mandatory *In production* section, the `level` ladder, the removal of every time estimate, `scripts/depth_check.py` and `./m depth`. The v1.0.0 lessons were removed rather than converted: every day is rewritten from the plan, from Day 0 forward. |
 | **v2.1.0** | **Folder naming only. No day, ID, phase, gate, pin, principle or required section changed.** Day folders become `day-NN-<slug>` and section folders `NN-<slug>`, so `days/` and `parts/` read as tables of contents rather than columns of numbers. The tools locate a day by globbing its number, so the slug stays free text. |
+| **v2.2.0** | **Sources become subjects. No day, ID, phase, gate, pin or principle 1–18 changed.** Adds Principle 19; two required frontmatter keys on every part, `kind` (`concept`/`paper`) and `paper` (`none` or a list of identifiers, never omitted); and the **paper part** — a document that teaches a primary source to the same depth as any other subject, with thirteen required sections (the ten, plus *The citation*, a runnable one-feature *demo project*, and *What did not survive*). Citations are by title and identifier, never by author. Specifications, standards and canonical implementation notes count as primary sources. A concept part may cite only an identifier its day has a paper part for; `depth_check.py` enforces that link. |
