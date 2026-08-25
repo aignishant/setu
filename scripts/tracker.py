@@ -6,7 +6,8 @@ invents a day. Status is read from the filesystem and the checklists, so the tra
 cannot drift from reality.
 
 Under plan v2.1.0 a day counts as written only when it has the hub *and* a non-empty
-parts/ directory of sub-topic documents (Principle 16, plan Part 11).
+parts/ directory of sub-topic documents (Principle 16, plan Part 11), plus the primary sources
+it teaches in papers/ (Principle 19).
 
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
     uv run python scripts/tracker.py --summary  # one-line progress, no file written
@@ -43,6 +44,7 @@ class Day:
     open_boxes: int = 0
     folder: str = ""
     parts: int = 0
+    papers: int = 0
 
 
 @dataclass
@@ -107,6 +109,9 @@ def inspect(day: Day) -> Day:
     day.folder = folder.relative_to(ROOT).as_posix()
     parts_dir = folder / "parts"
     day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
+    # v2.2.0: primary sources are taught in the day's own papers/ directory, beside parts/.
+    papers_dir = folder / "papers"
+    day.papers = len(list(papers_dir.glob("*.md"))) if papers_dir.is_dir() else 0
     # v2.0.0 onward: a hub without parts/ is not a written day.
     day.written = (folder / "LESSON.md").is_file() and day.parts > 0
     checklist = folder / "CHECKLIST.md"
@@ -142,6 +147,7 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "written": sum(d.written for d in all_days),
         "complete": sum(d.complete for d in all_days),
         "parts": sum(d.parts for d in all_days),
+        "papers": sum(d.papers for d in all_days),
     }
     stats["pending"] = stats["total"] - stats["written"]
     pct = 100 * stats["written"] / stats["total"]
@@ -172,6 +178,7 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "|---|---|---|",
         f"| 📄 Days written in the v2.1.0 shape | **{stats['written']}** | {pct:.1f}% |",
         f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
+        f"| 📜 Primary sources taught in `papers/` | **{stats['papers']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",
         f"| ⬜ Still to write | **{stats['pending']}** |"
@@ -264,8 +271,8 @@ def main() -> int:
     if "--summary" in sys.argv:
         print(
             f"Setu: {stats['written']}/{stats['total']} days written "
-            f"({stats['parts']} sub-topic docs), {stats['complete']} completed, "
-            f"{stats['pending']} to go."
+            f"({stats['parts']} sub-topic docs, {stats['papers']} papers), "
+            f"{stats['complete']} completed, {stats['pending']} to go."
         )
         return 0
     TRACKER.write_text(content + "\n", encoding="utf-8")

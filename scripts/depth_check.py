@@ -10,9 +10,10 @@ section folder, a day or section folder whose name does not say what is inside i
 quietly went back to teaching.
 
 Since plan v2.2.0 it also refuses a part that does not say what kind of document it is and where its
-idea came from (`kind:` and `paper:`), a paper part held to the wrong section contract, and a part
-that cites a primary source its day never teaches - because Principle 19 says a source is taught in
-a part of its own, not summarised in a box inside the part that uses it.
+idea came from (`kind:` and `paper:`), a paper document that is missing its citation, its runnable
+demo or its account of what did not survive, and a part that cites a primary source its day never
+teaches - because Principle 19 says a source is taught in a document of its own, in the day's
+papers/ directory, not summarised in a box inside the part that uses it.
 
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
@@ -44,6 +45,11 @@ SECTION_DIR_RE = re.compile(rf"^(\d{{2}})-({KEBAB})$")
 
 # A day folder carries the same kind of label: day-<NN>-<slug>, e.g. day-00-setup, day-01-pins.
 DAY_DIR_RE = re.compile(rf"^day-(\d{{2}})-({KEBAB})$")
+
+# papers/<NN>-<slug>.md - a primary source is taught in the day's papers/ directory, numbered
+# from 01 in reading order. It carries no section coordinate because it belongs to the day, not
+# to one section of the teaching (plan v2.2.0, Part 11.4).
+PAPER_NAME_RE = re.compile(rf"^(\d{{2}})-({KEBAB})\.md$")
 
 # The ten required sections of a part document, in order (plan Part 11.4). Section 1 is the
 # frontmatter, checked separately; these are the nine that appear in the body.
@@ -124,6 +130,7 @@ HUB_FRONTMATTER_KEYS = [
     "kind",
     "plan_version",
     "parts",
+    "papers",
     "generated",
     "status",
     "lab_scaffolded",
@@ -157,6 +164,7 @@ class Report:
     day: int
     failures: list[str] = field(default_factory=list)
     parts: int = 0
+    papers: int = 0
 
     @property
     def ok(self) -> bool:
@@ -275,17 +283,13 @@ def parse_paper(value: str) -> list[str]:
 
 
 def check_part(
-    path: Path,
-    day: int,
-    report: Report,
-    cited: dict[str, list[str]],
-    taught: dict[str, list[str]],
+    path: Path, day: int, report: Report, cited: dict[str, list[str]]
 ) -> tuple[int, int] | None:
     """Validate one parts/<NN>-<slug>/ document. Returns its (section, subtopic) numbers.
 
-    `cited` and `taught` accumulate across the day: every identifier a concept part leans on, and
-    every identifier a paper part teaches. check_day compares them, because a citation whose source
-    is taught nowhere is exactly what plan v2.2.0 exists to prevent.
+    `cited` accumulates every identifier the day's parts lean on. check_day compares it against what
+    papers/ actually teaches, because a citation whose source is taught nowhere is exactly what plan
+    v2.2.0 exists to prevent.
     """
     where = f"parts/{path.parent.name}/{path.name}"
     match = PART_NAME_RE.match(path.name)
@@ -324,22 +328,17 @@ def check_part(
         kind = meta.get("kind", "").strip('"').lower()
         if kind and kind not in KINDS:
             report.fail(where, f"kind is {kind!r}, must be one of {sorted(KINDS)}")
-        sources = parse_paper(meta.get("paper", ""))
         if kind == "paper":
-            if not sources:
-                report.fail(
-                    where,
-                    "a kind: paper part must declare the identifier(s) it teaches - paper: none "
-                    "says there is no source, which cannot be true of a paper part",
-                )
-            for identifier in sources:
-                taught.setdefault(identifier, []).append(where)
-        else:
-            for identifier in sources:
-                cited.setdefault(identifier, []).append(where)
+            report.fail(
+                where,
+                "a primary source is taught in the day's papers/ directory, not inside parts/ "
+                "(plan v2.2.0, Part 11.2)",
+            )
+        for identifier in parse_paper(meta.get("paper", "")):
+            cited.setdefault(identifier, []).append(where)
 
     content = body(text)
-    required = PAPER_SECTIONS if kind == "paper" else PART_SECTIONS
+    required = PART_SECTIONS
     seen_at: list[int] = []
     for name, pattern in required:
         found = pattern.search(content)
@@ -356,6 +355,67 @@ def check_part(
     check_no_clocks(text, where, report)
     check_links(path, where, report)
     return section, subtopic
+
+
+def check_paper(path: Path, day: int, report: Report, taught: dict[str, list[str]]) -> int | None:
+    """Validate one papers/<NN>-<slug>.md document. Returns its number.
+
+    A paper document is a part in every way that matters - story, mechanism, failure, production -
+    plus a citation, a runnable one-feature demo, and an honest account of what did not survive
+    (plan Part 11.4). It lives outside parts/ because it belongs to the whole day rather than to one
+    section of it.
+    """
+    where = f"papers/{path.name}"
+    match = PAPER_NAME_RE.match(path.name)
+    if not match:
+        report.fail(where, "filename must be <NN>-<kebab-slug>.md, e.g. 01-pep-440.md")
+        return None
+    number = int(match.group(1))
+
+    text = path.read_text(encoding="utf-8")
+    meta = frontmatter(text)
+    if meta is None:
+        report.fail(where, "no YAML frontmatter")
+    else:
+        missing = [k for k in PART_FRONTMATTER_KEYS if k not in meta]
+        if missing:
+            report.fail(where, f"frontmatter missing {', '.join(missing)}")
+        if meta.get("day") not in {str(day), f'"{day}"'}:
+            report.fail(where, f"frontmatter day is {meta.get('day')!r}, expected {day}")
+        if meta.get("part", "").strip('"') != f"P{number}":
+            report.fail(where, f'frontmatter part should be "P{number}"')
+        if meta.get("kind", "").strip('"').lower() != "paper":
+            report.fail(where, "everything in papers/ is kind: paper")
+        level = meta.get("level", "").strip('"').lower()
+        if level and level not in LEVELS:
+            report.fail(where, f"level is {level!r}, must be one of {sorted(LEVELS)}")
+        sources = parse_paper(meta.get("paper", ""))
+        if not sources:
+            report.fail(
+                where,
+                "a paper document must declare the identifier(s) it teaches - paper: none says "
+                "there is no source, which cannot be true of a paper",
+            )
+        for identifier in sources:
+            taught.setdefault(identifier, []).append(where)
+
+    content = body(text)
+    seen_at: list[int] = []
+    for name, pattern in PAPER_SECTIONS:
+        found = pattern.search(content)
+        if not found:
+            report.fail(where, f"missing required section: {name}")
+        else:
+            seen_at.append(found.start())
+    if len(seen_at) == len(PAPER_SECTIONS) and seen_at != sorted(seen_at):
+        report.fail(where, "required sections are out of contract order (plan Part 11.4)")
+
+    for line_no in unexplained_code_blocks(content):
+        report.fail(where, f"code block at line {line_no} has no 'Line by line' walkthrough")
+
+    check_no_clocks(text, where, report)
+    check_links(path, where, report)
+    return number
 
 
 def check_links(path: Path, where: str, report: Report) -> None:
@@ -406,7 +466,7 @@ def check_numbering(numbers: list[tuple[int, int]], report: Report) -> None:
             )
 
 
-def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
+def check_hub(folder: Path, day: int, part_count: int, paper_count: int, report: Report) -> None:
     hub = folder / "LESSON.md"
     if not hub.is_file():
         report.fail("LESSON.md", "missing - every day needs a hub")
@@ -424,6 +484,12 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
         if declared.isdigit() and int(declared) != part_count:
             report.fail(
                 "LESSON.md", f"frontmatter says parts: {declared}, parts/ holds {part_count}"
+            )
+        declared_papers = meta.get("papers", "").strip('"')
+        if declared_papers.isdigit() and int(declared_papers) != paper_count:
+            report.fail(
+                "LESSON.md",
+                f"frontmatter says papers: {declared_papers}, papers/ holds {paper_count}",
             )
         if meta.get("plan_version", "").strip('"') != "v2.2.0":
             report.fail("LESSON.md", "plan_version must be v2.2.0")
@@ -451,6 +517,13 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
     }
     for name in sorted(on_disk - linked):
         report.fail("LESSON.md", f"§2 map does not link parts/{name}")
+
+    papers_dir = folder / "papers"
+    if papers_dir.is_dir():
+        linked_papers = set(re.findall(r"papers/([\w.\-]+\.md)", content))
+        for paper in sorted(papers_dir.glob("*.md")):
+            if paper.name not in linked_papers:
+                report.fail("LESSON.md", f"§2 map does not link papers/{paper.name}")
 
 
 def check_day(number: int) -> Report:
@@ -499,16 +572,29 @@ def check_day(number: int) -> Report:
     report.parts = len(files)
     cited: dict[str, list[str]] = {}
     taught: dict[str, list[str]] = {}
-    numbers = [n for f in files if (n := check_part(f, number, report, cited, taught)) is not None]
+    numbers = [n for f in files if (n := check_part(f, number, report, cited)) is not None]
+    check_numbering(numbers, report)
+
+    papers_dir = folder / "papers"
+    papers = sorted(papers_dir.glob("*.md")) if papers_dir.is_dir() else []
+    report.papers = len(papers)
+    paper_numbers = sorted(
+        n for p in papers if (n := check_paper(p, number, report, taught)) is not None
+    )
+    if paper_numbers and paper_numbers != list(range(1, len(paper_numbers) + 1)):
+        report.fail(
+            "papers/", f"papers are numbered {paper_numbers}, expected 1..{len(paper_numbers)}"
+        )
+
     for identifier, wheres in sorted(cited.items()):
         if identifier not in taught:
             report.fail(
                 wheres[0],
-                f"cites {identifier} but no part of this day teaches it - a primary source gets a "
-                "kind: paper part of its own (plan Part 11.4, Principle 19)",
+                f"cites {identifier} but no paper of this day teaches it - a primary source gets a "
+                "document of its own in papers/ (plan Part 11.4, Principle 19)",
             )
-    check_numbering(numbers, report)
-    check_hub(folder, number, len(files), report)
+
+    check_hub(folder, number, len(files), len(papers), report)
 
     if not (folder / "CHECKLIST.md").is_file():
         report.fail("CHECKLIST.md", "missing")
@@ -539,7 +625,9 @@ def main(argv: list[str]) -> int:
 
     for report in reports:
         if report.ok:
-            print(f"OK   day {report.day:>3}  {report.parts} parts")
+            plural = "paper" if report.papers == 1 else "papers"
+            papers = f" + {report.papers} {plural}" if report.papers else ""
+            print(f"OK   day {report.day:>3}  {report.parts} parts{papers}")
         else:
             print(f"FAIL day {report.day:>3}  {len(report.failures)} problems")
             for failure in report.failures:

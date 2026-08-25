@@ -10,6 +10,77 @@ code or lesson changes. Newest first.
 
 ---
 
+## v2.2.0 — 2026-08-26 — sources become subjects
+
+**Trigger.** With ten days written, the plan taught ideas that came from named, dated documents and
+never said so. Day 4 explained why `0.1 + 0.2` is not `0.3` without naming IEEE 754. Day 7 called
+`unicodedata.normalize` without naming the annex that defines the four form names. Day 8 said
+"CPython's sort is Timsort" in one sentence of an *In production* section and moved on. That gap
+scales badly: from Phase 12 onward almost every subject in this plan — embeddings, transformers,
+adapters, retrieval, agent loops — *is* somebody's named result, and a reader who has met only the
+library call cannot tell a measured default from an arbitrary one. Nothing in the format asked the
+question, so nothing recorded the difference between "there is no paper here" and "nobody looked".
+
+**Amendment.**
+
+- New **Principle 19 — teach the primary source**. Where an idea came from one dated document, that
+  document is named, identified, linked **and taught in its own document**, in the day's `papers/`
+  directory.
+- New **`papers/` directory** beside `parts/`: `days/day-NN-<slug>/papers/<NN>-<slug>.md`, flat and
+  numbered from `01` in reading order. A source belongs to the day, not to one section of its
+  teaching — several parts across different sections routinely lean on the same document, and adding
+  a source to a finished day must never renumber a part.
+- **Two new required frontmatter keys on every part**: `kind` (`concept` or `paper`) and `paper`
+  (`none`, or a list of identifiers). Neither has a default and neither may be omitted, because a
+  missing field cannot be told apart from nobody having checked. `paper: none` is the correct and
+  common answer for most Python-fundamentals subtopics.
+- **A paper document carries thirteen sections** — the part's ten, plus **the citation** (title,
+  year, permanent identifier, canonical URL fetched on the day of writing, and *what to actually
+  read*), **the demo**, and **what did not survive**.
+- **The demo is a runnable end-to-end mini project implementing that document's one contribution and
+  nothing else**: a named folder, every file listed in full with no elisions, one command, and the
+  **real** output pasted from an actual run. It closes by naming what it deliberately leaves out.
+  Three files is a good size; more than five means it grew a feature the paper did not contribute.
+- **Citations name no people.** Title · year · identifier (arXiv, DOI, PEP, RFC, standard annex) ·
+  canonical URL. Never an author, never "et al.", never a lab. This extends the existing
+  no-person-names rule rather than carving an exception out of it.
+- **Specifications, standards and canonical implementation notes count as primary sources.** The
+  test is not "was it refereed" but "is there one dated document that decided this, which the reader
+  could open" — which is why Day 1 has a paper on PEP 440 and Day 8 has one on CPython's
+  `listsort.txt`.
+- Hubs gain a **`papers:` count** in frontmatter (`0` is an answer) and, where the day has papers, a
+  `### The papers — papers/` block at the end of the §2 map — never mixed into a section's table.
+- `scripts/depth_check.py` gains the enforcement: a missing `kind:`/`paper:` key, a `kind` outside
+  `concept`/`paper`, a `kind: paper` file inside `parts/`, a paper filename that is not
+  `<NN>-<slug>.md` or whose `part:` is not the matching `"PN"`, a gap in the paper numbering, a paper
+  declaring `paper: none`, a paper missing one of its thirteen sections or carrying them out of
+  order, a hub whose `papers:` count or §2 map disagrees with the directory, and — the check this
+  amendment exists for — **a part that cites an identifier its day has no paper for**.
+- `scripts/tracker.py` counts papers, so `docs/TRACKER.md` reports them beside the part count.
+
+**Migration.** All 128 existing part documents gained `kind: concept` and `paper: none`; all ten
+hubs moved to `plan_version: "v2.2.0"` and gained a `papers:` count. Six papers were written for the
+four written days that genuinely rest on primary sources, each with its demo built and run before
+its output was pasted:
+
+| Day | Papers |
+|---|---|
+| 1 | *Semantic Versioning 2.0.0* · *PEP 440* |
+| 4 | *IEEE 754* (with the 1991 ACM Computing Surveys survey as its readable companion) |
+| 7 | *UAX #15 — Unicode Normalization Forms* |
+| 8 | CPython's `listsort.txt` (with the CAV 2015 verification paper) · *PEP 456* and SipHash |
+
+Days 0, 2, 3, 5, 6 and 9 rest on no primary source and say so, in every part's `paper: none`.
+`./m depth` passes on all ten days.
+
+**Explicitly unchanged.** No day, ID, phase boundary, gate, pin, dataset or principle 1–18 is
+touched. The 240-day arc and all 276 IDs are identical to v2.1.0, the ten required part sections are
+identical, and the numbering, folder-naming and no-clocks rules are untouched. Nothing moved out of
+`parts/` except the four documents that had been written as paper parts under the first draft of this
+amendment, before `papers/` existed.
+
+---
+
 ## v2.1.0 — 2026-08-23 — folders that say what is in them
 
 **Trigger.** With two days written, `days/` already read as `day-00-setup/`, `day-01/`, and every

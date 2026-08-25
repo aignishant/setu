@@ -91,7 +91,7 @@ gate.
 
 ## Section 4 — the standard underneath
 
-- [ ] Read [4.1 — *IEEE 754*](parts/04-the-standard/4.1-ieee-754.md), ran its check-yourself, answered its out-loud question
+- [ ] Read [*IEEE 754*](papers/01-ieee-754.md), ran its check-yourself, answered its out-loud question
 
 **Proof, not belief:**
 

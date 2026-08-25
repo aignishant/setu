@@ -1,7 +1,7 @@
 ---
 name: tracker
 plan: setu
-generated: "2026-08-25"
+generated: "2026-08-26"
 generator: scripts/tracker.py
 ---
 
@@ -17,6 +17,7 @@ generator: scripts/tracker.py
 |---|---|---|
 | 📄 Days written in the v2.1.0 shape | **10** | 4.1% |
 | 📚 Sub-topic documents in `parts/` | **128** | — |
+| 📜 Primary sources taught in `papers/` | **6** | — |
 | ✅ Days completed (checklist fully ticked) | **1** | 0.4% |
 | ⬜ Still to write | **231** | 95.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
@@ -70,7 +71,7 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
 | 0 | Toolchain, skeleton, and the ./m script | — | setup | ✅ done | 15 | 0 |
-| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | 📄 written | 11 | 70 |
+| 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | 📄 written | 11 | 79 |
 | 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | 📄 written | 14 | 107 |
 | 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | 📄 written | 13 | 112 |
 
@@ -78,11 +79,11 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
-| 4 | Objects, types, and mutability | PY-01, PY-02 | lab | 📄 written | 12 | 98 |
+| 4 | Objects, types, and mutability | PY-01, PY-02 | lab | 📄 written | 12 | 104 |
 | 5 | Operators, precedence, and conditionals | PY-03, PY-04 | lab | 📄 written | 13 | 120 |
 | 6 | Loops, `break`/`continue`, and the capped retry | PY-05 | lab | 📄 written | 13 | 134 |
-| 7 | Strings: methods, split/join, f-string formatting | PY-06 | lab | 📄 written | 14 | 159 |
-| 8 | Lists, tuples, sets, dictionaries, and view objects | PY-07, PY-08 | lab | 📄 written | 13 | 152 |
+| 7 | Strings: methods, split/join, f-string formatting | PY-06 | lab | 📄 written | 14 | 164 |
+| 8 | Lists, tuples, sets, dictionaries, and view objects | PY-07, PY-08 | lab | 📄 written | 13 | 160 |
 | 9 | List and dict comprehensions | PY-09 | lab | 📄 written | 10 | 140 |
 | 10 | Functions, scope, and your first `src/setu/` module | PY-10 | lab | ⬜ pending | — | — |
 | 11 | Iterators, generators, lambda and `map` | PY-11, PY-12 | gate | ⬜ pending | — | — |

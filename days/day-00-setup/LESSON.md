@@ -9,6 +9,7 @@ kind: setup
 plan: setu
 plan_version: "v2.2.0"
 parts: 15
+papers: 0
 generated: "2026-08-23"
 status: complete
 lab_scaffolded: false

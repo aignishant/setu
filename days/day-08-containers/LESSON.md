@@ -9,6 +9,7 @@ kind: lab
 plan: setu
 plan_version: "v2.2.0"
 parts: 13
+papers: 2
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -80,7 +81,8 @@ flowchart LR
 **What the section numbers mean today.** Two IDs, so one section per ID plus a synthesis: **1.x** is
 `PY-07` — the ordered sequences, how they are built and what that costs; **2.x** is `PY-08` — the hash
 tables and the views onto them; **3.x** is where both meet, in the deduplication the plan names for
-this day.
+this day. Both containers rest on a published design, and those two documents are not sections —
+they live in [`papers/`](papers/) (Principle 19).
 
 ### Section 1 — the ordered sequences (`PY-07`)
 
@@ -109,6 +111,16 @@ this day.
 |---|---|---|
 | [3.1 Ten thousand identifiers, timed](parts/03-dedup/3.1-ten-thousand-ids-timed.md) | What ratio proves a function is quadratic? | `production` |
 | [3.2 Order-preserving dedup](parts/03-dedup/3.2-order-preserving-dedup.md) | Which one-liner deduplicates *and* keeps the ranking? | `production` |
+
+### The papers — `papers/`
+
+A list sorts fast because of one design note; a set looks up fast because of one security proposal.
+Each is taught as its own document, with a runnable demo of the single thing it contributed.
+
+| Paper | What it answers | Level |
+|---|---|---|
+| [The timsort note, and the proof that broke it](papers/01-the-timsort-note.md) | Why is sorting an almost-sorted list nearly free — and how did a fifteen-year-old bug survive in three runtimes at once? | `production` |
+| [*PEP 456* and SipHash](papers/02-pep-456-and-siphash.md) | Why does `hash('setu')` change between runs, and what attack does that prevent? | `production` |
 
 ---
 

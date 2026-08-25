@@ -1,7 +1,7 @@
 # Day 8 — CHECKLIST
 
 **IDs covered:** `PY-07`, `PY-08` · **Principles served:** 1, 2, 3, 4, 6, 7, 8, 16, 17, 18
-**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/)
+**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/) · **Papers:** 2, in [`papers/`](papers/)
 
 > `./m done 8` refuses to commit while any box below is unticked. Ticking a box you did not do costs
 > you the only thing the gate was protecting — see
@@ -120,6 +120,20 @@ the order test and the ratio test — and a green gate.
 - [ ] Confirmed `dict.fromkeys` on a list of dicts raises, and can say why
 - [ ] Used a dict as an ordered set: add, remove, membership, order
 - [ ] Logged `len(items) - len(deduped)` and a `Counter` of the repeated keys
+
+## The papers — `papers/`
+
+- [ ] Read [the timsort note](papers/01-the-timsort-note.md), ran its check-yourself, answered its out-loud question
+- [ ] Read [*PEP 456* and SipHash](papers/02-pep-456-and-siphash.md), ran its check-yourself, answered its out-loud question
+
+**Proof, not belief:**
+
+- [ ] Built `run-detector/` and watched an already-sorted list cost exactly `n - 1` comparisons
+- [ ] Can say why a descending run must be **strictly** descending before it may be reversed
+- [ ] Built `hash-dos/` and watched 400 crafted keys turn 1 512 probes into 79 800
+- [ ] Watched the same 400 keys become harmless once the hash was keyed with a secret
+- [ ] Ran `hash('setu')` twice in two processes and got two different numbers
+- [ ] Can state the one situation where `PYTHONHASHSEED` is the right tool, and the one where it is a security bug
 
 ---
 

@@ -9,6 +9,7 @@ kind: lab
 plan: setu
 plan_version: "v2.2.0"
 parts: 14
+papers: 1
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -124,6 +125,15 @@ data.
 | [4.1 The title normaliser, from scratch](parts/04-normalising/4.1-the-title-normaliser.md) | What are the six steps, and why in that order? | `production` |
 | [4.2 Unicode normalisation](parts/04-normalising/4.2-unicode-normalisation.md) | How can two strings render identically and have different lengths? | `production` |
 | [4.3 Methods before regex](parts/04-normalising/4.3-methods-before-regex.md) | Where exactly is the boundary between a pattern and a fixed string? | `production` |
+
+### The paper — `papers/`
+
+`4.2` uses `unicodedata.normalize` and moves on. The annex that defines those four form names — and
+decides which two of them delete information — is taught as its own document.
+
+| Paper | What it answers | Level |
+|---|---|---|
+| [*UAX #15* — Unicode Normalization Forms](papers/01-uax-15.md) | Why are two identical-looking strings unequal, and which normal form is safe to store? | `production` |
 
 ---
 

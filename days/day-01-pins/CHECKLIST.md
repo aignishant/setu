@@ -78,8 +78,8 @@ Expected: the tool prints a table and exits **0**, `docs/PINS_DS.md` carries **t
 
 ## Section 5 — the documents underneath
 
-- [ ] Read [5.1 — *Semantic Versioning 2.0.0*](parts/05-the-specs/5.1-semver-2-0-0.md), ran its check-yourself, answered its out-loud question
-- [ ] Read [5.2 — *PEP 440*](parts/05-the-specs/5.2-pep-440.md), ran its check-yourself, answered its out-loud question
+- [ ] Read [*Semantic Versioning 2.0.0*](papers/01-semver-2-0-0.md), ran its check-yourself, answered its out-loud question
+- [ ] Read [*PEP 440*](papers/02-pep-440.md), ran its check-yourself, answered its out-loud question
 
 **Proof, not belief:**
 

@@ -1,24 +1,24 @@
 ---
 day: 1
-part: "5.1"
+part: "P1"
 title: "The document behind the three numbers — Semantic Versioning 2.0.0"
 ids: []
 level: working
 kind: paper
 paper: ["SemVer 2.0.0"]
 prerequisites: ["1.1", "1.2"]
-prev: "../04-drift/4.2-drift-and-the-amendment-protocol.md"
-next: "5.2-pep-440.md"
+prev: "../parts/04-drift/4.2-drift-and-the-amendment-protocol.md"
+next: "02-pep-440.md"
 ---
 
-# 5.1 — The document behind the three numbers: *Semantic Versioning 2.0.0*
+# The document behind the three numbers: *Semantic Versioning 2.0.0*
 
 ## One-line answer
 
 *Semantic Versioning 2.0.0* is a short public specification that converts a three-number label into
 a **promise about breakage**, written in the MUST/SHOULD language of a standards document — and its
 one structural weakness is that it binds only the people who chose to follow it, which is why
-[1.1](../01-versions/1.1-semantic-versioning.md) called it a social convention rather than a
+[1.1](../parts/01-versions/1.1-semantic-versioning.md) called it a social convention rather than a
 guarantee.
 
 ---
@@ -104,24 +104,24 @@ is not advice, it is the condition for being allowed to say you follow the spec 
 A `0.x` release makes **no promise whatsoever**. Not a weakened promise — none. A huge share of the
 packages this plan will install spend years at `0.x`, and every specifier you write against one of
 them is a bet with no contract behind it. That single clause is the reason
-[1.2](../01-versions/1.2-version-specifiers.md) treats `~=` as unsafe on a young package: `~=0.4.1`
+[1.2](../parts/01-versions/1.2-version-specifiers.md) treats `~=` as unsafe on a young package: `~=0.4.1`
 allows `0.4.9`, and the document being followed says `0.4.9` may change anything it likes.
 
 ---
 
 ## Why Setu needs it
 
-- **[1.1](../01-versions/1.1-semantic-versioning.md) taught the shape** — MAJOR.MINOR.PATCH and what
+- **[1.1](../parts/01-versions/1.1-semantic-versioning.md) taught the shape** — MAJOR.MINOR.PATCH and what
   each position claims. This part is where that claim comes from, so that "a version is a promise"
   stops being something the lesson asserted and becomes something you can go and check.
-- **[1.2](../01-versions/1.2-version-specifiers.md) trades against it.** Every specifier is a bet on
+- **[1.2](../parts/01-versions/1.2-version-specifiers.md) trades against it.** Every specifier is a bet on
   a clause of this document. `>=2.0` bets that clause 8 will be honoured. `~=2.2` bets the same
   thing with a ceiling. `==2.2.1` declines to bet at all — which is what Principle 4 tells you to do
   in an application.
-- **[4.1](../04-drift/4.1-the-three-breaking-changes.md) is what happens when the bet loses**: the
+- **[4.1](../parts/04-drift/4.1-the-three-breaking-changes.md) is what happens when the bet loses**: the
   three breaking changes already sitting in this stack, each of which was announced correctly by a
   number that a specifier had already agreed to accept.
-- **[5.2](5.2-pep-440.md) is the other half of the story.** Python does not use this specification;
+- **[the PEP 440 paper](02-pep-440.md) is the other half of the story.** Python does not use this specification;
   it uses PEP 440, which is a different document with different rules. Reading them next to each
   other is the point, and the disagreement between them is not academic — it changes which files
   `uv` will install.
@@ -192,7 +192,7 @@ for version in sorted(spec_example, key=precedence_key):
   rather than `split("-")` because it returns a fixed three-tuple even when there is no `-`, so
   `pre` is `""` instead of raising or producing a one-element list.
 - `int(n) for n in core.split(".")` — numeric comparison, not string comparison. This is the same bug
-  [1.1](../01-versions/1.1-semantic-versioning.md) demonstrated with `sorted(['1.9.0','1.10.0'])`:
+  [1.1](../parts/01-versions/1.1-semantic-versioning.md) demonstrated with `sorted(['1.9.0','1.10.0'])`:
   as text, `"1.10.0" < "1.9.0"`, because `1` sorts before `9`.
 - `return (major, minor, patch, 1, ())` — the `1` is rule 2 encoded as a number. A release with no
   pre-release sorts **above** one with a pre-release, so the no-pre-release case gets the higher
@@ -439,7 +439,7 @@ that Python never agreed to.
 
 **The smallest fix:** do not treat a SemVer string and a PEP 440 string as the same kind of object.
 If you need SemVer precedence, implement clause 11 as above. If you need to know what `uv` will
-install, ask `packaging` — and see [5.2](5.2-pep-440.md) for the document it is actually obeying.
+install, ask `packaging` — and see [the PEP 440 paper](02-pep-440.md) for the document it is actually obeying.
 
 ---
 
@@ -527,4 +527,4 @@ grammar, and a comparison that clause 10 says MUST NOT be decided.
 just released `0.9.0`. Quote the clause that tells you what that bump promises — and then say what
 you are actually going to do about it.*
 
-Next: [5.2 — PEP 440, the specification Python actually obeys](5.2-pep-440.md)
+Next: [PEP 440 — the specification Python actually obeys](02-pep-440.md)

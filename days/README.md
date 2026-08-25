@@ -7,7 +7,7 @@
 
 ---
 
-## The six rules these docs follow
+## The seven rules these docs follow
 
 1. **All the code lives in the docs. None of it is pre-written in the repo.**
    You type it, you own it. There is no `src/setu/*.py` waiting for you — every line you will ever
@@ -43,6 +43,16 @@
    senior engineer leaves on that code, and the question an interviewer asks to find out whether you
    have really used it. Strong fundamentals and advanced technique are the same page, in that order.
 
+7. **Where an idea came from a document, the document is taught too.** *(plan v2.2.0 — Principle 19)*
+   A transformer is a paper. A version number is a specification. Floating point is a standard. Where
+   a day rests on one of those, it is not name-dropped in a footnote — it gets its **own document in
+   `papers/`**, taught from zero like anything else, with the same story, mechanism, failure text and
+   production section, plus three more: **the citation** (title, year, identifier, canonical URL, and
+   which figure to actually open), **a runnable demo** that implements that document's one
+   contribution and nothing else, and **what did not survive** — the part of it that production
+   reversed. Sources are cited by title and identifier, never by author. A day that rests on no
+   primary source says so, in every part's `paper: none`.
+
 ---
 
 ## What's in a day folder
@@ -57,6 +67,9 @@ days/day-NN-<slug>/    # the slug names the day's subject
 │   │   └── 1.2-<slug>.md
 │   └── 02-<slug>/     # section 2
 │       └── 2.1-<slug>.md
+├── papers/            # THE SOURCES — one document per primary source, numbered from 01
+│   ├── 01-<slug>.md
+│   └── 02-<slug>.md
 └── lab/               # you create this; `./m scaffold NN` makes the folder
 ```
 
@@ -66,14 +79,18 @@ A real one:
 days/day-01-pins/
 ├── LESSON.md
 ├── CHECKLIST.md
-└── parts/
-    ├── 01-versions/       # what a version number actually is
-    ├── 02-pypi-index/     # reading the truth from the package index
-    ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
-    └── 04-drift/          # noticing when it decays
+├── parts/
+│   ├── 01-versions/       # what a version number actually is
+│   ├── 02-pypi-index/     # reading the truth from the package index
+│   ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
+│   └── 04-drift/          # noticing when it decays
+└── papers/
+    ├── 01-semver-2-0-0.md # the document those numbers promise against
+    └── 02-pep-440.md      # the document uv actually obeys
 ```
 
-**Read the hub first, then the parts in numerical order.** The hub's §2 map is the table of contents
+**Read the hub first, then the parts in numerical order, then the papers.** The parts teach the
+idea; the papers are where it came from, and they land better once you have used it. The hub's §2 map is the table of contents
 and tells you what each section number means for that day — but you should be able to guess from
 the folder names alone, and that is the point of them. `./m parts 1` prints the same tree without
 opening anything.
