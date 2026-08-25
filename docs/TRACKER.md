@@ -1,7 +1,7 @@
 ---
 name: tracker
 plan: setu
-generated: "2026-08-23"
+generated: "2026-08-25"
 generator: scripts/tracker.py
 ---
 
@@ -15,15 +15,15 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.1.0 shape | **2** | 0.8% |
-| 📚 Sub-topic documents in `parts/` | **26** | — |
-| ✅ Days completed (checklist fully ticked) | **0** | 0.0% |
-| ⬜ Still to write | **239** | 99.2% |
+| 📄 Days written in the v2.1.0 shape | **10** | 4.1% |
+| 📚 Sub-topic documents in `parts/` | **128** | — |
+| ✅ Days completed (checklist fully ticked) | **1** | 0.4% |
+| ⬜ Still to write | **231** | 95.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  2/241
-complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0/241
+written  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  10/241
+complete ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  1/241
 ```
 
 **Legend:** ✅ done (checklist fully ticked) · 📄 written (hub + `parts/` + checklist) · ⚠️ no checklist · ⬜ pending (not written yet)
@@ -32,8 +32,8 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Phase | Module | Theme | Days | Written | Parts | Done |
 |---|---|---|---|---|---|---|
-| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 2/4 | 26 | 0/4 |
-| 1 | M1 | Python foundations (Module 1) | 4–11 | 0/8 | 0 | 0/8 |
+| 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 1/4 |
+| 1 | M1 | Python foundations (Module 1) | 4–11 | 6/8 | 75 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 0/8 | 0 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 0/10 | 0 | 0/10 |
@@ -69,21 +69,21 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
-| 0 | Toolchain, skeleton, and the ./m script | — | setup | 📄 written | 15 | 26 |
+| 0 | Toolchain, skeleton, and the ./m script | — | setup | ✅ done | 15 | 0 |
 | 1 | Foundry I — the repo, the environment, and pins that don't float | — | lab | 📄 written | 11 | 70 |
-| 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | ⬜ pending | — | — |
-| 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | ⬜ pending | — | — |
+| 2 | Foundry II — the quality machine: ruff, pytest, `./m`, CI | — | lab | 📄 written | 14 | 107 |
+| 3 | Foundry III — three free keys, two free databases, one rate budget | — | gate | 📄 written | 13 | 112 |
 
 ### Phase 1 · Python foundations (Module 1) · Days 4–11
 
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
-| 4 | Objects, types, and mutability | PY-01, PY-02 | lab | ⬜ pending | — | — |
-| 5 | Operators, precedence, and conditionals | PY-03, PY-04 | lab | ⬜ pending | — | — |
-| 6 | Loops, `break`/`continue`, and the capped retry | PY-05 | lab | ⬜ pending | — | — |
-| 7 | Strings: methods, split/join, f-string formatting | PY-06 | lab | ⬜ pending | — | — |
-| 8 | Lists, tuples, sets, dictionaries, and view objects | PY-07, PY-08 | lab | ⬜ pending | — | — |
-| 9 | List and dict comprehensions | PY-09 | lab | ⬜ pending | — | — |
+| 4 | Objects, types, and mutability | PY-01, PY-02 | lab | 📄 written | 12 | 98 |
+| 5 | Operators, precedence, and conditionals | PY-03, PY-04 | lab | 📄 written | 13 | 120 |
+| 6 | Loops, `break`/`continue`, and the capped retry | PY-05 | lab | 📄 written | 13 | 134 |
+| 7 | Strings: methods, split/join, f-string formatting | PY-06 | lab | 📄 written | 14 | 159 |
+| 8 | Lists, tuples, sets, dictionaries, and view objects | PY-07, PY-08 | lab | 📄 written | 13 | 152 |
+| 9 | List and dict comprehensions | PY-09 | lab | 📄 written | 10 | 140 |
 | 10 | Functions, scope, and your first `src/setu/` module | PY-10 | lab | ⬜ pending | — | — |
 | 11 | Iterators, generators, lambda and `map` | PY-11, PY-12 | gate | ⬜ pending | — | — |
 
@@ -460,14 +460,14 @@ complete ░░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 2** — Foundry II — the quality machine: ruff, pytest, `./m`, CI `(—)`
-- **Day 3** — Foundry III — three free keys, two free databases, one rate budget `(—)`
-- **Day 4** — Objects, types, and mutability `(PY-01, PY-02)`
-- **Day 5** — Operators, precedence, and conditionals `(PY-03, PY-04)`
-- **Day 6** — Loops, `break`/`continue`, and the capped retry `(PY-05)`
-- **Day 7** — Strings: methods, split/join, f-string formatting `(PY-06)`
-- **Day 8** — Lists, tuples, sets, dictionaries, and view objects `(PY-07, PY-08)`
-- **Day 9** — List and dict comprehensions `(PY-09)`
 - **Day 10** — Functions, scope, and your first `src/setu/` module `(PY-10)`
 - **Day 11** — Iterators, generators, lambda and `map` `(PY-11, PY-12)`
+- **Day 12** — Classes — building the `Paper` object `(PY-13)`
+- **Day 13** — Inheritance, polymorphism, encapsulation, abstraction `(PY-14, PY-15)`
+- **Day 14** — Decorators — `@timed` and `@retry` `(PY-16)`
+- **Day 15** — `classmethod`, `staticmethod`, `property`, and dunder methods `(PY-17, PY-18)`
+- **Day 16** — Files, `pathlib`, buffering, and context managers `(PY-19, PY-20)`
+- **Day 17** — Modules, packages, imports, `__init__.py` `(PY-21)`
+- **Day 18** — Exceptions and custom error types `(PY-22)`
+- **Day 19** — Typing, dataclasses, Pydantic v2, and concurrency `(PY-23, PY-24)`
 
