@@ -13,7 +13,7 @@ papers: 0
 generated: "2026-08-24"
 status: complete
 lab_scaffolded: false
-commit: ""
+commit: "538db3f"
 ---
 
 # Day 2 — Foundry II: the quality machine — ruff, pytest, `./m`, CI
