@@ -4,8 +4,8 @@ description: Generate the hub, the parts/ sub-documents, the lab scaffold and th
 argument-hint: [day-number]
 ---
 
-# Generate Day $ARGUMENTS of the Setu plan (v2.2.0 — hub + `parts/` + `papers/`, folders named
-for their subject)
+# Generate Day $ARGUMENTS of the Setu plan (v2.3.0 — hub + `parts/`, folders named for their
+subject, prose under contract)
 
 > **Read `docs/00_MASTER_PLAN_DS_GENAI.md` Part 11 before writing a single line.** It is the depth
 > contract this skill implements. This skill is the procedure; Part 11 is the standard.
@@ -20,10 +20,17 @@ for their subject)
 3. **Zero to production, in one document.** Open where a reader who has never heard of the idea can
    stand. End where a professional stands: the real-system version, what breaks at scale, what a
    senior reviewer says, what an interviewer probes.
-4. **Every idea has an address, and a source is an idea.** Where a subtopic rests on one dated
-   document — a paper, a specification, a standard — that document is taught in **its own document
-   in the day's `papers/`**, never summarised inside the part that uses it. Where a subtopic rests
-   on no such document, its frontmatter says `paper: none` out loud.
+4. **Plain words, real scenes, correct sentences** (Principle 20). The reader is learning
+   something new, so the prose must never be the hard part. **The four story rules:** *ordinary, not
+   clever* — the scene is a shared shopping list that changed while nobody was looking, a name
+   spelled two ways in one file, a total that came out wrong; never a trading desk, never a cluster.
+   *One small example, all the way through* — three rows, not three million, and the mechanism keeps
+   using whatever the story picked up. *Short, common words* — `use` not `utilise`, `change` not
+   `mutate` until the moment that term is being defined; the technical word waits for *the idea in
+   plain language*, where it gets defined. *True, not staged* — the mistake people actually make, in
+   the order they make it. **The prose rules:** complete sentences, correctly punctuated; define on
+   first use or do not use; one idea per sentence. **A sentence the reader has to read twice is a
+   defect.**
 
 ## Step 1 — gather
 
@@ -58,14 +65,13 @@ for their subject)
    `02-pypi-index`, `03-freezing`, `04-drift` — not `01-section-one`, not `01-part-a`, not a bare
    `01`. The section slug and the sentence the hub's §2 map uses to introduce that section must
    agree; if you cannot name a section in three words, the grouping is wrong, not the name.
-10. **List the day's primary sources.** For every subtopic, ask: *is there one dated document that
-    decided this?* A paper, a PEP, an RFC, an ISO/IEEE standard, a canonical implementation note.
-    Most Python-fundamentals subtopics have none, and `paper: none` is the correct, common answer —
-    but the question is asked for every part, and never left silent. Each source found becomes one
-    document in `papers/`, numbered from `01` in reading order, and every part that leans on it
-    declares its identifier in `paper:`.
-11. Print the planned folder names, the part list **and the paper list** to me before writing — as
-    the tree you are about to create. If either looks thin, I will say so.
+10. **Choose the day's one running example, before writing a word of prose.** It is the thing
+    every story on this day picks up and every mechanism keeps using: a four-line shopping list, a
+    file of three names, one delivery address. Small enough to print in full, and ordinary enough
+    that a reader has met it outside programming. A day that uses a different example in every part
+    has made the reader learn six things instead of one.
+11. Print the planned folder names, the part list and the running example to me before writing — as
+    the tree you are about to create. If it looks thin, I will say so.
 
 ## Step 3 — write the parts (`days/day-NN-<slug>/parts/<NN>-<slug>/<section>.<sub>-<slug>.md`)
 
@@ -85,12 +91,14 @@ for their subject)
     linking into it** — never guess a slug, and never assume another day numbers its sections the
     way this one does.
 15. Every part carries all ten sections of Part 11.4, in this order:
-    - **frontmatter** — `day`, `part`, `title`, `ids`, `level`, `kind`, `paper`, `prerequisites`,
-      `prev`, `next`. `kind: concept` for a part. `paper:` is `none` or a list of identifiers, and
-      **has no default** — an absent key is a failure. **No duration field of any kind.**
+    - **frontmatter** — `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`.
+      Eight keys, no more. **No `kind:`, no `paper:`, no duration field of any kind** — v2.3.0
+      retired the first two and `./m depth` fails on either.
     - **One-line answer** — the claim in one sentence, before anything else
-    - **The story** — a concrete scene first: a person, a machine, a failure, a decision. No jargon
-      at all in this section. This is the hook the definition hangs on.
+    - **The story** — a concrete, ordinary scene first: a person, a mistake, a decision, told with
+      the day's running example. No jargon at all in this section — not one term the reader has not
+      already met. This is the hook the definition hangs on, and the four story rules above are the
+      contract for it.
     - **The idea in plain language** — the concept assuming zero prior knowledge; every term defined
       on first use, **including terms from earlier days**, with a link to the part that introduced
       them. No code.
@@ -110,54 +118,30 @@ for their subject)
 17. Each part must pass the **standalone test**: readable cold, with its prerequisite part named
     and linked.
 
-## Step 3b — write the papers (`days/day-NN-<slug>/papers/<NN>-<slug>.md`)
+## Step 3b — cite the sources inline
 
-Skip this step only when the day genuinely rests on no primary source — and say so, rather than
-skipping silently.
-
-18. One flat, numbered document per source: `papers/01-<slug>.md`, `papers/02-<slug>.md`. No section
-    folders — a source belongs to the day, not to one stage of its teaching. Frontmatter is the
-    part's, with `part: "P1"` matching the file number, `kind: paper`, and a non-empty `paper:` list
-    of identifiers.
-19. **Thirteen sections, in this order** — the part's ten, plus three:
-    - **One-line answer** — what this document established, in one sentence
-    - **The citation** — title · year · permanent identifier (arXiv, DOI, PEP, RFC, annex) ·
-      canonical URL **you fetched today** · and *what to actually read*: "Figure 2 and Section 3.2",
-      never "read the paper". **Never name an author, a lab or an "et al."**
-    - **The story** — the world before the document: the problem, what people did instead, the cost
-    - **The idea in plain language** — the claim, no maths, no code, zero prior knowledge
-    - **Why Setu needs it** — the parts of this day, and the downstream day, that rest on it
-    - **The mechanism** — the method as the document defines it, derived or coded
-    - **Line by line** — after every code block, as everywhere else
-    - **The demo** — a **runnable end-to-end mini project implementing this paper's one contribution
-      and nothing else**: a named folder, every file in full with no elisions, one command, and the
-      **real** output pasted from an actual run. Close it with one sentence naming what it
-      deliberately leaves out. Three files is a good size; more than five means it grew a feature the
-      paper did not contribute. **Run it before you paste the output.**
-    - **When it breaks** — the real error text, verbatim
-    - **What did not survive** — the hyperparameter everyone ignores, the ablation later work
-      reversed, the claim that only holds at the paper's scale. A paper is a dated document, not
-      scripture, and saying so is what separates teaching a source from reciting it.
-    - **In production** — what a real system does with this idea today
-    - **Check yourself** — one command, one out-loud question
-20. Each citing part links **forward** to its paper, and the paper links back to the parts. A part
-    may only cite an identifier this day has a paper for — `./m depth` fails otherwise.
+18. Where a part rests on one dated document — a paper, a PEP, an RFC, an ISO or IEEE standard, a
+    canonical implementation note — name it **in the sentence that needs it**, by **title · year ·
+    permanent identifier · canonical URL**, and never by author, never "et al.", never by lab. One or
+    two sentences about what the document decided is the whole budget. A part that turns into a
+    summary of a specification has stopped teaching its own idea.
+19. There is **no `papers/` directory** (retired in v2.3.0) and no `paper:` frontmatter key.
+    `./m depth` fails on either, because both mean a day was written against the old contract and
+    never migrated.
 
 ## Step 4 — write the hub (`days/day-NN-<slug>/LESSON.md`)
 
 21. The hub orients and assembles; **it never teaches**. No `Line by line:` in the hub. Required
     sections, in order (Part 11.5):
     - YAML frontmatter (`day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
-      `plan_version: "v2.2.0"`, `parts`, `papers` (the count — `0` is an answer), `generated`,
-      `status`, `lab_scaffolded`, `commit`)
+      `plan_version: "v2.3.0"`, `parts` (the count), `generated`, `status`, `lab_scaffolded`,
+      `commit`)
     - a yesterday / today / tomorrow blockquote — **no time estimate**
     - `## §1 The story` — a scene and an analogy, plain language, NO code, NO jargon
     - `## §2 The map` — a table of every part: number, linked title
       (`parts/01-versions/1.1-<slug>.md`), what it answers, `level`, grouped by section with one
       line saying what each *section* means. That line and the section's folder slug must agree —
-      the slug is the three-word version of it. **No minutes column, ever.** When the day has
-      papers, the map ends with a separate `### The papers — papers/` block listing each one —
-      never mixed into a section's table, because a source is not a subtopic.
+      the slug is the three-word version of it. **No minutes column, ever.**
     - `## §3 Setup — run this` — every `mkdir`, `touch`, `uv add` the day needs, pinned
     - `## §4 Build brief` — files to create, with `TODO(me)` markers for the learner's reps
     - `## §5 The eval that must be able to fail` — pytest that is RED before the TODOs are done
@@ -170,8 +154,7 @@ skipping silently.
 
 ## Step 5 — the checklist (`days/day-NN-<slug>/CHECKLIST.md`)
 
-22. Demo command, setup boxes, **one box per part document and one per paper** (read it, run its
-    check-yourself,
+22. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
     answer its out-loud question), build-brief boxes, a test box per test **including at least one
     "break it, watch it go red, fix it"**, budget, and the commit box. No time estimates.
 
@@ -179,8 +162,8 @@ skipping silently.
 
 23. Run `./m depth $ARGUMENTS`. Fix every failure; never hand-wave past one — it is what catches
     an unslugged folder, a folder whose number disagrees with its filenames, a cross-day link
-    written against a slug that does not exist, a missing `kind:`/`paper:` key, and a part citing an
-    identifier the day has no paper for.
+    written against a slug that does not exist, a leftover `kind:` or `paper:` key, and a `papers/`
+    directory left behind by the retired v2.2.0 format.
     Then run `uv run ruff format days/day-NN-<slug>/` — **ruff formats Python code blocks inside
     Markdown**,
     so every ```python block in a lesson must already be canonically formatted or `./m check` fails.
@@ -188,8 +171,7 @@ skipping silently.
     the project's own linter rejects is a bug in the lesson.
 24. Run `uv run python scripts/tracker.py`.
 25. Finish by printing: today's IDs, the day's folder name, its section folder names, the part
-    count, **the papers written (or the explicit statement that this day rests on none)**, the demo
-    command, and the request budget.
+    count, the running example every part shares, the demo command, and the request budget.
 
 ## Always
 
@@ -200,9 +182,12 @@ skipping silently.
   in the output. The plan is self-contained and cites no external course or author; do not invent a
   lineage for it. Tool and library names are fine, as is citing a paper by its title. **A citation is
   title · year · identifier · URL — never an author, never "et al.", never a lab.**
-- **Never paste output you did not run.** Every demo transcript, every error string and every timing
-  in a paper document comes from an actual run on the day of writing, exactly like the docs URLs.
+- **Never paste output you did not run.** Every transcript, every error string and every timing
+  comes from an actual run on the day of writing, exactly like the docs URLs.
+- **Read every paragraph back before moving on.** If it needs a second pass to parse, rewrite it
+  rather than adding a parenthesis (Principle 20).
 - The failures this format exists to prevent (Part 11.8): splitting without deepening · summary in
   place of explanation · **stopping at the toy example** · assuming the previous day · code without
-  failure · **trimming to fit** · solved reps. A part with no story, no mechanism, no real failure
-  text and no production section is not done, however long it is.
+  failure · **trimming to fit** · solved reps · **a story nobody has lived** · **prose that has to
+  be read twice**. A part with no story, no mechanism, no real failure text and no production
+  section is not done, however long it is.

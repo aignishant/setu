@@ -7,9 +7,8 @@ ids: ["PY-03", "PY-04"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 13
-papers: 0
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -35,6 +34,18 @@ put the result in an `if`.
 ---
 
 ## §1 The story
+
+The bill at the end of a meal: food 400, service charge 100, and 18% tax on top.
+
+Two people at the table work out the total and get different numbers, and neither of them made an
+arithmetic mistake. One added the food and the service first, then took 18% of the 500. The other
+took 18% of the service charge alone. They are arguing about the bill; what they are actually arguing
+about is which two numbers the 18% was attached to, and nothing on the piece of paper settles it.
+
+Yesterday was about what a thing *is*. Today is about what happens when two things meet — and the
+lesson that keeps coming back is that the dangerous failures here are the ones that **produce a
+number instead of an error**. An error stops the program and points at the line. A wrong number keeps
+going and turns up in a report.
 
 Six lines of code, none of which raise.
 

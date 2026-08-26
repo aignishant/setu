@@ -7,9 +7,8 @@ ids: ["PY-07", "PY-08"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P4 pin everything", "P6 the notebook is a scratchpad", "P7 evals before features", "P8 leakage is the enemy", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 13
-papers: 2
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -35,6 +34,24 @@ timed, both ways*, and both are built today.
 ---
 
 ## §1 The story
+
+A wedding needs two things at the door: a queue, and a coat check.
+
+The queue is a painted line on the floor. Joining the back costs nothing. Taking somebody off the
+front means everybody else shuffles up, which nobody notices with five people and takes longer than
+the wedding with five hundred.
+
+The coat check is a rail of numbered hooks. Handing in a coat and getting it back are both instant,
+however many coats there are, because the ticket number says which hook. But nobody can tell you
+which coat arrived third, because the coats were never arranged by arrival — they were arranged by
+ticket.
+
+Neither of those is better than the other. They are good at opposite things, and choosing wrongly
+does not produce an error. It produces a very slow evening, or a coat rail that cannot answer the
+question you turned out to need.
+
+That is today. Four containers, each fast at some things and useless at others, and four bugs that
+come entirely from picking one for a property it does not have.
 
 Four bugs from four different files, all in the same week.
 
@@ -81,8 +98,10 @@ flowchart LR
 **What the section numbers mean today.** Two IDs, so one section per ID plus a synthesis: **1.x** is
 `PY-07` — the ordered sequences, how they are built and what that costs; **2.x** is `PY-08` — the hash
 tables and the views onto them; **3.x** is where both meet, in the deduplication the plan names for
-this day. Both containers rest on a published design, and those two documents are not sections —
-they live in [`papers/`](papers/) (Principle 19).
+this day. Both containers rest on a published design — CPython's `listsort.txt` for the sort and
+*PEP 456* for the hash — and each is cited inside the part that leans on it,
+[1.5](parts/01-sequences/1.5-sort-sorted-and-key.md) and
+[2.1](parts/02-sets-and-dicts/2.1-a-set-is-a-hash-table.md).
 
 ### Section 1 — the ordered sequences (`PY-07`)
 
@@ -111,16 +130,6 @@ they live in [`papers/`](papers/) (Principle 19).
 |---|---|---|
 | [3.1 Ten thousand identifiers, timed](parts/03-dedup/3.1-ten-thousand-ids-timed.md) | What ratio proves a function is quadratic? | `production` |
 | [3.2 Order-preserving dedup](parts/03-dedup/3.2-order-preserving-dedup.md) | Which one-liner deduplicates *and* keeps the ranking? | `production` |
-
-### The papers — `papers/`
-
-A list sorts fast because of one design note; a set looks up fast because of one security proposal.
-Each is taught as its own document, with a runnable demo of the single thing it contributed.
-
-| Paper | What it answers | Level |
-|---|---|---|
-| [The timsort note, and the proof that broke it](papers/01-the-timsort-note.md) | Why is sorting an almost-sorted list nearly free — and how did a fifteen-year-old bug survive in three runtimes at once? | `production` |
-| [*PEP 456* and SipHash](papers/02-pep-456-and-siphash.md) | Why does `hash('setu')` change between runs, and what attack does that prevent? | `production` |
 
 ---
 

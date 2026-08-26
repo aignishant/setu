@@ -7,9 +7,8 @@ ids: ["PY-05"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P5 zero budget", "P6 the notebook is a scratchpad", "P7 evals before features", "P11 blast radius", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 13
-papers: 0
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -34,6 +33,17 @@ reuses*, and that loop is what you build today.
 ---
 
 ## §1 The story
+
+You put the kettle on and say, "I'll wait until it boils."
+
+It is a completely sensible sentence, and it has a hole in it that only shows up when the kettle is
+not switched on at the wall. From where you are standing, "it has not boiled yet" and "it is never
+going to boil" look identical. Nothing in your plan tells them apart, so nothing in your plan ever
+ends, and you could be there in the morning.
+
+Today is about instructions of that shape — do this again, and again, until something stops you — and
+about the one question worth asking every single time you write one: **what makes this stop, and what
+does one pass cost?**
 
 Four loops, none of which raise.
 

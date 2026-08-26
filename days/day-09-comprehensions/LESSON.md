@@ -7,9 +7,8 @@ ids: ["PY-09"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 10
-papers: 0
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -35,6 +34,22 @@ the reading is the exercise: it is what tells you which form belongs.
 ---
 
 ## §1 The story
+
+Everybody has written themselves a note in a hurry and found it useless a week later.
+
+> *milk bread eggs 2*
+
+Two eggs? Two of everything? Is "2" a fourth item you have now forgotten? At the moment of writing it
+was completely unambiguous, because the whole thought was in your head and the note was only a
+prompt. A week on, the note is all that is left, and it is not enough.
+
+Shorthand is a bargain: it saves the writer time and charges the reader. Usually that is a good
+bargain, because most notes are read by the person who wrote them, five minutes later. It goes wrong
+in exactly one situation — when the reader is somebody else, or is you after you have forgotten.
+
+Today's tool is a very good shorthand for a very common loop. It is worth learning properly and using
+often. It is also dense enough that a wrong word in the middle looks exactly like the right one, and
+that is what the whole day is really about.
 
 Six lines, all valid Python, all doing something slightly different from what a reader expects.
 

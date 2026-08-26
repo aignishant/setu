@@ -1,7 +1,7 @@
 # Day 8 — CHECKLIST
 
 **IDs covered:** `PY-07`, `PY-08` · **Principles served:** 1, 2, 3, 4, 6, 7, 8, 16, 17, 18
-**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/) · **Papers:** 2, in [`papers/`](papers/)
+**Hub:** [`LESSON.md`](LESSON.md) · **Parts:** 13, in [`parts/`](parts/)
 
 > `./m done 8` refuses to commit while any box below is unticked. Ticking a box you did not do costs
 > you the only thing the gate was protecting — see
@@ -121,18 +121,25 @@ the order test and the ratio test — and a green gate.
 - [ ] Used a dict as an ordered set: add, remove, membership, order
 - [ ] Logged `len(items) - len(deduped)` and a `Counter` of the repeated keys
 
-## The papers — `papers/`
+## The two designs underneath
 
-- [ ] Read [the timsort note](papers/01-the-timsort-note.md), ran its check-yourself, answered its out-loud question
-- [ ] Read [*PEP 456* and SipHash](papers/02-pep-456-and-siphash.md), ran its check-yourself, answered its out-loud question
+Plan v2.3.0 retired the separate paper document, so both sources are cited inside the parts that
+rest on them: CPython's `listsort.txt` in [1.5](parts/01-sequences/1.5-sort-sorted-and-key.md), and
+*PEP 456* in [2.1](parts/02-sets-and-dicts/2.1-a-set-is-a-hash-table.md).
+
+- [ ] Opened `Objects/listsort.txt` at
+      <https://github.com/python/cpython/blob/main/Objects/listsort.txt> and found the paragraph that
+      promises stability
+- [ ] Opened *PEP 456* at <https://peps.python.org/pep-0456/> and found the attack it was written to
+      prevent
 
 **Proof, not belief:**
 
-- [ ] Built `run-detector/` and watched an already-sorted list cost exactly `n - 1` comparisons
+- [ ] Timed `sorted()` on an already-sorted list and on a shuffled one of the same length, and can
+      state the direction of the difference
 - [ ] Can say why a descending run must be **strictly** descending before it may be reversed
-- [ ] Built `hash-dos/` and watched 400 crafted keys turn 1 512 probes into 79 800
-- [ ] Watched the same 400 keys become harmless once the hash was keyed with a secret
-- [ ] Ran `hash('setu')` twice in two processes and got two different numbers
+- [ ] Ran `hash('setu')` twice in two separate processes and got two different numbers
+- [ ] Ran `list(set(...))` in two processes and can explain why the order differed
 - [ ] Can state the one situation where `PYTHONHASHSEED` is the right tool, and the one where it is a security bug
 
 ---

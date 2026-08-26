@@ -7,9 +7,8 @@ ids: []
 principles: ["P4 pin everything", "P7 evals before features", "P13 weekly freshness check", "P14 amend the plan first", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 11
-papers: 2
 generated: "2026-08-23"
 status: complete
 lab_scaffolded: false
@@ -77,8 +76,8 @@ flowchart LR
 **What the section numbers mean today.** This is a `lab` day with no IDs, so the sections are the
 *lifecycle of a pin*: **1.x** what a version and a specifier actually are, **2.x** how to read the
 truth from the package index, **3.x** how to freeze that truth into files, **4.x** how to notice when
-it decays. The two published documents every one of those clauses comes from are not sections at
-all — they live in [`papers/`](papers/) and are listed under the map (Principle 19).
+it decays. Two published documents sit underneath all four sections — *Semantic Versioning 2.0.0*
+and *PEP 440* — and each is cited, in full, inside the part that rests on it.
 
 ### Section 1 — what a version is
 
@@ -110,16 +109,6 @@ all — they live in [`papers/`](papers/) and are listed under the map (Principl
 |---|---|---|
 | [4.1 The three breaking changes already in this stack](parts/04-drift/4.1-the-three-breaking-changes.md) | Why is a *silent* breaking change more expensive than a loud one? | `production` |
 | [4.2 Drift, the freshness check, and the amendment protocol](parts/04-drift/4.2-drift-and-the-amendment-protocol.md) | Principle 13 detects, Principle 14 responds — why does neither work alone? | `production` |
-
-### The papers — `papers/`
-
-Every rule in sections 1–4 is a clause of one of two published specifications. Each is taught as its
-own document, to the same depth as any part, with a runnable demo of the one thing it contributed.
-
-| Paper | What it answers | Level |
-|---|---|---|
-| [*Semantic Versioning 2.0.0*](papers/01-semver-2-0-0.md) | What exactly does a major bump promise — and why does the promise evaporate below `1.0.0`? | `working` |
-| [*PEP 440*](papers/02-pep-440.md) | Python does not use semver. What does `uv` actually obey when it picks a file? | `production` |
 
 ---
 

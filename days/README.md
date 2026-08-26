@@ -43,15 +43,17 @@
    senior engineer leaves on that code, and the question an interviewer asks to find out whether you
    have really used it. Strong fundamentals and advanced technique are the same page, in that order.
 
-7. **Where an idea came from a document, the document is taught too.** *(plan v2.2.0 — Principle 19)*
-   A transformer is a paper. A version number is a specification. Floating point is a standard. Where
-   a day rests on one of those, it is not name-dropped in a footnote — it gets its **own document in
-   `papers/`**, taught from zero like anything else, with the same story, mechanism, failure text and
-   production section, plus three more: **the citation** (title, year, identifier, canonical URL, and
-   which figure to actually open), **a runnable demo** that implements that document's one
-   contribution and nothing else, and **what did not survive** — the part of it that production
-   reversed. Sources are cited by title and identifier, never by author. A day that rests on no
-   primary source says so, in every part's `paper: none`.
+7. **Plain words, real scenes, correct sentences.** *(plan v2.3.0 — Principle 20)*
+   You are learning something new, so the writing must never be the hard part. Every **story** opens
+   on something an ordinary person has actually lived through — a shared shopping list that changed
+   while nobody was looking, a name spelled two ways in the same file — and it keeps using that one
+   small example all the way through the document. Short, common words beat impressive ones, and a
+   technical term is either defined the moment it first appears or not used yet. Sentences are
+   complete and punctuated: a comma where the sentence pauses, a full stop where it ends, one idea
+   at a time. **A sentence you have to read twice is a bug in the doc**, exactly like an unexplained
+   line of code. Where an idea came from one dated document — a paper, a PEP, a standard — that
+   document is cited in the sentence that needs it, by title, year, identifier and URL, and never by
+   author.
 
 ---
 
@@ -67,9 +69,6 @@ days/day-NN-<slug>/    # the slug names the day's subject
 │   │   └── 1.2-<slug>.md
 │   └── 02-<slug>/     # section 2
 │       └── 2.1-<slug>.md
-├── papers/            # THE SOURCES — one document per primary source, numbered from 01
-│   ├── 01-<slug>.md
-│   └── 02-<slug>.md
 └── lab/               # you create this; `./m scaffold NN` makes the folder
 ```
 
@@ -79,21 +78,17 @@ A real one:
 days/day-01-pins/
 ├── LESSON.md
 ├── CHECKLIST.md
-├── parts/
-│   ├── 01-versions/       # what a version number actually is
-│   ├── 02-pypi-index/     # reading the truth from the package index
-│   ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
-│   └── 04-drift/          # noticing when it decays
-└── papers/
-    ├── 01-semver-2-0-0.md # the document those numbers promise against
-    └── 02-pep-440.md      # the document uv actually obeys
+└── parts/
+    ├── 01-versions/       # what a version number actually is
+    ├── 02-pypi-index/     # reading the truth from the package index
+    ├── 03-freezing/       # writing that truth into pyproject.toml and the lock
+    └── 04-drift/          # noticing when it decays
 ```
 
-**Read the hub first, then the parts in numerical order, then the papers.** The parts teach the
-idea; the papers are where it came from, and they land better once you have used it. The hub's §2 map is the table of contents
-and tells you what each section number means for that day — but you should be able to guess from
-the folder names alone, and that is the point of them. `./m parts 1` prints the same tree without
-opening anything.
+**Read the hub first, then the parts in numerical order.** The hub's §2 map is the table of
+contents, and it tells you what each section number means for that day — but you should be able to
+guess from the folder names alone, and that is the point of them. `./m parts 1` prints the same tree
+without opening anything.
 
 ### What `1.1`, `1.2`, `2.1` mean
 
@@ -130,7 +125,7 @@ and `./m depth NN` fails the day if any of them is missing.
 |---|---|
 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next` — machine-read. No duration field; see rule 5. |
 | **One-line answer** | the whole claim in one sentence, before anything else |
-| **The story** | a concrete scene — a person, a machine, a failure, a decision — with no jargon at all. The hook the definition hangs on. |
+| **The story** | a concrete, ordinary scene — a person, a machine, a mistake, a decision — with no jargon at all, using one small example the rest of the document keeps. The hook the definition hangs on. |
 | **The idea in plain language** | the concept from zero, every term defined the first time it appears, no code |
 | **Why Setu needs it** | the specific later day that breaks without this |
 | **The mechanism** | the runnable code, the derivation with every step shown, or the diagram |
@@ -177,7 +172,9 @@ Phase 15 an entire subject — deriving backpropagation — sat under one headin
 replaced that format with the hub-plus-`parts/` shape above, and the v1.0.0 lessons were **deleted
 rather than converted**: splitting a shallow page into shallower pages is not depth (plan Part 11.8),
 so every day is rewritten from the plan itself. Plan **v2.1.0** then gave every day and section
-folder a name, so the tree itself tells you what is in it.
+folder a name, so the tree itself tells you what is in it. Plan **v2.3.0** retired the `papers/`
+directory that v2.2.0 had added — a source is now cited inline, in the part that needs it — and put
+the writing itself under contract instead (rule 7 above).
 
 That means `days/` fills up gradually. `docs/TRACKER.md` is the honest picture of how far it has got,
 and `./m status` prints the one-line version.

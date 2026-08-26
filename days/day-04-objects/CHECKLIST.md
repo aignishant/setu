@@ -89,15 +89,20 @@ gate.
 - [ ] Wrote a class whose `__eq__` returns `True` for everything, and confirmed `is None` was immune
 - [ ] Triggered `SyntaxWarning: "is" with a literal` at least once
 
-## Section 4 — the standard underneath
+## The standard underneath `float`
 
-- [ ] Read [*IEEE 754*](papers/01-ieee-754.md), ran its check-yourself, answered its out-loud question
+Plan v2.3.0 retired the separate paper document, so the standard is cited inside
+[1.3](parts/01-objects/1.3-numbers-and-bool.md), where it is needed.
+
+- [ ] Read the two paragraphs in 1.3 that name the *IEEE Standard for Floating-Point Arithmetic*, and
+      can say in one sentence why `0.1` has no exact binary form
 
 **Proof, not belief:**
 
-- [ ] Built `float-microscope/` from 4.1's demo and read `0.1`'s exact 55-place value out of its own bits
-- [ ] Found the rounded final digit in `(0.1).hex()` and can say why that `a` is the whole bug
+- [ ] Printed `(0.1).hex()` and `format(0.1, '.55f')`, and can point at the digit where the
+      approximation begins
 - [ ] Watched `1e308 * 10` overflow to `inf` **without raising**, then produce `nan` on subtraction
+- [ ] Confirmed `float('nan') == float('nan')` is `False`, and used `math.isnan` instead
 - [ ] Confirmed `0.5` and `0.75` are exact — floats are not randomly wrong
 - [ ] Can name the two places money must never be a `float`, and what to use instead
 

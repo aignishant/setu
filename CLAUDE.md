@@ -1,7 +1,7 @@
 # Project Setu — Claude Code operating rules
 
 You are the daily instructor and pair-programmer for a 240-day Data Science + GenAI curriculum.
-The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.2.0**.
+The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.3.0**.
 The day map is `docs/CURRICULUM_INDEX_DS.md`. Progress is `docs/TRACKER.md`. Amendments are logged
 in `docs/CHANGELOG_PLAN_DS.md`.
 
@@ -33,17 +33,26 @@ Do not import material from other curricula.
   never met the idea can stand, define every term on first use, and carry it through to the
   real-system version: what changes at scale, what a senior reviewer says, what an interviewer
   probes. Basics and advanced technique are the same document, in that order.
-- **Teach the primary source (Principle 19).** Where an idea came from one dated document — a
-  paper, a specification, a standard — that document is taught in **its own document under the day's
-  `papers/`**, never summarised in a box inside the part that uses it. Every part declares `paper:`
-  in its frontmatter — `none` is a real answer, an absent key is not. Cite by title, year, permanent
-  identifier and canonical URL, **never by author**. A part may only cite an identifier its day has a
-  paper for; `./m depth` fails otherwise.
+- **Principle 19 is retired (v2.3.0).** There is no `papers/` directory, no paper document, and no
+  `kind:` or `paper:` key in a part's frontmatter. `./m depth` fails on any of them. A source is
+  cited **inline, in the sentence that needs it**: title · year · permanent identifier · canonical
+  URL, **never by author**, one or two sentences at most.
+- **Plain language, real scenes (Principle 20).** The prose is under contract now.
+  **The four story rules:** *ordinary, not clever* — open on something a normal person has lived
+  through (a shared shopping list that changed, a name spelled two ways in one file), never a trading
+  desk or a cluster; *one small example, all the way through* — three rows, not three million, and
+  the mechanism keeps using whatever the story picked up; *short, common words* — `use` not
+  `utilise`, `change` not `mutate` until the moment that term is defined; *true, not staged* — the
+  mistake people actually make, in the order they make it.
+  **The prose rules:** complete sentences, correctly punctuated — a comma where the sentence pauses,
+  a full stop where it ends, no run-ons, no dropped articles; define every term on first use or do
+  not use it yet; one idea per sentence. **A sentence the reader has to read twice is a bug in the
+  document, exactly like an unexplained line of code.**
 - If reality has changed vs. the plan, STOP, say so, and propose a plan amendment (Principle 14).
   Do not silently adapt.
 
 ## The day format (plan Part 11 — v2.0.0 split the day into parts, v2.1.0 named the folders,
-v2.2.0 added `papers/`)
+v2.3.0 retired `papers/` and put the prose under contract)
 
 ```
 days/day-NN-<slug>/          # the slug names the day's subject: day-01-pins
@@ -55,9 +64,6 @@ days/day-NN-<slug>/          # the slug names the day's subject: day-01-pins
 │   │   └── 1.2-<slug>.md
 │   └── 02-<slug>/
 │       └── 2.1-<slug>.md
-├── papers/                  # THE SOURCES — one doc per primary source, numbered from 01
-│   ├── 01-<slug>.md
-│   └── 02-<slug>.md
 └── lab/                     # the learner's own code
 ```
 
@@ -82,15 +88,11 @@ Real example — `days/day-01-pins/parts/` is `01-versions/`, `02-pypi-index/`, 
 - **Every part document carries all ten required sections in order**: frontmatter · one-line
   answer · **the story** · the idea in plain language · why Setu needs it · the mechanism · line by
   line · when it breaks · **in production** · check yourself. See plan Part 11.4.
-- **Every paper document carries thirteen**: those ten, plus **the citation** (after the one-line
-  answer), **the demo** (after line-by-line) and **what did not survive** (before in production).
-  Papers are flat in `papers/`, numbered `01-<slug>.md`, with `kind: paper` and `part: "P1"`.
-  A `kind: paper` file inside `parts/` is a failure — wrong directory.
-- **A paper's demo is a runnable end-to-end mini project implementing that paper's one contribution
-  and nothing else**: a named folder, every file shown in full, one command, **real pasted output**,
-  and a closing sentence naming what it deliberately leaves out. Never invented output.
-- **The story comes first and carries no jargon** — a concrete scene, a person, a failure, a
-  decision. It is the hook the definition hangs on, not decoration.
+- **Part frontmatter is eight keys**: `day`, `part`, `title`, `ids`, `level`, `prerequisites`,
+  `prev`, `next`. No `kind:`, no `paper:`, no duration field of any kind.
+- **The story comes first, carries no jargon, and is ordinary** — a scene a normal person has lived
+  through, with one small example the rest of the document keeps using. It is the hook the
+  definition hangs on, not decoration. See Principle 20 above for all four story rules.
 - **`In production` is not optional.** A part that shows the idea working on ten rows and never says
   what happens at ten million has taught half the subject.
 - **Every part declares a `level`** — `foundation` · `working` · `production` — and a day climbs.
@@ -122,6 +124,9 @@ Real example — `days/day-01-pins/parts/` is `01-versions/`, `02-pypi-index/`, 
   depth — see Part 11.8.
 - Storytelling is the default register: a scene before an abstraction, every time. The reader is
   learning this to work on production systems, so no idea stops at the toy example.
+- **Write it the way you would explain it out loud to a friend who is not a programmer** — then add
+  the precision, not the vocabulary. Read every paragraph back before moving on; if it needs a second
+  pass to parse, rewrite it (Principle 20).
 - **No person names, no course/creator brand names.** This is a generic, self-contained curriculum
   and promotes nobody. Never name an instructor, author, channel, academy, bootcamp or training
   company — in a lesson, a checklist, a docstring, a commit message or a doc. Say

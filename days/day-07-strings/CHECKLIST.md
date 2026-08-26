@@ -134,15 +134,19 @@ opposite directions — variants collapse to one key, distinct papers stay disti
 - [ ] Watched an unescaped `c++` raise `re.error`, then fixed it with `re.escape`
 - [ ] **Timed `(a+)+$` at two input lengths four characters apart** and saw the exponential blow-up
 
-## The paper — `papers/`
+## The standard underneath normalisation
 
-- [ ] Read [*UAX #15*](papers/01-uax-15.md), ran its check-yourself, answered its out-loud question
+Plan v2.3.0 retired the separate paper document, so the annex is cited inside
+[4.2](parts/04-normalising/4.2-unicode-normalisation.md), where it is needed.
+
+- [ ] Opened *Unicode Standard Annex #15* at <https://www.unicode.org/reports/tr15/> and found the
+      table naming the four normalisation forms
 
 **Proof, not belief:**
 
-- [ ] Built `nfd-from-scratch/` from the paper's demo and watched all nine cases agree with `unicodedata`
-- [ ] Watched the Hangul syllable break the from-scratch decomposer, and can say why the table is empty for it
-- [ ] Can name which two normalization forms lose information, and exactly what they lose
+- [ ] Printed the code points of both spellings of `é` and watched the lengths differ by one
+- [ ] Ran all four forms over `"ﬁ"` and can say which two changed it and which two left it alone
+- [ ] Can name which two normalisation forms lose information, and exactly what they lose
 - [ ] Can say which form to store and which form to build a dedup key with
 
 ---

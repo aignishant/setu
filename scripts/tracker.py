@@ -5,9 +5,8 @@ Single source of truth for the day list is the curriculum index; this script nev
 invents a day. Status is read from the filesystem and the checklists, so the tracker
 cannot drift from reality.
 
-Under plan v2.1.0 a day counts as written only when it has the hub *and* a non-empty
-parts/ directory of sub-topic documents (Principle 16, plan Part 11), plus the primary sources
-it teaches in papers/ (Principle 19).
+Under plan v2.3.0 a day counts as written only when it has the hub *and* a non-empty
+parts/ directory of sub-topic documents (Principle 16, plan Part 11).
 
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
     uv run python scripts/tracker.py --summary  # one-line progress, no file written
@@ -44,7 +43,6 @@ class Day:
     open_boxes: int = 0
     folder: str = ""
     parts: int = 0
-    papers: int = 0
 
 
 @dataclass
@@ -109,9 +107,6 @@ def inspect(day: Day) -> Day:
     day.folder = folder.relative_to(ROOT).as_posix()
     parts_dir = folder / "parts"
     day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
-    # v2.2.0: primary sources are taught in the day's own papers/ directory, beside parts/.
-    papers_dir = folder / "papers"
-    day.papers = len(list(papers_dir.glob("*.md"))) if papers_dir.is_dir() else 0
     # v2.0.0 onward: a hub without parts/ is not a written day.
     day.written = (folder / "LESSON.md").is_file() and day.parts > 0
     checklist = folder / "CHECKLIST.md"
@@ -147,7 +142,6 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "written": sum(d.written for d in all_days),
         "complete": sum(d.complete for d in all_days),
         "parts": sum(d.parts for d in all_days),
-        "papers": sum(d.papers for d in all_days),
     }
     stats["pending"] = stats["total"] - stats["written"]
     pct = 100 * stats["written"] / stats["total"]
@@ -166,19 +160,18 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "(and automatically by `./m done N`) from `docs/CURRICULUM_INDEX_DS.md` "
         "plus what is actually on disk.",
         "",
-        "> **Plan v2.1.0.** A day counts as *written* only when it has a hub **and** a non-empty "
+        "> **Plan v2.3.0.** A day counts as *written* only when it has a hub **and** a non-empty "
         "`parts/` directory (Principle 16 · plan Part 11). Folders are named for their subject — "
         "`days/day-NN-<slug>/parts/NN-<slug>/` — so this table and the file tree read the same "
-        "way. The v1.0.0 single-file lessons were deleted rather than converted, so `days/` "
-        "refills one rewritten day at a time.",
+        "way. v2.3.0 retired the `papers/` directory: a source is cited inline, in the part that "
+        "needs it, and the words themselves are now part of the contract (Principle 20).",
         "",
         "## Progress",
         "",
         "| | Count | Of total |",
         "|---|---|---|",
-        f"| 📄 Days written in the v2.1.0 shape | **{stats['written']}** | {pct:.1f}% |",
+        f"| 📄 Days written in the v2.3.0 shape | **{stats['written']}** | {pct:.1f}% |",
         f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
-        f"| 📜 Primary sources taught in `papers/` | **{stats['papers']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",
         f"| ⬜ Still to write | **{stats['pending']}** |"
@@ -271,7 +264,7 @@ def main() -> int:
     if "--summary" in sys.argv:
         print(
             f"Setu: {stats['written']}/{stats['total']} days written "
-            f"({stats['parts']} sub-topic docs, {stats['papers']} papers), "
+            f"({stats['parts']} sub-topic docs), "
             f"{stats['complete']} completed, {stats['pending']} to go."
         )
         return 0

@@ -7,9 +7,8 @@ ids: ["PY-06"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 14
-papers: 1
 generated: "2026-08-25"
 status: not-started
 lab_scaffolded: false
@@ -35,6 +34,18 @@ one chained expression*, and that normaliser is today's deliverable.
 ---
 
 ## §1 The story
+
+A guest list with the same person on it four times: `Priya Sharma`, `priya sharma`,
+`Priya Sharma ` and `Priya  Sharma`.
+
+Anybody standing at the door reads those as one guest and would not even notice the differences. A
+computer comparing them letter by letter reads four different guests, and it is not being stupid — it
+is being exact, and those four really are four different pieces of text.
+
+That gap, between *the same person* and *the same string*, is where today's whole subject lives. It
+is also where the day gets nasty, because the differences that cause it are usually **invisible**. A
+trailing space leaves no mark. Two spellings of the same accented letter look identical in every font
+ever made. You cannot debug what you cannot see.
 
 Two strings that will not compare equal.
 
@@ -125,15 +136,6 @@ data.
 | [4.1 The title normaliser, from scratch](parts/04-normalising/4.1-the-title-normaliser.md) | What are the six steps, and why in that order? | `production` |
 | [4.2 Unicode normalisation](parts/04-normalising/4.2-unicode-normalisation.md) | How can two strings render identically and have different lengths? | `production` |
 | [4.3 Methods before regex](parts/04-normalising/4.3-methods-before-regex.md) | Where exactly is the boundary between a pattern and a fixed string? | `production` |
-
-### The paper — `papers/`
-
-`4.2` uses `unicodedata.normalize` and moves on. The annex that defines those four form names — and
-decides which two of them delete information — is taught as its own document.
-
-| Paper | What it answers | Level |
-|---|---|---|
-| [*UAX #15* — Unicode Normalization Forms](papers/01-uax-15.md) | Why are two identical-looking strings unequal, and which normal form is safe to store? | `production` |
 
 ---
 

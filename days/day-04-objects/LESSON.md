@@ -7,9 +7,8 @@ ids: ["PY-01", "PY-02"]
 principles: ["P1 build daily", "P2 from scratch before library", "P3 one concept one day", "P6 the notebook is a scratchpad", "P7 evals before features", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 12
-papers: 1
 generated: "2026-08-24"
 status: not-started
 lab_scaffolded: false
@@ -35,42 +34,51 @@ explains most of the surprising things Python will do to you for the next eight 
 
 ## §1 The story
 
-Someone learning Python writes two lines that look like the same line.
+There is one shopping list stuck to the fridge, and two people live in the house.
 
-```text
-y = x       # then y = y + 1     ->  x is unchanged
-b = a       # then b.append(4)   ->  a changed
-```
+If Priya tells her flatmate "the list is on the fridge", and the flatmate walks over and writes *milk*
+at the bottom, then Priya sees milk. She did not write it. It is there because there was only ever one
+piece of paper and both of them were talking about it.
 
-They spend twenty minutes convinced the language is inconsistent. It is not. Both lines did exactly
-the same thing — made a second name for one object — and what differed was the *next* line: one built
-a new object and moved a label onto it, the other reached into the object and changed it.
+If instead Priya copies the list onto a fresh sheet, takes the fresh sheet to the shop and writes
+*milk* there, the fridge list has no milk on it. Two pieces of paper now. She wrote on the other one.
 
-That single distinction, once it is clear, dissolves a whole catalogue of otherwise unrelated
-mysteries.
+Nothing about the words changed. Both times somebody said "the list" and both times somebody wrote
+*milk*. What changed is whether there was **one piece of paper with two people looking at it, or two
+pieces of paper**.
 
-A function sorts the list you passed it and your caller's data comes back reordered. A "backup" made
-with `.copy()` turns out to contain the same dictionaries as the original, so the backup changes when
-the data does. A validation helper's warnings accumulate across calls all afternoon, and a dashboard
-shows data quality apparently collapsing when nothing is wrong. A grid built with `[[0] * 3] * 3` has
-three rows that are one row. A status check written `if code is 200` passes every test and fails in
-production, because the tests used literals and production parses input. A cache key that is a list
-raises, gets "fixed" by converting to a string, and quietly stops matching queries whose terms are in a
-different order.
+Today is that sentence, and its consequences. Python never copies a piece of paper unless you ask it
+to, and it will happily let two names, or a name and a function's parameter, mean the same sheet. So
+the only question that ever matters is: did somebody **write on the sheet**, or did they **swap in a
+new one**?
 
-Six bugs. One idea: **an object has an identity, a name is only a label, and some objects can be
-changed while others cannot.**
+Once that question is in your head, a whole pile of unrelated-looking bugs turn out to be one bug:
 
-The day is arranged so that idea arrives first and every consequence follows from it. Section 1 is what
-an object is — identity, type, value — and the three built-in types whose behaviour is decided by it:
-integers that are exact, floats that are approximations, strings that cannot change. Section 2 is the
-four containers, what "in place" really means, and the two things that go wrong when several names find
-the same object: aliasing and the copy that only went one level deep. Section 3 is the synthesis — the
-two famous traps that exist only because identity and mutability are both real.
+- A function puts your list in order and your own copy comes back reordered, because it never had a
+  copy — it had your sheet.
+- A "backup" made with `.copy()` changes whenever the original does, because the copy duplicated the
+  folder and not the documents inside it.
+- A helper collecting warnings keeps yesterday's warnings, because everybody was handed the same
+  sheet of paper.
+- A grid built with `[[0] * 3] * 3` has three rows that are one row wearing three hats.
+- A status check written `if code is 200` passes every test and fails on real traffic, because the
+  tests typed the number in and the traffic parsed it from text.
+- A cache key that is a list is refused, gets "fixed" by turning it into text, and quietly stops
+  matching searches whose words are in a different order.
 
-Nothing here is advanced, and everything here is load-bearing. Day 21's NumPy views, Day 26's pandas
-Copy-on-Write, Day 76's leakage-proof pipeline and Day 192's checkpointed graph state are all this day,
-at a scale where getting it wrong is expensive.
+Six bugs, one idea: **every value lives somewhere, a name is only a label pointing at it, and some
+values can be written on while others cannot.**
+
+The day is arranged so that idea arrives first and everything else follows from it. Section 1 is what
+a value actually is — where it lives, what kind of thing it is, what it holds — and the three
+everyday types whose behaviour that decides: whole numbers that are exact, decimals that are
+approximations, and text that cannot be written on. Section 2 is the four containers, what "written
+on" really means, and the two things that go wrong when several names find the same one. Section 3 is
+where the two ideas meet, which is where the famous traps live.
+
+Nothing here is advanced, and all of it holds weight later. Day 21's NumPy views, Day 26's pandas
+Copy-on-Write, Day 76's leak-proof pipeline and Day 192's saved graph state are this day again, at a
+size where getting it wrong is expensive.
 
 ```mermaid
 flowchart LR
@@ -87,8 +95,9 @@ flowchart LR
 **What the section numbers mean today.** This is a `lab` day with two IDs, so the sections are one per
 ID plus a synthesis: **1.x** is `PY-01` — what an object is and the three scalar types built on that;
 **2.x** is `PY-02` — the container types and what mutability does to them; **3.x** is where the two
-meet, which is where the famous bugs live. The published standard that decided how one of those
-scalar types behaves is not a section — it lives in [`papers/`](papers/) (Principle 19).
+meet, which is where the famous bugs live. One of those scalar types, `float`, behaves the way it does
+because of a published standard rather than a Python decision; [1.3](parts/01-objects/1.3-numbers-and-bool.md)
+names it where it matters.
 
 ### Section 1 — objects, and the scalar types (`PY-01`)
 
@@ -116,15 +125,6 @@ scalar types behaves is not a section — it lives in [`papers/`](papers/) (Prin
 |---|---|---|
 | [3.1 The mutable default argument, reproduced then fixed](parts/03-identity-trap/3.1-the-mutable-default-argument.md) | When exactly is `[]` in a parameter list evaluated, and how many times? | `production` |
 | [3.2 `is` versus `==`, and why interning is not a promise](parts/03-identity-trap/3.2-is-versus-equals.md) | Why does `code is 200` pass every test and fail in production? | `production` |
-
-### The paper — `papers/`
-
-`int` is Python's own design. `float` is not: it is a forty-year-old published standard that every
-CPU implements, and the surprises in 1.3 are its clauses, not Python's choices.
-
-| Paper | What it answers | Level |
-|---|---|---|
-| [*IEEE 754* — the standard that decided `0.1`](papers/01-ieee-754.md) | Where does `0.30000000000000004` actually come from — and why is `nan != nan` required rather than merely odd? | `production` |
 
 ---
 

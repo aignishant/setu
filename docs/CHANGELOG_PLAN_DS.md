@@ -10,6 +10,70 @@ code or lesson changes. Newest first.
 
 ---
 
+## v2.3.0 — 2026-08-26 — papers out, prose in
+
+**Trigger.** A read-through of the first four written days (0–3) found two problems that no check
+could see, and one of them was made worse by v2.2.0.
+
+The first is the writing itself. *The story* section is the one a reader meets before they have any
+vocabulary, and several of them opened on scenes a beginner has never been in, used the technical
+word before it was defined, and ran sentences together without the punctuation that tells a reader
+where to breathe. That is not a small stylistic complaint: a reader who has to decode the prose has
+less attention left for the idea, and the idea is the whole point. Nothing in the contract said
+anything about the words, so nothing caught it.
+
+The second is `papers/`. v2.2.0 added a whole second class of document — thirteen sections, a
+runnable demo, a citation block — beside every day. On Days 1, 4, 7 and 8 that produced six long
+documents about specifications, sitting next to parts about version numbers, floating point,
+`for` loops and dictionaries. A reader in Phase 1 does not need IEEE 754-2019 taught as a subject in
+order to understand why `0.1 + 0.2` is not `0.3`; they need one honest sentence naming the standard,
+inside the part that already has their attention. The effort that went into the paper documents was
+effort that did not go into the parts. **The plan is amended rather than quietly ignored** (Principle
+14), because `./m depth` enforced the paper contract and would otherwise have to be worked around.
+
+**Amendment.**
+
+- **Principle 19 (teach the primary source) is retired.** The `papers/` directory, the paper
+  document, its thirteen sections, its demo project, and the `kind:` and `paper:` frontmatter keys
+  are all removed from the contract.
+- **A source is cited inline instead.** Where a part rests on one dated document, that document is
+  named in the sentence that needs it, by **title · year · permanent identifier · canonical URL**,
+  and — unchanged from v2.2.0 — **never by author, never "et al.", never by lab**. One or two
+  sentences about what the document decided is the whole budget. A part that turns into a summary of
+  a specification has stopped teaching its own idea.
+- **New Principle 20 — plain language, real scenes.** The words are now part of the contract.
+- **The four story rules** (Part 11.4): *ordinary, not clever* — the scene is a shared shopping
+  list or a misspelled name, never a trading desk; *one small example, all the way through* — three
+  rows, not three million, and the mechanism keeps using whatever the story picked up; *short, common
+  words* — the technical term waits for §4, where it is defined; *true, not staged* — the mistake
+  people actually make, in the order they actually make it.
+- **The prose rules** (Part 11.4): complete sentences, correct punctuation, define on first use, one
+  idea per sentence, and a hard rule that **a sentence the reader has to read twice is a defect**.
+- **Part frontmatter is now eight keys**: `day`, `part`, `title`, `ids`, `level`, `prerequisites`,
+  `prev`, `next`. Hub frontmatter loses `papers`.
+- `scripts/depth_check.py` drops every paper check and gains two migration checks: a `papers/`
+  directory inside a day folder, and a leftover `kind:` or `paper:` key in a part's frontmatter.
+- `scripts/tracker.py` stops counting papers, and `docs/TRACKER.md` loses that row.
+
+**Migration.** Six paper documents were deleted — Day 1 (*Semantic Versioning 2.0.0*, *PEP 440*),
+Day 4 (*IEEE 754*), Day 7 (*UAX #15*), Day 8 (`listsort.txt`, *PEP 456*). Every one of them named a
+source that the surrounding parts already taught, so the citations moved inline into those parts and
+nothing was lost. All 128 part documents dropped their `kind:` and `paper:` keys; all ten hubs moved
+to `plan_version: "v2.3.0"` and dropped `papers:`.
+
+Days 4–10 were then rewritten to Principle 20 — every story replaced with an ordinary scene, every
+document swept for grammar and punctuation — and Day 10 (`PY-10`, functions and the first
+`src/setu/` module) was written for the first time. Days 0–3 keep their teaching; only their
+frontmatter, their citations and their hub version changed.
+
+**Explicitly unchanged.** No day, ID, phase boundary, gate, pin, dataset or principle 1–18 is
+touched. The 240-day arc and all 276 IDs are identical to v2.2.0. The ten required part sections, the
+twelve hub sections, the `<section>.<subtopic>` numbering rule, the folder-naming rule, the `level`
+ladder and the no-clocks rule are all identical. This amendment removes a document type and adds a
+writing standard; it moves nothing in the curriculum.
+
+---
+
 ## v2.2.0 — 2026-08-26 — sources become subjects
 
 **Trigger.** With ten days written, the plan taught ideas that came from named, dated documents and

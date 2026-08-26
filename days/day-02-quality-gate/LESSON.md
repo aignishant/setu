@@ -7,9 +7,8 @@ ids: []
 principles: ["P1 build daily", "P4 pin everything", "P5 zero budget", "P6 the notebook is a scratchpad", "P7 evals before features", "P11 blast radius", "P16 depth over density", "P17 no clocks", "P18 zero to production"]
 kind: lab
 plan: setu
-plan_version: "v2.2.0"
+plan_version: "v2.3.0"
 parts: 14
-papers: 0
 generated: "2026-08-24"
 status: complete
 lab_scaffolded: false

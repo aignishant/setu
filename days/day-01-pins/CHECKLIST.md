@@ -76,17 +76,20 @@ Expected: the tool prints a table and exits **0**, `docs/PINS_DS.md` carries **t
 - [x] Read this repository's own amendment in `docs/CHANGELOG_PLAN_DS.md` and found its four parts
 - [x] Drafted a drift entry using the template, even though there is nothing to record yet
 
-## Section 5 — the documents underneath
+## The two documents underneath
 
-- [x] Read [*Semantic Versioning 2.0.0*](papers/01-semver-2-0-0.md), ran its check-yourself, answered its out-loud question
-- [x] Read [*PEP 440*](papers/02-pep-440.md), ran its check-yourself, answered its out-loud question
+Sections 1–4 are clauses of two published specifications. Plan v2.3.0 retired the separate paper
+document, so both are now cited inside the parts that rest on them, and read at their canonical URLs.
+
+- [x] Read *Semantic Versioning 2.0.0* (2013) at <https://semver.org/spec/v2.0.0.html>, and found the
+      clause that says a major bump is the authors' own admission of a break
+- [x] Read *PEP 440* (2013) at <https://peps.python.org/pep-0440/>, and found the clause that says
+      what `==` means when the released file carries a local version segment
 
 **Proof, not belief:**
 
-- [x] Built `semver-gate/` from 5.1's demo and watched it refuse `2.4.2` for a breaking change
-- [x] Built `pep440-match/` from 5.2's demo and watched every case agree with `packaging`
-- [x] Opened both specifications at their canonical URLs and found the clause each demo implements
-- [x] Watched `Version('1.0.0-alpha.1')` become `1.0.0a1` — a string rewritten by a document you had not read
+- [x] Watched `Version('1.0.0-alpha.1')` become `1.0.0a1` — a string rewritten by a document you had
+      not read
 - [x] Can state one rule where the two specifications **disagree**, and which one `uv` obeys
 
 ---
