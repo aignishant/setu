@@ -30,6 +30,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DAYS = ROOT / "days"
+PLAN = ROOT / "docs" / "00_MASTER_PLAN_DS_GENAI.md"
+INDEX = ROOT / "docs" / "CURRICULUM_INDEX_DS.md"
+
+# The one place the plan's version is written down. Every hub's frontmatter is checked against it
+# and so is the curriculum index, so a version bump is one edit here plus the documents themselves.
+PLAN_VERSION = "v2.3.0"
+
+# The index is the day list every other tool reads: the tracker builds from it, ./m brief projects
+# from it, and a day is written against it. It is generated from the plan's Part 4 and Part 5, so
+# when the plan moves and the index does not, every one of those tools is quietly wrong. Comparing
+# the two version stamps would only catch a forgotten edit to a stamp; these checks compare the
+# content, so the stamp means something.
+PLAN_PHASE_RE = re.compile(r"^\|\s*\*\*(\d+)\*\*\s*\|\s*(\d+)[–—-](\d+)\s*\|", re.M)
+INDEX_PHASE_RE = re.compile(r"^##\s+Phase\s+(\d+)\s+·\s+.+?·\s+Days?\s+(\d+)[–—-](\d+)\s*$", re.M)
+MATRIX_ID_RE = re.compile(r"^\|\s*([A-Z]{2,4}-\d+)\s", re.M)
+ANY_ID_RE = re.compile(r"[A-Z]{2,4}-\d+")
 
 KEBAB = r"[a-z0-9]+(?:-[a-z0-9]+)*"
 
@@ -369,8 +385,8 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
             report.fail(
                 "LESSON.md", f"frontmatter says parts: {declared}, parts/ holds {part_count}"
             )
-        if meta.get("plan_version", "").strip('"') != "v2.3.0":
-            report.fail("LESSON.md", "plan_version must be v2.3.0")
+        if meta.get("plan_version", "").strip('"') != PLAN_VERSION:
+            report.fail("LESSON.md", f"plan_version must be {PLAN_VERSION}")
 
     content = body(text)
     for number, name in HUB_SECTIONS:
@@ -459,6 +475,63 @@ def check_day(number: int) -> Report:
     return report
 
 
+def between(text: str, start: str, stop: str) -> str:
+    """The slice of `text` from the line starting `start` to the line starting `stop`."""
+    head = text.split(start, 1)
+    return head[1].split(stop, 1)[0] if len(head) > 1 else ""
+
+
+def check_index() -> list[str]:
+    """Repo-level: does the curriculum index still agree with the plan it was generated from?
+
+    Not per-day, so it runs once rather than inside check_day. Three questions, in the order
+    that makes a failure diagnosable: is the stamp current, do the phase day-ranges match, and
+    does every curriculum ID the matrices define actually reach a day.
+    """
+    problems: list[str] = []
+    if not INDEX.is_file() or not PLAN.is_file():
+        return ["docs/: the plan or the curriculum index is missing"]
+
+    plan_text = PLAN.read_text(encoding="utf-8")
+    index_text = INDEX.read_text(encoding="utf-8")
+
+    meta = frontmatter(index_text) or {}
+    stamped = meta.get("plan_version", "").strip('"')
+    if stamped != PLAN_VERSION:
+        problems.append(
+            f"docs/CURRICULUM_INDEX_DS.md: plan_version is {stamped or 'missing'}, "
+            f"plan is {PLAN_VERSION} - regenerate the index or correct the stamp"
+        )
+
+    plan_phases = {
+        int(m.group(1)): (int(m.group(2)), int(m.group(3)))
+        for m in PLAN_PHASE_RE.finditer(between(plan_text, "## Part 5", "## Part 6"))
+    }
+    index_phases = {
+        int(m.group(1)): (int(m.group(2)), int(m.group(3)))
+        for m in INDEX_PHASE_RE.finditer(index_text)
+    }
+    for phase in sorted(set(plan_phases) | set(index_phases)):
+        if plan_phases.get(phase) != index_phases.get(phase):
+            problems.append(
+                f"docs/CURRICULUM_INDEX_DS.md: phase {phase} spans "
+                f"{index_phases.get(phase, 'nothing')} but plan Part 5 says "
+                f"{plan_phases.get(phase, 'nothing')}"
+            )
+
+    plan_ids = set(MATRIX_ID_RE.findall(between(plan_text, "## Part 4", "## Part 5")))
+    index_ids = set(ANY_ID_RE.findall(index_text))
+    # One-directional on purpose: the index also carries ADR- deliverable IDs that the matrices
+    # never define, and those are not a fault. An ID the matrices define but no day claims is.
+    orphaned = sorted(plan_ids - index_ids)
+    if orphaned:
+        problems.append(
+            f"docs/CURRICULUM_INDEX_DS.md: {len(orphaned)} plan IDs reach no day - "
+            f"{', '.join(orphaned[:8])}{' …' if len(orphaned) > 8 else ''}"
+        )
+    return problems
+
+
 def written_days() -> list[int]:
     """Every day that has attempted the v2.0.0 shape, so an unwritten day is not a failure."""
     found: list[int] = []
@@ -473,10 +546,13 @@ def written_days() -> list[int]:
 
 def main(argv: list[str]) -> int:
     requested = [int(a) for a in argv if a.isdigit()]
+    # The index check is repo-level, so it runs on a full sweep and not when one day was named.
+    index_problems = [] if requested else check_index()
+
     days = requested or written_days()
     if not days:
         print("no day has a parts/ directory yet - nothing to check")
-        return 0
+        return 1 if index_problems else 0
 
     reports = [check_day(d) for d in days]
     failed = [r for r in reports if not r.ok]
@@ -489,9 +565,18 @@ def main(argv: list[str]) -> int:
             for failure in report.failures:
                 print(f"       - {failure}")
 
+    if index_problems:
+        print()
+        print(f"FAIL curriculum index  {len(index_problems)} problems")
+        for problem in index_problems:
+            print(f"       - {problem}")
+
     print()
     if failed:
         print(f"depth contract: {len(reports) - len(failed)}/{len(reports)} days pass")
+        return 1
+    if index_problems:
+        print(f"depth contract: all {len(reports)} checked days pass, but the index disagrees")
         return 1
     print(f"depth contract: all {len(reports)} checked days pass")
     return 0

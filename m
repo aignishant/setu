@@ -47,6 +47,17 @@ case "${1:-help}" in
       for F in "$S"*.md; do [ -f "$F" ] && echo "    $(basename "$F")"; done
     done
     ;;
+  brief)
+    # The day's working set, projected out of the plan instead of read from it whole.
+    # Writing a day used to mean opening the plan (92 KB), the index (23 KB), the tracker
+    # (34 KB) and two neighbouring days (485 KB) to find, in the end, two matrix rows and a
+    # list of what has already been taught. This prints those, and only those, copied
+    # verbatim with their source paths. Nothing here is generated, so it cannot invent a
+    # requirement the plan does not contain - which is the only reason it is safe to
+    # substitute for reading the plan.
+    [ -z "$DAY" ] && { echo "usage: ./m brief <day>"; exit 1; }
+    uv run python scripts/day_brief.py "$DAY"
+    ;;
   depth)
     if [ -n "$DAY" ]; then uv run python scripts/depth_check.py "$DAY"
     else uv run python scripts/depth_check.py; fi
@@ -64,6 +75,9 @@ case "${1:-help}" in
     ;;
   tracker)
     uv run python scripts/tracker.py
+    # Both files are projections of the same tree, so they are regenerated together. Letting
+    # one be refreshed without the other is how a generated file starts lying.
+    uv run python scripts/parts_index.py
     ;;
   check)
     uv run ruff check .
@@ -113,10 +127,11 @@ case "${1:-help}" in
 usage: ./m <command> [day]
 
   start N        point at day N's lesson
+  brief N        print day N's working set - its IDs, phase, gate and what is already taught
   parts N        list day N's sections and their part documents
   scaffold N     create the lab/ folder inside day N's folder
   depth [N]      run the depth contract over day N, or every written day
-  tracker        regenerate docs/TRACKER.md from the index and what is on disk
+  tracker        regenerate docs/TRACKER.md and days/INDEX.md from the index and what is on disk
   check          ruff + ruff format + lesson blocks + offline pytest + the depth contract
   gate           open every Phase 0 door for real - live calls, never run in CI
   status         one-line progress

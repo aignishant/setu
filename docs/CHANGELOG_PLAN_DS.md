@@ -10,6 +10,66 @@ code or lesson changes. Newest first.
 
 ---
 
+## v2.3.0a — 2026-08-30 — the working set, projected
+
+**Not a version bump.** No day, ID, phase, gate, pin, principle or part-contract section changed.
+The plan is still v2.3.0 and every hub's `plan_version` stays `v2.3.0`. This entry records
+tooling plus the two places in Part 11 that described that tooling and had to be corrected to
+stay true.
+
+**Trigger.** A measurement of what one day-writing session actually loads. The read set named by
+Step 1 of the day-setu skill — the plan (92 KB), the curriculum index (23 KB), the tracker
+(34 KB), and the two neighbouring written days it asks you to read for continuity (485 KB) —
+came to **660 KB, about 165 000 tokens**, and the thing it was all for was two rows of the Part 4
+matrix and a list of what had already been taught. Part 4 alone is 39% of the plan and holds 230+
+ID rows; a day needs two to six of them.
+
+**What was measured before anything was proposed.** Three suspicions were tested and two died.
+Overlap between `CLAUDE.md`, Part 11 and the day-setu skill was measured by 8-gram shingle at
+**0.7–6.8%** — they are three different compressions, not duplicates, so nothing was deduplicated.
+The ~30 KB `LESSON.md` hubs were suspected of teaching, but `depth_check.py` already fails a hub
+that teaches and all eleven days pass, so they were left alone.
+
+**The change.**
+
+- `scripts/day_brief.py`, run as `./m brief NN`. Prints one day's working set: its IDs with their
+  full Part 4 rows, the phase theme and gate from Part 5, the part manifests of the two previous
+  written days, what is already in `src/setu/`, and a warning when the previous day's checklist
+  has open boxes. **Every line is copied verbatim from a source file and labelled with the path
+  it came from.** It is the plan filtered, not the plan summarised.
+- `scripts/parts_index.py`, wired into `./m tracker`, generates `days/INDEX.md`: one row per part
+  across every written day, with its `level`, its IDs and a link, plus an inverted
+  curriculum-ID-to-parts table. It is projected from the eight frontmatter keys the depth
+  contract already mandates, so it cannot disagree with the parts it indexes.
+- `./m tracker` now regenerates both files together. Refreshing one without the other is how a
+  generated file starts lying.
+- Part 11.9 gains the repo-level index check described below; Part 11.9's closing note and the
+  companion-file list at the top of the plan now name `days/INDEX.md` and `./m brief`.
+- The day-setu skill's Step 1 is rewritten around the brief, with the rule that governs it stated
+  explicitly: **a projection may replace a lookup; it may never replace a judgement.** Part 11 is
+  still read in full, every time. The brief deliberately does not contain it.
+
+**The lint findings this turned up, each verified before it was believed.**
+
+- A stale `TRACKER.md` at the repository root, 31 KB, tracked by Git. All 24 references in the
+  repository point at `docs/TRACKER.md`; `scripts/tracker.py` writes only there. Its legend still
+  defined a *written* day the pre-v2.0.0 way and its "Next up" pointed at Day 128. Deleted.
+- `docs/CURRICULUM_INDEX_DS.md` was stamped `plan_version: "v1.0.0"`. Its content was checked
+  against v2.3.0 and **agrees**: all 30 phase day-ranges match Part 5 and all 303 matrix IDs
+  reach a day, which is why v2.0.0–v2.3.0 (document architecture, not the day map) left it
+  correct. Stamp corrected to `v2.3.0` and a `verified:` date added beside `generated:`.
+- The same file claimed "every day cites ≥1 ID", which is false for the five days that build the
+  project rather than teach a topic — Days 1–3 and 239–240. The claim now states the exception.
+- `./m depth`, on a full sweep only, now fails when the index disagrees with the plan: phase
+  ranges against Part 5, matrix-ID coverage, and the version stamp. It went red on the stamp
+  before the stamp was fixed, which is the only reason it is worth having.
+
+**Result.** The same session's read set drops from ~660 KB to ~66 KB, about **165 000 tokens to
+16 500 — a 90% cut** — with `CLAUDE.md`, the skill and Part 11 all still loaded whole and
+unedited in substance. What was removed was lookup, not judgement.
+
+---
+
 ## v2.3.0 — 2026-08-26 — papers out, prose in
 
 **Trigger.** A read-through of the first four written days (0–3) found two problems that no check

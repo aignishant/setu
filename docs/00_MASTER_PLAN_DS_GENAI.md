@@ -19,7 +19,9 @@ doc_architecture: "hub + parts/, folders named for their subject, plain language
 > **Stack validated against live PyPI on 2026-08-21.** Every version in Part 2 was read from
 > `pypi.org/pypi/<pkg>/json` on that date, not from memory. Re-verify on your Day 1, then freeze
 > (Principle 4). Companion files: `docs/PINS_DS.md` · `docs/CURRICULUM_INDEX_DS.md` ·
-> `docs/CAPSTONE_SETU.md`.
+> `docs/CAPSTONE_SETU.md`. Generated, never hand-edited: `docs/TRACKER.md` · `days/INDEX.md`
+> (both by `./m tracker`), and `./m brief NN`, which projects one day's working set out of
+> Part 4, Part 5 and the index rather than making you read all three.
 
 ---
 
@@ -1135,10 +1137,25 @@ teaching, or a `parts` frontmatter count that disagrees with the directory.
 Since v2.3.0 it also fails on **a `papers/` directory inside a day folder**, and on a leftover
 `kind:` or `paper:` key in a part's frontmatter. Both are unfinished migrations away from v2.2.0.
 
+On a **full sweep** — `./m depth` with no day number — it additionally checks one repo-level
+invariant that belongs to no single day: that `docs/CURRICULUM_INDEX_DS.md` still agrees with this
+plan. It compares the phase day-ranges against Part 5, checks that every curriculum ID defined in
+the Part 4 matrices reaches at least one day, and checks the index's `plan_version` stamp against
+the plan's. The index is what the tracker, `./m brief` and every written day are built from, so an
+index that has silently fallen behind the plan is wrong everywhere at once. Naming one day
+(`./m depth 7`) skips this check, because it is not that day's failure to fix.
+
 What it cannot check is whether an explanation is any good, or whether a story is one a reader has
 actually lived. That is what §11.8 and Principle 20 are for, and they are reviewed by reading.
 `docs/TRACKER.md` reports the part count of every written day, so a thin day is visible from the
-progress table alone.
+progress table alone. `days/INDEX.md` lists every written part with its `level` and its IDs, so the
+question this contract's standalone test really asks — *has this been taught already, and where do
+I link to?* — is answerable without opening a day.
+
+**On reading this contract.** `days/INDEX.md`, `docs/TRACKER.md` and `./m brief NN` are
+projections: every line in them is copied from a source file, so they may stand in for reading
+those sources. This Part is not. It is the standard a day is judged against, it is read in full
+before a day is written, and it is never summarised or projected to save context.
 
 ### 11.10 Amendment record
 

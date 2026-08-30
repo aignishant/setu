@@ -34,16 +34,31 @@ subject, prose under contract)
 
 ## Step 1 — gather
 
-1. Read the plan (Part 4 matrices, Part 5 phase map, **Part 11 depth contract**) and
-   `docs/CURRICULUM_INDEX_DS.md`. Collect every ID slotted to Day $ARGUMENTS, the phase theme, the
-   day's `kind`, and the gate that phase feeds.
-2. Read `docs/TRACKER.md` for what is already written and at what depth.
-3. Read `days/` for what exists. Build on prior days' code in `src/setu/` — never duplicate it.
-   If the previous day's `CHECKLIST.md` has unticked boxes, warn me and ask before proceeding.
-4. There is no previous draft to work from — the v1.0.0 lessons were deleted, deliberately. Every
+1. **Run `./m brief $ARGUMENTS` first.** It prints this day's working set — every ID slotted to
+   the day with its full Part 4 matrix row, the phase theme, the day's `kind`, the gate that
+   phase feeds, the part manifests of the two neighbouring written days, what is already in
+   `src/setu/`, and a warning if the previous day's `CHECKLIST.md` has unticked boxes. Every
+   line of it is copied verbatim from the plan, the index and the parts' own frontmatter —
+   nothing in it is generated — so it is the plan, filtered, not a summary of the plan.
+   **This replaces reading Part 4, Part 5, `docs/CURRICULUM_INDEX_DS.md` and `docs/TRACKER.md`
+   whole.** Looking a day's IDs up by hand costs about 150 000 tokens and finds two table rows.
+2. **Read `docs/00_MASTER_PLAN_DS_GENAI.md` Part 11 in full, every time. The brief does not
+   contain it and never will.** Part 11 is the depth contract — the standard the day is judged
+   against, not a fact to be looked up. Principle 20's prose rules and Part 11.4's ten required
+   sections are judgement, and judgement does not survive being projected into a table. If you
+   ever find yourself writing a day without having read Part 11 this session, stop and read it.
+3. Read `days/INDEX.md` — one row per written part across every day, with its level and IDs —
+   to find where an idea has already been taught, so you link to it rather than explaining it
+   twice (Part 11's standalone test). Then open **only the specific parts it points you at**,
+   for continuity of voice. Do not read neighbouring days whole; that is what the index is for.
+4. Build on prior days' code in `src/setu/` — never duplicate it.
+5. There is no previous draft to work from — the v1.0.0 lessons were deleted, deliberately. Every
    day is written fresh from the plan's matrices, the curriculum index, and the live documentation
-   you verify on the day. Read the neighbouring written days instead, for continuity of voice and to
-   see which ideas have already been introduced and can be linked rather than re-explained.
+   you verify on the day.
+
+> **The rule behind steps 1–3.** A projection may stand in for a lookup; it may never stand in
+> for the contract. `./m brief` and `days/INDEX.md` are generated files that copy — they can be
+> trusted because they cannot invent. Part 11 is prose that judges — read it, always, in full.
 
 ## Step 2 — plan the split (do this before writing prose)
 
@@ -169,7 +184,9 @@ subject, prose under contract)
     so every ```python block in a lesson must already be canonically formatted or `./m check` fails.
     Fix `ruff check` findings in lesson code by hand rather than silencing them: teaching code that
     the project's own linter rejects is a bug in the lesson.
-24. Run `uv run python scripts/tracker.py`.
+24. Run `./m tracker`. It regenerates `docs/TRACKER.md` **and** `days/INDEX.md` together — the new
+    day's parts do not exist for step 3 of the next day until the index has been rebuilt, so a day
+    that skips this makes the next day re-explain what it just taught.
 25. Finish by printing: today's IDs, the day's folder name, its section folder names, the part
     count, the running example every part shares, the demo command, and the request budget.
 
