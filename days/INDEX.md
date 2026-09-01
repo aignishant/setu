@@ -1,7 +1,7 @@
 ---
 name: parts-index
 plan: setu
-generated: "2026-08-30"
+generated: "2026-09-01"
 generator: scripts/parts_index.py
 ---
 
@@ -207,6 +207,63 @@ generator: scripts/parts_index.py
 | 3.2 | production | Designing `clean_title()` — the signature before the body | ["PY-10"] | [`03-the-module/3.2-designing-clean-title.md`](day-10-functions/parts/03-the-module/3.2-designing-clean-title.md) |
 | 3.3 | production | Pure functions and the seam a test needs | ["PY-10"] | [`03-the-module/3.3-pure-functions-and-the-seam.md`](day-10-functions/parts/03-the-module/3.3-pure-functions-and-the-seam.md) |
 
+## `day-11-iterators-and-generators` — 15 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Iterable and iterator — the roll and the slip | ["PY-11"] | [`01-iterators/1.1-iterable-and-iterator.md`](day-11-iterators-and-generators/parts/01-iterators/1.1-iterable-and-iterator.md) |
+| 1.2 | working | Building the reader by hand — a closure, then the protocol | ["PY-11"] | [`01-iterators/1.2-writing-next-by-hand.md`](day-11-iterators-and-generators/parts/01-iterators/1.2-writing-next-by-hand.md) |
+| 1.3 | working | Exhaustion, and the second loop that saw nothing | ["PY-11"] | [`01-iterators/1.3-exhaustion.md`](day-11-iterators-and-generators/parts/01-iterators/1.3-exhaustion.md) |
+| 1.4 | production | iter() with a sentinel — reading until a marker | ["PY-11"] | [`01-iterators/1.4-iter-with-a-sentinel.md`](day-11-iterators-and-generators/parts/01-iterators/1.4-iter-with-a-sentinel.md) |
+| 2.1 | foundation | yield — the function that pauses | ["PY-11"] | [`02-generators/2.1-yield-the-function-that-pauses.md`](day-11-iterators-and-generators/parts/02-generators/2.1-yield-the-function-that-pauses.md) |
+| 2.2 | working | A list against a generator, measured | ["PY-11"] | [`02-generators/2.2-a-list-against-a-generator.md`](day-11-iterators-and-generators/parts/02-generators/2.2-a-list-against-a-generator.md) |
+| 2.3 | production | Streaming a file line by line — the log you cannot hold | ["PY-11"] | [`02-generators/2.3-streaming-a-file.md`](day-11-iterators-and-generators/parts/02-generators/2.3-streaming-a-file.md) |
+| 2.4 | production | yield from, and generators as a pipeline | ["PY-11"] | [`02-generators/2.4-yield-from-and-the-pipeline.md`](day-11-iterators-and-generators/parts/02-generators/2.4-yield-from-and-the-pipeline.md) |
+| 2.5 | production | When a generator is the wrong tool | ["PY-11"] | [`02-generators/2.5-when-a-generator-is-wrong.md`](day-11-iterators-and-generators/parts/02-generators/2.5-when-a-generator-is-wrong.md) |
+| 3.1 | foundation | lambda — a function with no name | ["PY-12"] | [`03-lambda-and-map/3.1-lambda-a-function-with-no-name.md`](day-11-iterators-and-generators/parts/03-lambda-and-map/3.1-lambda-a-function-with-no-name.md) |
+| 3.2 | working | map, filter, and the iterator you printed by mistake | ["PY-12"] | [`03-lambda-and-map/3.2-map-and-filter-are-lazy.md`](day-11-iterators-and-generators/parts/03-lambda-and-map/3.2-map-and-filter-are-lazy.md) |
+| 3.3 | production | Where a lambda helps and where it hurts | ["PY-12"] | [`03-lambda-and-map/3.3-where-a-lambda-hurts.md`](day-11-iterators-and-generators/parts/03-lambda-and-map/3.3-where-a-lambda-hurts.md) |
+| 3.4 | production | reduce, any, all, and the short circuit | ["PY-12"] | [`03-lambda-and-map/3.4-reduce-any-and-all.md`](day-11-iterators-and-generators/parts/03-lambda-and-map/3.4-reduce-any-and-all.md) |
+| 4.1 | production | Ten functions, fully tested — the phase gate read as a list | ["PY-11", "PY-12"] | [`04-the-gate/4.1-ten-functions-fully-tested.md`](day-11-iterators-and-generators/parts/04-the-gate/4.1-ten-functions-fully-tested.md) |
+| 4.2 | production | The streaming reader textutils needed | ["PY-11", "PY-12"] | [`04-the-gate/4.2-the-streaming-reader.md`](day-11-iterators-and-generators/parts/04-the-gate/4.2-the-streaming-reader.md) |
+
+## `day-12-classes` — 13 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A class is a blank form, an instance is a filled copy | ["PY-13"] | [`01-the-blank-form/1.1-a-class-is-a-blank-form.md`](day-12-classes/parts/01-the-blank-form/1.1-a-class-is-a-blank-form.md) |
+| 1.2 | foundation | __init__ runs on an object that already exists, and self is just a parameter | ["PY-13"] | [`01-the-blank-form/1.2-init-and-self.md`](day-12-classes/parts/01-the-blank-form/1.2-init-and-self.md) |
+| 1.3 | working | Methods are functions that found their object | ["PY-13"] | [`01-the-blank-form/1.3-methods-find-their-object.md`](day-12-classes/parts/01-the-blank-form/1.3-methods-find-their-object.md) |
+| 1.4 | working | Instance attributes and class attributes — two different drawers | ["PY-13"] | [`01-the-blank-form/1.4-instance-and-class-attributes.md`](day-12-classes/parts/01-the-blank-form/1.4-instance-and-class-attributes.md) |
+| 1.5 | production | The class attribute everybody shares | ["PY-13"] | [`01-the-blank-form/1.5-the-shared-class-attribute.md`](day-12-classes/parts/01-the-blank-form/1.5-the-shared-class-attribute.md) |
+| 2.1 | working | __dict__ — where an attribute actually lives | ["PY-13"] | [`02-attribute-lookup/2.1-the-instance-dict.md`](day-12-classes/parts/02-attribute-lookup/2.1-the-instance-dict.md) |
+| 2.2 | working | Setting attributes from outside, and the typo that made a new one | ["PY-13"] | [`02-attribute-lookup/2.2-setting-attributes-from-outside.md`](day-12-classes/parts/02-attribute-lookup/2.2-setting-attributes-from-outside.md) |
+| 2.3 | production | __slots__ — the trade you make for a million objects | ["PY-13"] | [`02-attribute-lookup/2.3-slots-and-a-million-objects.md`](day-12-classes/parts/02-attribute-lookup/2.3-slots-and-a-million-objects.md) |
+| 2.4 | production | Your object and equality — two cards, one book | ["PY-13"] | [`02-attribute-lookup/2.4-your-object-and-equality.md`](day-12-classes/parts/02-attribute-lookup/2.4-your-object-and-equality.md) |
+| 3.1 | working | Designing Paper — the fields, and which are optional | ["PY-13"] | [`03-the-paper-object/3.1-designing-paper.md`](day-12-classes/parts/03-the-paper-object/3.1-designing-paper.md) |
+| 3.2 | production | Validation in __init__ — an object that cannot exist in a bad state | ["PY-13"] | [`03-the-paper-object/3.2-validation-in-init.md`](day-12-classes/parts/03-the-paper-object/3.2-validation-in-init.md) |
+| 3.3 | production | A method, or a function beside it? | ["PY-13"] | [`03-the-paper-object/3.3-method-or-function-beside-it.md`](day-12-classes/parts/03-the-paper-object/3.3-method-or-function-beside-it.md) |
+| 3.4 | production | When not to write a class | ["PY-13"] | [`03-the-paper-object/3.4-when-not-to-write-a-class.md`](day-12-classes/parts/03-the-paper-object/3.4-when-not-to-write-a-class.md) |
+
+## `day-13-inheritance-and-abstraction` — 14 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Inheritance — one form that starts from another | ["PY-14"] | [`01-inheritance/1.1-one-form-that-starts-from-another.md`](day-13-inheritance-and-abstraction/parts/01-inheritance/1.1-one-form-that-starts-from-another.md) |
+| 1.2 | working | super(), and the __init__ that has to run twice | ["PY-14"] | [`01-inheritance/1.2-super-and-the-init-that-runs-twice.md`](day-13-inheritance-and-abstraction/parts/01-inheritance/1.2-super-and-the-init-that-runs-twice.md) |
+| 1.3 | production | The MRO — what Python actually searches, in what order | ["PY-14"] | [`01-inheritance/1.3-the-mro.md`](day-13-inheritance-and-abstraction/parts/01-inheritance/1.3-the-mro.md) |
+| 1.4 | working | Overriding, and the method that broke its parent's promise | ["PY-14"] | [`01-inheritance/1.4-overriding-and-the-broken-promise.md`](day-13-inheritance-and-abstraction/parts/01-inheritance/1.4-overriding-and-the-broken-promise.md) |
+| 1.5 | production | Composition over inheritance — the question to ask first | ["PY-14"] | [`01-inheritance/1.5-composition-over-inheritance.md`](day-13-inheritance-and-abstraction/parts/01-inheritance/1.5-composition-over-inheritance.md) |
+| 2.1 | foundation | One name, three behaviours | ["PY-14"] | [`02-polymorphism/2.1-one-name-three-behaviours.md`](day-13-inheritance-and-abstraction/parts/02-polymorphism/2.1-one-name-three-behaviours.md) |
+| 2.2 | working | Duck typing, and the isinstance check you did not need | ["PY-14"] | [`02-polymorphism/2.2-duck-typing-and-isinstance.md`](day-13-inheritance-and-abstraction/parts/02-polymorphism/2.2-duck-typing-and-isinstance.md) |
+| 2.3 | production | Liskov in plain words — the substitution that must not surprise | ["PY-14"] | [`02-polymorphism/2.3-liskov-in-plain-words.md`](day-13-inheritance-and-abstraction/parts/02-polymorphism/2.3-liskov-in-plain-words.md) |
+| 3.1 | foundation | Public, _protected, __private — the convention that is not a lock | ["PY-15"] | [`03-encapsulation/3.1-public-protected-private.md`](day-13-inheritance-and-abstraction/parts/03-encapsulation/3.1-public-protected-private.md) |
+| 3.2 | working | Name mangling, and the attribute that vanished | ["PY-15"] | [`03-encapsulation/3.2-name-mangling.md`](day-13-inheritance-and-abstraction/parts/03-encapsulation/3.2-name-mangling.md) |
+| 3.3 | production | The invariant — encapsulation is about state, not secrecy | ["PY-15"] | [`03-encapsulation/3.3-the-invariant.md`](day-13-inheritance-and-abstraction/parts/03-encapsulation/3.3-the-invariant.md) |
+| 4.1 | working | abc.ABC and @abstractmethod — the class that refuses to be built | ["PY-15"] | [`04-abstraction/4.1-abc-and-abstractmethod.md`](day-13-inheritance-and-abstraction/parts/04-abstraction/4.1-abc-and-abstractmethod.md) |
+| 4.2 | production | BaseLoader → TextLoader, HTMLLoader — the loader family | ["PY-14", "PY-15"] | [`04-abstraction/4.2-the-loader-family.md`](day-13-inheritance-and-abstraction/parts/04-abstraction/4.2-the-loader-family.md) |
+| 4.3 | production | Protocol versus ABC — when to require nothing at all | ["PY-15"] | [`04-abstraction/4.3-protocol-versus-abc.md`](day-13-inheritance-and-abstraction/parts/04-abstraction/4.3-protocol-versus-abc.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -223,4 +280,9 @@ generator: scripts/parts_index.py
 | `PY-08` | 8 | 8.2.1 · 8.2.2 · 8.2.3 · 8.2.4 · 8.2.5 · 8.2.6 · 8.3.1 · 8.3.2 |
 | `PY-09` | 10 | 9.1.1 · 9.1.2 · 9.1.3 · 9.1.4 · 9.2.1 · 9.2.2 · 9.2.3 · 9.3.1 · 9.3.2 · 9.3.3 |
 | `PY-10` | 13 | 10.1.1 · 10.1.2 · 10.1.3 · 10.1.4 · 10.1.5 · 10.1.6 · 10.2.1 · 10.2.2 · 10.2.3 · 10.2.4 · 10.3.1 · 10.3.2 · 10.3.3 |
+| `PY-11` | 11 | 11.1.1 · 11.1.2 · 11.1.3 · 11.1.4 · 11.2.1 · 11.2.2 · 11.2.3 · 11.2.4 · 11.2.5 · 11.4.1 · 11.4.2 |
+| `PY-12` | 6 | 11.3.1 · 11.3.2 · 11.3.3 · 11.3.4 · 11.4.1 · 11.4.2 |
+| `PY-13` | 13 | 12.1.1 · 12.1.2 · 12.1.3 · 12.1.4 · 12.1.5 · 12.2.1 · 12.2.2 · 12.2.3 · 12.2.4 · 12.3.1 · 12.3.2 · 12.3.3 · 12.3.4 |
+| `PY-14` | 9 | 13.1.1 · 13.1.2 · 13.1.3 · 13.1.4 · 13.1.5 · 13.2.1 · 13.2.2 · 13.2.3 · 13.4.2 |
+| `PY-15` | 6 | 13.3.1 · 13.3.2 · 13.3.3 · 13.4.1 · 13.4.2 · 13.4.3 |
 
