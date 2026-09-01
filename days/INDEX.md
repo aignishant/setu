@@ -1,7 +1,7 @@
 ---
 name: parts-index
 plan: setu
-generated: "2026-09-01"
+generated: "2026-09-02"
 generator: scripts/parts_index.py
 ---
 
@@ -264,6 +264,71 @@ generator: scripts/parts_index.py
 | 4.2 | production | BaseLoader → TextLoader, HTMLLoader — the loader family | ["PY-14", "PY-15"] | [`04-abstraction/4.2-the-loader-family.md`](day-13-inheritance-and-abstraction/parts/04-abstraction/4.2-the-loader-family.md) |
 | 4.3 | production | Protocol versus ABC — when to require nothing at all | ["PY-15"] | [`04-abstraction/4.3-protocol-versus-abc.md`](day-13-inheritance-and-abstraction/parts/04-abstraction/4.3-protocol-versus-abc.md) |
 
+## `day-14-decorators` — 15 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A function is a value you can hand to somebody else | ["PY-16"] | [`01-functions-as-values/1.1-a-function-is-a-value.md`](day-14-decorators/parts/01-functions-as-values/1.1-a-function-is-a-value.md) |
+| 1.2 | working | A function that builds another function and hands it back | ["PY-16"] | [`01-functions-as-values/1.2-a-function-that-returns-a-function.md`](day-14-decorators/parts/01-functions-as-values/1.2-a-function-that-returns-a-function.md) |
+| 1.3 | working | The wrapper written by hand, with no @ anywhere | ["PY-16"] | [`01-functions-as-values/1.3-the-wrapper-written-by-hand.md`](day-14-decorators/parts/01-functions-as-values/1.3-the-wrapper-written-by-hand.md) |
+| 1.4 | foundation | The @ sign is the rebinding you already wrote | ["PY-16"] | [`01-functions-as-values/1.4-the-at-sign-is-two-lines.md`](day-14-decorators/parts/01-functions-as-values/1.4-the-at-sign-is-two-lines.md) |
+| 2.1 | working | *args and **kwargs — a wrapper that does not know what it is wrapping | ["PY-16"] | [`02-writing-a-decorator/2.1-args-and-kwargs-in-a-wrapper.md`](day-14-decorators/parts/02-writing-a-decorator/2.1-args-and-kwargs-in-a-wrapper.md) |
+| 2.2 | working | The badge that lost your name — functools.wraps | ["PY-16"] | [`02-writing-a-decorator/2.2-functools-wraps.md`](day-14-decorators/parts/02-writing-a-decorator/2.2-functools-wraps.md) |
+| 2.3 | working | The decorator that ate the return value | ["PY-16"] | [`02-writing-a-decorator/2.3-returning-the-value.md`](day-14-decorators/parts/02-writing-a-decorator/2.3-returning-the-value.md) |
+| 2.4 | working | @timed — the first decorator worth keeping | ["PY-16"] | [`02-writing-a-decorator/2.4-timed-the-first-real-one.md`](day-14-decorators/parts/02-writing-a-decorator/2.4-timed-the-first-real-one.md) |
+| 2.5 | production | Stacking decorators, and the order that changes the answer | ["PY-16"] | [`02-writing-a-decorator/2.5-stacking-and-the-order.md`](day-14-decorators/parts/02-writing-a-decorator/2.5-stacking-and-the-order.md) |
+| 3.1 | working | @retry(3) — a decorator that takes an argument is a function that returns a decorator | ["PY-16"] | [`03-decorators-with-arguments/3.1-retry-three-a-decorator-that-takes-an-argument.md`](day-14-decorators/parts/03-decorators-with-arguments/3.1-retry-three-a-decorator-that-takes-an-argument.md) |
+| 3.2 | production | Waiting longer each time, waiting differently, and choosing what to retry | ["PY-16"] | [`03-decorators-with-arguments/3.2-backoff-jitter-and-which-errors.md`](day-14-decorators/parts/03-decorators-with-arguments/3.2-backoff-jitter-and-which-errors.md) |
+| 3.3 | production | The retry that made it worse — repeating something that already worked | ["PY-16"] | [`03-decorators-with-arguments/3.3-the-retry-that-made-it-worse.md`](day-14-decorators/parts/03-decorators-with-arguments/3.3-the-retry-that-made-it-worse.md) |
+| 4.1 | production | A decorator on a method, and where self goes | ["PY-16"] | [`04-the-toolkit/4.1-a-decorator-on-a-method.md`](day-14-decorators/parts/04-the-toolkit/4.1-a-decorator-on-a-method.md) |
+| 4.2 | production | functools.cache — the decorator you did not write, and what it keeps | ["PY-16"] | [`04-the-toolkit/4.2-functools-cache-and-its-trap.md`](day-14-decorators/parts/04-the-toolkit/4.2-functools-cache-and-its-trap.md) |
+| 4.3 | production | When a decorator is the wrong tool | ["PY-16"] | [`04-the-toolkit/4.3-when-a-decorator-is-wrong.md`](day-14-decorators/parts/04-the-toolkit/4.3-when-a-decorator-is-wrong.md) |
+
+## `day-15-constructors-and-dunders` — 16 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The method that receives the class instead of the object | ["PY-17"] | [`01-three-kinds-of-method/1.1-the-method-that-gets-the-class.md`](day-15-constructors-and-dunders/parts/01-three-kinds-of-method/1.1-the-method-that-gets-the-class.md) |
+| 1.2 | working | The second door in — an alternative constructor | ["PY-17"] | [`01-three-kinds-of-method/1.2-from-message-the-second-door-in.md`](day-15-constructors-and-dunders/parts/01-three-kinds-of-method/1.2-from-message-the-second-door-in.md) |
+| 1.3 | working | staticmethod — the method that receives nothing | ["PY-17"] | [`01-three-kinds-of-method/1.3-staticmethod-the-method-that-gets-nothing.md`](day-15-constructors-and-dunders/parts/01-three-kinds-of-method/1.3-staticmethod-the-method-that-gets-nothing.md) |
+| 1.4 | production | cls and inheritance — the constructor that returned the wrong class | ["PY-17"] | [`01-three-kinds-of-method/1.4-cls-and-inheritance.md`](day-15-constructors-and-dunders/parts/01-three-kinds-of-method/1.4-cls-and-inheritance.md) |
+| 2.1 | foundation | A property — an attribute that is worked out when you ask | ["PY-17"] | [`02-property/2.1-a-property-is-worked-out.md`](day-15-constructors-and-dunders/parts/02-property/2.1-a-property-is-worked-out.md) |
+| 2.2 | working | The setter — validation that cannot be walked round | ["PY-17"] | [`02-property/2.2-the-setter-and-validation.md`](day-15-constructors-and-dunders/parts/02-property/2.2-the-setter-and-validation.md) |
+| 2.3 | production | The property that did real work, and the caller who read it four times | ["PY-17"] | [`02-property/2.3-the-property-that-did-real-work.md`](day-15-constructors-and-dunders/parts/02-property/2.3-the-property-that-did-real-work.md) |
+| 2.4 | production | cached_property, and the value that stopped being true | ["PY-17"] | [`02-property/2.4-cached-property-and-the-stale-cache.md`](day-15-constructors-and-dunders/parts/02-property/2.4-cached-property-and-the-stale-cache.md) |
+| 3.1 | foundation | What a dunder method is — the name Python calls for you | ["PY-18"] | [`03-the-dunders/3.1-what-a-dunder-method-is.md`](day-15-constructors-and-dunders/parts/03-the-dunders/3.1-what-a-dunder-method-is.md) |
+| 3.2 | working | __repr__ and __str__ — the hours they save | ["PY-18"] | [`03-the-dunders/3.2-repr-and-str.md`](day-15-constructors-and-dunders/parts/03-the-dunders/3.2-repr-and-str.md) |
+| 3.3 | working | __eq__, and the duplicate that was never caught | ["PY-18"] | [`03-the-dunders/3.3-eq-and-the-duplicate.md`](day-15-constructors-and-dunders/parts/03-the-dunders/3.3-eq-and-the-duplicate.md) |
+| 3.4 | production | __hash__, and the object that broke the set | ["PY-18"] | [`03-the-dunders/3.4-hash-and-the-broken-set.md`](day-15-constructors-and-dunders/parts/03-the-dunders/3.4-hash-and-the-broken-set.md) |
+| 3.5 | working | __len__ and __bool__ — the empty thing that was false | ["PY-18"] | [`03-the-dunders/3.5-len-and-bool.md`](day-15-constructors-and-dunders/parts/03-the-dunders/3.5-len-and-bool.md) |
+| 4.1 | production | Ordering — __lt__, total_ordering, and sorting objects of your own | ["PY-17", "PY-18"] | [`04-the-paper-api/4.1-ordering-and-total-ordering.md`](day-15-constructors-and-dunders/parts/04-the-paper-api/4.1-ordering-and-total-ordering.md) |
+| 4.2 | production | The container protocol — __len__, __iter__, __contains__, __getitem__ | ["PY-18"] | [`04-the-paper-api/4.2-the-container-protocol.md`](day-15-constructors-and-dunders/parts/04-the-paper-api/4.2-the-container-protocol.md) |
+| 4.3 | production | Which dunders to implement, and when to stop | ["PY-17", "PY-18"] | [`04-the-paper-api/4.3-which-dunders-and-when-to-stop.md`](day-15-constructors-and-dunders/parts/04-the-paper-api/4.3-which-dunders-and-when-to-stop.md) |
+
+## `day-16-files-and-context-managers` — 19 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A path is not a string | ["PY-19"] | [`01-the-path/1.1-a-path-is-not-a-string.md`](day-16-files-and-context-managers/parts/01-the-path/1.1-a-path-is-not-a-string.md) |
+| 1.2 | working | Taking a path apart — name, stem, suffix, parent | ["PY-19"] | [`01-the-path/1.2-taking-a-path-apart.md`](day-16-files-and-context-managers/parts/01-the-path/1.2-taking-a-path-apart.md) |
+| 1.3 | production | Relative, absolute, and the working directory that moved | ["PY-19"] | [`01-the-path/1.3-relative-absolute-and-the-cwd.md`](day-16-files-and-context-managers/parts/01-the-path/1.3-relative-absolute-and-the-cwd.md) |
+| 1.4 | production | exists(), mkdir(), and the check that did not help | ["PY-19"] | [`01-the-path/1.4-exists-mkdir-and-the-race.md`](day-16-files-and-context-managers/parts/01-the-path/1.4-exists-mkdir-and-the-race.md) |
+| 1.5 | working | Globbing — finding files without listing them by hand | ["PY-19"] | [`01-the-path/1.5-globbing.md`](day-16-files-and-context-managers/parts/01-the-path/1.5-globbing.md) |
+| 2.1 | foundation | open(), the mode string, and what each letter costs | ["PY-19"] | [`02-reading-and-writing/2.1-open-and-the-mode-string.md`](day-16-files-and-context-managers/parts/02-reading-and-writing/2.1-open-and-the-mode-string.md) |
+| 2.2 | production | The encoding argument you must always pass | ["PY-19"] | [`02-reading-and-writing/2.2-encoding.md`](day-16-files-and-context-managers/parts/02-reading-and-writing/2.2-encoding.md) |
+| 2.3 | production | Newlines, and the file that grew a character | ["PY-19"] | [`02-reading-and-writing/2.3-newlines.md`](day-16-files-and-context-managers/parts/02-reading-and-writing/2.3-newlines.md) |
+| 2.4 | working | Reading a big file without holding it | ["PY-19"] | [`02-reading-and-writing/2.4-reading-a-big-file.md`](day-16-files-and-context-managers/parts/02-reading-and-writing/2.4-reading-a-big-file.md) |
+| 2.5 | production | JSONL — one record per line, and why the whole pipeline uses it | ["PY-19"] | [`02-reading-and-writing/2.5-jsonl.md`](day-16-files-and-context-managers/parts/02-reading-and-writing/2.5-jsonl.md) |
+| 3.1 | foundation | The write that had not happened yet | ["PY-19"] | [`03-buffering/3.1-the-write-that-had-not-happened.md`](day-16-files-and-context-managers/parts/03-buffering/3.1-the-write-that-had-not-happened.md) |
+| 3.2 | production | flush(), os.fsync(), and what saved means | ["PY-19"] | [`03-buffering/3.2-flush-fsync-and-what-saved-means.md`](day-16-files-and-context-managers/parts/03-buffering/3.2-flush-fsync-and-what-saved-means.md) |
+| 3.3 | production | Writing 50 000 lines without a memory spike | ["PY-19"] | [`03-buffering/3.3-fifty-thousand-lines.md`](day-16-files-and-context-managers/parts/03-buffering/3.3-fifty-thousand-lines.md) |
+| 4.1 | foundation | with — the block that cleans up after itself | ["PY-20"] | [`04-context-managers/4.1-with-the-block-that-cleans-up.md`](day-16-files-and-context-managers/parts/04-context-managers/4.1-with-the-block-that-cleans-up.md) |
+| 4.2 | working | try / finally, which is what with is | ["PY-20"] | [`04-context-managers/4.2-try-finally-is-what-with-is.md`](day-16-files-and-context-managers/parts/04-context-managers/4.2-try-finally-is-what-with-is.md) |
+| 4.3 | working | __enter__ and __exit__, written by hand | ["PY-20"] | [`04-context-managers/4.3-enter-and-exit-by-hand.md`](day-16-files-and-context-managers/parts/04-context-managers/4.3-enter-and-exit-by-hand.md) |
+| 4.4 | production | The __exit__ that swallowed the exception | ["PY-20"] | [`04-context-managers/4.4-the-exit-that-swallowed-the-exception.md`](day-16-files-and-context-managers/parts/04-context-managers/4.4-the-exit-that-swallowed-the-exception.md) |
+| 4.5 | production | @contextmanager — the generator that is a context manager | ["PY-20"] | [`04-context-managers/4.5-contextmanager-decorator.md`](day-16-files-and-context-managers/parts/04-context-managers/4.5-contextmanager-decorator.md) |
+| 4.6 | production | A connection that always closes, and ExitStack | ["PY-20"] | [`04-context-managers/4.6-a-connection-that-always-closes.md`](day-16-files-and-context-managers/parts/04-context-managers/4.6-a-connection-that-always-closes.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -285,4 +350,9 @@ generator: scripts/parts_index.py
 | `PY-13` | 13 | 12.1.1 · 12.1.2 · 12.1.3 · 12.1.4 · 12.1.5 · 12.2.1 · 12.2.2 · 12.2.3 · 12.2.4 · 12.3.1 · 12.3.2 · 12.3.3 · 12.3.4 |
 | `PY-14` | 9 | 13.1.1 · 13.1.2 · 13.1.3 · 13.1.4 · 13.1.5 · 13.2.1 · 13.2.2 · 13.2.3 · 13.4.2 |
 | `PY-15` | 6 | 13.3.1 · 13.3.2 · 13.3.3 · 13.4.1 · 13.4.2 · 13.4.3 |
+| `PY-16` | 15 | 14.1.1 · 14.1.2 · 14.1.3 · 14.1.4 · 14.2.1 · 14.2.2 · 14.2.3 · 14.2.4 · 14.2.5 · 14.3.1 · 14.3.2 · 14.3.3 · 14.4.1 · 14.4.2 · 14.4.3 |
+| `PY-17` | 10 | 15.1.1 · 15.1.2 · 15.1.3 · 15.1.4 · 15.2.1 · 15.2.2 · 15.2.3 · 15.2.4 · 15.4.1 · 15.4.3 |
+| `PY-18` | 8 | 15.3.1 · 15.3.2 · 15.3.3 · 15.3.4 · 15.3.5 · 15.4.1 · 15.4.2 · 15.4.3 |
+| `PY-19` | 13 | 16.1.1 · 16.1.2 · 16.1.3 · 16.1.4 · 16.1.5 · 16.2.1 · 16.2.2 · 16.2.3 · 16.2.4 · 16.2.5 · 16.3.1 · 16.3.2 · 16.3.3 |
+| `PY-20` | 6 | 16.4.1 · 16.4.2 · 16.4.3 · 16.4.4 · 16.4.5 · 16.4.6 |
 

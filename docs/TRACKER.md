@@ -1,7 +1,7 @@
 ---
 name: tracker
 plan: setu
-generated: "2026-09-01"
+generated: "2026-09-02"
 generator: scripts/tracker.py
 ---
 
@@ -15,14 +15,14 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.3.0 shape | **14** | 5.8% |
-| 📚 Sub-topic documents in `parts/` | **183** | — |
+| 📄 Days written in the v2.3.0 shape | **17** | 7.1% |
+| 📚 Sub-topic documents in `parts/` | **233** | — |
 | ✅ Days completed (checklist fully ticked) | **4** | 1.7% |
-| ⬜ Still to write | **227** | 94.2% |
+| ⬜ Still to write | **224** | 92.9% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  14/241
+written  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  17/241
 complete █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4/241
 ```
 
@@ -34,7 +34,7 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 |---|---|---|---|---|---|---|
 | 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 4/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 103 | 0/8 |
-| 2 | M2 | Advanced Python (Module 2) | 12–19 | 2/8 | 27 | 0/8 |
+| 2 | M2 | Advanced Python (Module 2) | 12–19 | 5/8 | 77 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 0/10 | 0 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0 | 0/6 |
@@ -93,9 +93,9 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 |---|---|---|---|---|---|---|
 | 12 | Classes — building the `Paper` object | PY-13 | lab | 📄 written | 13 | 107 |
 | 13 | Inheritance, polymorphism, encapsulation, abstraction | PY-14, PY-15 | lab | 📄 written | 14 | 116 |
-| 14 | Decorators — `@timed` and `@retry` | PY-16 | lab | ⬜ pending | — | — |
-| 15 | `classmethod`, `staticmethod`, `property`, and dunder methods | PY-17, PY-18 | lab | ⬜ pending | — | — |
-| 16 | Files, `pathlib`, buffering, and context managers | PY-19, PY-20 | lab | ⬜ pending | — | — |
+| 14 | Decorators — `@timed` and `@retry` | PY-16 | lab | 📄 written | 15 | 109 |
+| 15 | `classmethod`, `staticmethod`, `property`, and dunder methods | PY-17, PY-18 | lab | 📄 written | 16 | 139 |
+| 16 | Files, `pathlib`, buffering, and context managers | PY-19, PY-20 | lab | 📄 written | 19 | 150 |
 | 17 | Modules, packages, imports, `__init__.py` | PY-21 | lab | ⬜ pending | — | — |
 | 18 | Exceptions and custom error types | PY-22 | lab | ⬜ pending | — | — |
 | 19 | Typing, dataclasses, Pydantic v2, and concurrency | PY-23, PY-24 | gate | ⬜ pending | — | — |
@@ -460,9 +460,6 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 14** — Decorators — `@timed` and `@retry` `(PY-16)`
-- **Day 15** — `classmethod`, `staticmethod`, `property`, and dunder methods `(PY-17, PY-18)`
-- **Day 16** — Files, `pathlib`, buffering, and context managers `(PY-19, PY-20)`
 - **Day 17** — Modules, packages, imports, `__init__.py` `(PY-21)`
 - **Day 18** — Exceptions and custom error types `(PY-22)`
 - **Day 19** — Typing, dataclasses, Pydantic v2, and concurrency `(PY-23, PY-24)`
@@ -470,4 +467,7 @@ The next ten days to write, in order:
 - **Day 21** — Indexing, slicing, boolean masks — and the view trap `(NP-03)`
 - **Day 22** — Broadcasting and array manipulation `(NP-04, NP-05)`
 - **Day 23** — Universal functions, statistics, and `argsort` top-k `(NP-06, NP-07)`
+- **Day 24** — Binary/string functions and linear algebra `(NP-08, NP-09)`
+- **Day 25** — Copy vs view — and a vectorised stats module `(NP-10)`
+- **Day 26** — pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap `(PD-01)`
 
