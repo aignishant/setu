@@ -1,7 +1,7 @@
 ---
 name: parts-index
 plan: setu
-generated: "2026-09-02"
+generated: "2026-09-03"
 generator: scripts/parts_index.py
 ---
 
@@ -570,6 +570,114 @@ generator: scripts/parts_index.py
 | 5.2 | production | The performance test in CI — a ratio survives a slow machine, mostly | ["NP-10"] | [`05-the-gate/5.2-the-performance-test-in-ci.md`](day-25-copy-view-and-the-gate/parts/05-the-gate/5.2-the-performance-test-in-ci.md) |
 | 5.3 | production | The phase, closed — the record, and what it does not claim | ["NP-10"] | [`05-the-gate/5.3-the-phase-closed.md`](day-25-copy-view-and-the-gate/parts/05-the-gate/5.3-the-phase-closed.md) |
 
+## `day-26-frames-and-copy-on-write` — 22 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A column with labels — the Series | ["PD-01"] | [`01-the-two-objects/1.1-a-column-with-labels.md`](day-26-frames-and-copy-on-write/parts/01-the-two-objects/1.1-a-column-with-labels.md) |
+| 1.2 | foundation | The index is not a row number | ["PD-01"] | [`01-the-two-objects/1.2-the-index-is-not-a-row-number.md`](day-26-frames-and-copy-on-write/parts/01-the-two-objects/1.2-the-index-is-not-a-row-number.md) |
+| 1.3 | foundation | A table of columns — the DataFrame | ["PD-01"] | [`01-the-two-objects/1.3-a-table-of-columns.md`](day-26-frames-and-copy-on-write/parts/01-the-two-objects/1.3-a-table-of-columns.md) |
+| 1.4 | working | One dtype per column, not one per table | ["PD-01"] | [`01-the-two-objects/1.4-one-dtype-per-column.md`](day-26-frames-and-copy-on-write/parts/01-the-two-objects/1.4-one-dtype-per-column.md) |
+| 1.5 | working | Reading a frame before you touch it | ["PD-01"] | [`01-the-two-objects/1.5-reading-a-frame-before-you-touch-it.md`](day-26-frames-and-copy-on-write/parts/01-the-two-objects/1.5-reading-a-frame-before-you-touch-it.md) |
+| 2.1 | foundation | Text used to be object, and what that cost | ["PD-01"] | [`02-the-str-dtype/2.1-text-used-to-be-object.md`](day-26-frames-and-copy-on-write/parts/02-the-str-dtype/2.1-text-used-to-be-object.md) |
+| 2.2 | working | str — the dtype pandas 3.0 infers | ["PD-01"] | [`02-the-str-dtype/2.2-str-the-dtype-pandas-3-infers.md`](day-26-frames-and-copy-on-write/parts/02-the-str-dtype/2.2-str-the-dtype-pandas-3-infers.md) |
+| 2.3 | working | The storage behind it — python and pyarrow | ["PD-01"] | [`02-the-str-dtype/2.3-the-storage-behind-it.md`](day-26-frames-and-copy-on-write/parts/02-the-str-dtype/2.3-the-storage-behind-it.md) |
+| 2.4 | production | dtypes == object finds nothing now | ["PD-01"] | [`02-the-str-dtype/2.4-dtypes-equals-object-finds-nothing.md`](day-26-frames-and-copy-on-write/parts/02-the-str-dtype/2.4-dtypes-equals-object-finds-nothing.md) |
+| 2.5 | working | The missing value in a text column — NaN and pd.NA | ["PD-01"] | [`02-the-str-dtype/2.5-the-missing-value-in-a-text-column.md`](day-26-frames-and-copy-on-write/parts/02-the-str-dtype/2.5-the-missing-value-in-a-text-column.md) |
+| 3.1 | foundation | Every result behaves like a copy | ["PD-01"] | [`03-copy-on-write/3.1-every-result-behaves-like-a-copy.md`](day-26-frames-and-copy-on-write/parts/03-copy-on-write/3.1-every-result-behaves-like-a-copy.md) |
+| 3.2 | working | The copy that has not happened yet | ["PD-01"] | [`03-copy-on-write/3.2-the-copy-that-has-not-happened-yet.md`](day-26-frames-and-copy-on-write/parts/03-copy-on-write/3.2-the-copy-that-has-not-happened-yet.md) |
+| 3.3 | working | The question that stopped mattering — view or copy | ["PD-01"] | [`03-copy-on-write/3.3-the-question-that-stopped-mattering.md`](day-26-frames-and-copy-on-write/parts/03-copy-on-write/3.3-the-question-that-stopped-mattering.md) |
+| 3.4 | production | to_numpy and the read-only array | ["PD-01"] | [`03-copy-on-write/3.4-to-numpy-and-the-read-only-array.md`](day-26-frames-and-copy-on-write/parts/03-copy-on-write/3.4-to-numpy-and-the-read-only-array.md) |
+| 4.1 | foundation | The write that vanished | ["PD-01"] | [`04-chained-assignment/4.1-the-write-that-vanished.md`](day-26-frames-and-copy-on-write/parts/04-chained-assignment/4.1-the-write-that-vanished.md) |
+| 4.2 | working | Two brackets, two calls | ["PD-01"] | [`04-chained-assignment/4.2-two-brackets-two-calls.md`](day-26-frames-and-copy-on-write/parts/04-chained-assignment/4.2-two-brackets-two-calls.md) |
+| 4.3 | working | loc — the single step | ["PD-01"] | [`04-chained-assignment/4.3-loc-the-single-step.md`](day-26-frames-and-copy-on-write/parts/04-chained-assignment/4.3-loc-the-single-step.md) |
+| 4.4 | production | SettingWithCopyWarning is gone — what replaced it | ["PD-01"] | [`04-chained-assignment/4.4-settingwithcopy-is-gone.md`](day-26-frames-and-copy-on-write/parts/04-chained-assignment/4.4-settingwithcopy-is-gone.md) |
+| 4.5 | production | The filtered frame that warned nobody | ["PD-01"] | [`04-chained-assignment/4.5-the-filtered-frame-that-warned-nobody.md`](day-26-frames-and-copy-on-write/parts/04-chained-assignment/4.5-the-filtered-frame-that-warned-nobody.md) |
+| 5.1 | production | src/setu/frames.py — the day's module | ["PD-01"] | [`05-the-module/5.1-the-shopping-list-module.md`](day-26-frames-and-copy-on-write/parts/05-the-module/5.1-the-shopping-list-module.md) |
+| 5.2 | production | Asserting the schema — one sentence naming every problem | ["PD-01"] | [`05-the-module/5.2-asserting-the-schema.md`](day-26-frames-and-copy-on-write/parts/05-the-module/5.2-asserting-the-schema.md) |
+| 5.3 | production | tests/test_frames.py — the test that can go red | ["PD-01"] | [`05-the-module/5.3-the-test-that-can-go-red.md`](day-26-frames-and-copy-on-write/parts/05-the-module/5.3-the-test-that-can-go-red.md) |
+
+## `day-27-reading-and-writing` — 22 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A CSV has no types in it | ["PD-02"] | [`01-the-csv/1.1-a-csv-has-no-types-in-it.md`](day-27-reading-and-writing/parts/01-the-csv/1.1-a-csv-has-no-types-in-it.md) |
+| 1.2 | foundation | read_csv and what it guessed | ["PD-02"] | [`01-the-csv/1.2-read-csv-and-what-it-guessed.md`](day-27-reading-and-writing/parts/01-the-csv/1.2-read-csv-and-what-it-guessed.md) |
+| 1.3 | working | When the guess is wrong — the aisle that lost its zero | ["PD-02"] | [`01-the-csv/1.3-when-the-guess-is-wrong.md`](day-27-reading-and-writing/parts/01-the-csv/1.3-when-the-guess-is-wrong.md) |
+| 1.4 | working | dtype= at read time beats five astype calls later | ["PD-02"] | [`01-the-csv/1.4-dtype-at-read-time.md`](day-27-reading-and-writing/parts/01-the-csv/1.4-dtype-at-read-time.md) |
+| 1.5 | working | parse_dates and the date that stayed text | ["PD-02"] | [`01-the-csv/1.5-parse-dates-and-the-date-that-stayed-text.md`](day-27-reading-and-writing/parts/01-the-csv/1.5-parse-dates-and-the-date-that-stayed-text.md) |
+| 1.6 | working | na_values and the blank — what counts as missing | ["PD-02"] | [`01-the-csv/1.6-na-values-and-the-blank.md`](day-27-reading-and-writing/parts/01-the-csv/1.6-na-values-and-the-blank.md) |
+| 1.7 | production | to_csv, and what it throws away | ["PD-02"] | [`01-the-csv/1.7-to-csv-and-what-it-throws-away.md`](day-27-reading-and-writing/parts/01-the-csv/1.7-to-csv-and-what-it-throws-away.md) |
+| 2.1 | foundation | Nested by nature — why JSON is not a table | ["PD-02"] | [`02-json/2.1-nested-by-nature.md`](day-27-reading-and-writing/parts/02-json/2.1-nested-by-nature.md) |
+| 2.2 | working | json_normalize — flattening the tree into a rectangle | ["PD-02"] | [`02-json/2.2-json-normalize.md`](day-27-reading-and-writing/parts/02-json/2.2-json-normalize.md) |
+| 2.3 | working | orient — six ways to write the same frame | ["PD-02"] | [`02-json/2.3-orient-six-ways-to-write-a-frame.md`](day-27-reading-and-writing/parts/02-json/2.3-orient-six-ways-to-write-a-frame.md) |
+| 2.4 | production | JSON Lines — one record per line, and why it scales | ["PD-02"] | [`02-json/2.4-json-lines.md`](day-27-reading-and-writing/parts/02-json/2.4-json-lines.md) |
+| 3.1 | foundation | Columns on disk, with types | ["PD-02"] | [`03-parquet/3.1-columns-on-disk-with-types.md`](day-27-reading-and-writing/parts/03-parquet/3.1-columns-on-disk-with-types.md) |
+| 3.2 | working | The round trip that keeps dtypes | ["PD-02"] | [`03-parquet/3.2-the-round-trip-that-keeps-dtypes.md`](day-27-reading-and-writing/parts/03-parquet/3.2-the-round-trip-that-keeps-dtypes.md) |
+| 3.3 | working | The size and the speed, measured | ["PD-02"] | [`03-parquet/3.3-the-size-and-the-speed-measured.md`](day-27-reading-and-writing/parts/03-parquet/3.3-the-size-and-the-speed-measured.md) |
+| 3.4 | production | Column pruning — reading three columns out of forty | ["PD-02"] | [`03-parquet/3.4-column-pruning.md`](day-27-reading-and-writing/parts/03-parquet/3.4-column-pruning.md) |
+| 4.1 | foundation | A table that knows its own types | ["PD-02"] | [`04-sql/4.1-a-table-that-knows-its-types.md`](day-27-reading-and-writing/parts/04-sql/4.1-a-table-that-knows-its-types.md) |
+| 4.2 | working | read_sql and the connection — the dtypes that arrived correct | ["PD-02"] | [`04-sql/4.2-read-sql-and-the-connection.md`](day-27-reading-and-writing/parts/04-sql/4.2-read-sql-and-the-connection.md) |
+| 4.3 | working | params=, not f-strings — the value that changed the question | ["PD-02"] | [`04-sql/4.3-params-not-f-strings.md`](day-27-reading-and-writing/parts/04-sql/4.3-params-not-f-strings.md) |
+| 4.4 | production | to_sql, and what SQLite invents | ["PD-02"] | [`04-sql/4.4-to-sql-and-what-sqlite-invents.md`](day-27-reading-and-writing/parts/04-sql/4.4-to-sql-and-what-sqlite-invents.md) |
+| 5.1 | production | src/setu/loaders.py — one frame, four stores | ["PD-02"] | [`05-the-module/5.1-the-loaders-module.md`](day-27-reading-and-writing/parts/05-the-module/5.1-the-loaders-module.md) |
+| 5.2 | production | The file that does not fit — chunksize and the running total | ["PD-02"] | [`05-the-module/5.2-the-file-that-does-not-fit.md`](day-27-reading-and-writing/parts/05-the-module/5.2-the-file-that-does-not-fit.md) |
+| 5.3 | production | tests/test_loaders.py — the round trip that must survive | ["PD-02"] | [`05-the-module/5.3-the-round-trip-test.md`](day-27-reading-and-writing/parts/05-the-module/5.3-the-round-trip-test.md) |
+
+## `day-28-selection-and-alignment` — 24 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Two ways to say 'that row' | ["PD-03"] | [`01-label-and-position/1.1-two-ways-to-say-that-row.md`](day-28-selection-and-alignment/parts/01-label-and-position/1.1-two-ways-to-say-that-row.md) |
+| 1.2 | foundation | loc — by label, and the row that came back as object | ["PD-03"] | [`01-label-and-position/1.2-loc-by-label.md`](day-28-selection-and-alignment/parts/01-label-and-position/1.2-loc-by-label.md) |
+| 1.3 | working | iloc — by position, and the two places it is the right answer | ["PD-03"] | [`01-label-and-position/1.3-iloc-by-position.md`](day-28-selection-and-alignment/parts/01-label-and-position/1.3-iloc-by-position.md) |
+| 1.4 | working | Rows and columns at once — the comma | ["PD-03"] | [`01-label-and-position/1.4-rows-and-columns-at-once.md`](day-28-selection-and-alignment/parts/01-label-and-position/1.4-rows-and-columns-at-once.md) |
+| 1.5 | working | The slice that includes its end | ["PD-03"] | [`01-label-and-position/1.5-the-slice-that-includes-its-end.md`](day-28-selection-and-alignment/parts/01-label-and-position/1.5-the-slice-that-includes-its-end.md) |
+| 2.1 | foundation | A comparison makes a column | ["PD-03"] | [`02-masks/2.1-a-comparison-makes-a-column.md`](day-28-selection-and-alignment/parts/02-masks/2.1-a-comparison-makes-a-column.md) |
+| 2.2 | working | Selecting with a mask | ["PD-03"] | [`02-masks/2.2-selecting-with-a-mask.md`](day-28-selection-and-alignment/parts/02-masks/2.2-selecting-with-a-mask.md) |
+| 2.3 | working | &, | and ~ — and the brackets you cannot leave out | ["PD-03"] | [`02-masks/2.3-and-or-not-and-the-brackets.md`](day-28-selection-and-alignment/parts/02-masks/2.3-and-or-not-and-the-brackets.md) |
+| 2.4 | working | isin, between, and the readable ones | ["PD-03"] | [`02-masks/2.4-isin-between-and-the-readable-ones.md`](day-28-selection-and-alignment/parts/02-masks/2.4-isin-between-and-the-readable-ones.md) |
+| 2.5 | production | The mask that matched nothing | ["PD-03"] | [`02-masks/2.5-the-mask-that-matched-nothing.md`](day-28-selection-and-alignment/parts/02-masks/2.5-the-mask-that-matched-nothing.md) |
+| 3.1 | working | Assigning through loc | ["PD-03"] | [`03-writing/3.1-assigning-through-loc.md`](day-28-selection-and-alignment/parts/03-writing/3.1-assigning-through-loc.md) |
+| 3.2 | working | The new column that was a mask — and assign | ["PD-03"] | [`03-writing/3.2-the-new-column-that-was-a-mask.md`](day-28-selection-and-alignment/parts/03-writing/3.2-the-new-column-that-was-a-mask.md) |
+| 3.3 | production | where, mask, and the write that was not | ["PD-03"] | [`03-writing/3.3-where-mask-and-the-write-that-was-not.md`](day-28-selection-and-alignment/parts/03-writing/3.3-where-mask-and-the-write-that-was-not.md) |
+| 4.1 | foundation | Two lists, different items — and the NaNs are the lesson | ["PD-04"] | [`04-alignment/4.1-two-lists-different-items.md`](day-28-selection-and-alignment/parts/04-alignment/4.1-two-lists-different-items.md) |
+| 4.2 | working | Alignment is automatic — and comparison is the exception | ["PD-04"] | [`04-alignment/4.2-alignment-is-automatic.md`](day-28-selection-and-alignment/parts/04-alignment/4.2-alignment-is-automatic.md) |
+| 4.3 | working | The NaN that changed the dtype | ["PD-04"] | [`04-alignment/4.3-the-nan-that-changed-the-dtype.md`](day-28-selection-and-alignment/parts/04-alignment/4.3-the-nan-that-changed-the-dtype.md) |
+| 4.4 | production | The index is the join key | ["PD-04"] | [`04-alignment/4.4-the-index-is-the-join-key.md`](day-28-selection-and-alignment/parts/04-alignment/4.4-the-index-is-the-join-key.md) |
+| 4.5 | production | Turning alignment off — and the three ways to regret it | ["PD-04"] | [`04-alignment/4.5-turning-alignment-off.md`](day-28-selection-and-alignment/parts/04-alignment/4.5-turning-alignment-off.md) |
+| 5.1 | working | reindex — say the index you want | ["PD-04"] | [`05-reindexing/5.1-reindex-say-the-index-you-want.md`](day-28-selection-and-alignment/parts/05-reindexing/5.1-reindex-say-the-index-you-want.md) |
+| 5.2 | working | fill_value, method, and the gap | ["PD-04"] | [`05-reindexing/5.2-fill-value-method-and-the-gap.md`](day-28-selection-and-alignment/parts/05-reindexing/5.2-fill-value-method-and-the-gap.md) |
+| 5.3 | production | Duplicate labels | ["PD-04"] | [`05-reindexing/5.3-duplicate-labels.md`](day-28-selection-and-alignment/parts/05-reindexing/5.3-duplicate-labels.md) |
+| 5.4 | production | align, and the boundary where you decide | ["PD-04"] | [`05-reindexing/5.4-align-and-the-boundary.md`](day-28-selection-and-alignment/parts/05-reindexing/5.4-align-and-the-boundary.md) |
+| 6.1 | production | src/setu/select.py — selection with the checks built in | ["PD-03", "PD-04"] | [`06-the-module/6.1-the-select-module.md`](day-28-selection-and-alignment/parts/06-the-module/6.1-the-select-module.md) |
+| 6.2 | production | tests/test_select.py — the test that can go red | ["PD-03", "PD-04"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-28-selection-and-alignment/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
+
+## `day-29-iteration-and-order` — 20 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Reading the list one line at a time | ["PD-05"] | [`01-the-loop/1.1-reading-the-list-one-line-at-a-time.md`](day-29-iteration-and-order/parts/01-the-loop/1.1-reading-the-list-one-line-at-a-time.md) |
+| 1.2 | working | iterrows — and the row that lost its dtype | ["PD-05"] | [`01-the-loop/1.2-iterrows-and-the-row-that-lost-its-dtype.md`](day-29-iteration-and-order/parts/01-the-loop/1.2-iterrows-and-the-row-that-lost-its-dtype.md) |
+| 1.3 | working | itertuples — the faster one, and what it costs | ["PD-05"] | [`01-the-loop/1.3-itertuples-and-what-it-costs.md`](day-29-iteration-and-order/parts/01-the-loop/1.3-itertuples-and-what-it-costs.md) |
+| 1.4 | working | The loop that changed nothing | ["PD-05"] | [`01-the-loop/1.4-the-loop-that-changed-nothing.md`](day-29-iteration-and-order/parts/01-the-loop/1.4-the-loop-that-changed-nothing.md) |
+| 1.5 | working | apply is a loop wearing a hat | ["PD-05"] | [`01-the-loop/1.5-apply-is-a-loop-wearing-a-hat.md`](day-29-iteration-and-order/parts/01-the-loop/1.5-apply-is-a-loop-wearing-a-hat.md) |
+| 2.1 | foundation | One operation, every row | ["PD-05"] | [`02-vectorised/2.1-one-operation-every-row.md`](day-29-iteration-and-order/parts/02-vectorised/2.1-one-operation-every-row.md) |
+| 2.2 | working | The three ways to write a condition | ["PD-05"] | [`02-vectorised/2.2-the-three-ways-to-write-a-condition.md`](day-29-iteration-and-order/parts/02-vectorised/2.2-the-three-ways-to-write-a-condition.md) |
+| 2.3 | production | When there is no vectorised form | ["PD-05"] | [`02-vectorised/2.3-when-there-is-no-vectorised-form.md`](day-29-iteration-and-order/parts/02-vectorised/2.3-when-there-is-no-vectorised-form.md) |
+| 3.1 | working | What a million rows is for | ["PD-05"] | [`03-the-measurement/3.1-what-a-million-rows-is-for.md`](day-29-iteration-and-order/parts/03-the-measurement/3.1-what-a-million-rows-is-for.md) |
+| 3.2 | working | The four ways, timed on a million rows | ["PD-05"] | [`03-the-measurement/3.2-the-four-ways-timed.md`](day-29-iteration-and-order/parts/03-the-measurement/3.2-the-four-ways-timed.md) |
+| 3.3 | production | The number, and where it stops mattering | ["PD-05"] | [`03-the-measurement/3.3-the-number-and-where-it-stops-mattering.md`](day-29-iteration-and-order/parts/03-the-measurement/3.3-the-number-and-where-it-stops-mattering.md) |
+| 4.1 | foundation | sort_values — the order you asked for | ["PD-06"] | [`04-sorting/4.1-sort-values-the-order-you-asked-for.md`](day-29-iteration-and-order/parts/04-sorting/4.1-sort-values-the-order-you-asked-for.md) |
+| 4.2 | working | The tie that broke the report | ["PD-06"] | [`04-sorting/4.2-the-tie-that-broke-the-report.md`](day-29-iteration-and-order/parts/04-sorting/4.2-the-tie-that-broke-the-report.md) |
+| 4.3 | working | na_position and the rows that went to the end | ["PD-06"] | [`04-sorting/4.3-na-position-and-the-rows-that-went-to-the-end.md`](day-29-iteration-and-order/parts/04-sorting/4.3-na-position-and-the-rows-that-went-to-the-end.md) |
+| 4.4 | production | sort_index and the cost of order | ["PD-06"] | [`04-sorting/4.4-sort-index-and-the-cost-of-order.md`](day-29-iteration-and-order/parts/04-sorting/4.4-sort-index-and-the-cost-of-order.md) |
+| 5.1 | foundation | rank — the position in the order | ["PD-06"] | [`05-ranking/5.1-rank-the-position-in-the-order.md`](day-29-iteration-and-order/parts/05-ranking/5.1-rank-the-position-in-the-order.md) |
+| 5.2 | working | The five ways to rank a tie | ["PD-06"] | [`05-ranking/5.2-the-five-ways-to-rank-a-tie.md`](day-29-iteration-and-order/parts/05-ranking/5.2-the-five-ways-to-rank-a-tie.md) |
+| 5.3 | production | nlargest — sorting you do not pay for | ["PD-06"] | [`05-ranking/5.3-nlargest-sorting-you-do-not-pay-for.md`](day-29-iteration-and-order/parts/05-ranking/5.3-nlargest-sorting-you-do-not-pay-for.md) |
+| 6.1 | production | src/setu/order.py — the day's module | ["PD-05", "PD-06"] | [`06-the-module/6.1-the-order-module.md`](day-29-iteration-and-order/parts/06-the-module/6.1-the-order-module.md) |
+| 6.2 | production | tests/test_order.py — the test that could not fail | ["PD-05", "PD-06"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-29-iteration-and-order/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -586,6 +694,12 @@ generator: scripts/parts_index.py
 | `NP-08` | 12 | 24.1.1 · 24.1.2 · 24.1.3 · 24.1.4 · 24.1.5 · 24.1.6 · 24.2.1 · 24.2.2 · 24.2.3 · 24.2.4 · 24.5.1 · 24.5.2 |
 | `NP-09` | 14 | 24.3.1 · 24.3.2 · 24.3.3 · 24.3.4 · 24.3.5 · 24.3.6 · 24.4.1 · 24.4.2 · 24.4.3 · 24.4.4 · 24.4.5 · 24.4.6 · 24.5.1 · 24.5.2 |
 | `NP-10` | 19 | 25.1.1 · 25.1.2 · 25.1.3 · 25.1.4 · 25.1.5 · 25.2.1 · 25.2.2 · 25.2.3 · 25.3.1 · 25.3.2 · 25.3.3 · 25.3.4 · 25.4.1 · 25.4.2 · 25.4.3 · 25.4.4 · 25.5.1 · 25.5.2 · 25.5.3 |
+| `PD-01` | 22 | 26.1.1 · 26.1.2 · 26.1.3 · 26.1.4 · 26.1.5 · 26.2.1 · 26.2.2 · 26.2.3 · 26.2.4 · 26.2.5 · 26.3.1 · 26.3.2 · 26.3.3 · 26.3.4 · 26.4.1 · 26.4.2 · 26.4.3 · 26.4.4 · 26.4.5 · 26.5.1 · 26.5.2 · 26.5.3 |
+| `PD-02` | 22 | 27.1.1 · 27.1.2 · 27.1.3 · 27.1.4 · 27.1.5 · 27.1.6 · 27.1.7 · 27.2.1 · 27.2.2 · 27.2.3 · 27.2.4 · 27.3.1 · 27.3.2 · 27.3.3 · 27.3.4 · 27.4.1 · 27.4.2 · 27.4.3 · 27.4.4 · 27.5.1 · 27.5.2 · 27.5.3 |
+| `PD-03` | 15 | 28.1.1 · 28.1.2 · 28.1.3 · 28.1.4 · 28.1.5 · 28.2.1 · 28.2.2 · 28.2.3 · 28.2.4 · 28.2.5 · 28.3.1 · 28.3.2 · 28.3.3 · 28.6.1 · 28.6.2 |
+| `PD-04` | 11 | 28.4.1 · 28.4.2 · 28.4.3 · 28.4.4 · 28.4.5 · 28.5.1 · 28.5.2 · 28.5.3 · 28.5.4 · 28.6.1 · 28.6.2 |
+| `PD-05` | 13 | 29.1.1 · 29.1.2 · 29.1.3 · 29.1.4 · 29.1.5 · 29.2.1 · 29.2.2 · 29.2.3 · 29.3.1 · 29.3.2 · 29.3.3 · 29.6.1 · 29.6.2 |
+| `PD-06` | 9 | 29.4.1 · 29.4.2 · 29.4.3 · 29.4.4 · 29.5.1 · 29.5.2 · 29.5.3 · 29.6.1 · 29.6.2 |
 | `PY-01` | 7 | 4.1.1 · 4.1.2 · 4.1.3 · 4.1.4 · 4.1.5 · 4.3.1 · 4.3.2 |
 | `PY-02` | 7 | 4.2.1 · 4.2.2 · 4.2.3 · 4.2.4 · 4.2.5 · 4.3.1 · 4.3.2 |
 | `PY-03` | 8 | 5.1.1 · 5.1.2 · 5.1.3 · 5.1.4 · 5.1.5 · 5.1.6 · 5.3.1 · 5.3.2 |

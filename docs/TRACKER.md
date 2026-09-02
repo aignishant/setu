@@ -1,7 +1,7 @@
 ---
 name: tracker
 plan: setu
-generated: "2026-09-02"
+generated: "2026-09-03"
 generator: scripts/tracker.py
 ---
 
@@ -15,14 +15,14 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.3.0 shape | **26** | 10.8% |
-| 📚 Sub-topic documents in `parts/` | **429** | — |
+| 📄 Days written in the v2.3.0 shape | **30** | 12.4% |
+| 📚 Sub-topic documents in `parts/` | **517** | — |
 | ✅ Days completed (checklist fully ticked) | **4** | 1.7% |
-| ⬜ Still to write | **215** | 89.2% |
+| ⬜ Still to write | **211** | 87.6% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  26/241
+written  █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  30/241
 complete █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4/241
 ```
 
@@ -36,7 +36,7 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 103 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 139 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 6/6 | 134 | 0/6 |
-| 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 0/10 | 0 | 0/10 |
+| 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 4/10 | 88 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 0/10 | 0 | 0/10 |
 | 7 | M7 | Streamlit (Module 7) | 52–57 | 0/6 | 0 | 0/6 |
@@ -115,10 +115,10 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
-| 26 | pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap | PD-01 | lab | ⬜ pending | — | — |
-| 27 | Reading and writing: CSV, JSON, Parquet, SQL — typed at read time | PD-02 | lab | ⬜ pending | — | — |
-| 28 | `loc`, `iloc`, boolean masks, reindexing and alignment | PD-03, PD-04 | lab | ⬜ pending | — | — |
-| 29 | Iteration vs vectorisation; sorting and ranking | PD-05, PD-06 | lab | ⬜ pending | — | — |
+| 26 | pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap | PD-01 | lab | 📄 written | 22 | 74 |
+| 27 | Reading and writing: CSV, JSON, Parquet, SQL — typed at read time | PD-02 | lab | 📄 written | 22 | 78 |
+| 28 | `loc`, `iloc`, boolean masks, reindexing and alignment | PD-03, PD-04 | lab | 📄 written | 24 | 102 |
+| 29 | Iteration vs vectorisation; sorting and ranking | PD-05, PD-06 | lab | 📄 written | 20 | 96 |
 | 30 | Missing data — and why the imputer lives in the pipeline | PD-07 | lab | ⬜ pending | — | — |
 | 31 | `groupby`: split–apply–combine, `agg` and `transform` | PD-08 | lab | ⬜ pending | — | — |
 | 32 | Merge, join, concat, pivot, melt | PD-09, PD-10 | lab | ⬜ pending | — | — |
@@ -460,14 +460,14 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 26** — pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap `(PD-01)`
-- **Day 27** — Reading and writing: CSV, JSON, Parquet, SQL — typed at read time `(PD-02)`
-- **Day 28** — `loc`, `iloc`, boolean masks, reindexing and alignment `(PD-03, PD-04)`
-- **Day 29** — Iteration vs vectorisation; sorting and ranking `(PD-05, PD-06)`
 - **Day 30** — Missing data — and why the imputer lives in the pipeline `(PD-07)`
 - **Day 31** — `groupby`: split–apply–combine, `agg` and `transform` `(PD-08)`
 - **Day 32** — Merge, join, concat, pivot, melt `(PD-09, PD-10)`
 - **Day 33** — The `.str` and `.dt` accessors; resampling `(PD-11, PD-12)`
 - **Day 34** — Categorical dtype and `describe()` as a data-quality report `(PD-13, PD-14)`
 - **Day 35** — Where pandas stops — Polars and DuckDB, benchmarked `(PD-15)`
+- **Day 36** — Matplotlib — figure, axes, and the object API `(VIZ-01)`
+- **Day 37** — Customising charts; choosing the right chart type `(VIZ-02, VIZ-03)`
+- **Day 38** — Seaborn — statistical plots and faceting `(VIZ-04)`
+- **Day 39** — Distributions and relationships; the correlation heatmap `(VIZ-05, VIZ-06)`
 

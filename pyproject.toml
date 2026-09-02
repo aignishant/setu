@@ -7,7 +7,9 @@ dependencies = [
     "google-genai==2.19.0",
     "groq==1.6.0",
     "openai==3.3.1",
+    "pandas==3.0.5",
     "psycopg[binary]==3.3.4",
+    "pyarrow==25.0.1",
     "pymongo==4.17.0",
     "python-dotenv==1.2.3",
 ]
