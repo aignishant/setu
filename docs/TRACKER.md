@@ -15,14 +15,14 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.3.0 shape | **20** | 8.3% |
-| 📚 Sub-topic documents in `parts/` | **295** | — |
+| 📄 Days written in the v2.3.0 shape | **26** | 10.8% |
+| 📚 Sub-topic documents in `parts/` | **429** | — |
 | ✅ Days completed (checklist fully ticked) | **4** | 1.7% |
-| ⬜ Still to write | **221** | 91.7% |
+| ⬜ Still to write | **215** | 89.2% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  20/241
+written  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  26/241
 complete █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4/241
 ```
 
@@ -35,7 +35,7 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 | 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 4/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 103 | 0/8 |
 | 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 139 | 0/8 |
-| 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
+| 3 | M3 | NumPy (Module 3) | 20–25 | 6/6 | 134 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 0/10 | 0 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0 | 0/6 |
 | 6 | M6 | SQL & NoSQL (Module 6) | 42–51 | 0/10 | 0 | 0/10 |
@@ -104,12 +104,12 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 | Day | Title | IDs | Kind | Status | Parts | Open boxes |
 |---|---|---|---|---|---|---|
-| 20 | `ndarray`, dtypes, and array creation (NumPy 2.x names) | NP-01, NP-02 | lab | ⬜ pending | — | — |
-| 21 | Indexing, slicing, boolean masks — and the view trap | NP-03 | lab | ⬜ pending | — | — |
-| 22 | Broadcasting and array manipulation | NP-04, NP-05 | lab | ⬜ pending | — | — |
-| 23 | Universal functions, statistics, and `argsort` top-k | NP-06, NP-07 | lab | ⬜ pending | — | — |
-| 24 | Binary/string functions and linear algebra | NP-08, NP-09 | lab | ⬜ pending | — | — |
-| 25 | Copy vs view — and a vectorised stats module | NP-10 | gate | ⬜ pending | — | — |
+| 20 | `ndarray`, dtypes, and array creation (NumPy 2.x names) | NP-01, NP-02 | lab | 📄 written | 20 | 132 |
+| 21 | Indexing, slicing, boolean masks — and the view trap | NP-03 | lab | 📄 written | 23 | 102 |
+| 22 | Broadcasting and array manipulation | NP-04, NP-05 | lab | 📄 written | 22 | 113 |
+| 23 | Universal functions, statistics, and `argsort` top-k | NP-06, NP-07 | lab | 📄 written | 26 | 108 |
+| 24 | Binary/string functions and linear algebra | NP-08, NP-09 | lab | 📄 written | 24 | 120 |
+| 25 | Copy vs view — and a vectorised stats module | NP-10 | gate | 📄 written | 19 | 84 |
 
 ### Phase 4 · Pandas 3.0 (Module 4) · Days 26–35
 
@@ -460,14 +460,14 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 20** — `ndarray`, dtypes, and array creation (NumPy 2.x names) `(NP-01, NP-02)`
-- **Day 21** — Indexing, slicing, boolean masks — and the view trap `(NP-03)`
-- **Day 22** — Broadcasting and array manipulation `(NP-04, NP-05)`
-- **Day 23** — Universal functions, statistics, and `argsort` top-k `(NP-06, NP-07)`
-- **Day 24** — Binary/string functions and linear algebra `(NP-08, NP-09)`
-- **Day 25** — Copy vs view — and a vectorised stats module `(NP-10)`
 - **Day 26** — pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap `(PD-01)`
 - **Day 27** — Reading and writing: CSV, JSON, Parquet, SQL — typed at read time `(PD-02)`
 - **Day 28** — `loc`, `iloc`, boolean masks, reindexing and alignment `(PD-03, PD-04)`
 - **Day 29** — Iteration vs vectorisation; sorting and ranking `(PD-05, PD-06)`
+- **Day 30** — Missing data — and why the imputer lives in the pipeline `(PD-07)`
+- **Day 31** — `groupby`: split–apply–combine, `agg` and `transform` `(PD-08)`
+- **Day 32** — Merge, join, concat, pivot, melt `(PD-09, PD-10)`
+- **Day 33** — The `.str` and `.dt` accessors; resampling `(PD-11, PD-12)`
+- **Day 34** — Categorical dtype and `describe()` as a data-quality report `(PD-13, PD-14)`
+- **Day 35** — Where pandas stops — Polars and DuckDB, benchmarked `(PD-15)`
 

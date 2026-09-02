@@ -406,12 +406,186 @@ generator: scripts/parts_index.py
 | 5.2 | production | The async fetcher, and the rate limit it must respect | ["PY-23", "PY-24"] | [`05-the-gate/5.2-the-async-fetcher.md`](day-19-typing-dataclasses-and-concurrency/parts/05-the-gate/5.2-the-async-fetcher.md) |
 | 5.3 | production | Testing async code — asyncio.run, and the test that never ran | ["PY-23", "PY-24"] | [`05-the-gate/5.3-testing-async-code.md`](day-19-typing-dataclasses-and-concurrency/parts/05-the-gate/5.3-testing-async-code.md) |
 
+## `day-20-arrays-and-dtypes` — 20 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A list of numbers is a list of boxes; an array is one long box | ["NP-01"] | [`01-the-block/1.1-a-list-of-boxes.md`](day-20-arrays-and-dtypes/parts/01-the-block/1.1-a-list-of-boxes.md) |
+| 1.2 | foundation | shape, ndim, size, dtype, itemsize, nbytes — the six questions | ["NP-01"] | [`01-the-block/1.2-shape-dtype-and-the-rest.md`](day-20-arrays-and-dtypes/parts/01-the-block/1.2-shape-dtype-and-the-rest.md) |
+| 1.3 | working | One block, and the arithmetic that finds an element | ["NP-01"] | [`01-the-block/1.3-one-block-and-strides.md`](day-20-arrays-and-dtypes/parts/01-the-block/1.3-one-block-and-strides.md) |
+| 1.4 | production | A million numbers: memory and speed, measured rather than claimed | ["NP-01"] | [`01-the-block/1.4-a-million-floats-measured.md`](day-20-arrays-and-dtypes/parts/01-the-block/1.4-a-million-floats-measured.md) |
+| 2.1 | foundation | A dtype is a promise about every element | ["NP-01"] | [`02-dtypes/2.1-a-dtype-is-a-promise.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.1-a-dtype-is-a-promise.md) |
+| 2.2 | working | Integer widths, and the wrap that says nothing | ["NP-01"] | [`02-dtypes/2.2-integers-and-the-silent-wrap.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.2-integers-and-the-silent-wrap.md) |
+| 2.3 | working | Floats, NaN, and the precision you cannot get back | ["NP-01"] | [`02-dtypes/2.3-floats-nan-and-precision.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.3-floats-nan-and-precision.md) |
+| 2.4 | working | astype — changing the promise, and the copy it makes | ["NP-01"] | [`02-dtypes/2.4-astype-and-the-copy.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.4-astype-and-the-copy.md) |
+| 2.5 | production | NEP 50 — what a plain Python number does to an array's dtype | ["NP-01"] | [`02-dtypes/2.5-nep-50-and-the-python-number.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.5-nep-50-and-the-python-number.md) |
+| 2.6 | production | The names that were removed in NumPy 2.0, and what to write instead | ["NP-01"] | [`02-dtypes/2.6-the-names-that-were-removed.md`](day-20-arrays-and-dtypes/parts/02-dtypes/2.6-the-names-that-were-removed.md) |
+| 3.1 | foundation | np.array — from data you already have | ["NP-02"] | [`03-creating/3.1-np-array-and-what-it-infers.md`](day-20-arrays-and-dtypes/parts/03-creating/3.1-np-array-and-what-it-infers.md) |
+| 3.2 | working | zeros, ones, full — and the empty that is not empty | ["NP-02"] | [`03-creating/3.2-zeros-ones-full-and-empty.md`](day-20-arrays-and-dtypes/parts/03-creating/3.2-zeros-ones-full-and-empty.md) |
+| 3.3 | working | arange — a range you can do arithmetic on, and the float step that misses | ["NP-02"] | [`03-creating/3.3-arange-and-the-float-step.md`](day-20-arrays-and-dtypes/parts/03-creating/3.3-arange-and-the-float-step.md) |
+| 3.4 | working | linspace — say how many, not how far apart | ["NP-02"] | [`03-creating/3.4-linspace.md`](day-20-arrays-and-dtypes/parts/03-creating/3.4-linspace.md) |
+| 3.5 | working | The _like family, eye and identity — arrays shaped by another array | ["NP-02"] | [`03-creating/3.5-like-and-the-identity.md`](day-20-arrays-and-dtypes/parts/03-creating/3.5-like-and-the-identity.md) |
+| 4.1 | working | default_rng — the generator, and the global state you stop using | ["NP-02"] | [`04-random/4.1-default-rng-the-generator.md`](day-20-arrays-and-dtypes/parts/04-random/4.1-default-rng-the-generator.md) |
+| 4.2 | production | The seed is part of the result | ["NP-02"] | [`04-random/4.2-the-seed-is-part-of-the-result.md`](day-20-arrays-and-dtypes/parts/04-random/4.2-the-seed-is-part-of-the-result.md) |
+| 4.3 | production | Passing the generator, not the seed — and spawn for parallel work | ["NP-02"] | [`04-random/4.3-passing-the-generator.md`](day-20-arrays-and-dtypes/parts/04-random/4.3-passing-the-generator.md) |
+| 5.1 | production | Reading the week in, typed on purpose | ["NP-01", "NP-02"] | [`05-the-module/5.1-reading-the-week-typed-on-purpose.md`](day-20-arrays-and-dtypes/parts/05-the-module/5.1-reading-the-week-typed-on-purpose.md) |
+| 5.2 | production | The test that must be able to fail | ["NP-01", "NP-02"] | [`05-the-module/5.2-the-test-that-can-go-red.md`](day-20-arrays-and-dtypes/parts/05-the-module/5.2-the-test-that-can-go-red.md) |
+
+## `day-21-indexing-and-views` — 23 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | arr[3] — one element, and what comes back | ["NP-03"] | [`01-one-element/1.1-index-and-the-negative-index.md`](day-21-indexing-and-views/parts/01-one-element/1.1-index-and-the-negative-index.md) |
+| 1.2 | foundation | arr[1, 4] — the comma a list cannot do | ["NP-03"] | [`01-one-element/1.2-the-comma-a-list-cannot-do.md`](day-21-indexing-and-views/parts/01-one-element/1.2-the-comma-a-list-cannot-do.md) |
+| 1.3 | foundation | arr[1:3] — a slice keeps its axis | ["NP-03"] | [`01-one-element/1.3-slicing-one-axis.md`](day-21-indexing-and-views/parts/01-one-element/1.3-slicing-one-axis.md) |
+| 1.4 | working | arr[:, 2] — a whole column, and the shape that comes back | ["NP-03"] | [`01-one-element/1.4-a-whole-column.md`](day-21-indexing-and-views/parts/01-one-element/1.4-a-whole-column.md) |
+| 1.5 | working | arr[::2] and arr[::-1] — the step, and the reverse that costs nothing | ["NP-03"] | [`01-one-element/1.5-the-step-and-the-reverse.md`](day-21-indexing-and-views/parts/01-one-element/1.5-the-step-and-the-reverse.md) |
+| 1.6 | working | ... and np.newaxis — the two placeholders | ["NP-03"] | [`01-one-element/1.6-ellipsis-and-newaxis.md`](day-21-indexing-and-views/parts/01-one-element/1.6-ellipsis-and-newaxis.md) |
+| 2.1 | working | A slice does not copy — write to it and the parent changes | ["NP-03"] | [`02-the-view-trap/2.1-a-slice-does-not-copy.md`](day-21-indexing-and-views/parts/02-the-view-trap/2.1-a-slice-does-not-copy.md) |
+| 2.2 | working | How to tell — base, shares_memory and the flags | ["NP-03"] | [`02-the-view-trap/2.2-how-to-tell-base-and-shares-memory.md`](day-21-indexing-and-views/parts/02-the-view-trap/2.2-how-to-tell-base-and-shares-memory.md) |
+| 2.3 | working | .copy() — and the four times it is worth paying for | ["NP-03"] | [`02-the-view-trap/2.3-copy-and-when-to-pay.md`](day-21-indexing-and-views/parts/02-the-view-trap/2.3-copy-and-when-to-pay.md) |
+| 2.4 | production | The function that changed its input — and how to write one that cannot | ["NP-03"] | [`02-the-view-trap/2.4-the-function-that-changed-its-input.md`](day-21-indexing-and-views/parts/02-the-view-trap/2.4-the-function-that-changed-its-input.md) |
+| 3.1 | foundation | week > 10000 — a comparison makes an array of True and False | ["NP-03"] | [`03-boolean-masks/3.1-a-comparison-makes-an-array.md`](day-21-indexing-and-views/parts/03-boolean-masks/3.1-a-comparison-makes-an-array.md) |
+| 3.2 | working | month[busy] — indexing with a mask, and the copy it always makes | ["NP-03"] | [`03-boolean-masks/3.2-indexing-with-a-mask.md`](day-21-indexing-and-views/parts/03-boolean-masks/3.2-indexing-with-a-mask.md) |
+| 3.3 | working | &, | and ~ — combining masks, and why and raises | ["NP-03"] | [`03-boolean-masks/3.3-and-or-not-and-why-and-raises.md`](day-21-indexing-and-views/parts/03-boolean-masks/3.3-and-or-not-and-why-and-raises.md) |
+| 3.4 | working | month[missing] = -1 — assigning through a mask | ["NP-03"] | [`03-boolean-masks/3.4-assigning-through-a-mask.md`](day-21-indexing-and-views/parts/03-boolean-masks/3.4-assigning-through-a-mask.md) |
+| 3.5 | production | The mask that matched nothing — the empty selection | ["NP-03"] | [`03-boolean-masks/3.5-the-mask-that-matched-nothing.md`](day-21-indexing-and-views/parts/03-boolean-masks/3.5-the-mask-that-matched-nothing.md) |
+| 4.1 | working | week[[0, 3, 6]] — a list of positions | ["NP-03"] | [`04-fancy-indexing/4.1-a-list-of-positions.md`](day-21-indexing-and-views/parts/04-fancy-indexing/4.1-a-list-of-positions.md) |
+| 4.2 | working | month[[0, 1], [3, 5]] — two index arrays make pairs, not a grid | ["NP-03"] | [`04-fancy-indexing/4.2-two-index-arrays.md`](day-21-indexing-and-views/parts/04-fancy-indexing/4.2-two-index-arrays.md) |
+| 4.3 | working | Basic or advanced — the rule that decides view or copy | ["NP-03"] | [`04-fancy-indexing/4.3-fancy-indexing-always-copies.md`](day-21-indexing-and-views/parts/04-fancy-indexing/4.3-fancy-indexing-always-copies.md) |
+| 4.4 | production | tally[walks] += 1 — the update that counted once | ["NP-03"] | [`04-fancy-indexing/4.4-repeated-positions-and-the-lost-update.md`](day-21-indexing-and-views/parts/04-fancy-indexing/4.4-repeated-positions-and-the-lost-update.md) |
+| 4.5 | production | cube[[0, 1], :, [0, 1]] — mixing a slice with a list, and where the axis goes | ["NP-03"] | [`04-fancy-indexing/4.5-mixing-a-slice-with-a-list.md`](day-21-indexing-and-views/parts/04-fancy-indexing/4.5-mixing-a-slice-with-a-list.md) |
+| 5.1 | production | 400 bytes that held 200 megabytes — the leak a view causes | ["NP-03"] | [`05-in-anger/5.1-the-leak-a-view-causes.md`](day-21-indexing-and-views/parts/05-in-anger/5.1-the-leak-a-view-causes.md) |
+| 5.2 | production | src/setu/select.py — view or copy, decided in the signature | ["NP-03"] | [`05-in-anger/5.2-view-or-copy-on-purpose.md`](day-21-indexing-and-views/parts/05-in-anger/5.2-view-or-copy-on-purpose.md) |
+| 5.3 | production | tests/test_select.py — asserting a promise you cannot see | ["NP-03"] | [`05-in-anger/5.3-the-test-that-can-go-red.md`](day-21-indexing-and-views/parts/05-in-anger/5.3-the-test-that-can-go-red.md) |
+
+## `day-22-broadcasting-and-shape` — 22 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | month + 500 — one number against twenty-eight | ["NP-04"] | [`01-broadcasting/1.1-adding-one-number-to-every-day.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.1-adding-one-number-to-every-day.md) |
+| 1.2 | foundation | The rule in three lines — align right, stretch the ones, otherwise refuse | ["NP-04"] | [`01-broadcasting/1.2-the-rule-in-three-lines.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.2-the-rule-in-three-lines.md) |
+| 1.3 | working | month - day_mean — a row against a table, and mean-centring with no loop | ["NP-04"] | [`01-broadcasting/1.3-a-row-against-a-table.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.3-a-row-against-a-table.md) |
+| 1.4 | working | keepdims=True — the axis that has to stay, and the column it makes | ["NP-04"] | [`01-broadcasting/1.4-keepdims-and-the-column.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.4-keepdims-and-the-column.md) |
+| 1.5 | working | A stride of zero — the stretching that never happens | ["NP-04"] | [`01-broadcasting/1.5-no-data-is-copied.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.5-no-data-is-copied.md) |
+| 1.6 | working | Reading the error — six shape messages and what each one is telling you | ["NP-04"] | [`01-broadcasting/1.6-reading-the-broadcast-error.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.6-reading-the-broadcast-error.md) |
+| 1.7 | production | (n, 1) against (1, n) — the broadcast that ate the memory | ["NP-04"] | [`01-broadcasting/1.7-the-broadcast-that-ate-the-memory.md`](day-22-broadcasting-and-shape/parts/01-broadcasting/1.7-the-broadcast-that-ate-the-memory.md) |
+| 2.1 | foundation | reshape — the same block, read as a different shape | ["NP-05"] | [`02-reshape/2.1-same-block-new-shape.md`](day-22-broadcasting-and-shape/parts/02-reshape/2.1-same-block-new-shape.md) |
+| 2.2 | foundation | reshape(-1, 7) — letting NumPy do the division | ["NP-05"] | [`02-reshape/2.2-minus-one.md`](day-22-broadcasting-and-shape/parts/02-reshape/2.2-minus-one.md) |
+| 2.3 | working | order='C' and order='F' — which way the values are filled in | ["NP-05"] | [`02-reshape/2.3-the-order-argument.md`](day-22-broadcasting-and-shape/parts/02-reshape/2.3-the-order-argument.md) |
+| 2.4 | working | ravel and flatten — the view and the copy that look identical | ["NP-05"] | [`02-reshape/2.4-ravel-and-flatten.md`](day-22-broadcasting-and-shape/parts/02-reshape/2.4-ravel-and-flatten.md) |
+| 2.5 | production | When reshape must copy — and the assignment that refuses instead | ["NP-05"] | [`02-reshape/2.5-when-reshape-must-copy.md`](day-22-broadcasting-and-shape/parts/02-reshape/2.5-when-reshape-must-copy.md) |
+| 3.1 | foundation | .T — the axes swapped, and not one number moved | ["NP-05"] | [`03-transpose/3.1-t-the-axes-swapped.md`](day-22-broadcasting-and-shape/parts/03-transpose/3.1-t-the-axes-swapped.md) |
+| 3.2 | working | transpose, swapaxes and moveaxis — naming the axes you meant | ["NP-05"] | [`03-transpose/3.2-transpose-and-swapaxes.md`](day-22-broadcasting-and-shape/parts/03-transpose/3.2-transpose-and-swapaxes.md) |
+| 3.3 | production | Contiguity — which operations pay for a transpose, and which do not | ["NP-05"] | [`03-transpose/3.3-contiguity-and-the-speed-you-lose.md`](day-22-broadcasting-and-shape/parts/03-transpose/3.3-contiguity-and-the-speed-you-lose.md) |
+| 4.1 | working | concatenate — joining along an axis that already exists | ["NP-05"] | [`04-joining-and-splitting/4.1-concatenate.md`](day-22-broadcasting-and-shape/parts/04-joining-and-splitting/4.1-concatenate.md) |
+| 4.2 | working | stack against concatenate — a new axis, or a longer one | ["NP-05"] | [`04-joining-and-splitting/4.2-stack-versus-concatenate.md`](day-22-broadcasting-and-shape/parts/04-joining-and-splitting/4.2-stack-versus-concatenate.md) |
+| 4.3 | working | split and array_split — cutting an array up, and the uneven last piece | ["NP-05"] | [`04-joining-and-splitting/4.3-split-and-the-uneven-last-piece.md`](day-22-broadcasting-and-shape/parts/04-joining-and-splitting/4.3-split-and-the-uneven-last-piece.md) |
+| 4.4 | working | np.newaxis and expand_dims — the axis you add to make things line up | ["NP-05"] | [`04-joining-and-splitting/4.4-newaxis-and-expand-dims.md`](day-22-broadcasting-and-shape/parts/04-joining-and-splitting/4.4-newaxis-and-expand-dims.md) |
+| 4.5 | production | Growing an array in a loop — the quadratic nobody sees | ["NP-05"] | [`04-joining-and-splitting/4.5-growing-an-array-in-a-loop.md`](day-22-broadcasting-and-shape/parts/04-joining-and-splitting/4.5-growing-an-array-in-a-loop.md) |
+| 5.1 | production | src/setu/shape.py — reshape at the boundary, centre without leaking | ["NP-04", "NP-05"] | [`05-the-module/5.1-mean-centring-the-month.md`](day-22-broadcasting-and-shape/parts/05-the-module/5.1-mean-centring-the-month.md) |
+| 5.2 | production | tests/test_shape.py — asserting the axis, not just the shape | ["NP-04", "NP-05"] | [`05-the-module/5.2-the-test-that-can-go-red.md`](day-22-broadcasting-and-shape/parts/05-the-module/5.2-the-test-that-can-go-red.md) |
+
+## `day-23-ufuncs-and-statistics` — 26 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A ufunc — one operation, applied to every element | ["NP-06"] | [`01-ufuncs/1.1-one-operation-every-element.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.1-one-operation-every-element.md) |
+| 1.2 | working | out= and where= — the arrays a chained expression allocates | ["NP-06"] | [`01-ufuncs/1.2-out-and-the-temporaries.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.2-out-and-the-temporaries.md) |
+| 1.3 | working | Dividing by zero warns and carries on — errstate, and who decides | ["NP-06"] | [`01-ufuncs/1.3-divide-by-zero-warns.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.3-divide-by-zero-warns.md) |
+| 1.4 | working | np.where — the vectorised if, and the branch that always runs | ["NP-06"] | [`01-ufuncs/1.4-np-where-the-vectorised-if.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.4-np-where-the-vectorised-if.md) |
+| 1.5 | working | np.maximum against np.max — elementwise and reduction, one letter apart | ["NP-06"] | [`01-ufuncs/1.5-maximum-clip-and-elementwise.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.5-maximum-clip-and-elementwise.md) |
+| 1.6 | working | isclose and allclose — comparing floats, and the tolerance you have to state | ["NP-06"] | [`01-ufuncs/1.6-isclose-and-allclose.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.6-isclose-and-allclose.md) |
+| 1.7 | production | reduce, accumulate and at — the methods every ufunc carries | ["NP-06"] | [`01-ufuncs/1.7-reduce-accumulate-and-at.md`](day-23-ufuncs-and-statistics/parts/01-ufuncs/1.7-reduce-accumulate-and-at.md) |
+| 2.1 | foundation | A reduction turns many numbers into one | ["NP-07"] | [`02-statistics/2.1-a-reduction-turns-many-into-one.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.1-a-reduction-turns-many-into-one.md) |
+| 2.2 | foundation | axis — the one that disappears | ["NP-07"] | [`02-statistics/2.2-axis-the-one-that-disappears.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.2-axis-the-one-that-disappears.md) |
+| 2.3 | working | std, var and the ddof nobody states | ["NP-07"] | [`02-statistics/2.3-std-var-and-ddof.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.3-std-var-and-ddof.md) |
+| 2.4 | working | median, percentile and quantile — the summary one bad day cannot move | ["NP-07"] | [`02-statistics/2.4-median-percentile-and-quantile.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.4-median-percentile-and-quantile.md) |
+| 2.5 | working | The nan family — one missing day and the answer is gone | ["NP-07"] | [`02-statistics/2.5-the-nan-family.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.5-the-nan-family.md) |
+| 2.6 | production | Float summation and the drift — why the total depends on the order | ["NP-07"] | [`02-statistics/2.6-float-summation-and-the-drift.md`](day-23-ufuncs-and-statistics/parts/02-statistics/2.6-float-summation-and-the-drift.md) |
+| 3.1 | foundation | np.sort and .sort() — one copies, one does not | ["NP-07"] | [`03-sorting-and-searching/3.1-sort-and-the-copy.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.1-sort-and-the-copy.md) |
+| 3.2 | working | argsort — the positions, not the values | ["NP-07"] | [`03-sorting-and-searching/3.2-argsort-the-positions.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.2-argsort-the-positions.md) |
+| 3.3 | working | Top-k and argpartition — the retrieval primitive, 130 days early | ["NP-07"] | [`03-sorting-and-searching/3.3-top-k-and-argpartition.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.3-top-k-and-argpartition.md) |
+| 3.4 | working | Sorting along an axis — and the rows that came apart | ["NP-07"] | [`03-sorting-and-searching/3.4-sorting-along-an-axis.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.4-sorting-along-an-axis.md) |
+| 3.5 | working | searchsorted — binary search, and the promise it does not check | ["NP-07"] | [`03-sorting-and-searching/3.5-searchsorted.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.5-searchsorted.md) |
+| 3.6 | production | Stability and kind= — the tie that moved | ["NP-07"] | [`03-sorting-and-searching/3.6-stability-and-kind.md`](day-23-ufuncs-and-statistics/parts/03-sorting-and-searching/3.6-stability-and-kind.md) |
+| 4.1 | foundation | count_nonzero — counting a mask, and the sum that also works | ["NP-07"] | [`04-counting/4.1-count-nonzero-and-the-mask.md`](day-23-ufuncs-and-statistics/parts/04-counting/4.1-count-nonzero-and-the-mask.md) |
+| 4.2 | working | np.unique — the distinct values, and the four extra arrays | ["NP-07"] | [`04-counting/4.2-unique.md`](day-23-ufuncs-and-statistics/parts/04-counting/4.2-unique.md) |
+| 4.3 | working | np.bincount — counting without a sort, and the length that surprised you | ["NP-07"] | [`04-counting/4.3-bincount.md`](day-23-ufuncs-and-statistics/parts/04-counting/4.3-bincount.md) |
+| 4.4 | working | np.histogram — the bins, and which side an edge belongs to | ["NP-07"] | [`04-counting/4.4-histogram-and-the-edges.md`](day-23-ufuncs-and-statistics/parts/04-counting/4.4-histogram-and-the-edges.md) |
+| 4.5 | production | np.isin — asking is it one of these, for a million values at once | ["NP-07"] | [`04-counting/4.5-isin-and-membership.md`](day-23-ufuncs-and-statistics/parts/04-counting/4.5-isin-and-membership.md) |
+| 5.1 | production | src/setu/summary.py — the two IDs meeting in one module | ["NP-06", "NP-07"] | [`05-the-module/5.1-the-summary-module.md`](day-23-ufuncs-and-statistics/parts/05-the-module/5.1-the-summary-module.md) |
+| 5.2 | production | tests/test_summary.py — asserting a claim, not a number | ["NP-06", "NP-07"] | [`05-the-module/5.2-the-test-that-can-go-red.md`](day-23-ufuncs-and-statistics/parts/05-the-module/5.2-the-test-that-can-go-red.md) |
+
+## `day-24-bits-strings-and-linear-algebra` — 24 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A number is a row of switches | ["NP-08"] | [`01-bits/1.1-a-number-is-switches.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.1-a-number-is-switches.md) |
+| 1.2 | foundation | and, or, xor, not — the four bitwise ufuncs | ["NP-08"] | [`01-bits/1.2-the-four-bitwise-ufuncs.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.2-the-four-bitwise-ufuncs.md) |
+| 1.3 | working | ~ on a bool and ~ on an int — one symbol, two answers | ["NP-08"] | [`01-bits/1.3-tilde-on-bool-and-int.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.3-tilde-on-bool-and-int.md) |
+| 1.4 | working | << and >> — shifting, and the bit that fell off the end | ["NP-08"] | [`01-bits/1.4-shifts-and-the-bit-that-fell-off.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.4-shifts-and-the-bit-that-fell-off.md) |
+| 1.5 | working | A bitmask — many yes-or-no answers in one integer | ["NP-08"] | [`01-bits/1.5-a-bitmask.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.5-a-bitmask.md) |
+| 1.6 | production | packbits and unpackbits — forty booleans in five bytes | ["NP-08"] | [`01-bits/1.6-packbits.md`](day-24-bits-strings-and-linear-algebra/parts/01-bits/1.6-packbits.md) |
+| 2.1 | foundation | <U8 — text in a fixed-width box | ["NP-08"] | [`02-strings/2.1-fixed-width-text.md`](day-24-bits-strings-and-linear-algebra/parts/02-strings/2.1-fixed-width-text.md) |
+| 2.2 | working | np.strings — the module np.char became | ["NP-08"] | [`02-strings/2.2-np-strings.md`](day-24-bits-strings-and-linear-algebra/parts/02-strings/2.2-np-strings.md) |
+| 2.3 | working | Comparison is not a match — == on text, and what it misses | ["NP-08"] | [`02-strings/2.3-comparison-is-not-a-match.md`](day-24-bits-strings-and-linear-algebra/parts/02-strings/2.3-comparison-is-not-a-match.md) |
+| 2.4 | production | Where text does not belong — object dtype, and the integer codes that replace it | ["NP-08"] | [`02-strings/2.4-where-text-does-not-belong.md`](day-24-bits-strings-and-linear-algebra/parts/02-strings/2.4-where-text-does-not-belong.md) |
+| 3.1 | foundation | A dot product is a total | ["NP-09"] | [`03-matmul/3.1-a-dot-product-is-a-total.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.1-a-dot-product-is-a-total.md) |
+| 3.2 | foundation | Writing A @ B by hand — three loops, and the shape rule | ["NP-09"] | [`03-matmul/3.2-matmul-by-hand.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.2-matmul-by-hand.md) |
+| 3.3 | working | @, np.matmul and np.dot — three spellings, two behaviours | ["NP-09"] | [`03-matmul/3.3-at-matmul-and-dot.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.3-at-matmul-and-dot.md) |
+| 3.4 | working | The measured gap — the loop against the library | ["NP-09"] | [`03-matmul/3.4-the-measured-gap.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.4-the-measured-gap.md) |
+| 3.5 | working | Stacks of matrices — matmul's batch axes | ["NP-09"] | [`03-matmul/3.5-stacks-of-matrices.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.5-stacks-of-matrices.md) |
+| 3.6 | production | A @ B is every neural layer | ["NP-09"] | [`03-matmul/3.6-every-neural-layer.md`](day-24-bits-strings-and-linear-algebra/parts/03-matmul/3.6-every-neural-layer.md) |
+| 4.1 | foundation | Three trips, three prices — a system of equations | ["NP-09"] | [`04-linalg/4.1-three-trips-three-prices.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.1-three-trips-three-prices.md) |
+| 4.2 | working | np.linalg.solve — and never inv | ["NP-09"] | [`04-linalg/4.2-solve-and-never-inv.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.2-solve-and-never-inv.md) |
+| 4.3 | working | np.linalg.norm — length, and the axis it reduces | ["NP-09"] | [`04-linalg/4.3-norm.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.3-norm.md) |
+| 4.4 | working | Singular — the error that says there is no unique answer | ["NP-09"] | [`04-linalg/4.4-singular-and-the-error.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.4-singular-and-the-error.md) |
+| 4.5 | production | lstsq — when there is no exact answer | ["NP-09"] | [`04-linalg/4.5-lstsq.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.5-lstsq.md) |
+| 4.6 | production | Conditioning — the answer that was numerically meaningless | ["NP-09"] | [`04-linalg/4.6-conditioning.md`](day-24-bits-strings-and-linear-algebra/parts/04-linalg/4.6-conditioning.md) |
+| 5.1 | production | src/setu/chores.py — bits, names and matrices in one module | ["NP-08", "NP-09"] | [`05-the-module/5.1-the-chores-module.md`](day-24-bits-strings-and-linear-algebra/parts/05-the-module/5.1-the-chores-module.md) |
+| 5.2 | production | tests/test_chores.py — testing the guards, not the calls | ["NP-08", "NP-09"] | [`05-the-module/5.2-the-test-that-can-go-red.md`](day-24-bits-strings-and-linear-algebra/parts/05-the-module/5.2-the-test-that-can-go-red.md) |
+
+## `day-25-copy-view-and-the-gate` — 19 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Sixteen operations, one question — the table for the whole phase | ["NP-10"] | [`01-the-decision/1.1-six-operations-one-question.md`](day-25-copy-view-and-the-gate/parts/01-the-decision/1.1-six-operations-one-question.md) |
+| 1.2 | working | The three probes — and which one actually answers the question | ["NP-10"] | [`01-the-decision/1.2-the-three-probes.md`](day-25-copy-view-and-the-gate/parts/01-the-decision/1.2-the-three-probes.md) |
+| 1.3 | working | WRITEABLE — the flag that turns a silent bug into an error | ["NP-10"] | [`01-the-decision/1.3-writeable-the-flag.md`](day-25-copy-view-and-the-gate/parts/01-the-decision/1.3-writeable-the-flag.md) |
+| 1.4 | production | Aliasing inside one call — what NumPy handles, and what it does not | ["NP-10"] | [`01-the-decision/1.4-out-and-aliasing.md`](day-25-copy-view-and-the-gate/parts/01-the-decision/1.4-out-and-aliasing.md) |
+| 1.5 | production | The API contract — saying it in the name and the signature | ["NP-10"] | [`01-the-decision/1.5-the-api-contract.md`](day-25-copy-view-and-the-gate/parts/01-the-decision/1.5-the-api-contract.md) |
+| 2.1 | working | ravel() changed the original and flatten() did not | ["NP-10"] | [`02-the-bug/2.1-ravel-changed-it-flatten-did-not.md`](day-25-copy-view-and-the-gate/parts/02-the-bug/2.1-ravel-changed-it-flatten-did-not.md) |
+| 2.2 | production | The same bug inside a pipeline — why nobody sees it | ["NP-10"] | [`02-the-bug/2.2-in-a-pipeline.md`](day-25-copy-view-and-the-gate/parts/02-the-bug/2.2-in-a-pipeline.md) |
+| 2.3 | production | The three defences — and which one to reach for first | ["NP-10"] | [`02-the-bug/2.3-the-defences.md`](day-25-copy-view-and-the-gate/parts/02-the-bug/2.3-the-defences.md) |
+| 3.1 | foundation | The gate as a list — five criteria, each one falsifiable | ["NP-10"] | [`03-the-module/3.1-the-gate-as-a-list.md`](day-25-copy-view-and-the-gate/parts/03-the-module/3.1-the-gate-as-a-list.md) |
+| 3.2 | production | src/setu/stats.py — the gate's module | ["NP-10"] | [`03-the-module/3.2-the-stats-module.md`](day-25-copy-view-and-the-gate/parts/03-the-module/3.2-the-stats-module.md) |
+| 3.3 | production | One pass or five — the copy that pays for itself | ["NP-10"] | [`03-the-module/3.3-one-pass-or-five.md`](day-25-copy-view-and-the-gate/parts/03-the-module/3.3-one-pass-or-five.md) |
+| 3.4 | production | The boundary — the one line where the caller's memory ends | ["NP-10"] | [`03-the-module/3.4-the-boundary-that-decides.md`](day-25-copy-view-and-the-gate/parts/03-the-module/3.4-the-boundary-that-decides.md) |
+| 4.1 | working | What \"fifty times faster\" is measured against | ["NP-10"] | [`04-the-benchmark/4.1-what-fifty-times-is-against.md`](day-25-copy-view-and-the-gate/parts/04-the-benchmark/4.1-what-fifty-times-is-against.md) |
+| 4.2 | working | timeit honestly — min, not mean, and what got into the timed region | ["NP-10"] | [`04-the-benchmark/4.2-timeit-honestly.md`](day-25-copy-view-and-the-gate/parts/04-the-benchmark/4.2-timeit-honestly.md) |
+| 4.3 | production | The number, measured — 56x, and the sizes where it is not | ["NP-10"] | [`04-the-benchmark/4.3-the-number-measured.md`](day-25-copy-view-and-the-gate/parts/04-the-benchmark/4.3-the-number-measured.md) |
+| 4.4 | production | The benchmark that lied — three that followed every rule | ["NP-10"] | [`04-the-benchmark/4.4-the-benchmark-that-lied.md`](day-25-copy-view-and-the-gate/parts/04-the-benchmark/4.4-the-benchmark-that-lied.md) |
+| 5.1 | production | tests/test_stats.py — one test per criterion, each seen to fail | ["NP-10"] | [`05-the-gate/5.1-the-eval.md`](day-25-copy-view-and-the-gate/parts/05-the-gate/5.1-the-eval.md) |
+| 5.2 | production | The performance test in CI — a ratio survives a slow machine, mostly | ["NP-10"] | [`05-the-gate/5.2-the-performance-test-in-ci.md`](day-25-copy-view-and-the-gate/parts/05-the-gate/5.2-the-performance-test-in-ci.md) |
+| 5.3 | production | The phase, closed — the record, and what it does not claim | ["NP-10"] | [`05-the-gate/5.3-the-phase-closed.md`](day-25-copy-view-and-the-gate/parts/05-the-gate/5.3-the-phase-closed.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
 
 | ID | Parts | Taught in |
 |---|---|---|
+| `NP-01` | 12 | 20.1.1 · 20.1.2 · 20.1.3 · 20.1.4 · 20.2.1 · 20.2.2 · 20.2.3 · 20.2.4 · 20.2.5 · 20.2.6 · 20.5.1 · 20.5.2 |
+| `NP-02` | 10 | 20.3.1 · 20.3.2 · 20.3.3 · 20.3.4 · 20.3.5 · 20.4.1 · 20.4.2 · 20.4.3 · 20.5.1 · 20.5.2 |
+| `NP-03` | 23 | 21.1.1 · 21.1.2 · 21.1.3 · 21.1.4 · 21.1.5 · 21.1.6 · 21.2.1 · 21.2.2 · 21.2.3 · 21.2.4 · 21.3.1 · 21.3.2 · 21.3.3 · 21.3.4 · 21.3.5 · 21.4.1 · 21.4.2 · 21.4.3 · 21.4.4 · 21.4.5 · 21.5.1 · 21.5.2 · 21.5.3 |
+| `NP-04` | 9 | 22.1.1 · 22.1.2 · 22.1.3 · 22.1.4 · 22.1.5 · 22.1.6 · 22.1.7 · 22.5.1 · 22.5.2 |
+| `NP-05` | 15 | 22.2.1 · 22.2.2 · 22.2.3 · 22.2.4 · 22.2.5 · 22.3.1 · 22.3.2 · 22.3.3 · 22.4.1 · 22.4.2 · 22.4.3 · 22.4.4 · 22.4.5 · 22.5.1 · 22.5.2 |
+| `NP-06` | 9 | 23.1.1 · 23.1.2 · 23.1.3 · 23.1.4 · 23.1.5 · 23.1.6 · 23.1.7 · 23.5.1 · 23.5.2 |
+| `NP-07` | 19 | 23.2.1 · 23.2.2 · 23.2.3 · 23.2.4 · 23.2.5 · 23.2.6 · 23.3.1 · 23.3.2 · 23.3.3 · 23.3.4 · 23.3.5 · 23.3.6 · 23.4.1 · 23.4.2 · 23.4.3 · 23.4.4 · 23.4.5 · 23.5.1 · 23.5.2 |
+| `NP-08` | 12 | 24.1.1 · 24.1.2 · 24.1.3 · 24.1.4 · 24.1.5 · 24.1.6 · 24.2.1 · 24.2.2 · 24.2.3 · 24.2.4 · 24.5.1 · 24.5.2 |
+| `NP-09` | 14 | 24.3.1 · 24.3.2 · 24.3.3 · 24.3.4 · 24.3.5 · 24.3.6 · 24.4.1 · 24.4.2 · 24.4.3 · 24.4.4 · 24.4.5 · 24.4.6 · 24.5.1 · 24.5.2 |
+| `NP-10` | 19 | 25.1.1 · 25.1.2 · 25.1.3 · 25.1.4 · 25.1.5 · 25.2.1 · 25.2.2 · 25.2.3 · 25.3.1 · 25.3.2 · 25.3.3 · 25.3.4 · 25.4.1 · 25.4.2 · 25.4.3 · 25.4.4 · 25.5.1 · 25.5.2 · 25.5.3 |
 | `PY-01` | 7 | 4.1.1 · 4.1.2 · 4.1.3 · 4.1.4 · 4.1.5 · 4.3.1 · 4.3.2 |
 | `PY-02` | 7 | 4.2.1 · 4.2.2 · 4.2.3 · 4.2.4 · 4.2.5 · 4.3.1 · 4.3.2 |
 | `PY-03` | 8 | 5.1.1 · 5.1.2 · 5.1.3 · 5.1.4 · 5.1.5 · 5.1.6 · 5.3.1 · 5.3.2 |
