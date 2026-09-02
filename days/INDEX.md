@@ -329,6 +329,83 @@ generator: scripts/parts_index.py
 | 4.5 | production | @contextmanager — the generator that is a context manager | ["PY-20"] | [`04-context-managers/4.5-contextmanager-decorator.md`](day-16-files-and-context-managers/parts/04-context-managers/4.5-contextmanager-decorator.md) |
 | 4.6 | production | A connection that always closes, and ExitStack | ["PY-20"] | [`04-context-managers/4.6-a-connection-that-always-closes.md`](day-16-files-and-context-managers/parts/04-context-managers/4.6-a-connection-that-always-closes.md) |
 
+## `day-17-modules-and-packages` — 17 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A module is a file that has already run | ["PY-21"] | [`01-the-module/1.1-a-module-is-a-file-that-has-already-run.md`](day-17-modules-and-packages/parts/01-the-module/1.1-a-module-is-a-file-that-has-already-run.md) |
+| 1.2 | working | The four import forms, and what name each one leaves behind | ["PY-21"] | [`01-the-module/1.2-the-four-import-forms.md`](day-17-modules-and-packages/parts/01-the-module/1.2-the-four-import-forms.md) |
+| 1.3 | working | sys.modules, and the import that only happened once | ["PY-21"] | [`01-the-module/1.3-sys-modules.md`](day-17-modules-and-packages/parts/01-the-module/1.3-sys-modules.md) |
+| 1.4 | working | __name__, and the same file under two names | ["PY-21"] | [`01-the-module/1.4-the-name-that-changes.md`](day-17-modules-and-packages/parts/01-the-module/1.4-the-name-that-changes.md) |
+| 2.1 | working | sys.path — the list Python walks, and who puts what in it | ["PY-21"] | [`02-finding-it/2.1-sys-path.md`](day-17-modules-and-packages/parts/02-finding-it/2.1-sys-path.md) |
+| 2.2 | production | ModuleNotFoundError is almost never about the module | ["PY-21"] | [`02-finding-it/2.2-modulenotfounderror.md`](day-17-modules-and-packages/parts/02-finding-it/2.2-modulenotfounderror.md) |
+| 2.3 | production | The file named after a standard-library module | ["PY-21"] | [`02-finding-it/2.3-shadowing-the-standard-library.md`](day-17-modules-and-packages/parts/02-finding-it/2.3-shadowing-the-standard-library.md) |
+| 2.4 | production | uv run and the editable install — why import setu works at all | ["PY-21"] | [`02-finding-it/2.4-uv-run-and-the-editable-install.md`](day-17-modules-and-packages/parts/02-finding-it/2.4-uv-run-and-the-editable-install.md) |
+| 3.1 | foundation | A package is a folder Python will import from | ["PY-21"] | [`03-the-package/3.1-a-package-is-a-folder.md`](day-17-modules-and-packages/parts/03-the-package/3.1-a-package-is-a-folder.md) |
+| 3.2 | working | __init__.py — the front page of the section | ["PY-21"] | [`03-the-package/3.2-init-py-is-the-front-page.md`](day-17-modules-and-packages/parts/03-the-package/3.2-init-py-is-the-front-page.md) |
+| 3.3 | production | What to put in __init__.py, and what it costs | ["PY-21"] | [`03-the-package/3.3-what-goes-in-init.md`](day-17-modules-and-packages/parts/03-the-package/3.3-what-goes-in-init.md) |
+| 3.4 | production | The missing __init__.py that works until it does not | ["PY-21"] | [`03-the-package/3.4-the-missing-init.md`](day-17-modules-and-packages/parts/03-the-package/3.4-the-missing-init.md) |
+| 3.5 | working | Absolute and relative imports | ["PY-21"] | [`03-the-package/3.5-absolute-and-relative-imports.md`](day-17-modules-and-packages/parts/03-the-package/3.5-absolute-and-relative-imports.md) |
+| 4.1 | production | The src/ layout, and the bug it prevents | ["PY-21"] | [`04-the-project/4.1-the-src-layout.md`](day-17-modules-and-packages/parts/04-the-project/4.1-the-src-layout.md) |
+| 4.2 | production | The circular import, reproduced then fixed | ["PY-21"] | [`04-the-project/4.2-the-circular-import.md`](day-17-modules-and-packages/parts/04-the-project/4.2-the-circular-import.md) |
+| 4.3 | production | python file.py versus python -m package.module | ["PY-21"] | [`04-the-project/4.3-script-versus-module.md`](day-17-modules-and-packages/parts/04-the-project/4.3-script-versus-module.md) |
+| 4.4 | production | Designing setu's public surface | ["PY-21"] | [`04-the-project/4.4-designing-the-public-surface.md`](day-17-modules-and-packages/parts/04-the-project/4.4-designing-the-public-surface.md) |
+
+## `day-18-exceptions` — 19 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | What raising does — the stack unwinds until somebody catches | ["PY-22"] | [`01-raising-and-catching/1.1-what-raising-does.md`](day-18-exceptions/parts/01-raising-and-catching/1.1-what-raising-does.md) |
+| 1.2 | foundation | try / except, and catching by type | ["PY-22"] | [`01-raising-and-catching/1.2-try-except-and-catching-by-type.md`](day-18-exceptions/parts/01-raising-and-catching/1.2-try-except-and-catching-by-type.md) |
+| 1.3 | working | else and finally — the two clauses that decide what runs when | ["PY-22"] | [`01-raising-and-catching/1.3-else-and-finally.md`](day-18-exceptions/parts/01-raising-and-catching/1.3-else-and-finally.md) |
+| 1.4 | working | The bare except, and what else it catches | ["PY-22"] | [`01-raising-and-catching/1.4-the-bare-except.md`](day-18-exceptions/parts/01-raising-and-catching/1.4-the-bare-except.md) |
+| 1.5 | working | except Exception as error — what the object carries | ["PY-22"] | [`01-raising-and-catching/1.5-the-exception-object.md`](day-18-exceptions/parts/01-raising-and-catching/1.5-the-exception-object.md) |
+| 2.1 | foundation | Exceptions are classes, and catching catches subclasses | ["PY-22"] | [`02-the-hierarchy/2.1-catching-catches-subclasses.md`](day-18-exceptions/parts/02-the-hierarchy/2.1-catching-catches-subclasses.md) |
+| 2.2 | working | Reading the built-in tree — which one to raise when | ["PY-22"] | [`02-the-hierarchy/2.2-which-built-in-to-raise.md`](day-18-exceptions/parts/02-the-hierarchy/2.2-which-built-in-to-raise.md) |
+| 2.3 | working | raise versus raise from — the chain, and the two sentences in a traceback | ["PY-22"] | [`02-the-hierarchy/2.3-raise-from-and-the-chain.md`](day-18-exceptions/parts/02-the-hierarchy/2.3-raise-from-and-the-chain.md) |
+| 2.4 | production | Re-raising — bare raise, and the frame you added | ["PY-22"] | [`02-the-hierarchy/2.4-re-raising.md`](day-18-exceptions/parts/02-the-hierarchy/2.4-re-raising.md) |
+| 3.1 | working | One base class per project, and why | ["PY-22"] | [`03-your-own/3.1-one-base-class-per-project.md`](day-18-exceptions/parts/03-your-own/3.1-one-base-class-per-project.md) |
+| 3.2 | production | RateLimited — an exception that carries data | ["PY-22"] | [`03-your-own/3.2-an-exception-that-carries-data.md`](day-18-exceptions/parts/03-your-own/3.2-an-exception-that-carries-data.md) |
+| 3.3 | production | The message is an interface — what a good one says | ["PY-22"] | [`03-your-own/3.3-the-message-is-an-interface.md`](day-18-exceptions/parts/03-your-own/3.3-the-message-is-an-interface.md) |
+| 3.4 | production | Which errors are yours to raise, and translating at the boundary | ["PY-22"] | [`03-your-own/3.4-translate-at-the-boundary.md`](day-18-exceptions/parts/03-your-own/3.4-translate-at-the-boundary.md) |
+| 4.1 | production | The except that was too wide, and the bug that hid for a month | ["PY-22"] | [`04-in-anger/4.1-the-except-that-was-too-wide.md`](day-18-exceptions/parts/04-in-anger/4.1-the-except-that-was-too-wide.md) |
+| 4.2 | production | Ask forgiveness or ask permission — and the race that decides it | ["PY-22"] | [`04-in-anger/4.2-eafp-and-lbyl.md`](day-18-exceptions/parts/04-in-anger/4.2-eafp-and-lbyl.md) |
+| 4.3 | production | logging.exception, and the traceback you threw away | ["PY-22"] | [`04-in-anger/4.3-logging-exception.md`](day-18-exceptions/parts/04-in-anger/4.3-logging-exception.md) |
+| 4.4 | production | pytest.raises — testing the failure path | ["PY-22"] | [`04-in-anger/4.4-pytest-raises.md`](day-18-exceptions/parts/04-in-anger/4.4-pytest-raises.md) |
+| 4.5 | production | ExceptionGroup and except* — many failures at once | ["PY-22"] | [`04-in-anger/4.5-exception-groups.md`](day-18-exceptions/parts/04-in-anger/4.5-exception-groups.md) |
+| 4.6 | production | When not to use an exception — the result that is not exceptional | ["PY-22"] | [`04-in-anger/4.6-when-not-to-raise.md`](day-18-exceptions/parts/04-in-anger/4.6-when-not-to-raise.md) |
+
+## `day-19-typing-dataclasses-and-concurrency` — 26 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | A type hint is a note, not a rule | ["PY-23"] | [`01-type-hints/1.1-a-hint-is-a-note.md`](day-19-typing-dataclasses-and-concurrency/parts/01-type-hints/1.1-a-hint-is-a-note.md) |
+| 1.2 | foundation | The vocabulary — list[str], dict[str, int], X | None, Any | ["PY-23"] | [`01-type-hints/1.2-the-vocabulary.md`](day-19-typing-dataclasses-and-concurrency/parts/01-type-hints/1.2-the-vocabulary.md) |
+| 1.3 | working | X | None, and the None you forgot | ["PY-23"] | [`01-type-hints/1.3-optional-and-the-none-you-forgot.md`](day-19-typing-dataclasses-and-concurrency/parts/01-type-hints/1.3-optional-and-the-none-you-forgot.md) |
+| 1.4 | production | The type checker — what a hint buys you only when something reads it | ["PY-23"] | [`01-type-hints/1.4-the-type-checker.md`](day-19-typing-dataclasses-and-concurrency/parts/01-type-hints/1.4-the-type-checker.md) |
+| 2.1 | foundation | @dataclass — the __init__, __repr__ and __eq__ you stop writing | ["PY-23"] | [`02-dataclasses/2.1-what-dataclass-writes.md`](day-19-typing-dataclasses-and-concurrency/parts/02-dataclasses/2.1-what-dataclass-writes.md) |
+| 2.2 | working | field(default_factory=...) — the mutable default, caught this time | ["PY-23"] | [`02-dataclasses/2.2-default-factory.md`](day-19-typing-dataclasses-and-concurrency/parts/02-dataclasses/2.2-default-factory.md) |
+| 2.3 | working | frozen, slots, kw_only — the three flags worth knowing | ["PY-23"] | [`02-dataclasses/2.3-frozen-slots-kw-only.md`](day-19-typing-dataclasses-and-concurrency/parts/02-dataclasses/2.3-frozen-slots-kw-only.md) |
+| 2.4 | working | __post_init__ — validation and computed fields | ["PY-23"] | [`02-dataclasses/2.4-post-init.md`](day-19-typing-dataclasses-and-concurrency/parts/02-dataclasses/2.4-post-init.md) |
+| 2.5 | production | A dataclass is not a validator — what it does not do | ["PY-23"] | [`02-dataclasses/2.5-not-a-validator.md`](day-19-typing-dataclasses-and-concurrency/parts/02-dataclasses/2.5-not-a-validator.md) |
+| 3.1 | working | Pydantic v2 — the model that refuses bad data at the door | ["PY-23"] | [`03-pydantic/3.1-the-model-that-refuses.md`](day-19-typing-dataclasses-and-concurrency/parts/03-pydantic/3.1-the-model-that-refuses.md) |
+| 3.2 | working | ValidationError, and reading its report | ["PY-23"] | [`03-pydantic/3.2-validationerror.md`](day-19-typing-dataclasses-and-concurrency/parts/03-pydantic/3.2-validationerror.md) |
+| 3.3 | production | Coercion — what Pydantic changes without asking, and strict | ["PY-23"] | [`03-pydantic/3.3-coercion-and-strict.md`](day-19-typing-dataclasses-and-concurrency/parts/03-pydantic/3.3-coercion-and-strict.md) |
+| 3.4 | production | model_dump, model_validate_json, and the boundary they belong at | ["PY-23"] | [`03-pydantic/3.4-model-dump-and-the-boundary.md`](day-19-typing-dataclasses-and-concurrency/parts/03-pydantic/3.4-model-dump-and-the-boundary.md) |
+| 3.5 | production | TriageResult — the contract reused from Day 172 to Day 240 | ["PY-23"] | [`03-pydantic/3.5-triage-result.md`](day-19-typing-dataclasses-and-concurrency/parts/03-pydantic/3.5-triage-result.md) |
+| 4.1 | foundation | Waiting is not working — I/O-bound against CPU-bound | ["PY-24"] | [`04-concurrency/4.1-waiting-is-not-working.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.1-waiting-is-not-working.md) |
+| 4.2 | working | The GIL, in plain words | ["PY-24"] | [`04-concurrency/4.2-the-gil.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.2-the-gil.md) |
+| 4.3 | production | Threads — where they help, and the counter that lost updates | ["PY-24"] | [`04-concurrency/4.3-threads.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.3-threads.md) |
+| 4.4 | production | Processes — a second interpreter, and what it costs to send data | ["PY-24"] | [`04-concurrency/4.4-processes.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.4-processes.md) |
+| 4.5 | working | asyncio — one thread, a queue of paused functions | ["PY-24"] | [`04-concurrency/4.5-asyncio-one-thread.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.5-asyncio-one-thread.md) |
+| 4.6 | working | async def, await, and the coroutine you forgot to await | ["PY-24"] | [`04-concurrency/4.6-async-await.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.6-async-await.md) |
+| 4.7 | production | asyncio.gather — twenty fetches, timed against twenty in a row | ["PY-24"] | [`04-concurrency/4.7-gather-and-twenty-fetches.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.7-gather-and-twenty-fetches.md) |
+| 4.8 | production | Timeouts, cancellation and TaskGroup | ["PY-24"] | [`04-concurrency/4.8-timeouts-and-taskgroup.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.8-timeouts-and-taskgroup.md) |
+| 4.9 | production | Choosing — threads, processes, or asyncio | ["PY-24"] | [`04-concurrency/4.9-choosing.md`](day-19-typing-dataclasses-and-concurrency/parts/04-concurrency/4.9-choosing.md) |
+| 5.1 | production | The Phase 2 gate, read as a list | ["PY-23", "PY-24"] | [`05-the-gate/5.1-the-gate-as-a-list.md`](day-19-typing-dataclasses-and-concurrency/parts/05-the-gate/5.1-the-gate-as-a-list.md) |
+| 5.2 | production | The async fetcher, and the rate limit it must respect | ["PY-23", "PY-24"] | [`05-the-gate/5.2-the-async-fetcher.md`](day-19-typing-dataclasses-and-concurrency/parts/05-the-gate/5.2-the-async-fetcher.md) |
+| 5.3 | production | Testing async code — asyncio.run, and the test that never ran | ["PY-23", "PY-24"] | [`05-the-gate/5.3-testing-async-code.md`](day-19-typing-dataclasses-and-concurrency/parts/05-the-gate/5.3-testing-async-code.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -355,4 +432,8 @@ generator: scripts/parts_index.py
 | `PY-18` | 8 | 15.3.1 · 15.3.2 · 15.3.3 · 15.3.4 · 15.3.5 · 15.4.1 · 15.4.2 · 15.4.3 |
 | `PY-19` | 13 | 16.1.1 · 16.1.2 · 16.1.3 · 16.1.4 · 16.1.5 · 16.2.1 · 16.2.2 · 16.2.3 · 16.2.4 · 16.2.5 · 16.3.1 · 16.3.2 · 16.3.3 |
 | `PY-20` | 6 | 16.4.1 · 16.4.2 · 16.4.3 · 16.4.4 · 16.4.5 · 16.4.6 |
+| `PY-21` | 17 | 17.1.1 · 17.1.2 · 17.1.3 · 17.1.4 · 17.2.1 · 17.2.2 · 17.2.3 · 17.2.4 · 17.3.1 · 17.3.2 · 17.3.3 · 17.3.4 · 17.3.5 · 17.4.1 · 17.4.2 · 17.4.3 · 17.4.4 |
+| `PY-22` | 19 | 18.1.1 · 18.1.2 · 18.1.3 · 18.1.4 · 18.1.5 · 18.2.1 · 18.2.2 · 18.2.3 · 18.2.4 · 18.3.1 · 18.3.2 · 18.3.3 · 18.3.4 · 18.4.1 · 18.4.2 · 18.4.3 · 18.4.4 · 18.4.5 · 18.4.6 |
+| `PY-23` | 17 | 19.1.1 · 19.1.2 · 19.1.3 · 19.1.4 · 19.2.1 · 19.2.2 · 19.2.3 · 19.2.4 · 19.2.5 · 19.3.1 · 19.3.2 · 19.3.3 · 19.3.4 · 19.3.5 · 19.5.1 · 19.5.2 · 19.5.3 |
+| `PY-24` | 12 | 19.4.1 · 19.4.2 · 19.4.3 · 19.4.4 · 19.4.5 · 19.4.6 · 19.4.7 · 19.4.8 · 19.4.9 · 19.5.1 · 19.5.2 · 19.5.3 |
 

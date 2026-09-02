@@ -15,14 +15,14 @@ generator: scripts/tracker.py
 
 | | Count | Of total |
 |---|---|---|
-| 📄 Days written in the v2.3.0 shape | **17** | 7.1% |
-| 📚 Sub-topic documents in `parts/` | **233** | — |
+| 📄 Days written in the v2.3.0 shape | **20** | 8.3% |
+| 📚 Sub-topic documents in `parts/` | **295** | — |
 | ✅ Days completed (checklist fully ticked) | **4** | 1.7% |
-| ⬜ Still to write | **224** | 92.9% |
+| ⬜ Still to write | **221** | 91.7% |
 | Total days in plan | 241 | (Day 0 + Days 1–240) |
 
 ```
-written  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  17/241
+written  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  20/241
 complete █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4/241
 ```
 
@@ -34,7 +34,7 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 |---|---|---|---|---|---|---|
 | 0 | — | Foundry (incl. Day 0 setup) | 0–3 | 4/4 | 53 | 4/4 |
 | 1 | M1 | Python foundations (Module 1) | 4–11 | 8/8 | 103 | 0/8 |
-| 2 | M2 | Advanced Python (Module 2) | 12–19 | 5/8 | 77 | 0/8 |
+| 2 | M2 | Advanced Python (Module 2) | 12–19 | 8/8 | 139 | 0/8 |
 | 3 | M3 | NumPy (Module 3) | 20–25 | 0/6 | 0 | 0/6 |
 | 4 | M4 | Pandas 3.0 (Module 4) | 26–35 | 0/10 | 0 | 0/10 |
 | 5 | M5 | Visualisation (Module 5) | 36–41 | 0/6 | 0 | 0/6 |
@@ -96,9 +96,9 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 | 14 | Decorators — `@timed` and `@retry` | PY-16 | lab | 📄 written | 15 | 109 |
 | 15 | `classmethod`, `staticmethod`, `property`, and dunder methods | PY-17, PY-18 | lab | 📄 written | 16 | 139 |
 | 16 | Files, `pathlib`, buffering, and context managers | PY-19, PY-20 | lab | 📄 written | 19 | 150 |
-| 17 | Modules, packages, imports, `__init__.py` | PY-21 | lab | ⬜ pending | — | — |
-| 18 | Exceptions and custom error types | PY-22 | lab | ⬜ pending | — | — |
-| 19 | Typing, dataclasses, Pydantic v2, and concurrency | PY-23, PY-24 | gate | ⬜ pending | — | — |
+| 17 | Modules, packages, imports, `__init__.py` | PY-21 | lab | 📄 written | 17 | 114 |
+| 18 | Exceptions and custom error types | PY-22 | lab | 📄 written | 19 | 142 |
+| 19 | Typing, dataclasses, Pydantic v2, and concurrency | PY-23, PY-24 | gate | 📄 written | 26 | 180 |
 
 ### Phase 3 · NumPy (Module 3) · Days 20–25
 
@@ -460,9 +460,6 @@ complete █░░░░░░░░░░░░░░░░░░░░░░�
 
 The next ten days to write, in order:
 
-- **Day 17** — Modules, packages, imports, `__init__.py` `(PY-21)`
-- **Day 18** — Exceptions and custom error types `(PY-22)`
-- **Day 19** — Typing, dataclasses, Pydantic v2, and concurrency `(PY-23, PY-24)`
 - **Day 20** — `ndarray`, dtypes, and array creation (NumPy 2.x names) `(NP-01, NP-02)`
 - **Day 21** — Indexing, slicing, boolean masks — and the view trap `(NP-03)`
 - **Day 22** — Broadcasting and array manipulation `(NP-04, NP-05)`
@@ -470,4 +467,7 @@ The next ten days to write, in order:
 - **Day 24** — Binary/string functions and linear algebra `(NP-08, NP-09)`
 - **Day 25** — Copy vs view — and a vectorised stats module `(NP-10)`
 - **Day 26** — pandas 3.0 — Copy-on-Write, `str` dtype, and the chained-assignment trap `(PD-01)`
+- **Day 27** — Reading and writing: CSV, JSON, Parquet, SQL — typed at read time `(PD-02)`
+- **Day 28** — `loc`, `iloc`, boolean masks, reindexing and alignment `(PD-03, PD-04)`
+- **Day 29** — Iteration vs vectorisation; sorting and ranking `(PD-05, PD-06)`
 
