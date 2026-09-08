@@ -1,7 +1,7 @@
 ---
 name: parts-index
 plan: setu
-generated: "2026-09-03"
+generated: "2026-09-08"
 generator: scripts/parts_index.py
 ---
 
@@ -678,6 +678,119 @@ generator: scripts/parts_index.py
 | 6.1 | production | src/setu/order.py — the day's module | ["PD-05", "PD-06"] | [`06-the-module/6.1-the-order-module.md`](day-29-iteration-and-order/parts/06-the-module/6.1-the-order-module.md) |
 | 6.2 | production | tests/test_order.py — the test that could not fail | ["PD-05", "PD-06"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-29-iteration-and-order/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
 
+## `day-30-missing-data` — 22 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The price nobody wrote down | ["PD-07"] | [`01-what-missing-means/1.1-the-price-nobody-wrote-down.md`](day-30-missing-data/parts/01-what-missing-means/1.1-the-price-nobody-wrote-down.md) |
+| 1.2 | foundation | NaN — the number that is not equal to itself | ["PD-07"] | [`01-what-missing-means/1.2-nan-the-number-not-equal-to-itself.md`](day-30-missing-data/parts/01-what-missing-means/1.2-nan-the-number-not-equal-to-itself.md) |
+| 1.3 | foundation | None is not what gets stored | ["PD-07"] | [`01-what-missing-means/1.3-none-is-not-what-gets-stored.md`](day-30-missing-data/parts/01-what-missing-means/1.3-none-is-not-what-gets-stored.md) |
+| 1.4 | working | pd.NA, and the answer that is unknown | ["PD-07"] | [`01-what-missing-means/1.4-pd-na-and-the-answer-unknown.md`](day-30-missing-data/parts/01-what-missing-means/1.4-pd-na-and-the-answer-unknown.md) |
+| 1.5 | working | One column, one dtype, one kind of blank | ["PD-07"] | [`01-what-missing-means/1.5-one-dtype-one-kind-of-blank.md`](day-30-missing-data/parts/01-what-missing-means/1.5-one-dtype-one-kind-of-blank.md) |
+| 2.1 | foundation | isna and notna — the only way to see a blank | ["PD-07"] | [`02-finding-it/2.1-isna-and-notna.md`](day-30-missing-data/parts/02-finding-it/2.1-isna-and-notna.md) |
+| 2.2 | working | Counting the blanks — the profile you run on every table | ["PD-07"] | [`02-finding-it/2.2-counting-the-blanks.md`](day-30-missing-data/parts/02-finding-it/2.2-counting-the-blanks.md) |
+| 2.3 | production | The blank that was not blank | ["PD-07"] | [`02-finding-it/2.3-the-blank-that-was-not-blank.md`](day-30-missing-data/parts/02-finding-it/2.3-the-blank-that-was-not-blank.md) |
+| 3.1 | working | Three reasons a line is blank | ["PD-07"] | [`03-why-it-is-missing/3.1-three-reasons-a-line-is-blank.md`](day-30-missing-data/parts/03-why-it-is-missing/3.1-three-reasons-a-line-is-blank.md) |
+| 3.2 | production | The blank that is itself a signal | ["PD-07"] | [`03-why-it-is-missing/3.2-the-blank-that-is-itself-a-signal.md`](day-30-missing-data/parts/03-why-it-is-missing/3.2-the-blank-that-is-itself-a-signal.md) |
+| 4.1 | foundation | dropna, and the rows that left | ["PD-07"] | [`04-dropping/4.1-dropna-and-the-rows-that-left.md`](day-30-missing-data/parts/04-dropping/4.1-dropna-and-the-rows-that-left.md) |
+| 4.2 | working | how, thresh and subset — dropping on purpose | ["PD-07"] | [`04-dropping/4.2-how-thresh-and-subset.md`](day-30-missing-data/parts/04-dropping/4.2-how-thresh-and-subset.md) |
+| 4.3 | production | Dropping the column instead | ["PD-07"] | [`04-dropping/4.3-dropping-the-column-instead.md`](day-30-missing-data/parts/04-dropping/4.3-dropping-the-column-instead.md) |
+| 5.1 | working | fillna is a claim | ["PD-07"] | [`05-filling/5.1-fillna-is-a-claim.md`](day-30-missing-data/parts/05-filling/5.1-fillna-is-a-claim.md) |
+| 5.2 | working | A different fill for each column | ["PD-07"] | [`05-filling/5.2-a-different-fill-for-each-column.md`](day-30-missing-data/parts/05-filling/5.2-a-different-fill-for-each-column.md) |
+| 5.3 | working | ffill, bfill, and the order you depend on | ["PD-07"] | [`05-filling/5.3-ffill-bfill-and-the-order-you-depend-on.md`](day-30-missing-data/parts/05-filling/5.3-ffill-bfill-and-the-order-you-depend-on.md) |
+| 5.4 | production | interpolate, and the line between two points | ["PD-07"] | [`05-filling/5.4-interpolate-and-the-line-between-two-points.md`](day-30-missing-data/parts/05-filling/5.4-interpolate-and-the-line-between-two-points.md) |
+| 6.1 | production | The median that saw the test set | ["PD-07"] | [`06-the-leak/6.1-the-median-that-saw-the-test-set.md`](day-30-missing-data/parts/06-the-leak/6.1-the-median-that-saw-the-test-set.md) |
+| 6.2 | production | Fit on train, transform on both | ["PD-07"] | [`06-the-leak/6.2-fit-on-train-transform-on-both.md`](day-30-missing-data/parts/06-the-leak/6.2-fit-on-train-transform-on-both.md) |
+| 6.3 | production | The imputer you write yourself | ["PD-07"] | [`06-the-leak/6.3-the-imputer-you-write-yourself.md`](day-30-missing-data/parts/06-the-leak/6.3-the-imputer-you-write-yourself.md) |
+| 7.1 | production | src/setu/missing.py — the day's module | ["PD-07"] | [`07-the-module/7.1-the-missing-module.md`](day-30-missing-data/parts/07-the-module/7.1-the-missing-module.md) |
+| 7.2 | production | tests/test_missing.py — the test that can go red | ["PD-07"] | [`07-the-module/7.2-the-test-that-can-go-red.md`](day-30-missing-data/parts/07-the-module/7.2-the-test-that-can-go-red.md) |
+
+## `day-31-groupby` — 20 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Four lines, three aisles | ["PD-08"] | [`01-the-split/1.1-four-lines-three-aisles.md`](day-31-groupby/parts/01-the-split/1.1-four-lines-three-aisles.md) |
+| 1.2 | foundation | The object that computed nothing | ["PD-08"] | [`01-the-split/1.2-the-object-that-computed-nothing.md`](day-31-groupby/parts/01-the-split/1.2-the-object-that-computed-nothing.md) |
+| 1.3 | working | What iterating gives you | ["PD-08"] | [`01-the-split/1.3-what-iterating-gives-you.md`](day-31-groupby/parts/01-the-split/1.3-what-iterating-gives-you.md) |
+| 2.1 | foundation | One number for each group | ["PD-08"] | [`02-aggregating/2.1-one-number-for-each-group.md`](day-31-groupby/parts/02-aggregating/2.1-one-number-for-each-group.md) |
+| 2.2 | working | size counts rows, count counts values | ["PD-08"] | [`02-aggregating/2.2-size-counts-rows-count-counts-values.md`](day-31-groupby/parts/02-aggregating/2.2-size-counts-rows-count-counts-values.md) |
+| 2.3 | working | agg — several answers at once | ["PD-08"] | [`02-aggregating/2.3-agg-several-answers-at-once.md`](day-31-groupby/parts/02-aggregating/2.3-agg-several-answers-at-once.md) |
+| 2.4 | production | Named aggregation | ["PD-08"] | [`02-aggregating/2.4-named-aggregation.md`](day-31-groupby/parts/02-aggregating/2.4-named-aggregation.md) |
+| 3.1 | working | A number for every row | ["PD-08"] | [`03-transform/3.1-a-number-for-every-row.md`](day-31-groupby/parts/03-transform/3.1-a-number-for-every-row.md) |
+| 3.2 | working | The share of the aisle | ["PD-08"] | [`03-transform/3.2-the-share-of-the-aisle.md`](day-31-groupby/parts/03-transform/3.2-the-share-of-the-aisle.md) |
+| 3.3 | production | transform and agg — the shape rule | ["PD-08"] | [`03-transform/3.3-transform-and-agg-the-shape-rule.md`](day-31-groupby/parts/03-transform/3.3-transform-and-agg-the-shape-rule.md) |
+| 4.1 | working | The key became the index | ["PD-08"] | [`04-the-keys/4.1-the-key-became-the-index.md`](day-31-groupby/parts/04-the-keys/4.1-the-key-became-the-index.md) |
+| 4.2 | working | sort, and the order of the groups | ["PD-08"] | [`04-the-keys/4.2-sort-and-the-order-of-the-groups.md`](day-31-groupby/parts/04-the-keys/4.2-sort-and-the-order-of-the-groups.md) |
+| 4.3 | production | dropna, and the rows that vanished | ["PD-08"] | [`04-the-keys/4.3-dropna-and-the-rows-that-vanished.md`](day-31-groupby/parts/04-the-keys/4.3-dropna-and-the-rows-that-vanished.md) |
+| 4.4 | working | Two keys, and the MultiIndex | ["PD-08"] | [`04-the-keys/4.4-two-keys-and-the-multiindex.md`](day-31-groupby/parts/04-the-keys/4.4-two-keys-and-the-multiindex.md) |
+| 4.5 | production | observed, and the aisle nobody visited | ["PD-08"] | [`04-the-keys/4.5-observed-and-the-aisle-nobody-visited.md`](day-31-groupby/parts/04-the-keys/4.5-observed-and-the-aisle-nobody-visited.md) |
+| 5.1 | working | filter — keeping whole groups | ["PD-08"] | [`05-filter-and-apply/5.1-filter-keeping-whole-groups.md`](day-31-groupby/parts/05-filter-and-apply/5.1-filter-keeping-whole-groups.md) |
+| 5.2 | working | apply — the escape hatch | ["PD-08"] | [`05-filter-and-apply/5.2-apply-the-escape-hatch.md`](day-31-groupby/parts/05-filter-and-apply/5.2-apply-the-escape-hatch.md) |
+| 5.3 | production | What apply costs, measured | ["PD-08"] | [`05-filter-and-apply/5.3-what-apply-costs-measured.md`](day-31-groupby/parts/05-filter-and-apply/5.3-what-apply-costs-measured.md) |
+| 6.1 | production | src/setu/grouping.py — the day's module | ["PD-08"] | [`06-the-module/6.1-the-grouping-module.md`](day-31-groupby/parts/06-the-module/6.1-the-grouping-module.md) |
+| 6.2 | production | tests/test_grouping.py — the test that can go red | ["PD-08"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-31-groupby/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
+
+## `day-32-joining-and-reshaping` — 19 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | Two lists, one under the other | ["PD-09"] | [`01-stacking/1.1-two-lists-one-under-the-other.md`](day-32-joining-and-reshaping/parts/01-stacking/1.1-two-lists-one-under-the-other.md) |
+| 1.2 | working | The index that came along | ["PD-09"] | [`01-stacking/1.2-the-index-that-came-along.md`](day-32-joining-and-reshaping/parts/01-stacking/1.2-the-index-that-came-along.md) |
+| 1.3 | working | The columns that did not match | ["PD-09"] | [`01-stacking/1.3-the-columns-that-did-not-match.md`](day-32-joining-and-reshaping/parts/01-stacking/1.3-the-columns-that-did-not-match.md) |
+| 1.4 | working | Stacking sideways | ["PD-09"] | [`01-stacking/1.4-stacking-sideways.md`](day-32-joining-and-reshaping/parts/01-stacking/1.4-stacking-sideways.md) |
+| 2.1 | foundation | The key, and the rows it pairs | ["PD-09"] | [`02-merging/2.1-the-key-and-the-rows-it-pairs.md`](day-32-joining-and-reshaping/parts/02-merging/2.1-the-key-and-the-rows-it-pairs.md) |
+| 2.2 | working | The four hows, on four rows | ["PD-09"] | [`02-merging/2.2-the-four-hows-on-four-rows.md`](day-32-joining-and-reshaping/parts/02-merging/2.2-the-four-hows-on-four-rows.md) |
+| 2.3 | working | When the key has two names | ["PD-09"] | [`02-merging/2.3-when-the-key-has-two-names.md`](day-32-joining-and-reshaping/parts/02-merging/2.3-when-the-key-has-two-names.md) |
+| 2.4 | production | The suffixes, and the column on both sides | ["PD-09"] | [`02-merging/2.4-the-suffixes-and-the-column-on-both-sides.md`](day-32-joining-and-reshaping/parts/02-merging/2.4-the-suffixes-and-the-column-on-both-sides.md) |
+| 3.1 | working | Count the rows, before and after | ["PD-09"] | [`03-the-row-count/3.1-count-the-rows-before-and-after.md`](day-32-joining-and-reshaping/parts/03-the-row-count/3.1-count-the-rows-before-and-after.md) |
+| 3.2 | production | The duplicate that multiplied rows | ["PD-09"] | [`03-the-row-count/3.2-the-duplicate-that-multiplied-rows.md`](day-32-joining-and-reshaping/parts/03-the-row-count/3.2-the-duplicate-that-multiplied-rows.md) |
+| 3.3 | production | validate, and the merge error | ["PD-09"] | [`03-the-row-count/3.3-validate-and-the-merge-error.md`](day-32-joining-and-reshaping/parts/03-the-row-count/3.3-validate-and-the-merge-error.md) |
+| 3.4 | production | The join that dropped forty per cent | ["PD-09"] | [`03-the-row-count/3.4-the-join-that-dropped-forty-per-cent.md`](day-32-joining-and-reshaping/parts/03-the-row-count/3.4-the-join-that-dropped-forty-per-cent.md) |
+| 4.1 | foundation | melt — one row per measurement | ["PD-10"] | [`04-wide-to-long/4.1-melt-one-row-per-measurement.md`](day-32-joining-and-reshaping/parts/04-wide-to-long/4.1-melt-one-row-per-measurement.md) |
+| 4.2 | production | id_vars, value_vars, and the names you choose | ["PD-10"] | [`04-wide-to-long/4.2-id-vars-value-vars-and-the-names-you-choose.md`](day-32-joining-and-reshaping/parts/04-wide-to-long/4.2-id-vars-value-vars-and-the-names-you-choose.md) |
+| 5.1 | working | pivot — one row per thing | ["PD-10"] | [`05-long-to-wide/5.1-pivot-one-row-per-thing.md`](day-32-joining-and-reshaping/parts/05-long-to-wide/5.1-pivot-one-row-per-thing.md) |
+| 5.2 | working | The duplicate that makes pivot raise | ["PD-10"] | [`05-long-to-wide/5.2-the-duplicate-that-makes-pivot-raise.md`](day-32-joining-and-reshaping/parts/05-long-to-wide/5.2-the-duplicate-that-makes-pivot-raise.md) |
+| 5.3 | production | stack and unstack | ["PD-10"] | [`05-long-to-wide/5.3-stack-and-unstack.md`](day-32-joining-and-reshaping/parts/05-long-to-wide/5.3-stack-and-unstack.md) |
+| 6.1 | production | src/setu/joining.py — the day's module | ["PD-09", "PD-10"] | [`06-the-module/6.1-the-joining-module.md`](day-32-joining-and-reshaping/parts/06-the-module/6.1-the-joining-module.md) |
+| 6.2 | production | tests/test_joining.py — the test that can go red | ["PD-09", "PD-10"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-32-joining-and-reshaping/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
+
+## `day-33-text-and-time` — 3 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The column that has no .lower() | ["PD-11"] | [`01-the-str-accessor/1.1-the-column-that-has-no-lower.md`](day-33-text-and-time/parts/01-the-str-accessor/1.1-the-column-that-has-no-lower.md) |
+| 1.2 | working | The blank that came back blank | ["PD-11"] | [`01-the-str-accessor/1.2-the-blank-that-came-back-blank.md`](day-33-text-and-time/parts/01-the-str-accessor/1.2-the-blank-that-came-back-blank.md) |
+| 1.3 | production | The dtype under the text, measured | ["PD-11"] | [`01-the-str-accessor/1.3-the-dtype-under-the-text.md`](day-33-text-and-time/parts/01-the-str-accessor/1.3-the-dtype-under-the-text.md) |
+
+## `day-34-categories-and-describe` — 3 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The same short word, over and over | ["PD-13"] | [`01-the-repeated-word/1.1-the-same-short-word-over-and-over.md`](day-34-categories-and-describe/parts/01-the-repeated-word/1.1-the-same-short-word-over-and-over.md) |
+| 1.2 | working | What memory_usage actually counts | ["PD-13"] | [`01-the-repeated-word/1.2-what-memory-usage-actually-counts.md`](day-34-categories-and-describe/parts/01-the-repeated-word/1.2-what-memory-usage-actually-counts.md) |
+| 2.1 | foundation | Two arrays instead of one | ["PD-13"] | [`02-the-category-dtype/2.1-two-arrays-instead-of-one.md`](day-34-categories-and-describe/parts/02-the-category-dtype/2.1-two-arrays-instead-of-one.md) |
+
+## `day-36-figure-and-axes` — 3 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The paper and the frame drawn on it | ["VIZ-01"] | [`01-the-two-objects/1.1-the-paper-and-the-frame.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.1-the-paper-and-the-frame.md) |
+| 1.2 | foundation | Axes, axis, and the word everybody trips on | ["VIZ-01"] | [`01-the-two-objects/1.2-axes-is-not-axis.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.2-axes-is-not-axis.md) |
+| 1.3 | foundation | Everything you can see is an artist | ["VIZ-01"] | [`01-the-two-objects/1.3-everything-is-an-artist.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.3-everything-is-an-artist.md) |
+
+## `day-37-labels-and-chart-choice` — 1 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | The chart that never said what the numbers were | ["VIZ-02"] | [`01-labels/1.1-the-chart-that-never-said-what-the-numbers-were.md`](day-37-labels-and-chart-choice/parts/01-labels/1.1-the-chart-that-never-said-what-the-numbers-were.md) |
+
+## `day-38-seaborn` — 2 parts
+
+| Part | Level | Title | IDs | File |
+|---|---|---|---|---|
+| 1.1 | foundation | One row per observation | ["VIZ-04"] | [`01-the-tidy-input/1.1-one-row-per-observation.md`](day-38-seaborn/parts/01-the-tidy-input/1.1-one-row-per-observation.md) |
+| 1.2 | foundation | The chart you did not ask for | ["VIZ-04"] | [`01-the-tidy-input/1.2-the-chart-you-did-not-ask-for.md`](day-38-seaborn/parts/01-the-tidy-input/1.2-the-chart-you-did-not-ask-for.md) |
+
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -700,6 +813,12 @@ generator: scripts/parts_index.py
 | `PD-04` | 11 | 28.4.1 · 28.4.2 · 28.4.3 · 28.4.4 · 28.4.5 · 28.5.1 · 28.5.2 · 28.5.3 · 28.5.4 · 28.6.1 · 28.6.2 |
 | `PD-05` | 13 | 29.1.1 · 29.1.2 · 29.1.3 · 29.1.4 · 29.1.5 · 29.2.1 · 29.2.2 · 29.2.3 · 29.3.1 · 29.3.2 · 29.3.3 · 29.6.1 · 29.6.2 |
 | `PD-06` | 9 | 29.4.1 · 29.4.2 · 29.4.3 · 29.4.4 · 29.5.1 · 29.5.2 · 29.5.3 · 29.6.1 · 29.6.2 |
+| `PD-07` | 22 | 30.1.1 · 30.1.2 · 30.1.3 · 30.1.4 · 30.1.5 · 30.2.1 · 30.2.2 · 30.2.3 · 30.3.1 · 30.3.2 · 30.4.1 · 30.4.2 · 30.4.3 · 30.5.1 · 30.5.2 · 30.5.3 · 30.5.4 · 30.6.1 · 30.6.2 · 30.6.3 · 30.7.1 · 30.7.2 |
+| `PD-08` | 20 | 31.1.1 · 31.1.2 · 31.1.3 · 31.2.1 · 31.2.2 · 31.2.3 · 31.2.4 · 31.3.1 · 31.3.2 · 31.3.3 · 31.4.1 · 31.4.2 · 31.4.3 · 31.4.4 · 31.4.5 · 31.5.1 · 31.5.2 · 31.5.3 · 31.6.1 · 31.6.2 |
+| `PD-09` | 14 | 32.1.1 · 32.1.2 · 32.1.3 · 32.1.4 · 32.2.1 · 32.2.2 · 32.2.3 · 32.2.4 · 32.3.1 · 32.3.2 · 32.3.3 · 32.3.4 · 32.6.1 · 32.6.2 |
+| `PD-10` | 7 | 32.4.1 · 32.4.2 · 32.5.1 · 32.5.2 · 32.5.3 · 32.6.1 · 32.6.2 |
+| `PD-11` | 3 | 33.1.1 · 33.1.2 · 33.1.3 |
+| `PD-13` | 3 | 34.1.1 · 34.1.2 · 34.2.1 |
 | `PY-01` | 7 | 4.1.1 · 4.1.2 · 4.1.3 · 4.1.4 · 4.1.5 · 4.3.1 · 4.3.2 |
 | `PY-02` | 7 | 4.2.1 · 4.2.2 · 4.2.3 · 4.2.4 · 4.2.5 · 4.3.1 · 4.3.2 |
 | `PY-03` | 8 | 5.1.1 · 5.1.2 · 5.1.3 · 5.1.4 · 5.1.5 · 5.1.6 · 5.3.1 · 5.3.2 |
@@ -724,4 +843,7 @@ generator: scripts/parts_index.py
 | `PY-22` | 19 | 18.1.1 · 18.1.2 · 18.1.3 · 18.1.4 · 18.1.5 · 18.2.1 · 18.2.2 · 18.2.3 · 18.2.4 · 18.3.1 · 18.3.2 · 18.3.3 · 18.3.4 · 18.4.1 · 18.4.2 · 18.4.3 · 18.4.4 · 18.4.5 · 18.4.6 |
 | `PY-23` | 17 | 19.1.1 · 19.1.2 · 19.1.3 · 19.1.4 · 19.2.1 · 19.2.2 · 19.2.3 · 19.2.4 · 19.2.5 · 19.3.1 · 19.3.2 · 19.3.3 · 19.3.4 · 19.3.5 · 19.5.1 · 19.5.2 · 19.5.3 |
 | `PY-24` | 12 | 19.4.1 · 19.4.2 · 19.4.3 · 19.4.4 · 19.4.5 · 19.4.6 · 19.4.7 · 19.4.8 · 19.4.9 · 19.5.1 · 19.5.2 · 19.5.3 |
+| `VIZ-01` | 3 | 36.1.1 · 36.1.2 · 36.1.3 |
+| `VIZ-02` | 1 | 37.1.1 |
+| `VIZ-04` | 2 | 38.1.1 · 38.1.2 |
 
