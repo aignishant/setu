@@ -1,14 +1,14 @@
 ---
 plan: setu
-version: "v2.3.0"
+version: "v2.4.0"
 modules: 27
 validated: "2026-08-21"
 days: 240
 phases: 30
-doc_architecture: "hub + parts/, folders named for their subject, plain language enforced (see Part 11)"
+doc_architecture: "hub + 3-5 parts sized to one sitting, story and idea merged, every part ends in the code you write (see Part 11)"
 ---
 
-# 🌉 MASTER PLAN v2.3.0 — Project **Setu**
+# 🌉 MASTER PLAN v2.4.0 — Project **Setu**
 ## Data Science → Machine Learning → Deep Learning → Generative AI → **Agentic AI**, built one day at a time
 
 > **Scope note.** This plan is **self-contained**: 27 modules plus an end-to-end projects section,
@@ -92,11 +92,13 @@ These are non-negotiable. They are what turns a 27-module curriculum into a port
 | 13 | **Weekly freshness check.** Every Friday: release notes for every pin, plus the MCP spec page. Findings become an addendum, never an ad-hoc code change. |
 | 14 | **If reality changes, the plan is amended first.** Ecosystem shift → versioned addendum → then code. This file exists because that habit works. |
 | 15 | **Never train on the test set, never demo on the training set.** Said twice on purpose. It is the single most common way a portfolio project dies in an interview. |
-| 16 | **Depth over density.** A day is taught as a *hub plus one document per subtopic* (Part 11), never as one long page. If a subtopic cannot be read on its own, understood without scrolling past a different subtopic, and explained back out loud, it has not been split finely enough. A wall of text is not depth — it is depth's disguise. |
-| 17 | **A day is a unit of subject, not a unit of time.** No lesson carries a time estimate, a "should take 90 minutes", or a pace. A topic is finished when it is understood — it may take one sitting or five. Nothing is ever trimmed to fit a clock, and the day number is an index into the subject, not a promise about hours. |
+| 16 | **Depth over density — in a day that fits one sitting.** A day is taught as a *hub plus one document per subtopic* (Part 11), never as one long page. It is also never twenty of them. **A day is three to five parts**, read and built in one ordinary sitting; the size contract is Part 11.7. Depth is measured per idea, not per day. If a subtopic cannot be read on its own, understood without scrolling past a different subtopic, and explained back out loud, it has not been split finely enough — and if the day as a whole cannot be finished in a sitting, it has been split too many times. A wall of text is depth's disguise, and so is a corridor of twenty doors. When a subject genuinely will not fit, the day is **split into lettered sittings** — `day-33a`, `day-33b` — never crammed, and never trimmed. |
+| 17 | **A day is a unit of subject, not a unit of time.** No lesson carries a time estimate, a "should take 90 minutes", or a pace. A topic is finished when it is understood — it may take one sitting or five. Nothing is ever trimmed to fit a clock, and the day number is an index into the subject, not a promise about hours. The size contract that keeps a day to one sitting (Part 11.7) is therefore written in **parts and words, never in minutes**: a document can be measured without anyone being told how fast to read it. |
 | 18 | **Assume no prior knowledge, finish at production.** Every subtopic opens where a reader who has never met the idea can stand, defines its jargon on first use, and does not stop at the toy example: it ends with how the idea is actually used in a production system, what a senior engineer does differently, and what breaks at scale. Strong basics and advanced technique are the same document, in that order. |
 | 19 | ~~**Teach the primary source.**~~ **Retired in v2.3.0.** Between v2.2.0 and v2.3.0 every day taught its primary sources as separate documents in a `papers/` directory. That directory, the paper document and the `kind:`/`paper:` frontmatter keys are gone. A source is now cited inline, in the sentence that needs it, by title, year, permanent identifier and canonical URL — still never by author. See Part 11.4 and the changelog. |
 | 20 | **Plain language, real scenes.** The reader is learning something new, so the prose must never be the hard part. Every story opens on something an ordinary person has actually lived through, with one small example that the rest of the document keeps using. Short, common words beat impressive ones, and a technical term is either defined at the moment it first appears or not used yet. Sentences are complete and correctly punctuated: a comma where the sentence pauses, a full stop where it ends, one idea at a time. **A sentence the reader has to read twice is a bug in the document, exactly like an unexplained line of code.** |
+| 21 | **Show it, don't say it.** An idea is carried by one worked example with its real values printed, not by a paragraph describing what would happen. Three rows the reader can see beat three sentences about rows. Wherever a small table, a short transcript or four lines of real output can do the explaining, they do it, and the prose shrinks to the one sentence that says what to notice. A paragraph that could be deleted once the example is on the page was never teaching — it was narrating. |
+| 22 | **Every part names the code you write.** Teaching that never reaches the keyboard is reading. Each part ends with the exact thing to implement: the file path, the signature, what it must return, and the test that proves it — with the body left as `TODO(me)` (Principle 6). A reader must never close a part wondering what to type. |
 
 ---
 
@@ -828,7 +830,7 @@ file → bump version → log it. Never patch code around a plan that has gone s
 
 ---
 
-## Part 11 — 📐 The depth contract (doc architecture, v2.3.0)
+## Part 11 — 📐 The depth contract (doc architecture, v2.4.0)
 
 > **Why this part exists.** v1.0.0 taught each day as a single `LESSON.md`. By Phase 15 those files
 > were 40 000 characters long, and a whole subject — deriving backpropagation — sat under one `##`
@@ -847,18 +849,47 @@ file → bump version → log it. Never patch code around a plan that has gone s
 > idea. Sources are still cited where they help — inline, by title and identifier, in the part that
 > uses them — but they are no longer a separate document, a separate directory or a frontmatter key.
 > What replaced that effort is Principle 20: the words themselves are now part of the contract.
+>
+> **v2.4.0 makes a day fit one sitting, and makes it end at the keyboard.** By Day 33 a day had
+> grown to twenty-six parts and eighty-eight thousand words. Every one of those parts obeyed the
+> contract, and the day still failed its reader, because nobody meets a new subject in
+> eighty-eight thousand words. The parts simply stopped being read, which is the same outcome as
+> never writing them. v2.4.0 supplies the half of Principle 16 that was missing: a **size
+> contract** (11.7), stated in parts and words rather than minutes, so that a day can be measured
+> without a clock ever appearing in a lesson.
+>
+> Three changes pay for that size. *The story* and *the idea in plain language* **merge into one
+> section**, because they were always one movement, and keeping them apart made the second half
+> restate the first. A **worked example now does the explaining** wherever it can (Principle 21),
+> so the prose shrinks to the sentence that says what to notice. And every part ends in **the code
+> you write** (Principle 22), so the reader always closes the file knowing exactly what to type. A
+> subject that still will not fit is **split into lettered sittings** — `day-33a`, `day-33b` — and
+> never trimmed. Trimming remains the one edit this format forbids outright.
 
-### 11.1 The four commitments
+### 11.1 The seven commitments
 
-Everything below follows from four short rules.
+Everything below follows from seven short rules.
 
 **One idea per document.** A subtopic that cannot be read alone, understood without scrolling past a
 different subtopic, and explained back out loud is not one subtopic — it is several, badly stacked.
+
+**Few documents, one sitting.** A day is **three to five parts**, and the whole day — read it, build
+it, run the test — is one ordinary sitting's work. This is the rule that stops the first one running
+away with the day: splitting is how an idea gets room, not how a day gets longer. The measurements
+are in 11.7. When a subject will not fit, the day is split into lettered sittings, never crammed.
 
 **No clocks.** Nothing in these documents carries a time estimate, a "this should take 90 minutes",
 or a suggested pace. A topic takes as long as it takes, and the reader may spend one sitting or five
 on a single part. **Content is never trimmed to fit a schedule**, and a day is never declared
 finished because a duration elapsed. The day number is an index into the subject, nothing more.
+
+**Show it, don't say it.** One worked example, with its real values on the page, does the explaining.
+The prose around it shrinks to the sentence that says what to notice. A paragraph that could be
+deleted once the example is printed was narrating, not teaching. This is Principle 21, and it is
+where most of the room for the size contract comes from.
+
+**Every part ends at the keyboard.** A part names the file, the signature, the behaviour and the
+test — body left as `TODO(me)`. Reading is not the deliverable; the commit is (Principles 1 and 22).
 
 **Zero to production, in one document.** Each part starts where a reader who has never heard of the
 idea can stand, and ends where a working professional stands: how the idea appears in a real system,
@@ -907,6 +938,11 @@ days/day-01-pins/
 `parts/` is mandatory. A day with no `parts/` directory is, by definition, not written. **There is no
 `papers/` directory** (v2.3.0), and a day that still has one is an unfinished migration, not a richer
 day.
+
+**A day folder may carry a letter** (v2.4.0). `day-NN-<slug>` is the normal case; `day-NNa-<slug>`
+and `day-NNb-<slug>` are the two sittings of a subject too large for one (11.7). The number is the
+plan's day, the letter is the split, and every tool finds a day by its number, so the plan's day map
+does not move when a day is split.
 
 **Every folder name carries its subject** (v2.1.0). A day folder is `day-NN-<slug>`; a section
 folder is `NN-<slug>` — the zero-padded section number, a hyphen, then one to three kebab-case
@@ -969,17 +1005,24 @@ The three slugs work at different scales, and that is the point of having all th
 ### 11.4 What a part document must contain
 
 Every file in `parts/` carries all ten of these, in this order. Sections 2–10 are the reader's path
-from "never heard of it" to "could defend this in a design review".
+from "never heard of it" to "could defend this in a design review", and section 7 is where that path
+reaches their own keyboard.
+
+**v2.4.0 changed two rows and left the rest alone.** *The story* and *the idea in plain language*
+are now **one** section, because they were always one movement: the scene exists to arrive at the
+definition, and separating them made the second section restate the first in longer words. In the
+place that freed comes **the code you write**, the section a reader was previously expected to
+reconstruct from the hub. The count is still ten.
 
 | # | Section | The rule |
 |---|---|---|
 | 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`. Machine-read; the reader ignores it. **No duration field of any kind** (Principle 17). |
 | 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who reads only this line has learned something true. |
-| 3 | **The story** | A concrete, ordinary scene before any abstraction: a person, a machine, a mistake, a decision. It comes **first**, and it carries **no jargon at all** — not one term the reader has not already met. Storytelling is not decoration here; it is the hook the definition hangs on. The four story rules below are part of the contract. |
-| 4 | **The idea in plain language** | The concept itself, assuming the reader has never met it (Principle 18). Every term is defined the first time it appears, **including terms from earlier days** — link the part that introduced them rather than assuming recall. No code. |
-| 5 | **Why Setu needs it** | The concrete downstream day that breaks without this. "You will meet this again on Day 162, where the retriever's scores are cosine similarities" is the shape. Never "this is important". |
-| 6 | **The mechanism** | How it actually works: the runnable code, the derivation with every algebraic step shown, or the diagram. Nothing skipped as "obvious". Mermaid whenever the concept is spatial, sequential, or a state machine. |
-| 7 | **Line by line** | Every non-obvious token of every code block, explained — and *why it is that line and not another*. Written as a `**Line by line:**` list **immediately after each code block**, so that a reader never scrolls to find the explanation of what they are looking at. Blocks that show error output or a bare check command are exempt. An unexplained line is a bug in the doc. |
+| 3 | **The idea, through a story** | One section, one movement, merged in v2.4.0. It **opens** on a concrete, ordinary scene — a person, a mistake, a decision — carrying **no jargon at all**, not one term the reader has not already met. It then **turns**, usually in a single sentence, into the idea the scene was hiding, and defines every term at the moment it first appears, **including terms from earlier days** (link the part that introduced them rather than assuming recall). A story that never reaches the definition is decoration; a definition that arrives without the story is a glossary entry. No code yet. The four story rules below are part of the contract. |
+| 4 | **Why Setu needs it** | The concrete downstream day that breaks without this. "You will meet this again on Day 162, where the retriever's scores are cosine similarities" is the shape. Never "this is important". |
+| 5 | **The mechanism** | How it actually works, carried by **one worked example with its real values printed** (Principle 21): the runnable code together with what it actually printed, the derivation with every algebraic step shown, or the diagram. It uses the example the story picked up and never introduces a second one. Nothing is skipped as "obvious", and nothing is narrated that the output already shows. Mermaid whenever the concept is spatial, sequential, or a state machine. |
+| 6 | **Line by line** | Every non-obvious token of every code block, explained — and *why it is that line and not another*. Written as a `**Line by line:**` list **immediately after each code block**, so that a reader never scrolls to find the explanation of what they are looking at. Blocks that show error output or a bare check command are exempt. An unexplained line is a bug in the doc. |
+| 7 | **The code you write** | The reader's own turn at the keyboard, and the reason the part was read (Principle 22). Name the **exact file** — `src/setu/<module>.py` — the **signature**, what it must return, and the **pytest that proves it**, written so it goes RED before the work is done (Principle 7). Leave the body as `TODO(me)`: the reps are never solved here (Principle 6). One part contributes one small, testable piece; the hub's §4 assembles the day's pieces into the build brief. "Try experimenting with this" has named nothing and does not satisfy this section. |
 | 8 | **When it breaks** | The **real** error text, reproduced verbatim. What the traceback says, what it actually means, and the smallest fix. This is what the reader meets at 11pm, not the happy path. |
 | 9 | **In production** | Where this idea shows up in a real system, and what changes there: the version a professional writes instead of the teaching version, what degrades at scale or under concurrency, the failure mode that only appears with real data, the review comment a senior engineer would leave, and the question an interviewer asks to find out whether you have actually used it. **This section is what makes the document professional rather than introductory, and it is not optional.** |
 | 10 | **Check yourself** | One command the reader can run right now, plus one question they must answer out loud without scrolling up. |
@@ -999,7 +1042,7 @@ goes wrong. Four rules, all of them Principle 20:
    never has to learn a second example in order to follow the explanation of the first.
 3. **Short, common words.** Prefer *use* to *utilise*, *stop* to *terminate*, *change* to *mutate*
    (until the moment that term is being defined), *number* to *scalar*. The technical word is
-   introduced in §4, where it is defined, and not before.
+   introduced at the turn in section 3, where it is defined, and not before.
 4. **True, not staged.** A scene invented so that the point lands — a beginner who conveniently does
    exactly the wrong thing — reads as false and teaches nothing. Use the mistake people actually
    make, in the order they actually make it.
@@ -1017,6 +1060,42 @@ These apply to every section of every document, not only to the story:
   is two sentences.
 - **A sentence the reader has to read twice is a defect.** Rewrite it rather than adding a
   parenthesis.
+
+#### Showing beats telling (v2.4.0)
+
+Principle 21, made concrete. This is where a day gets small enough to finish without losing
+anything, so it is a rule, not a preference:
+
+- **One example, printed in full.** Three rows, four names, one file of two lines. Small enough to
+  show completely on the page, so the reader is never asked to imagine the data.
+- **Print what it really did.** A transcript of the actual run, copied from the terminal, replaces
+  a paragraph predicting the run. The output is the explanation; the sentence after it says what to
+  notice, and that is the whole prose budget for the point.
+- **Never narrate the output.** If a line of prose only restates a number the reader can already
+  see, delete it. "The second row is missing a value" is narration when the table shows `NaN`.
+- **A table beats a paragraph** whenever the point is a comparison — before and after, this dtype
+  against that one, what four inputs each return.
+- **The example never changes mid-document.** Whatever the story picked up, the mechanism, the
+  failure and the check keep using. A reader should never have to learn a second example in order
+  to follow the explanation of the first.
+
+The test: cover the prose and look only at the examples. If the idea is still visible, the document
+is written correctly. If only the prose carried it, the example was decoration and the sizes in
+11.7 will be impossible to hit honestly.
+
+#### The code you write (v2.4.0)
+
+Section 7 of every part. It is short, it is concrete, and it is four things in this order:
+
+1. **The file.** A real path — `src/setu/pins.py`, `tests/test_pins.py`. Not "a module".
+2. **The signature.** The name, the parameters with their types, the return type. Typed out.
+3. **What it must do**, in one or two sentences, including the one edge case that matters.
+4. **The test that proves it** — a pytest that is RED until the body is written (Principle 7).
+
+The body stays `TODO(me)` (Principle 6). Writing the answer here turns the curriculum back into
+reading, which is the failure this whole plan exists to prevent. A part that teaches an idea with
+no code of its own — a derivation, a diagram, a chart-choice rule — still names its keyboard step:
+the assertion to add, the value to compute by hand and check, the figure to save and open.
 
 #### Citing a source (v2.3.0)
 
@@ -1054,9 +1133,13 @@ walkthrough — that lives in the parts. Required, in order:
    code and before any jargon. The four story rules apply here exactly as they do in a part.
 4. **§2 The map** — a table of every part: number, linked title, what it answers, and its `level`
    (foundation → working → production). This is the table of contents and the reading order, and it
-   states what each *section* number means for this day. **No minutes column, ever.**
+   states what each *section* number means for this day. **Three to five rows** (11.7); a sixth row
+   is allowed and must be justified in one line here. **No minutes column, ever.**
 5. **§3 Setup — run this** — every `mkdir`, `touch`, `uv add <pkg>==<exact>` the day needs, pinned.
 6. **§4 Build brief** — the files to create, with `TODO(me)` markers left unsolved (Principle 6).
+   Since v2.4.0 this is **assembly, not invention**: every file and signature here has already been
+   named by some part's *The code you write*, and the hub's job is to put them in build order and
+   say how they fit together. A build brief that introduces code no part taught is a bug.
 7. **§5 The eval that must be able to fail** — the pytest that is RED before the TODOs are done
    (Principle 7).
 8. **§6 Request budget** — model calls, network, cost (Principle 5). `0` is an answer; state it.
@@ -1080,24 +1163,74 @@ A day that is all `foundation` is a tutorial. A day that opens at `production` h
 reader. Most days run `foundation → working → production`; a single part may itself climb, which is
 exactly what §9 *In production* is for.
 
-### 11.7 How finely to split
+### 11.7 How finely to split — and how big a day may be
 
 Split by **idea boundaries, never by length or by pace**. A part is finished when its one idea is
-fully explained — including its production face — and not before.
+fully explained — including its production face and its keyboard step — and not before.
 
 | Day kind | Split by |
 |---|---|
 | `setup` | one tool, one file, or one command per part |
-| `lab` (1 ID) | mechanism → behaviour → edge case → failure mode → production use |
-| `lab` (2 IDs) | one section per ID, plus a synthesis section where they meet |
+| `lab` (1 ID) | mechanism → behaviour → failure mode → production use |
+| `lab` (2 IDs) | one section per ID, plus a synthesis part where they meet |
 | `concept` | one claim per part, each with its evidence |
 | `gate` | one acceptance criterion per part |
 | `project` | one component per part, in build order |
 
-There is deliberately **no target part count and no target length**. If a subject needs four parts it
-gets four; if it needs twenty-two it gets twenty-two, and the day simply spans more sittings
-(Principle 17). The only wrong answers are a part that carries two ideas and a part that stops
-before production.
+#### The size contract (v2.4.0)
+
+Until v2.4.0 this section said there was no target part count and no target length. That was true to
+Principle 17 and wrong in practice: by Day 33 a day was twenty-six parts and eighty-eight thousand
+words, which is not a day, and not read. **A day now has a size, and it is measured in parts and
+words:**
+
+| Unit | Target | Hard ceiling |
+|---|---|---|
+| parts in a day | **3–5** | **6**, and the hub says in one line why the sixth exists |
+| prose words in one part (code fences not counted) | 900–1,200 | **1,300** |
+| lines of code in one part (all fences together) | 60–100 | **150** |
+| prose words across all of `parts/` | ~4,000 | **4,500** |
+| prose words in the hub | ~600 | **800** |
+
+**Why words and not minutes.** A day must fit an ordinary sitting, and an ordinary sitting is about
+half an hour. That sentence is the only clock in this repository, it lives here in the plan, and it
+never appears in `days/` — because a word count measures the document while a minute count instructs
+the reader, and Principle 17 forbids the second. The numbers above are that half hour, translated
+once, into something a script can check.
+
+**Nothing in this table licenses trimming.** The size is a signal about *scope*, not permission to
+cut an explanation short. When a part runs long, the honest fixes are, in order: delete prose the
+worked example already says (Principle 21, and this is usually the whole problem); split the part,
+if it turned out to carry two ideas; split the day. Cutting the failure text, the production section
+or the keyboard step to fit is the one edit this format forbids outright (11.8).
+
+#### When a subject will not fit: lettered sittings
+
+Some subjects are genuinely bigger than one sitting. Day 33 carries `PD-11` (text with the `.str`
+accessor) and `PD-12` (dates, `Timedelta` and resampling) — two subjects that share a day number and
+nothing else. A derivation with four stages is four sittings however tightly it is written. Such a
+day is **split into lettered sittings**, and each letter is a complete day in its own right:
+
+```
+days/day-33a-text-accessors/     # hub, 3-5 parts, checklist, lab
+days/day-33b-datetimes/          # hub, 3-5 parts, checklist, lab
+```
+
+- **The number is the plan's; the letter is the split.** Part 5's day map, the phase ranges, the
+  gates and `docs/CURRICULUM_INDEX_DS.md` are untouched — Day 33 is still text and time. `./m brief
+  33` still returns Day 33's working set, because the tools find a day by its number.
+- **Each letter obeys the whole contract**: its own `LESSON.md`, its own `CHECKLIST.md`, its own
+  `lab/`, its own three-to-five parts, its own commit. A letter is not half a day; it is a day.
+- **Letters run `a`, `b`, `c`, …** in reading order, and each hub's yesterday/today/tomorrow
+  blockquote names its neighbours by folder, so the chain is walkable.
+- **An unlettered day folder is the normal case.** Add letters only when the subject demanded it,
+  and say so in the hub's §1.
+
+This is what Principle 17 always meant — a day may take five sittings — made structural, so that the
+five sittings are five finishable units rather than one folder nobody opens.
+
+The only wrong answers remain a part that carries two ideas, a part that stops before production,
+and now a day too large to finish.
 
 ### 11.8 What "in depth" is not
 
@@ -1122,6 +1255,14 @@ The failure modes this format exists to prevent, stated so that they can be caug
   teaches nothing, however vivid it is. See the four story rules in 11.4.
 - **Prose that has to be read twice** (v2.3.0). A dropped comma, a run-on sentence or a word chosen
   to sound impressive costs the reader the same attention that the idea itself needed. Principle 20.
+- **A day nobody finishes** (v2.4.0). Twenty-six correct parts is not twenty-six times one part; it
+  is a day that gets abandoned somewhere around part nine, which teaches less than four parts would
+  have. Splitting is how an idea gets room, never how a day gets longer (11.7).
+- **Narrating the example** (v2.4.0). A paragraph that restates what the printed output already
+  shows is not explanation, it is padding, and it is where a day's word budget actually goes.
+  Principle 21: show it, then say what to notice, then stop.
+- **Teaching that never reaches the keyboard** (v2.4.0). A part the reader can finish without
+  knowing what file to open and what function to write has left the work undone. Principle 22.
 
 ### 11.9 Enforcement
 
@@ -1136,6 +1277,20 @@ teaching, or a `parts` frontmatter count that disagrees with the directory.
 
 Since v2.3.0 it also fails on **a `papers/` directory inside a day folder**, and on a leftover
 `kind:` or `paper:` key in a part's frontmatter. Both are unfinished migrations away from v2.2.0.
+
+Since v2.4.0 it enforces the size contract and the merged section list. A day is checked against
+the contract version stamped in its own hub, so the days written before the amendment are not
+retroactively broken. The new failures are: **more than six parts**, a part over **1,300 prose
+words** or **150 lines of code**, a day over **4,500 prose words** across `parts/`, a hub over
+**800**, a missing **The idea, through a story** or **The code you write** section, and a v2.4.0
+day that still carries the old split *The story* / *The idea in plain language* pair. Words are
+counted outside code fences, because a fence is read at a different speed and capping it separately
+is honest; the code-line ceiling is what stops a part hiding its bulk inside a fence.
+
+**The cutover is Day 33.** Days 0–32 are stamped `v2.3.0` and are checked against the contract they
+were written to. From Day 33 a hub must be stamped `v2.4.0`, and a day at or past that number
+carrying the older stamp is reported as an unmigrated day, not as a passing one. That is a true
+statement about the repository, and it is meant to be read as a work list.
 
 On a **full sweep** — `./m depth` with no day number — it additionally checks one repo-level
 invariant that belongs to no single day: that `docs/CURRICULUM_INDEX_DS.md` still agrees with this
@@ -1166,3 +1321,4 @@ before a day is written, and it is never summarised or projected to save context
 | **v2.1.0** | **Folder naming only. No day, ID, phase, gate, pin, principle or required section changed.** Day folders become `day-NN-<slug>` and section folders `NN-<slug>`, so `days/` and `parts/` read as tables of contents rather than columns of numbers. The tools locate a day by globbing its number, so the slug stays free text. |
 | **v2.2.0** | **Sources become subjects.** Added Principle 19, the `kind:` and `paper:` frontmatter keys, and the `papers/` directory of thirteen-section paper documents. **Retired by v2.3.0.** |
 | **v2.3.0** | **Papers out, prose in. No day, ID, phase, gate, pin or principle 1–18 changed.** Retires Principle 19 and everything v2.2.0 added: the `papers/` directory, the paper document, its thirteen sections, its demo project, and the `kind:` and `paper:` frontmatter keys. A source is now cited **inline** in the part that needs it, by title · year · identifier · URL, and still never by author. In its place comes new **Principle 20 — plain language, real scenes**: the four story rules (ordinary not clever, one small example throughout, short common words, true not staged) and the prose rules (complete sentences, correct punctuation, define on first use, one idea per sentence) are now part of the contract. `depth_check.py` drops every paper check and gains two migration checks. |
+| **v2.4.0** | **A day that fits one sitting, and ends at the keyboard. No day, ID, phase, gate or pin changed; the Part 5 day map is untouched.** Amends Principle 16 and adds **Principle 21 (show it, don't say it)** and **Principle 22 (every part names the code you write)**. Adds the **size contract** (11.7): three to five parts a day, ceilings on words per part, per day and per hub, stated in parts and words because Principle 17 forbids a clock in a lesson. Merges *The story* and *The idea in plain language* into one section, **The idea, through a story**, and adds **The code you write** as section 7 — the part count stays ten. Adds **lettered sittings** (`day-33a`, `day-33b`) as the escape valve for a subject too large to fit, so that the answer to a big day is never trimming. `depth_check.py` gains the size checks and a per-day contract version, read from the hub's own `plan_version`. **The cutover is Day 33**; days 0–32 remain valid v2.3.0 days. |

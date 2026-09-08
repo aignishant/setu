@@ -104,38 +104,56 @@ def matrix_rows(ids: list[str]) -> list[tuple[str, str]]:
     return hits
 
 
-def day_folder(day: int) -> Path | None:
-    folders = sorted(DAYS.glob(f"day-{day:02d}-*"))
-    return folders[0] if folders else None
+def day_folders(day: int) -> list[Path]:
+    """Every folder for one day number - several when it was split into lettered sittings."""
+    return sorted(p for p in DAYS.glob(f"day-{day:02d}*-*") if p.is_dir())
 
 
 def manifest(day: int) -> list[str]:
-    """One written day's part list, from frontmatter only - never a part body."""
-    folder = day_folder(day)
-    if folder is None or not (folder / "parts").is_dir():
-        return []
-    lines = [f"`days/{folder.name}/`", "", "| Part | Level | Title | IDs |", "|---|---|---|---|"]
-    for path in sorted(folder.glob("parts/*/*.md")):
-        text = path.read_text(encoding="utf-8")
-        block = text.split("---")[1] if text.startswith("---") else ""
-        keys = {k: v.strip().strip('"') for k, v in FRONTMATTER_RE.findall(block)}
-        lines.append(
-            f"| {keys.get('part', '?')} | {keys.get('level', '?')} "
-            f"| {keys.get('title', '?')} | {keys.get('ids', '')} |"
-        )
+    """One written day's part list, from frontmatter only - never a part body.
+
+    A day split into lettered sittings (plan v2.4.0, Part 11.7) contributes one table per sitting,
+    each headed by its own folder, so the brief shows how the neighbour was actually divided.
+    """
+    lines: list[str] = []
+    for folder in day_folders(day):
+        if not (folder / "parts").is_dir():
+            continue
+        lines += [
+            f"`days/{folder.name}/`",
+            "",
+            "| Part | Level | Title | IDs |",
+            "|---|---|---|---|",
+        ]
+        for path in sorted(folder.glob("parts/*/*.md")):
+            text = path.read_text(encoding="utf-8")
+            block = text.split("---")[1] if text.startswith("---") else ""
+            keys = {k: v.strip().strip('"') for k, v in FRONTMATTER_RE.findall(block)}
+            lines.append(
+                f"| {keys.get('part', '?')} | {keys.get('level', '?')} "
+                f"| {keys.get('title', '?')} | {keys.get('ids', '')} |"
+            )
+        lines.append("")
     return lines
 
 
 def open_boxes(day: int) -> list[str]:
-    """Unticked checklist boxes on the previous day - Step 1 must warn before proceeding."""
-    folder = day_folder(day)
-    if folder is None:
-        return []
-    checklist = folder / "CHECKLIST.md"
-    if not checklist.is_file():
-        return []
-    lines = checklist.read_text(encoding="utf-8").splitlines()
-    return [line for line in lines if line.startswith("- [ ]")]
+    """Unticked checklist boxes on the previous day - Step 1 must warn before proceeding.
+
+    A lettered day has one checklist per sitting, and an unticked box in any of them is still an
+    unfinished previous day, so they are pooled.
+    """
+    stale: list[str] = []
+    for folder in day_folders(day):
+        checklist = folder / "CHECKLIST.md"
+        if not checklist.is_file():
+            continue
+        stale += [
+            line
+            for line in checklist.read_text(encoding="utf-8").splitlines()
+            if line.startswith("- [ ]")
+        ]
+    return stale
 
 
 def build(day: int) -> str:
@@ -188,12 +206,12 @@ def build(day: int) -> str:
 
     stale = open_boxes(day - 1)
     if stale:
-        previous = day_folder(day - 1)
+        previous = ", ".join(f"days/{f.name}/CHECKLIST.md" for f in day_folders(day - 1))
         out += [
             f"## WARNING day {day - 1} has {len(stale)} unticked checklist boxes",
             "",
             "Step 1.3 of the day-setu skill: warn and ask before writing this day.",
-            f"Full list: `days/{previous.name}/CHECKLIST.md`. First {OPEN_BOX_SAMPLE}:",
+            f"Full list: `{previous}`. First {OPEN_BOX_SAMPLE}:",
             "",
             *stale[:OPEN_BOX_SAMPLE],
             "",

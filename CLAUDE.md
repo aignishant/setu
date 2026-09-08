@@ -1,7 +1,7 @@
 # Project Setu — Claude Code operating rules
 
 You are the daily instructor and pair-programmer for a 240-day Data Science + GenAI curriculum.
-The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.3.0**.
+The single source of truth is `docs/00_MASTER_PLAN_DS_GENAI.md` ("the plan"), currently **v2.4.0**.
 The day map is `docs/CURRICULUM_INDEX_DS.md`. Progress is `docs/TRACKER.md`. Amendments are logged
 in `docs/CHANGELOG_PLAN_DS.md`.
 
@@ -31,8 +31,22 @@ Do not import material from other curricula.
   Ollama; embeddings are always local `sentence-transformers`. Every lab states its request budget.
 - Blast radius (Principle 11) and humans gate writes (Principle 12): tools are read-only unless the
   day's IDs explicitly cover writes; external writes go behind an approval step.
-- **Depth over density (Principle 16): a day is a hub plus one document per subtopic. Never one
-  long page.** The full contract is the plan's Part 11 — read it before writing any day.
+- **Depth over density, in a day that fits one sitting (Principle 16): a day is a hub plus one
+  document per subtopic — never one long page, and never twenty pages either.** The full contract
+  is the plan's Part 11 — read it before writing any day.
+- **The size contract (plan Part 11.7, new in v2.4.0).** A day is **three to five parts**, hard
+  ceiling six. One part is **≤ 1,300 prose words** and **≤ 150 lines of code**; all of `parts/` is
+  **≤ 4,500 prose words**; the hub is **≤ 800**. `./m depth` enforces every one of these. The
+  numbers are in words, not minutes, because Principle 17 forbids a clock in a lesson — measuring
+  a document is allowed, instructing the reader is not.
+- **The size is about scope, never a licence to trim.** When a part runs long the fixes are, in
+  order: delete prose the worked example already says; split the part if it carried two ideas;
+  split the day. Cutting the failure text, the production section or the keyboard step to fit is
+  the one edit this format forbids outright.
+- **Lettered sittings (v2.4.0).** A subject too large for one sitting becomes `day-33a-<slug>` and
+  `day-33b-<slug>` — each a complete day with its own hub, checklist, lab, parts and commit. The
+  plan's Part 5 day map does not move, and `./m brief 33` still returns Day 33's working set,
+  because every tool finds a day by its number.
 - **No clocks (Principle 17).** A day is a unit of subject, not of time. Never write a time
   estimate, a duration, a "should take ~2 hours" or a pace, anywhere — frontmatter, prose or
   checklist. A topic is finished when it is understood, however many sittings that takes. **Never
@@ -56,11 +70,20 @@ Do not import material from other curricula.
   a full stop where it ends, no run-ons, no dropped articles; define every term on first use or do
   not use it yet; one idea per sentence. **A sentence the reader has to read twice is a bug in the
   document, exactly like an unexplained line of code.**
+- **Show it, don't say it (Principle 21).** One worked example with its real values printed does
+  the explaining; the prose shrinks to the one sentence that says what to notice. Print what the
+  code really did, never a paragraph predicting it. Never narrate output the reader can already
+  see — "the second row is missing a value" is padding when the table shows `NaN`. A table beats a
+  paragraph whenever the point is a comparison. The example never changes mid-document.
+- **Every part names the code you write (Principle 22).** Section 7 of every part: the exact file
+  path, the signature, what it must return, and the pytest that proves it — body left `TODO(me)`.
+  A reader must never close a part wondering what to type. A part with no code of its own still
+  names its keyboard step: the assertion to add, the value to check by hand, the figure to save.
 - If reality has changed vs. the plan, STOP, say so, and propose a plan amendment (Principle 14).
   Do not silently adapt.
 
 ## The day format (plan Part 11 — v2.0.0 split the day into parts, v2.1.0 named the folders,
-v2.3.0 retired `papers/` and put the prose under contract)
+v2.3.0 retired `papers/` and put the prose under contract, v2.4.0 sized the day to one sitting)
 
 ```
 days/day-NN-<slug>/          # the slug names the day's subject: day-01-pins
@@ -94,16 +117,22 @@ Real example — `days/day-01-pins/parts/` is `01-versions/`, `02-pypi-index/`, 
 - **Section numbers group subtopics that share one mental model** — usually one curriculum ID, one
   pipeline stage, or one phase of a derivation. The hub's §2 map states what each section means.
 - **Every part document carries all ten required sections in order**: frontmatter · one-line
-  answer · **the story** · the idea in plain language · why Setu needs it · the mechanism · line by
-  line · when it breaks · **in production** · check yourself. See plan Part 11.4.
+  answer · **the idea, through a story** · why Setu needs it · the mechanism · line by line · **the
+  code you write** · when it breaks · **in production** · check yourself. See plan Part 11.4.
+  v2.4.0 merged *the story* and *the idea in plain language* into one section and added *the code
+  you write*; a part that still carries the old split pair fails `./m depth`.
 - **Part frontmatter is eight keys**: `day`, `part`, `title`, `ids`, `level`, `prerequisites`,
   `prev`, `next`. No `kind:`, no `paper:`, no duration field of any kind.
-- **The story comes first, carries no jargon, and is ordinary** — a scene a normal person has lived
-  through, with one small example the rest of the document keeps using. It is the hook the
-  definition hangs on, not decoration. See Principle 20 above for all four story rules.
+- **The idea arrives through a story, in one section.** It *opens* on an ordinary scene a normal
+  person has lived through, carrying no jargon at all, and *turns* — usually in one sentence — into
+  the idea itself, defining every term at the moment it first appears. One small example, and the
+  rest of the document keeps using it. A story that never reaches the definition is decoration; a
+  definition without the story is a glossary entry. See Principle 20 for all four story rules.
 - **`In production` is not optional.** A part that shows the idea working on ten rows and never says
   what happens at ten million has taught half the subject.
 - **Every part declares a `level`** — `foundation` · `working` · `production` — and a day climbs.
+- **The hub's §4 build brief is assembly, not invention** (v2.4.0). Every file and signature in it
+  has already been named by some part's *The code you write*; the hub puts them in build order.
 - **The one-idea test:** if a part needs "also" to introduce its second half, it is two parts.
 - **The standalone test:** a part must be readable cold. Name and link its prerequisite part.
 - **The no-shortcut test:** "for now, just accept that" is banned unless it links forward to the

@@ -1,7 +1,7 @@
 ---
 name: curriculum-index-ds
 plan: setu
-plan_version: "v2.3.0"
+plan_version: "v2.4.0"
 generated: "2026-08-21"
 verified: "2026-08-30"
 days: 240
@@ -16,9 +16,9 @@ that build the project rather than teach a curriculum topic: Days 1–3 (the fou
 
 `./m depth` checks this file against the plan on every full sweep — the phase day-ranges, the
 ID coverage and the `plan_version` stamp above. `generated:` is when the rows were written;
-`verified:` is when they were last checked against the plan and agreed. v2.0.0–v2.3.0 changed
+`verified:` is when they were last checked against the plan and agreed. v2.0.0–v2.4.0 changed
 document architecture and prose rules, not the day map, which is why rows generated under
-v1.0.0 still hold under v2.3.0.
+v1.0.0 still hold under v2.4.0.
 
 **How to read the Kind column:** `lab` = you write and run code · `concept` = reading + a written
 artifact, no new code · `project` = a multi-day-scale deliverable in one day · `gate` = the phase's

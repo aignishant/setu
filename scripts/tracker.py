@@ -5,7 +5,7 @@ Single source of truth for the day list is the curriculum index; this script nev
 invents a day. Status is read from the filesystem and the checklists, so the tracker
 cannot drift from reality.
 
-Under plan v2.3.0 a day counts as written only when it has the hub *and* a non-empty
+Under plan v2.4.0 a day counts as written only when it has the hub *and* a non-empty
 parts/ directory of sub-topic documents (Principle 16, plan Part 11).
 
     uv run python scripts/tracker.py            # rewrite docs/TRACKER.md
@@ -84,37 +84,46 @@ def parse_index() -> list[Phase]:
     return phases
 
 
-def find_folder(number: int) -> Path | None:
-    """The folder for one day, matched on its number - the slug after it is free text.
+def find_folders(number: int) -> list[Path]:
+    """Every folder for one day, matched on its number - the slug after it is free text.
 
     Day folders are day-<NN>-<slug> (plan v2.1.0): day-00-setup, day-01-pins. The number is the
-    only part the tracker can rely on, so it globs rather than building a name. The unslugged
-    day-<NN> and day-<N> forms still resolve, so an older folder still shows as written; naming
-    it properly is depth_check.py's job to complain about, not the tracker's.
+    only part the tracker can rely on, so it globs rather than building a name. Since v2.4.0 one
+    number may resolve to several folders, the lettered sittings of a subject too large for one
+    day (Part 11.7), so this returns all of them in reading order. The unslugged day-<NN> and
+    day-<N> forms still resolve, so an older folder still shows as written; naming it properly is
+    depth_check.py's job to complain about, not the tracker's.
     """
-    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}-*") if p.is_dir())
+    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}*-*") if p.is_dir())
     if slugged:
-        return slugged[0]
-    bare = (DAYS / f"day-{number:02d}", DAYS / f"day-{number}")
-    return next((p for p in bare if p.is_dir()), None)
+        return slugged
+    return [p for p in (DAYS / f"day-{number:02d}", DAYS / f"day-{number}") if p.is_dir()]
 
 
 def inspect(day: Day) -> Day:
-    """Fill in on-disk status for one day."""
-    folder = find_folder(day.number)
-    if folder is None:
+    """Fill in on-disk status for one day.
+
+    Since plan v2.4.0 a day number may be split into lettered sittings, each a complete day folder
+    of its own (Part 11.7). The tracker reports the number, so the sittings are aggregated: parts
+    are summed, and the day is written or complete only when *every* sitting is.
+    """
+    folders = find_folders(day.number)
+    if not folders:
         return day
-    day.folder = folder.relative_to(ROOT).as_posix()
-    parts_dir = folder / "parts"
-    day.parts = len(list(parts_dir.glob("*/*.md"))) if parts_dir.is_dir() else 0
+    day.folder = ", ".join(f.relative_to(ROOT).as_posix() for f in folders)
+    day.parts = sum(
+        len(list((f / "parts").glob("*/*.md"))) for f in folders if (f / "parts").is_dir()
+    )
     # v2.0.0 onward: a hub without parts/ is not a written day.
-    day.written = (folder / "LESSON.md").is_file() and day.parts > 0
-    checklist = folder / "CHECKLIST.md"
-    day.has_checklist = checklist.is_file()
+    day.written = day.parts > 0 and all((f / "LESSON.md").is_file() for f in folders)
+    checklists = [f / "CHECKLIST.md" for f in folders]
+    day.has_checklist = all(c.is_file() for c in checklists)
     if day.has_checklist:
-        text = checklist.read_text(encoding="utf-8")
-        day.open_boxes = len(re.findall(r"^- \[ \]", text, flags=re.M))
-        ticked = len(re.findall(r"^- \[x\]", text, flags=re.M | re.I))
+        ticked = 0
+        for checklist in checklists:
+            text = checklist.read_text(encoding="utf-8")
+            day.open_boxes += len(re.findall(r"^- \[ \]", text, flags=re.M))
+            ticked += len(re.findall(r"^- \[x\]", text, flags=re.M | re.I))
         day.complete = day.open_boxes == 0 and ticked > 0
     return day
 
@@ -160,17 +169,18 @@ def build(phases: list[Phase]) -> tuple[str, dict[str, int]]:
         "(and automatically by `./m done N`) from `docs/CURRICULUM_INDEX_DS.md` "
         "plus what is actually on disk.",
         "",
-        "> **Plan v2.3.0.** A day counts as *written* only when it has a hub **and** a non-empty "
+        "> **Plan v2.4.0.** A day counts as *written* only when it has a hub **and** a non-empty "
         "`parts/` directory (Principle 16 · plan Part 11). Folders are named for their subject — "
         "`days/day-NN-<slug>/parts/NN-<slug>/` — so this table and the file tree read the same "
-        "way. v2.3.0 retired the `papers/` directory: a source is cited inline, in the part that "
-        "needs it, and the words themselves are now part of the contract (Principle 20).",
+        "way. v2.4.0 sizes a day to one ordinary sitting - three to five parts, with the "
+        "ceilings in plan Part 11.7 - and every part ends in the code you write "
+        "(Principles 21 and 22).",
         "",
         "## Progress",
         "",
         "| | Count | Of total |",
         "|---|---|---|",
-        f"| 📄 Days written in the v2.3.0 shape | **{stats['written']}** | {pct:.1f}% |",
+        f"| 📄 Days written in the v2.4.0 shape | **{stats['written']}** | {pct:.1f}% |",
         f"| 📚 Sub-topic documents in `parts/` | **{stats['parts']}** | — |",
         f"| ✅ Days completed (checklist fully ticked) | **{stats['complete']}** |"
         f" {100 * stats['complete'] / stats['total']:.1f}% |",

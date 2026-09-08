@@ -10,6 +10,90 @@ code or lesson changes. Newest first.
 
 ---
 
+## v2.4.0 — 2026-09-08 — a day that fits one sitting, and ends at the keyboard
+
+**Trigger.** A count of what the format had actually produced. Days 0–32 hold **578 part documents
+and 1 584 796 words** — an average of **17 parts and about 48 000 words per day**, and the deleted
+Day 33 draft was **26 parts and 88 690 words**. Every one of those parts satisfied the v2.3.0 contract.
+The day still failed its reader, because a day nobody finishes teaches less than a smaller day that
+gets finished. The learner reads and builds in roughly one half-hour sitting; the format had no
+opinion about size at all, and Part 11.7 said so explicitly: *"there is deliberately no target part
+count and no target length."* That sentence was true to Principle 17 and wrong in practice.
+
+**What did not change.** No day, no ID, no phase, no gate, no pin. **Part 5's 240-day map is
+untouched**, and so is `docs/CURRICULUM_INDEX_DS.md` apart from its version stamp. Principles 1–15
+and 17–20 are unchanged. This is a documentation-format amendment, exactly like v2.0.0 and v2.3.0.
+
+**Principle 16 amended.** *Depth over density* gains its missing half: **in a day that fits one
+sitting**. Depth is measured per idea, never per day. A wall of text is depth's disguise, and so is
+a corridor of twenty doors.
+
+**Two new principles.**
+
+- **21 — Show it, don't say it.** An idea is carried by one worked example with its real values
+  printed, not by a paragraph describing what would happen. Print what the code really did; the
+  prose shrinks to the one sentence that says what to notice. Never narrate output the reader can
+  already see. This is where the room for the size contract actually comes from — most of the
+  deleted words were narration, not explanation.
+- **22 — Every part names the code you write.** Teaching that never reaches the keyboard is
+  reading. Each part ends with the file path, the signature, what it must return and the pytest
+  that proves it, body left `TODO(me)` (Principle 6 is untouched — the reps are still never
+  solved).
+
+**The size contract (new Part 11.7).** Stated in **parts and words, never minutes**, because
+Principle 17 forbids a clock in a lesson: a word count measures the document, a minute count
+instructs the reader.
+
+| Unit | Target | Hard ceiling |
+|---|---|---|
+| parts in a day | 3–5 | 6, justified in one line in the hub |
+| prose words in one part (fences excluded) | 900–1 200 | 1 300 |
+| lines of code in one part | 60–100 | 150 |
+| prose words across `parts/` | ~4 000 | 4 500 |
+| prose words in the hub | ~600 | 800 |
+
+**Nothing here licenses trimming.** When a part runs long the fixes are, in order: delete prose the
+worked example already says; split the part, if it carried two ideas; split the day. Cutting the
+failure text, the production section or the keyboard step to fit remains the one edit this format
+forbids outright (Part 11.8).
+
+**The part contract: two rows changed, the count stays ten.** *The story* and *the idea in plain
+language* **merge** into **The idea, through a story** — they were always one movement, and keeping
+them apart made the second restate the first in longer words. In the space that frees comes **The
+code you write** as section 7, the thing a reader previously had to reconstruct from the hub. The
+hub's §4 build brief becomes **assembly, not invention**: every file and signature in it has already
+been named by a part.
+
+**Lettered sittings.** A subject genuinely too large for one sitting is split into
+`day-33a-<slug>`, `day-33b-<slug>` — each a complete day with its own hub, checklist, lab, parts and
+commit. The number is the plan's day and the letter is only the split, so Part 5, the phase ranges,
+the gates and the curriculum index do not move, and `./m brief 33` still returns Day 33's working
+set. This is what Principle 17 always meant — *a day may take five sittings* — made structural, so
+that the five sittings are five finishable units rather than one folder nobody opens.
+
+**Enforcement.** `scripts/depth_check.py` gains the part-count ceiling, the per-part word and code
+ceilings, the per-day and hub word ceilings, the two new required sections, and a migration check
+that catches a v2.4.0 part still carrying the old split *story* / *idea* pair. It now judges each
+day against **the contract version stamped in that day's own hub**, so amending the plan does not
+retroactively break days written to the previous one. `find_day` became `find_days`, and
+`tracker.py`, `day_brief.py` and `parts_index.py` were taught that one day number may resolve to
+several folders.
+
+**Migration — the cutover is Day 33.** Days 0–32 remain valid v2.3.0 days, stay stamped `v2.3.0`,
+and are checked against the contract they were written to. They are **not** being rewritten: they
+are finished work, and re-splitting a finished day is the "splitting without deepening" failure of
+Part 11.8. From Day 33 onward a hub must be stamped `v2.4.0`, and a day at or past that number
+carrying the older stamp is reported as unmigrated rather than quietly passed. The v2.3.0 drafts of
+days 33–38 were deleted before this amendment landed and are rewritten from the plan under the new
+contract, exactly as v2.0.0 did.
+
+**Known consequence.** Days 31 and 32 carry four forward links into parts of days 34 and 38 that no
+longer exist, so `./m depth` reports them. They are fixed when those days are rewritten and their
+folder slugs are known; guessing a slug for a day that has not been written is what produced the
+dead links in the first place.
+
+---
+
 ## v2.3.0a — 2026-08-30 — the working set, projected
 
 **Not a version bump.** No day, ID, phase, gate, pin, principle or part-contract section changed.

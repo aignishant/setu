@@ -14,6 +14,12 @@ a papers/ directory inside a day folder, and a leftover `kind:` or `paper:` key 
 frontmatter. A source is now cited inline, in the sentence that needs it, by title, year, identifier
 and URL (Principle 19 retired, Part 11.4).
 
+Since plan v2.4.0 it also enforces the size contract of Part 11.7 - three to five parts a day, and
+ceilings on the prose words in a part, in a day and in a hub - plus the merged "The idea, through a
+story" section and the new "The code you write" section (Part 11.4). A day is checked against the
+contract version stamped in its own hub, so a day written before the amendment is not retroactively
+broken; from CUTOVER_DAY onward a hub must carry the current stamp.
+
     uv run python scripts/depth_check.py          # every day that has a parts/ directory
     uv run python scripts/depth_check.py 4        # just day 4
     uv run python scripts/depth_check.py 4 5 6    # several days
@@ -35,7 +41,14 @@ INDEX = ROOT / "docs" / "CURRICULUM_INDEX_DS.md"
 
 # The one place the plan's version is written down. Every hub's frontmatter is checked against it
 # and so is the curriculum index, so a version bump is one edit here plus the documents themselves.
-PLAN_VERSION = "v2.3.0"
+PLAN_VERSION = "v2.4.0"
+
+# Plan v2.4.0 sized a day to one sitting and reshaped the part contract. Days written before it are
+# valid days, not broken ones, so each day is judged against the contract stamped in its own hub -
+# and from this day number onward, only the current stamp is accepted. Below it, either stamp passes
+# and the older one selects the older section list.
+CUTOVER_DAY = 33
+LEGACY_VERSION = "v2.3.0"
 
 # The index is the day list every other tool reads: the tracker builds from it, ./m brief projects
 # from it, and a day is written against it. It is generated from the plan's Part 4 and Part 5, so
@@ -59,21 +72,68 @@ PART_NAME_RE = re.compile(rf"^(\d+)\.(\d+)-({KEBAB})\.md$")
 SECTION_DIR_RE = re.compile(rf"^(\d{{2}})-({KEBAB})$")
 
 # A day folder carries the same kind of label: day-<NN>-<slug>, e.g. day-00-setup, day-01-pins.
-DAY_DIR_RE = re.compile(rf"^day-(\d{{2}})-({KEBAB})$")
+# Since plan v2.4.0 the number may be followed by a single lowercase letter - day-33a-<slug>,
+# day-33b-<slug> - which marks one sitting of a subject too large for one day (Part 11.7). The
+# number is still the plan's day; the letter is only the split.
+DAY_DIR_RE = re.compile(rf"^day-(\d{{2}})([a-z]?)-({KEBAB})$")
 
 # The ten required sections of a part document, in order (plan Part 11.4). Section 1 is the
-# frontmatter, checked separately; these are the nine that appear in the body.
-PART_SECTIONS = [
-    ("one-line answer", re.compile(r"^#{2,3}\s.*one[- ]line answer", re.I | re.M)),
+# frontmatter, checked separately; these are the nine that appear in the body. There are two lists
+# because v2.4.0 merged "the story" and "the idea in plain language" into one section and added
+# "the code you write"; a day is checked against the one its hub is stamped for.
+_ONE_LINE = ("one-line answer", re.compile(r"^#{2,3}\s.*one[- ]line answer", re.I | re.M))
+_WHY_SETU = ("why Setu needs it", re.compile(r"^#{2,3}\s.*why setu needs it", re.I | re.M))
+_MECHANISM = ("the mechanism", re.compile(r"^#{2,3}\s.*mechanism", re.I | re.M))
+_LINE_BY_LINE = (
+    "line by line",
+    re.compile(r"^#{2,3}\s.*line by line|^\*\*Line by line:?\*\*", re.I | re.M),
+)
+_BREAKS = ("when it breaks", re.compile(r"^#{2,3}\s.*when it breaks", re.I | re.M))
+_PRODUCTION = ("in production", re.compile(r"^#{2,3}\s.*in production", re.I | re.M))
+_CHECK = ("check yourself", re.compile(r"^#{2,3}\s.*check yourself", re.I | re.M))
+
+PART_SECTIONS_V23 = [
+    _ONE_LINE,
     ("the story", re.compile(r"^#{2,3}\s.*the story", re.I | re.M)),
     ("the idea in plain language", re.compile(r"^#{2,3}\s.*idea in plain language", re.I | re.M)),
-    ("why Setu needs it", re.compile(r"^#{2,3}\s.*why setu needs it", re.I | re.M)),
-    ("the mechanism", re.compile(r"^#{2,3}\s.*mechanism", re.I | re.M)),
-    ("line by line", re.compile(r"^#{2,3}\s.*line by line|^\*\*Line by line:?\*\*", re.I | re.M)),
-    ("when it breaks", re.compile(r"^#{2,3}\s.*when it breaks", re.I | re.M)),
-    ("in production", re.compile(r"^#{2,3}\s.*in production", re.I | re.M)),
-    ("check yourself", re.compile(r"^#{2,3}\s.*check yourself", re.I | re.M)),
+    _WHY_SETU,
+    _MECHANISM,
+    _LINE_BY_LINE,
+    _BREAKS,
+    _PRODUCTION,
+    _CHECK,
 ]
+
+PART_SECTIONS_V24 = [
+    _ONE_LINE,
+    # "The idea, through a story" - one section since v2.4.0. The pattern accepts any heading that
+    # names both halves, so a day may title it for its own subject without inventing a new contract.
+    (
+        "the idea, through a story",
+        re.compile(r"^#{2,3}\s.*\bidea\b.*\bstory\b|^#{2,3}\s.*\bstory\b.*\bidea\b", re.I | re.M),
+    ),
+    _WHY_SETU,
+    _MECHANISM,
+    _LINE_BY_LINE,
+    ("the code you write", re.compile(r"^#{2,3}\s.*code you write", re.I | re.M)),
+    _BREAKS,
+    _PRODUCTION,
+    _CHECK,
+]
+
+# A v2.4.0 part that still carries the old pair as separate headings is an unfinished migration: it
+# would otherwise pass, because "the idea, through a story" can match neither and the merge is the
+# whole point of the amendment.
+SPLIT_STORY_RE = re.compile(r"^#{2,3}\s.*idea in plain language", re.I | re.M)
+
+# The size contract, plan Part 11.7. Prose words are counted with code fences removed, because a
+# fence is read at a different speed; the code ceiling is what stops a part hiding its bulk inside
+# one. These are hard ceilings - the targets that sit under them live in the plan, not here.
+MAX_PARTS_PER_DAY = 6
+MAX_PART_WORDS = 1300
+MAX_PART_CODE_LINES = 150
+MAX_DAY_WORDS = 4500
+MAX_HUB_WORDS = 800
 
 PART_FRONTMATTER_KEYS = [
     "day",
@@ -154,6 +214,11 @@ class Report:
     day: int
     failures: list[str] = field(default_factory=list)
     parts: int = 0
+    contract: str = PLAN_VERSION
+    words: int = 0
+    # The folder this report is about. One day number can be several folders since v2.4.0, so the
+    # printed line names the folder rather than only the number.
+    label: str = ""
 
     @property
     def ok(self) -> bool:
@@ -188,19 +253,71 @@ def body(text: str) -> str:
     return text
 
 
-def find_day(number: int) -> Path | None:
-    """The folder for one day, found by its number alone.
+FENCE_BLOCK_RE = re.compile(r"^(`{3,})[^\n]*\n.*?^\1\s*$", re.M | re.S)
+
+
+def prose_words(text: str) -> int:
+    """Words outside code fences, with frontmatter already stripped by the caller.
+
+    Fences are removed rather than counted because a code block is read at a different speed from
+    a sentence, and sizing the two separately is the honest way to measure a document (plan Part
+    11.7). Table pipes and heading hashes are left in: they are a rounding error at this scale, and
+    stripping them would make the number harder to reproduce by hand with `wc -w`.
+    """
+    return len(FENCE_BLOCK_RE.sub("", text).split())
+
+
+def code_lines(text: str) -> int:
+    """Lines inside code fences, not counting the two fence markers themselves.
+
+    This is the ceiling that stops a part moving its bulk into a fence to duck the word count.
+    """
+    return sum(max(0, len(m.group(0).splitlines()) - 2) for m in FENCE_BLOCK_RE.finditer(text))
+
+
+def day_contract(folder: Path, number: int, report: Report) -> str:
+    """Which version of the part contract this day is judged against.
+
+    A day carries its own stamp in the hub's frontmatter, so amending the plan does not
+    retroactively break days written to the previous contract (plan Part 11.9). From CUTOVER_DAY
+    onward only the current stamp is accepted, and a day past it still carrying the old one is
+    reported as unmigrated rather than quietly passed.
+    """
+    hub = folder / "LESSON.md"
+    stamped = ""
+    if hub.is_file():
+        stamped = (frontmatter(hub.read_text(encoding="utf-8")) or {}).get("plan_version", "")
+        stamped = stamped.strip('"')
+
+    if number >= CUTOVER_DAY and stamped == LEGACY_VERSION:
+        report.fail(
+            "LESSON.md",
+            f"stamped plan_version {LEGACY_VERSION}, but the size contract applies from day "
+            f"{CUTOVER_DAY} - this day predates plan {PLAN_VERSION} and needs rewriting to it "
+            "(three to five parts, the merged 'idea through a story' section, and 'the code you "
+            "write'; plan Part 11.7 and 11.9)",
+        )
+        return LEGACY_VERSION
+    if stamped == LEGACY_VERSION:
+        return LEGACY_VERSION
+    return PLAN_VERSION
+
+
+def find_days(number: int) -> list[Path]:
+    """Every folder belonging to one day number, in reading order.
 
     Day folders are day-<NN>-<slug> (plan v2.1.0), so the slug is free text and the number is the
-    only stable handle. The older unslugged day-<NN> and day-<N> forms still resolve, so a folder
-    written before the amendment is found and then reported as a naming failure - never as a
-    missing day.
+    only stable handle. Since v2.4.0 one number may resolve to several folders - day-33a-<slug>
+    and day-33b-<slug> are the two sittings of one subject (Part 11.7) - so this returns a list and
+    each folder is checked as a day in its own right. The older unslugged day-<NN> and day-<N>
+    forms still resolve, so a folder written before the amendment is found and then reported as a
+    naming failure, never as a missing day.
     """
-    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}-*") if p.is_dir())
+    slugged = sorted(p for p in DAYS.glob(f"day-{number:02d}*-*") if p.is_dir())
     if slugged:
-        return slugged[0]
-    bare = (DAYS / f"day-{number:02d}", DAYS / f"day-{number}")
-    return next((p for p in bare if p.is_dir()), None)
+        return slugged
+    bare = [p for p in (DAYS / f"day-{number:02d}", DAYS / f"day-{number}") if p.is_dir()]
+    return bare
 
 
 def unexplained_code_blocks(text: str) -> list[int]:
@@ -258,6 +375,7 @@ def unexplained_code_blocks(text: str) -> list[int]:
 
 def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
     """Validate one parts/<NN>-<slug>/ document. Returns its (section, subtopic) numbers."""
+    contract = report.contract
     where = f"parts/{path.parent.name}/{path.name}"
     match = PART_NAME_RE.match(path.name)
     if not match:
@@ -299,7 +417,7 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
             )
 
     content = body(text)
-    required = PART_SECTIONS
+    required = PART_SECTIONS_V24 if contract == PLAN_VERSION else PART_SECTIONS_V23
     seen_at: list[int] = []
     for name, pattern in required:
         found = pattern.search(content)
@@ -310,8 +428,32 @@ def check_part(path: Path, day: int, report: Report) -> tuple[int, int] | None:
     if len(seen_at) == len(required) and seen_at != sorted(seen_at):
         report.fail(where, "required sections are out of contract order (plan Part 11.3)")
 
+    if contract == PLAN_VERSION and SPLIT_STORY_RE.search(content):
+        report.fail(
+            where,
+            "still has a separate 'the idea in plain language' heading - plan v2.4.0 merged the "
+            "story and the idea into one section, 'The idea, through a story' (Part 11.4)",
+        )
+
     for line_no in unexplained_code_blocks(content):
         report.fail(where, f"code block at line {line_no} has no 'Line by line' walkthrough")
+
+    if contract == PLAN_VERSION:
+        words = prose_words(content)
+        report.words += words
+        if words > MAX_PART_WORDS:
+            report.fail(
+                where,
+                f"{words} prose words, ceiling is {MAX_PART_WORDS} (plan Part 11.7). Delete prose "
+                "the worked example already says, or split the part - never cut the failure text, "
+                "the production section or the keyboard step to fit",
+            )
+        lines = code_lines(content)
+        if lines > MAX_PART_CODE_LINES:
+            report.fail(
+                where,
+                f"{lines} lines of code, ceiling is {MAX_PART_CODE_LINES} (plan Part 11.7)",
+            )
 
     check_no_clocks(text, where, report)
     check_links(path, where, report)
@@ -396,7 +538,10 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
             report.fail(
                 "LESSON.md", f"frontmatter says parts: {declared}, parts/ holds {part_count}"
             )
-        if meta.get("plan_version", "").strip('"') != PLAN_VERSION:
+        stamped = meta.get("plan_version", "").strip('"')
+        # day_contract has already reported a day past the cutover that is still on the old stamp;
+        # this only has to reject a stamp that is neither the current contract nor the legacy one.
+        if stamped not in {PLAN_VERSION, LEGACY_VERSION}:
             report.fail("LESSON.md", f"plan_version must be {PLAN_VERSION}")
 
     content = body(text)
@@ -409,6 +554,15 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
 
     if re.search(r"line by line", content, re.I):
         report.fail("LESSON.md", "the hub must not teach - move the walkthrough into a part")
+
+    if report.contract == PLAN_VERSION:
+        words = prose_words(content)
+        if words > MAX_HUB_WORDS:
+            report.fail(
+                "LESSON.md",
+                f"{words} prose words, ceiling is {MAX_HUB_WORDS} (plan Part 11.7). The hub "
+                "orients and assembles; the teaching belongs in the parts",
+            )
 
     check_no_clocks(text, "LESSON.md", report)
     check_links(hub, "LESSON.md", report)
@@ -424,18 +578,30 @@ def check_hub(folder: Path, day: int, part_count: int, report: Report) -> None:
         report.fail("LESSON.md", f"§2 map does not link parts/{name}")
 
 
-def check_day(number: int) -> Report:
-    report = Report(day=number)
-    folder = find_day(number)
-    if folder is None:
+def check_day(number: int) -> list[Report]:
+    """Every folder for this day number, each checked as a day in its own right.
+
+    A day split into lettered sittings (plan v2.4.0, Part 11.7) is several folders, and each one
+    must satisfy the whole contract on its own - a letter is not half a day.
+    """
+    folders = find_days(number)
+    if not folders:
+        report = Report(day=number)
         report.fail("days/", f"no folder for day {number}")
-        return report
+        return [report]
+    return [check_day_folder(number, folder) for folder in folders]
+
+
+def check_day_folder(number: int, folder: Path) -> Report:
+    report = Report(day=number, label=folder.name)
 
     if not DAY_DIR_RE.match(folder.name):
         report.fail(
             f"days/{folder.name}/",
-            "day folders are day-<NN>-<slug> - e.g. day-01-pins. The slug names the day's "
-            "subject, so days/ can be read without opening a hub",
+            "day folders are day-<NN>-<slug> - e.g. day-01-pins - optionally with a single "
+            "lowercase letter after the number for a lettered sitting, e.g. day-33a-text-accessors "
+            "(plan v2.4.0, Part 11.7). The slug names the day's subject, so days/ can be read "
+            "without opening a hub",
         )
 
     if (folder / "papers").is_dir():
@@ -445,6 +611,8 @@ def check_day(number: int) -> Report:
             "source inline, by title, year, identifier and URL, in the part that needs it "
             "(Part 11.4)",
         )
+
+    report.contract = day_contract(folder, number, report)
 
     parts_dir = folder / "parts"
     if not parts_dir.is_dir():
@@ -476,10 +644,25 @@ def check_day(number: int) -> Report:
         return report
 
     report.parts = len(files)
+    if report.contract == PLAN_VERSION and len(files) > MAX_PARTS_PER_DAY:
+        report.fail(
+            "parts/",
+            f"{len(files)} parts, ceiling is {MAX_PARTS_PER_DAY} and the target is three to five "
+            f"(plan Part 11.7). A subject this size is split into lettered sittings - "
+            f"day-{number:02d}a-<slug>, day-{number:02d}b-<slug> - never crammed into one day",
+        )
+
     numbers = [n for f in files if (n := check_part(f, number, report)) is not None]
     check_numbering(numbers, report)
 
     check_hub(folder, number, len(files), report)
+
+    if report.contract == PLAN_VERSION and report.words > MAX_DAY_WORDS:
+        report.fail(
+            "parts/",
+            f"{report.words} prose words across the day, ceiling is {MAX_DAY_WORDS} "
+            "(plan Part 11.7) - split the day into lettered sittings",
+        )
 
     if not (folder / "CHECKLIST.md").is_file():
         report.fail("CHECKLIST.md", "missing")
@@ -565,14 +748,16 @@ def main(argv: list[str]) -> int:
         print("no day has a parts/ directory yet - nothing to check")
         return 1 if index_problems else 0
 
-    reports = [check_day(d) for d in days]
+    reports = [r for d in days for r in check_day(d)]
     failed = [r for r in reports if not r.ok]
 
     for report in reports:
+        name = report.label or f"day {report.day}"
         if report.ok:
-            print(f"OK   day {report.day:>3}  {report.parts} parts")
+            size = f"{report.words} words" if report.contract == PLAN_VERSION else report.contract
+            print(f"OK   {name:<38}  {report.parts} parts, {size}")
         else:
-            print(f"FAIL day {report.day:>3}  {len(report.failures)} problems")
+            print(f"FAIL {name:<38}  {len(report.failures)} problems")
             for failure in report.failures:
                 print(f"       - {failure}")
 
@@ -584,7 +769,7 @@ def main(argv: list[str]) -> int:
 
     print()
     if failed:
-        print(f"depth contract: {len(reports) - len(failed)}/{len(reports)} days pass")
+        print(f"depth contract: {len(reports) - len(failed)}/{len(reports)} day folders pass")
         return 1
     if index_problems:
         print(f"depth contract: all {len(reports)} checked days pass, but the index disagrees")

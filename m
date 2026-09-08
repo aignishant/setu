@@ -6,18 +6,26 @@ DAY="${2:-}"
 pad() { printf "%02d" "$1"; }
 
 # Day folders are days/day-<NN>-<slug> (plan v2.1.0), so the slug is free text and the number is
-# the only stable handle - glob on it. The unslugged forms still resolve so an older folder is not
-# suddenly invisible; ./m depth is what complains about the name.
-daydir() {
-  local n d
+# the only stable handle - glob on it. Since v2.4.0 the number may carry a letter, days/day-33a-...
+# and days/day-33b-..., the sittings of a subject too big for one day (Part 11.7), so one number can
+# name several folders. The unslugged forms still resolve so an older folder is not suddenly
+# invisible; ./m depth is what complains about the name.
+daydirs() {
+  local n d found
   n="$(pad "$1")"
-  for d in days/day-"$n"-*; do
-    [ -d "$d" ] && { echo "$d"; return; }
+  found=""
+  for d in days/day-"$n"-* days/day-"$n"[a-z]-*; do
+    [ -d "$d" ] && { echo "$d"; found=1; }
   done
+  [ -n "$found" ] && return
   if [ -d "days/day-$n" ]; then echo "days/day-$n"
   elif [ -d "days/day-$1" ]; then echo "days/day-$1"
-  else echo ""; fi
+  fi
 }
+
+# The first folder for a day, for the commands that point at one thing. When a day was split into
+# lettered sittings this is sitting a; ./m parts and ./m done walk every sitting instead.
+daydir() { daydirs "$1" | head -n 1; }
 
 case "${1:-help}" in
   start)
@@ -39,13 +47,18 @@ case "${1:-help}" in
     ;;
   parts)
     [ -z "$DAY" ] && { echo "usage: ./m parts <day>"; exit 1; }
-    D="$(daydir "$DAY")"
-    [ -n "$D" ] || { echo "no lesson written yet for day $DAY"; exit 1; }
-    for S in "$D"/parts/*/; do
-      [ -d "$S" ] || continue
-      echo "$(basename "$S")"
-      for F in "$S"*.md; do [ -f "$F" ] && echo "    $(basename "$F")"; done
-    done
+    DIRS="$(daydirs "$DAY")"
+    [ -n "$DIRS" ] || { echo "no lesson written yet for day $DAY"; exit 1; }
+    # A lettered day is several folders, each a day in its own right, so each gets its own heading.
+    while IFS= read -r D; do
+      [ -n "$D" ] || continue
+      echo "$D"
+      for S in "$D"/parts/*/; do
+        [ -d "$S" ] || continue
+        echo "  $(basename "$S")"
+        for F in "$S"*.md; do [ -f "$F" ] && echo "      $(basename "$F")"; done
+      done
+    done <<< "$DIRS"
     ;;
   brief)
     # The day's working set, projected out of the plan instead of read from it whole.
@@ -110,14 +123,22 @@ case "${1:-help}" in
     ;;
   done)
     [ -z "$DAY" ] && { echo "usage: ./m done <day>"; exit 1; }
-    D="$(daydir "$DAY")"
-    [ -n "$D" ] || { echo "no day folder for $DAY"; exit 1; }
-    C="$D/CHECKLIST.md"
-    if grep -q '^- \[ \]' "$C"; then
-      echo "FAIL unticked boxes remain in $C"
-      grep -n '^- \[ \]' "$C"
-      exit 1
-    fi
+    DIRS="$(daydirs "$DAY")"
+    [ -n "$DIRS" ] || { echo "no day folder for $DAY"; exit 1; }
+    # A day split into lettered sittings is not done until every sitting is. Each has its own
+    # checklist, and an unticked box in any of them still means the day is unfinished.
+    OPEN=0
+    while IFS= read -r D; do
+      [ -n "$D" ] || continue
+      C="$D/CHECKLIST.md"
+      [ -f "$C" ] || { echo "FAIL no checklist at $C"; OPEN=1; continue; }
+      if grep -q '^- \[ \]' "$C"; then
+        echo "FAIL unticked boxes remain in $C"
+        grep -n '^- \[ \]' "$C"
+        OPEN=1
+      fi
+    done <<< "$DIRS"
+    [ "$OPEN" -eq 0 ] || exit 1
     "$0" check
     git add -A && git commit -m "day-$(pad "$DAY"): complete"
     echo "OK day $DAY committed"

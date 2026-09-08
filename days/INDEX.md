@@ -754,43 +754,6 @@ generator: scripts/parts_index.py
 | 6.1 | production | src/setu/joining.py — the day's module | ["PD-09", "PD-10"] | [`06-the-module/6.1-the-joining-module.md`](day-32-joining-and-reshaping/parts/06-the-module/6.1-the-joining-module.md) |
 | 6.2 | production | tests/test_joining.py — the test that can go red | ["PD-09", "PD-10"] | [`06-the-module/6.2-the-test-that-can-go-red.md`](day-32-joining-and-reshaping/parts/06-the-module/6.2-the-test-that-can-go-red.md) |
 
-## `day-33-text-and-time` — 3 parts
-
-| Part | Level | Title | IDs | File |
-|---|---|---|---|---|
-| 1.1 | foundation | The column that has no .lower() | ["PD-11"] | [`01-the-str-accessor/1.1-the-column-that-has-no-lower.md`](day-33-text-and-time/parts/01-the-str-accessor/1.1-the-column-that-has-no-lower.md) |
-| 1.2 | working | The blank that came back blank | ["PD-11"] | [`01-the-str-accessor/1.2-the-blank-that-came-back-blank.md`](day-33-text-and-time/parts/01-the-str-accessor/1.2-the-blank-that-came-back-blank.md) |
-| 1.3 | production | The dtype under the text, measured | ["PD-11"] | [`01-the-str-accessor/1.3-the-dtype-under-the-text.md`](day-33-text-and-time/parts/01-the-str-accessor/1.3-the-dtype-under-the-text.md) |
-
-## `day-34-categories-and-describe` — 3 parts
-
-| Part | Level | Title | IDs | File |
-|---|---|---|---|---|
-| 1.1 | foundation | The same short word, over and over | ["PD-13"] | [`01-the-repeated-word/1.1-the-same-short-word-over-and-over.md`](day-34-categories-and-describe/parts/01-the-repeated-word/1.1-the-same-short-word-over-and-over.md) |
-| 1.2 | working | What memory_usage actually counts | ["PD-13"] | [`01-the-repeated-word/1.2-what-memory-usage-actually-counts.md`](day-34-categories-and-describe/parts/01-the-repeated-word/1.2-what-memory-usage-actually-counts.md) |
-| 2.1 | foundation | Two arrays instead of one | ["PD-13"] | [`02-the-category-dtype/2.1-two-arrays-instead-of-one.md`](day-34-categories-and-describe/parts/02-the-category-dtype/2.1-two-arrays-instead-of-one.md) |
-
-## `day-36-figure-and-axes` — 3 parts
-
-| Part | Level | Title | IDs | File |
-|---|---|---|---|---|
-| 1.1 | foundation | The paper and the frame drawn on it | ["VIZ-01"] | [`01-the-two-objects/1.1-the-paper-and-the-frame.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.1-the-paper-and-the-frame.md) |
-| 1.2 | foundation | Axes, axis, and the word everybody trips on | ["VIZ-01"] | [`01-the-two-objects/1.2-axes-is-not-axis.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.2-axes-is-not-axis.md) |
-| 1.3 | foundation | Everything you can see is an artist | ["VIZ-01"] | [`01-the-two-objects/1.3-everything-is-an-artist.md`](day-36-figure-and-axes/parts/01-the-two-objects/1.3-everything-is-an-artist.md) |
-
-## `day-37-labels-and-chart-choice` — 1 parts
-
-| Part | Level | Title | IDs | File |
-|---|---|---|---|---|
-| 1.1 | foundation | The chart that never said what the numbers were | ["VIZ-02"] | [`01-labels/1.1-the-chart-that-never-said-what-the-numbers-were.md`](day-37-labels-and-chart-choice/parts/01-labels/1.1-the-chart-that-never-said-what-the-numbers-were.md) |
-
-## `day-38-seaborn` — 2 parts
-
-| Part | Level | Title | IDs | File |
-|---|---|---|---|---|
-| 1.1 | foundation | One row per observation | ["VIZ-04"] | [`01-the-tidy-input/1.1-one-row-per-observation.md`](day-38-seaborn/parts/01-the-tidy-input/1.1-one-row-per-observation.md) |
-| 1.2 | foundation | The chart you did not ask for | ["VIZ-04"] | [`01-the-tidy-input/1.2-the-chart-you-did-not-ask-for.md`](day-38-seaborn/parts/01-the-tidy-input/1.2-the-chart-you-did-not-ask-for.md) |
-
 ## Curriculum ID → the parts that teach it
 
 > Every ID the plan slots to a written day should appear here. An ID that a day claims in its hub but that no part carries in its frontmatter is the gap this table exposes. Entries are `day.part` — find the file in that day's table above.
@@ -817,8 +780,6 @@ generator: scripts/parts_index.py
 | `PD-08` | 20 | 31.1.1 · 31.1.2 · 31.1.3 · 31.2.1 · 31.2.2 · 31.2.3 · 31.2.4 · 31.3.1 · 31.3.2 · 31.3.3 · 31.4.1 · 31.4.2 · 31.4.3 · 31.4.4 · 31.4.5 · 31.5.1 · 31.5.2 · 31.5.3 · 31.6.1 · 31.6.2 |
 | `PD-09` | 14 | 32.1.1 · 32.1.2 · 32.1.3 · 32.1.4 · 32.2.1 · 32.2.2 · 32.2.3 · 32.2.4 · 32.3.1 · 32.3.2 · 32.3.3 · 32.3.4 · 32.6.1 · 32.6.2 |
 | `PD-10` | 7 | 32.4.1 · 32.4.2 · 32.5.1 · 32.5.2 · 32.5.3 · 32.6.1 · 32.6.2 |
-| `PD-11` | 3 | 33.1.1 · 33.1.2 · 33.1.3 |
-| `PD-13` | 3 | 34.1.1 · 34.1.2 · 34.2.1 |
 | `PY-01` | 7 | 4.1.1 · 4.1.2 · 4.1.3 · 4.1.4 · 4.1.5 · 4.3.1 · 4.3.2 |
 | `PY-02` | 7 | 4.2.1 · 4.2.2 · 4.2.3 · 4.2.4 · 4.2.5 · 4.3.1 · 4.3.2 |
 | `PY-03` | 8 | 5.1.1 · 5.1.2 · 5.1.3 · 5.1.4 · 5.1.5 · 5.1.6 · 5.3.1 · 5.3.2 |
@@ -843,7 +804,4 @@ generator: scripts/parts_index.py
 | `PY-22` | 19 | 18.1.1 · 18.1.2 · 18.1.3 · 18.1.4 · 18.1.5 · 18.2.1 · 18.2.2 · 18.2.3 · 18.2.4 · 18.3.1 · 18.3.2 · 18.3.3 · 18.3.4 · 18.4.1 · 18.4.2 · 18.4.3 · 18.4.4 · 18.4.5 · 18.4.6 |
 | `PY-23` | 17 | 19.1.1 · 19.1.2 · 19.1.3 · 19.1.4 · 19.2.1 · 19.2.2 · 19.2.3 · 19.2.4 · 19.2.5 · 19.3.1 · 19.3.2 · 19.3.3 · 19.3.4 · 19.3.5 · 19.5.1 · 19.5.2 · 19.5.3 |
 | `PY-24` | 12 | 19.4.1 · 19.4.2 · 19.4.3 · 19.4.4 · 19.4.5 · 19.4.6 · 19.4.7 · 19.4.8 · 19.4.9 · 19.5.1 · 19.5.2 · 19.5.3 |
-| `VIZ-01` | 3 | 36.1.1 · 36.1.2 · 36.1.3 |
-| `VIZ-02` | 1 | 37.1.1 |
-| `VIZ-04` | 2 | 38.1.1 · 38.1.2 |
 
