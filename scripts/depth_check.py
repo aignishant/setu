@@ -337,10 +337,21 @@ def check_links(path: Path, where: str, report: Report) -> None:
 def check_no_clocks(text: str, where: str, report: Report) -> None:
     """Principle 17: no time estimates anywhere in a day folder.
 
-    Content is never trimmed to fit a schedule, so no document may imply one. Code fences are
-    stripped first - a real command may legitimately mention a timeout.
+    Content is never trimmed to fit a schedule, so no document may imply one. Two things are
+    stripped before the scan, both because they are not prose and cannot state a pace:
+
+    - Code fences, since a real command may legitimately mention a timeout.
+    - Markdown link targets and any bare .md filename, since a part's filename carries its number
+      and slug. A part such as 6.2-min-and-max-are-a-range-check.md reads as "2-min" to the duration
+      pattern, so every document linking to it - and its neighbours' prev:/next: frontmatter - would
+      fail on a filename the hub's §2 map mandates.
+
+    Link *text* is deliberately left in - "[takes 20 minutes](x.md)" is still a clock, and so is a
+    duration field in frontmatter, which is a key rather than a filename.
     """
     prose = re.sub(r"```.*?```", "", text, flags=re.S)
+    prose = re.sub(r"\]\([^)]*\)", "]()", prose)
+    prose = re.sub(r"[\w./-]+\.md\b", "", prose)
     for pattern, description in TIME_BANS:
         hit = pattern.search(prose)
         if hit:
